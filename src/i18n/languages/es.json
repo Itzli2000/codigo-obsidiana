@@ -3,5 +3,11 @@
     "en": "Inglés",
     "es": "Español"
   },
-  "title": "Código Obsidiana - Ariel Molina"
+  "meta": {
+    "description": "Código Obsidiana - Ariel Molina. Desarrollo de software, tecnologías web y tutoriales de programación."
+  },
+  "title": "Código Obsidiana - Ariel Molina",
+  "footer": {
+    "rights": "Todos los derechos reservados"
+  }
 }

@@ -3,5 +3,11 @@
     "en": "English",
     "es": "Spanish"
   },
-  "title": "Código Obsidiana - Ariel Molina"
+  "meta": {
+    "description": "Código Obsidiana - Personal website and blog of Ariel Molina. Software development, web technologies, and programming tutorials."
+  },
+  "title": "Código Obsidiana - Ariel Molina",
+  "footer": {
+    "rights": "All rights reserved"
+  }
 }

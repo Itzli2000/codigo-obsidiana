@@ -1,5 +1,6 @@
 ---
 import { useTranslations } from "../i18n/utils";
+import '../styles/global.css';
 
 interface Props {
   title?: string;
@@ -14,21 +15,29 @@ const t = useTranslations(lang as "en" | "es");
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="My multilingual website" />
+    <meta name="description" content={t("meta.description")} />
     <title>{title}</title>
   </head>
   <body>
     <header>
       <nav>
-        <a href="/en/">English</a>
-        <a href="/es/">Español</a>
+        <a href="/en/" class={lang === "en" ? "active" : ""}>English</a>
+        <a href="/es/" class={lang === "es" ? "active" : ""}>Español</a>
       </nav>
     </header>
     <main>
       <slot />
     </main>
     <footer>
-      <p>&copy; {new Date().getFullYear()}</p>
+      <p>&copy; {new Date().getFullYear()} – {t("footer.rights")}</p>
     </footer>
   </body>
 </html>
+
+<style>
+  .active {
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--accent-brand);
+  }
+</style>
