@@ -1,7 +1,6 @@
 ---
 import { useTranslations } from "../../i18n/utils";
-import { Image } from "astro:assets";
-import Logo from "../../assets/images/codigo_obsidiana.svg";
+import { Icon } from 'astro-icon/components';
 
 interface Props {
   lang: string;
@@ -14,7 +13,7 @@ const t = useTranslations(lang as "en" | "es");
 <nav class="navigation" aria-label="Main Navigation">
   <div class="nav-container">
     <a href={`/${lang}/`} class="logo-link" aria-label="Home">
-      <Logo />
+      <Icon name="logo" />
     </a>
     
     <button 
@@ -70,11 +69,18 @@ const t = useTranslations(lang as "en" | "es");
     display: flex;
     align-items: center;
     text-decoration: none;
+    transition: all 0.2s ease-in-out;
 
-    svg {
+    [data-icon="logo"] {
       height: 50px;
       width: auto;
-      fill: var(--accent-brand);
+      color: var(--accent-brand);
+    }
+
+    &:hover {
+      [data-icon="logo"] {
+        color: var(--accent-hover);
+      }
     }
   }
 
