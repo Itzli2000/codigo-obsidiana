@@ -2,6 +2,7 @@
   "name": "codigo-obsidiana",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,7 +10,8 @@
     "astro": "astro",
     "prepare-release:patch": "node scripts/prepare-release.js --patch",
     "prepare-release:minor": "node scripts/prepare-release.js --minor",
-    "prepare-release:major": "node scripts/prepare-release.js --major"
+    "prepare-release:major": "node scripts/prepare-release.js --major",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
@@ -20,6 +22,7 @@
     "@types/generate-changelog": "^1.8.3",
     "@types/shelljs": "^0.8.16",
     "generate-changelog": "^1.8.0",
+    "husky": "^9.1.7",
     "shelljs": "^0.10.0"
   }
 }
