@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Standards for using Tailwind CSS within the project
+globs: src/**/*.{astro,tsx}
+alwaysApply: true
+---
+
+# Tailwind CSS Usage Standards
+
+1. **Utility-First Approach**: Utilize Tailwind's utility classes to style components directly within markup.
+
+2. **Custom Classes**: Define custom utility classes sparingly and only when necessary, placing them in `src/styles/`.
+
+3. **Responsive Design**: Implement responsive design using Tailwind's responsive utility variants (e.g., `md:text-center`).
+
+4. **Dark Mode**: Use Tailwind's dark mode classes to support dark theme styling.
+
+5. **Consistent Spacing**: Apply consistent spacing using Tailwind's spacing scale (e.g., `p-4`, `mt-2`).
+
+6. **Color Palette**: Stick to the project's defined color palette, customizing Tailwind's default colors in `tailwind.config.js` as needed.
+
+7. **Typography**: Use Tailwind's typography utilities to style text elements, ensuring readability and consistency.
+
+8. **Hover and Focus States**: Implement interactive states using Tailwind's pseudo-class variants (e.g., `hover:bg-blue-500`).
+
+9. **Component Styling**: For complex components, consider creating reusable classes or components to encapsulate styling logic.
+
+10. **Avoid Inline Styles**: Refrain from using inline styles; rely on Tailwind classes for styling to maintain consistency.

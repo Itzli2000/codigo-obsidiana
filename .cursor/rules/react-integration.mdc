@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Guidelines for integrating React components within the Astro project
+globs: src/components/**/*.tsx
+alwaysApply: true
+---
+
+# React Component Integration Guidelines
+
+1. **Use Cases**: Employ React components for interactive or stateful UI elements that require client-side rendering.
+
+2. **Placement**: Store React components in `src/components/react/` to distinguish them from Astro components.
+
+3. **Client Directives**: When embedding React components in `.astro` files, use the appropriate client directive (e.g., `client:load`, `client:visible`).
+
+4. **TypeScript**: Write all React components in TypeScript, defining explicit prop types for clarity and type safety.
+
+5. **Styling**: Apply Tailwind CSS classes within JSX elements for styling, maintaining consistency with the rest of the project.
+
+6. **State Management**: Utilize React's `useState` and `useEffect` hooks for managing component state and side effects.
+
+7. **Accessibility**: Ensure React components are accessible, following best practices for ARIA attributes and keyboard navigation.
+
+8. **Performance**: Optimize React components for performance, avoiding unnecessary re-renders and heavy computations on the client side.
+
+9. **Testing**: Write unit tests for React components using a testing library compatible with React and TypeScript.
+
+10. **Documentation**: Document complex components with comments and, if necessary, separate markdown files explaining their usage.

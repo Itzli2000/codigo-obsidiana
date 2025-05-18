@@ -1,0 +1,32 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Guidelines for maintaining consistent branding and content structure
+globs: src/content/**/*.{md,mdx}
+alwaysApply: true
+---
+
+# Project Branding and Content Guidelines
+
+1. **Brand Identity**: Ensure all content aligns with the 'Código Obsidiana' brand, reflecting themes of elegance, technical proficiency, and cultural inspiration.
+
+2. **Content Structure**: Organize markdown content in `src/content/`, categorizing by type (e.g., `blog/`, `projects/`, `about/`).
+
+3. **Frontmatter**: Include relevant frontmatter in markdown files (e.g., `title`, `date`, `description`, `tags`) for consistent metadata.
+
+4. **Markdown Styling**: Use consistent markdown syntax for headings, lists, code blocks, and other elements to maintain readability.
+
+5. **Media Assets**: Reference media assets (images, videos) stored in `public/assets/`, ensuring they are optimized for web performance.
+
+6. **Localization**: If supporting multiple languages, structure content directories accordingly (e.g., `en/`, `es/`) and implement localization logic.
+
+7. **SEO Optimization**: Incorporate SEO best practices in content, including meaningful titles, descriptions, and keyword usage.
+
+8. **Content Updates**: Regularly review and update content to keep information current and relevant.
+
+9. **Linking**: Use relative links for internal navigation and ensure all links are functional and up-to-date.
+
+10. **Accessibility**: Ensure all content is accessible, using appropriate alt text for images and semantic HTML structures.
