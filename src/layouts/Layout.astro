@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from "../i18n/utils";
 import '../styles/global.css';
+import Navigation from '../components/navigation/Navigation.astro';
 
 interface Props {
   title?: string;
@@ -20,10 +21,7 @@ const t = useTranslations(lang as "en" | "es");
   </head>
   <body>
     <header>
-      <nav>
-        <a href="/en/" class={lang === "en" ? "active" : ""}>English</a>
-        <a href="/es/" class={lang === "es" ? "active" : ""}>Español</a>
-      </nav>
+      <Navigation lang={lang} />
     </header>
     <main>
       <slot />
@@ -34,10 +32,28 @@ const t = useTranslations(lang as "en" | "es");
   </body>
 </html>
 
-<style>
-  .active {
-    font-weight: bold;
-    text-decoration: underline;
-    color: var(--accent-brand);
+<style is:global>
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+  }
+
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-secondary-dark);
+    color: var(--text-primary-dark);
   }
 </style>

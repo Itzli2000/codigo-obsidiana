@@ -4,6 +4,9 @@ const defaultLang = "es";
 
 <html>
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting...</title>
     <script>
       function detectBrowserLanguage() {
         const supportedLangs = ["en", "es"];
@@ -17,6 +20,42 @@ const defaultLang = "es";
     </script>
   </head>
   <body>
-    <p>Redirecting...</p>
+    <div class="loading">
+      <div class="spinner"></div>
+      <p>Redirecting to your preferred language...</p>
+    </div>
   </body>
 </html>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .loading {
+    text-align: center;
+  }
+
+  .spinner {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--bg-secondary-dark);
+    border-top-color: var(--accent-brand);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
