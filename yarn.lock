@@ -1731,6 +1731,7 @@ __metadata:
     "@types/shelljs": "npm:^0.8.16"
     astro: "npm:^5.7.13"
     astro-icon: "npm:^1.1.5"
+    daisyui: "npm:^5.0.35"
     generate-changelog: "npm:^1.8.0"
     husky: "npm:^9.1.7"
     shelljs: "npm:^0.10.0"
@@ -1933,6 +1934,13 @@ __metadata:
   dependencies:
     css-tree: "npm:~2.2.0"
   checksum: 10c0/ab4beb1e97dd7e207c10e9925405b45f15a6cd1b4880a8686ad573aa6d476aed28b4121a666cffd26c37a26179f7b54741f7c257543003bfb244d06a62ad569b
+  languageName: node
+  linkType: hard
+
+"daisyui@npm:^5.0.35":
+  version: 5.0.35
+  resolution: "daisyui@npm:5.0.35"
+  checksum: 10c0/dadaaa689ac1574f9c756c645e9d04d2de461747017665e31b7391ca2a63dcb13804e78ed4632f74417bdaf38c946766df330aab17f3e9f6ec5aeded6791f618
   languageName: node
   linkType: hard
 

@@ -1,34 +1,68 @@
-@import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import "tailwindcss";
+@plugin "daisyui";
 
-@theme {
-  --bg-primary-dark: #0f1923;
-  --bg-secondary-dark: #2c3844;
-  --bg-primary-light: #f2eae0;
-  --bg-accent-light: #4ca5ff;
-  --bg-accent-dark: #5fbcff;
-  --bg-accent-brand: #ff8357;
-  --text-primary-dark: #b0b0b0;
-  --text-primary-light: #121212;
-  --accent-main: #4ca5ff;
-  --accent-hover: #5fbcff;
-  --accent-brand: #ff8357;
-  --border-neutral: #2c3844;
+@plugin "daisyui/theme" {
+  name: "obsidiana-light";
+  color-scheme: light;
+
+  --color-base-100: oklch(98% 0.014 261.3);
+  --color-base-200: oklch(95% 0.026 261.2);
+  --color-base-300: oklch(90% 0.015 91.3);
+  --color-base-content: oklch(20% 0.006 262.0);
+
+  --color-primary: oklch(72.6% 0.21 245);
+  --color-primary-content: oklch(98% 0.003 262.2);
+
+  --color-secondary: oklch(78.3% 0.22 246);
+  --color-secondary-content: oklch(98% 0.003 262.2);
+
+  --color-accent: oklch(70.3% 0.16 35);
+  --color-accent-content: oklch(98% 0.003 262.2);
+
+  --color-neutral: oklch(95% 0.026 261.2);
+  --color-neutral-content: oklch(20% 0.006 262.0);
+
+  --color-info: oklch(72.6% 0.21 245);
+  --color-success: oklch(68% 0.18 150);
+  --color-warning: oklch(82% 0.16 85);
+  --color-error: oklch(70.3% 0.16 35);
+  --color-info-content: oklch(98% 0.003 262.2);
+  --color-success-content: oklch(98% 0.003 262.2);
+  --color-warning-content: oklch(98% 0.003 262.2);
+  --color-error-content: oklch(98% 0.003 262.2);
 }
 
-:root {
-    --bg-primary-dark: #0f1923;
-    --bg-secondary-dark: #2c3844;
-    --bg-primary-light: #f2eae0;
-    --bg-accent-light: #4ca5ff;
-    --bg-accent-dark: #5fbcff;
-    --bg-accent-brand: #ff8357;
-    --text-primary-dark: #b0b0b0;
-    --text-primary-light: #121212;
-    --accent-main: #4ca5ff;
-    --accent-hover: #5fbcff;
-    --accent-brand: #ff8357;
-    --border-neutral: #2c3844;
+@plugin "daisyui/theme" {
+  name: "obsidiana-dark";
+  default: true;
+  color-scheme: dark;
+
+  --color-base-100: oklch(22.3% 0.014 261.3);
+  --color-base-200: oklch(33.7% 0.026 261.2);
+  --color-base-300: oklch(94.4% 0.015 91.3);
+  --color-base-content: oklch(71.8% 0.006 262.0);
+
+  --color-primary: oklch(72.6% 0.21 245);
+  --color-primary-content: oklch(26.2% 0.003 262.2);
+
+  --color-secondary: oklch(78.3% 0.22 246);
+  --color-secondary-content: oklch(26.2% 0.003 262.2);
+
+  --color-accent: oklch(70.3% 0.16 35);
+  --color-accent-content: oklch(26.2% 0.003 262.2);
+
+  --color-neutral: oklch(33.7% 0.026 261.2);
+  --color-neutral-content: oklch(71.8% 0.006 262.0);
+
+  --color-info: oklch(72.6% 0.21 245);
+  --color-success: oklch(68% 0.18 150);
+  --color-warning: oklch(82% 0.16 85);
+  --color-error: oklch(70.3% 0.16 35);
+  --color-info-content: oklch(26.2% 0.003 262.2);
+  --color-success-content: oklch(26.2% 0.003 262.2);
+  --color-warning-content: oklch(26.2% 0.003 262.2);
+  --color-error-content: oklch(26.2% 0.003 262.2);
 }
 
 h1,

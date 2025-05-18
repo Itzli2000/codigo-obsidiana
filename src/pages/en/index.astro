@@ -2,14 +2,51 @@
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import Layout from "../../layouts/Layout.astro";
 
-
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
 ---
 
 <Layout lang={lang} title={t("title")}>
-    <main>
-      <h1 class="text-4xl font-bold">Hello!</h1>
-      <p class="text-lg">Welcome to my website</p>
-    </main>
+  <h1 class="text-4xl font-bold">Hello!</h1>
+  <p class="text-lg">Welcome to my website</p>
+  <br />
+  <br />
+  <button class="btn btn-primary">Click me</button>
+  <button class="btn btn-secondary">Click me</button>
+  <button class="btn btn-accent">Click me</button>
+  <button class="btn btn-neutral">Click me</button>
+  <button class="btn btn-info">Click me</button>
+  <button class="btn btn-success">Click me</button>
+  <button class="btn btn-warning">Click me</button>
+  <button class="btn btn-error">Click me</button>
+  <br />
+  <br />
+  <details class="dropdown">
+    <summary class="btn m-1">open or close</summary>
+    <ul
+      class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm bg-base-100"
+    >
+      <li><a>Item 1</a></li>
+      <li><a>Item 2</a></li>
+    </ul>
+  </details>
+  <br />
+  <br />
+  <button class="btn" onclick="my_modal_2.showModal()">open modal</button>
+  <dialog id="my_modal_2" class="modal">
+    <div class="modal-box">
+      <h3 class="text-lg font-bold">Hello!</h3>
+      <p class="py-4">Press ESC key or click outside to close</p>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+      <button>close</button>
+    </form>
+  </dialog>
+  <br />
+  <br />
+  <label class="swap">
+    <input type="checkbox" />
+    <div class="swap-on">ON</div>
+    <div class="swap-off">OFF</div>
+  </label>
 </Layout>

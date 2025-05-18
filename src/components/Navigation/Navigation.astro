@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from "../../i18n/utils";
 import { Icon } from 'astro-icon/components';
+import ThemeSwitcher from '../ThemeSwitcher.astro';
 
 interface Props {
   lang: string;
@@ -16,37 +17,41 @@ const t = useTranslations(lang as "en" | "es");
       <Icon name="logo" />
     </a>
     
-    <button 
-      class="mobile-menu-button" 
-      aria-label="Toggle menu" 
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="hamburger"></span>
-    </button>
+    <div class="nav-right">
+      <ThemeSwitcher class="mr-4" />
+      
+      <button 
+        class="mobile-menu-button" 
+        aria-label="Toggle menu" 
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="hamburger"></span>
+      </button>
 
-    <ul class="nav-list" id="mobile-menu">
-      <li>
-        <a
-          href="/en/"
-          class={lang === "en" ? "active" : ""}
-          aria-current={lang === "en" ? "page" : undefined}
-          hreflang="en"
-        >
-          English
-        </a>
-      </li>
-      <li>
-        <a
-          href="/es/"
-          class={lang === "es" ? "active" : ""}
-          aria-current={lang === "es" ? "page" : undefined}
-          hreflang="es"
-        >
-          Español
-        </a>
-      </li>
-    </ul>
+      <ul class="nav-list" id="mobile-menu">
+        <li>
+          <a
+            href="/en/"
+            class={lang === "en" ? "active" : ""}
+            aria-current={lang === "en" ? "page" : undefined}
+            hreflang="en"
+          >
+            English
+          </a>
+        </li>
+        <li>
+          <a
+            href="/es/"
+            class={lang === "es" ? "active" : ""}
+            aria-current={lang === "es" ? "page" : undefined}
+            hreflang="es"
+          >
+            Español
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -58,10 +63,15 @@ const t = useTranslations(lang as "en" | "es");
   }
 
   .nav-container {
-    max-width: 1200px;
+    max-width: max(1000px, 90vw);
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-right {
+    display: flex;
     align-items: center;
   }
 
