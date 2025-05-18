@@ -1,0 +1,15 @@
+---
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+
+
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang} title={t("title")}>
+    <main>
+      <h1>Hello!</h1>
+      <p>Welcome to my website</p>
+    </main>
+</Layout>
