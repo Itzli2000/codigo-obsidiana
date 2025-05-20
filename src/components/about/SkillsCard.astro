@@ -1,0 +1,52 @@
+---
+interface Props {
+  title: string;
+  languagesTitle: string;
+  frameworksTitle: string;
+  toolsTitle: string;
+  otherTitle: string;
+}
+
+const { title, languagesTitle, frameworksTitle, toolsTitle, otherTitle } = Astro.props;
+---
+
+<div class="card bg-base-200 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title text-2xl">{title}</h2>
+    <div class="divider"></div>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="space-y-2">
+        <h3 class="font-semibold">{languagesTitle}</h3>
+        <ul class="list-disc list-inside">
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>HTML & CSS</li>
+        </ul>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">{frameworksTitle}</h3>
+        <ul class="list-disc list-inside">
+          <li>React</li>
+          <li>Next.js</li>
+          <li>Astro</li>
+        </ul>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">{toolsTitle}</h3>
+        <ul class="list-disc list-inside">
+          <li>Git</li>
+          <li>VS Code</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">{otherTitle}</h3>
+        <ul class="list-disc list-inside">
+          <li>Accessibility</li>
+          <li>Performance</li>
+          <li>Testing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> 

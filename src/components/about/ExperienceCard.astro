@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  currentRole: string;
+  currentPeriod: string;
+  currentDescription: string;
+}
+
+const { title, currentRole, currentPeriod, currentDescription } = Astro.props;
+---
+
+<div class="card bg-base-200 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title text-2xl">{title}</h2>
+    <div class="space-y-6 mt-4">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3 class="font-bold">{currentRole}</h3>
+            <p class="text-sm opacity-70">{currentPeriod}</p>
+            <p class="mt-2">{currentDescription}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--p));
+    border: 2px solid hsl(var(--b1));
+  }
+
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 1rem;
+    bottom: 0;
+    width: 2px;
+    background-color: hsl(var(--p));
+  }
+</style> 

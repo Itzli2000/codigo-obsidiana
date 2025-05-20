@@ -9,5 +9,32 @@
   "title": "Código Obsidiana - Ariel Molina",
   "footer": {
     "rights": "All rights reserved"
+  },
+  "about": {
+    "title": "About Me",
+    "role": "Front End Engineer",
+    "tagline": "I build accessible, pixel-perfect digital experiences for the web.",
+    "description": "I'm a developer passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies at the intersection of design and development, creating experiences that not only look great but are meticulously built for performance and usability.",
+    "experience": {
+      "title": "Experience",
+      "current": {
+        "role": "Senior Frontend Engineer",
+        "period": "2024 — Present",
+        "description": "Build and maintain critical components used to construct frontend applications, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers."
+      }
+    },
+    "skills": {
+      "title": "Skills & Technologies",
+      "languages": "Languages",
+      "frameworks": "Frameworks",
+      "tools": "Tools",
+      "other": "Other"
+    },
+    "education": {
+      "title": "Education",
+      "degree": "Computer Science",
+      "period": "2018 — 2022",
+      "description": "Focused on software engineering and web development."
+    }
   }
 }

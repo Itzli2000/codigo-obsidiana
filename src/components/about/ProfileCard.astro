@@ -1,0 +1,22 @@
+---
+interface Props {
+  role: string;
+  tagline: string;
+  description: string;
+}
+
+const { role, tagline, description } = Astro.props;
+---
+
+<div class="card bg-base-200 shadow-xl">
+  <div class="card-body">
+    <h1 class="card-title text-3xl font-bold">{role}</h1>
+    <p class="text-lg mt-4">
+      {tagline}
+    </p>
+    <div class="divider"></div>
+    <div class="prose">
+      <p>{description}</p>
+    </div>
+  </div>
+</div> 
