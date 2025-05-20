@@ -1,7 +1,9 @@
 {
   "language": {
     "en": "Inglés",
-    "es": "Español"
+    "es": "Español",
+    "switcher": "Selector de idioma",
+    "switch": "Cambiar idioma"
   },
   "meta": {
     "description": "Código Obsidiana - Ariel Molina. Desarrollo de software, tecnologías web y tutoriales de programación."

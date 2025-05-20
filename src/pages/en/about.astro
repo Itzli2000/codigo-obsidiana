@@ -11,73 +11,75 @@ const t = useTranslations(lang);
 ---
 
 <BaseLayout title={t('about.title')} lang={lang}>
-  <main class="container mx-auto px-4 py-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Left Column - Personal Information -->
-      <div class="space-y-6">
+  <div class="min-h-screen lg:flex lg:flex-row lg:gap-4 about-page">
+    <!-- Columna izquierda / Header en móvil -->
+    <header class="bg-base-200 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
         <ProfileCard
           role={t('about.role')}
           tagline={t('about.tagline')}
           description={t('about.description')}
         />
+    </header>
 
-        <ExperienceCard
-          title={t('about.experience.title')}
-          currentRole={t('about.experience.current.role')}
-          currentPeriod={t('about.experience.current.period')}
-          currentDescription={t('about.experience.current.description')}
-        />
+    <!-- Contenido principal scrolleable -->
+    <main class="pt-24 lg:w-[52%] lg:py-24">
+      <div class="max-w-3xl mx-auto space-y-16">
+        <section>
+          <ExperienceCard
+            title={t('about.experience.title')}
+            currentRole={t('about.experience.current.role')}
+            currentPeriod={t('about.experience.current.period')}
+            currentDescription={t('about.experience.current.description')}
+          />
+        </section>
+
+        <section>
+          <SkillsCard
+            title={t('about.skills.title')}
+            languagesTitle={t('about.skills.languages')}
+            frameworksTitle={t('about.skills.frameworks')}
+            toolsTitle={t('about.skills.tools')}
+            otherTitle={t('about.skills.other')}
+          />
+        </section>
+
+        <section>
+          <EducationCard
+            title={t('about.education.title')}
+            degree={t('about.education.degree')}
+            period={t('about.education.period')}
+            description={t('about.education.description')}
+          />
+        </section>
       </div>
-
-      <!-- Right Column - Skills & Technologies -->
-      <div class="space-y-6">
-        <SkillsCard
-          title={t('about.skills.title')}
-          languagesTitle={t('about.skills.languages')}
-          frameworksTitle={t('about.skills.frameworks')}
-          toolsTitle={t('about.skills.tools')}
-          otherTitle={t('about.skills.other')}
-        />
-
-        <EducationCard
-          title={t('about.education.title')}
-          degree={t('about.education.degree')}
-          period={t('about.education.period')}
-          description={t('about.education.description')}
-        />
-      </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </BaseLayout>
 
 <style>
-  .timeline {
+  /* Aseguramos que el aside tenga un fondo que se extienda completamente */
+  aside {
     position: relative;
-    padding-left: 2rem;
   }
 
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2rem;
-  }
-
-  .timeline-marker {
-    position: absolute;
-    left: -2rem;
-    width: 1rem;
-    height: 1rem;
-    border-radius: 50%;
-    background-color: hsl(var(--p));
-    border: 2px solid hsl(var(--b1));
-  }
-
-  .timeline-item:not(:last-child)::before {
+  aside::before {
     content: '';
     position: absolute;
-    left: -1.5rem;
-    top: 1rem;
+    top: 0;
+    left: -100vw;
+    right: 0;
     bottom: 0;
-    width: 2px;
-    background-color: hsl(var(--p));
+    background-color: hsl(var(--b2));
+    z-index: -1;
+  }
+
+  /* Ajustes para el scroll suave entre secciones */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Aseguramos que las secciones tengan suficiente padding para el scroll */
+  section {
+    scroll-margin-top: 2rem;
   }
 </style> 

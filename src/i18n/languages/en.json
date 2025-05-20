@@ -1,7 +1,9 @@
 {
   "language": {
     "en": "English",
-    "es": "Spanish"
+    "es": "Spanish",
+    "switcher": "Language switcher",
+    "switch": "Switch language"
   },
   "meta": {
     "description": "Código Obsidiana - Personal website and blog of Ariel Molina. Software development, web technologies, and programming tutorials."
