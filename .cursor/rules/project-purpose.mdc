@@ -5,17 +5,18 @@ alwaysApply: true
 ---
 ---
 description: Defines the overarching goal and context of the Código Obsidiana project
-globs: []
+globs: src/content/**/*.{md,mdx,ts,tsx,astro}
 alwaysApply: true
 ---
 
-# Project Purpose: Código Obsidiana
+## project-purpose
 
-The **Código Obsidiana** project is the personal website and professional portfolio of Ariel Itzli Molina Sánchez, a seasoned frontend developer with over 8 years of experience. The site aims to:
+This project is the source code for **“Código Obsidiana”** — a bilingual personal website built with Astro, Tailwind CSS, and DaisyUI.
 
-- **Showcase Expertise**: Highlight Ariel's proficiency in React, UI architecture, and 3D learning experiences.
-- **Demonstrate Projects**: Present a curated selection of projects across fintech, user management, and banking industries in Mexico.
-- **Share Knowledge**: Provide technical articles and tutorials to educate and engage the developer community.
-- **Reflect Personal Brand**: Embody the 'Código Obsidiana' identity, merging technical excellence with cultural inspiration.
+Its purpose is to serve as both:
+- A technical blog where Ariel Molina shares in-depth frontend content, tutorials, and project insights (with focus on React, 3D, education, architecture, tooling).
+- A lightweight but elegant personal portfolio under the `/about` route.
 
-The website is built using modern technologies, including Astro for static site generation, Tailwind CSS for styling, and integrates React components where interactivity is required.
+The homepage prioritizes content creation and community growth. Posts are central to the experience and link naturally to open-source tools, experiments, and long-term side projects.
+
+The site is fully multilingual (English & Spanish), SEO-optimized, and structured to scale with future initiatives like newsletters and Discord.

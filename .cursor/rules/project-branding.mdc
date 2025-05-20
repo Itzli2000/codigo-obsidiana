@@ -5,28 +5,30 @@ alwaysApply: true
 ---
 ---
 description: Guidelines for maintaining consistent branding and content structure
-globs: src/content/**/*.{md,mdx}
+globs: src/content/**/*.{md,mdx,ts,tsx,astro}
 alwaysApply: true
 ---
 
 # Project Branding and Content Guidelines
 
-1. **Brand Identity**: Ensure all content aligns with the 'Código Obsidiana' brand, reflecting themes of elegance, technical proficiency, and cultural inspiration.
+1. **Brand Identity**: Ensure all content aligns with the 'Código Obsidiana' brand, reflecting themes of elegance, technical depth, personal authorship, and cultural inspiration through obsidian symbolism.
 
-2. **Content Structure**: Organize markdown content in `src/content/`, categorizing by type (e.g., `blog/`, `projects/`, `about/`).
+2. **Visual Language**: Use a dark, minimal, and editorial aesthetic. Base backgrounds are `#0f1923` and `#2c3844`. Action elements use cool blues (`#4CA5FF`, `#5FBCFF`), and the signature accent is obsidian-orange (`#FF8357`). All colors should be defined in `oklch()` for visual consistency.
 
-3. **Frontmatter**: Include relevant frontmatter in markdown files (e.g., `title`, `date`, `description`, `tags`) for consistent metadata.
+3. **Typography**:
+   - Headlines: `Playfair Display` - serif, elegant, high contrast.
+   - Body: `Inter` - clean, technical, modern sans-serif.
 
-4. **Markdown Styling**: Use consistent markdown syntax for headings, lists, code blocks, and other elements to maintain readability.
+4. **Content Structure**: Organize markdown content in `src/content/`, categorizing by type (e.g., `blog/`, `projects/`, `about/`) and language (`en/`, `es/`).
 
-5. **Media Assets**: Reference media assets (images, videos) stored in `public/assets/`, ensuring they are optimized for web performance.
+5. **Frontmatter**: Include consistent metadata (`title`, `description`, `lang`, `tags`, etc.) and apply localization context where applicable.
 
-6. **Localization**: If supporting multiple languages, structure content directories accordingly (e.g., `en/`, `es/`) and implement localization logic.
+6. **Markdown Styling**: Use consistent heading levels, spacing, and semantic elements. Favor clarity and typographic rhythm over excessive styling.
 
-7. **SEO Optimization**: Incorporate SEO best practices in content, including meaningful titles, descriptions, and keyword usage.
+7. **Media Assets**: Store images and videos in `public/assets/`, using compressed formats and descriptive names. Include localized variants if needed.
 
-8. **Content Updates**: Regularly review and update content to keep information current and relevant.
+8. **Localization**: All content should support both English and Spanish. Follow the folder convention (`src/content/en/`, `src/content/es/`) and ensure each post has metadata and visible language switch options.
 
-9. **Linking**: Use relative links for internal navigation and ensure all links are functional and up-to-date.
+9. **SEO Optimization**: Prioritize meaningful, human-readable slugs, proper `<meta>` descriptions per locale, and keywords related to frontend development and personal branding.
 
-10. **Accessibility**: Ensure all content is accessible, using appropriate alt text for images and semantic HTML structures.
+10. **Accessibility**: Use semantic HTML, descriptive `alt` text for images, and maintain legibility across light/dark themes.

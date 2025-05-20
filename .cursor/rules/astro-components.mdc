@@ -5,7 +5,7 @@ alwaysApply: true
 ---
 ---
 description: Guidelines for structuring and developing Astro components and pages
-globs: src/**/*.astro
+globs: src/content/**/*.{md,mdx,ts,tsx,astro}
 alwaysApply: true
 ---
 
