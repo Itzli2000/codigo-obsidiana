@@ -1,3 +1,4 @@
+
 {
   "language": {
     "en": "English",
@@ -22,12 +23,7 @@
       "content": "I find inspiration in the duality of obsidian - both raw and refined, powerful yet elegant. My expertise lies in creating web experiences that combine robust architecture with thoughtful design. I focus on accessibility and performance, transforming complex technical challenges into seamless, beautiful interfaces that stand the test of time."
     },
     "experience": {
-      "title": "Experience",
-      "current": {
-        "role": "Senior Frontend Engineer",
-        "period": "2024 — Present",
-        "description": "Build and maintain critical components used to construct frontend applications, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers."
-      }
+      "title": "Experience"
     },
     "skills": {
       "title": "Skills & Technologies",

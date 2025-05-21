@@ -1,0 +1,40 @@
+{
+  "experiences": [
+    {
+      "role": "Senior Frontend Engineer",
+      "company": "Wizeline",
+      "period": "2024 — Present",
+      "description": "Lead frontend development initiatives and mentor team members while building scalable web applications. Focus on React, TypeScript, and modern web technologies.",
+      "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+      "achievements": [
+        "Lead frontend architecture decisions and implementation strategies",
+        "Mentor junior developers and conduct technical interviews",
+        "Implement best practices and coding standards"
+      ]
+    },
+    {
+      "role": "Frontend Engineer",
+      "company": "Globant",
+      "period": "2022 — 2024",
+      "description": "Developed and maintained large-scale web applications for international clients. Specialized in React and modern JavaScript frameworks.",
+      "technologies": ["React", "JavaScript", "Redux", "Material-UI", "Jest"],
+      "achievements": [
+        "Developed reusable component libraries improving development efficiency",
+        "Implemented responsive and accessible web interfaces",
+        "Collaborated with cross-functional teams to deliver high-quality solutions"
+      ]
+    },
+    {
+      "role": "Web Developer",
+      "company": "Freelance",
+      "period": "2020 — 2022",
+      "description": "Worked independently with various clients to deliver custom web solutions. Focused on frontend development and UI/UX implementation.",
+      "technologies": ["React", "Vue.js", "Node.js", "CSS3", "WordPress"],
+      "achievements": [
+        "Successfully delivered multiple client projects on time and within budget",
+        "Created custom WordPress themes and plugins",
+        "Implemented responsive and mobile-first designs"
+      ]
+    }
+  ]
+}

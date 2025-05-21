@@ -1,11 +1,17 @@
 ---
+import SectionNav from '../Navigation/SectionNav.astro';
+
 interface Props {
   role: string;
   tagline: string;
   description: string;
+  sections: {
+    id: string;
+    label: string;
+  }[];
 }
 
-const { role, tagline, description } = Astro.props;
+const { role, tagline, description, sections } = Astro.props;
 ---
 
 <div class="space-y-8">
@@ -20,8 +26,16 @@ const { role, tagline, description } = Astro.props;
       {description}
     </p>
   </div>
+
+  <div class="pb-4 pt-1">
+    <SectionNav 
+      sections={sections} 
+      orientation="vertical" 
+      className="w-full"
+    />
+  </div>
   
-  <div class="flex gap-4 mt-8">
+  <div class="flex gap-4">
     <a href="https://github.com/yourusername" class="btn btn-ghost btn-sm">
       GitHub
     </a>

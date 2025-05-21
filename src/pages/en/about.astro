@@ -1,40 +1,55 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProfileCard from '../../components/about/ProfileCard.astro';
-import ExperienceCard from '../../components/about/ExperienceCard.astro';
-import SkillsCard from '../../components/about/SkillsCard.astro';
 import EducationCard from '../../components/about/EducationCard.astro';
+import ExperienceCard from '../../components/about/ExperienceCard.astro';
+import ProfileCard from '../../components/about/ProfileCard.astro';
+import SkillsCard from '../../components/about/SkillsCard.astro';
+import SummaryCard from '../../components/about/SummaryCard.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import experiencesData from '../../i18n/languages/experiences/en.json';
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
+
+const sections = [
+  { id: 'summary', label: t('about.summary.title') },
+  { id: 'experience', label: t('about.experience.title') },
+  { id: 'skills', label: t('about.skills.title') },
+  { id: 'education', label: t('about.education.title') }
+];
 ---
 
 <BaseLayout title={t('about.title')} lang={lang}>
   <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-    <div class="lg:flex lg:justify-between lg:gap-4">
-      <!-- Columna izquierda / Header en móvil -->
+    <div class="lg:flex lg:justify-between lg:gap-10">
+      <!-- Left column / Mobile header -->
       <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24">
         <ProfileCard
           role={t('about.role')}
           tagline={t('about.tagline')}
           description={t('about.description')}
+          sections={sections}
         />
       </header>
 
-      <!-- Contenido principal scrolleable -->
+      <!-- Main scrollable content -->
       <main class="pt-24 lg:w-1/2 lg:py-24">
         <div class="space-y-16">
-          <section class="group/section">
+          <section id="summary" class="group/section">
+            <SummaryCard
+              title={t("about.summary.title")}
+              summary={t("about.summary.content")}
+            />
+          </section>
+          
+          <section id="experience" class="group/section">
             <ExperienceCard
               title={t('about.experience.title')}
-              currentRole={t('about.experience.current.role')}
-              currentPeriod={t('about.experience.current.period')}
-              currentDescription={t('about.experience.current.description')}
+              experiences={experiencesData.experiences}
             />
           </section>
 
-          <section class="group/section">
+          <section id="skills" class="group/section">
             <SkillsCard
               title={t('about.skills.title')}
               languagesTitle={t('about.skills.languages')}
@@ -44,7 +59,7 @@ const t = useTranslations(lang);
             />
           </section>
 
-          <section class="group/section">
+          <section id="education" class="group/section">
             <EducationCard
               title={t('about.education.title')}
               degree={t('about.education.degree')}
@@ -59,12 +74,12 @@ const t = useTranslations(lang);
 </BaseLayout>
 
 <style>
-  /* Ajustes para el scroll suave entre secciones */
+  /* Smooth scrolling between sections */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Aseguramos que las secciones tengan suficiente padding para el scroll */
+  /* Ensure sections have enough padding for scrolling */
   section {
     scroll-margin-top: 2rem;
   }

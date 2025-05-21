@@ -22,12 +22,7 @@
       "content": "Encuentro inspiración en la dualidad de la obsidiana - tanto cruda como refinada, poderosa pero elegante. Mi experiencia se centra en crear experiencias web que combinan una arquitectura robusta con un diseño reflexivo. Me enfoco en la accesibilidad y el rendimiento, transformando desafíos técnicos complejos en interfaces fluidas y hermosas que perduran en el tiempo."
     },
     "experience": {
-      "title": "Experiencia",
-      "current": {
-        "role": "Ingeniero Frontend Senior",
-        "period": "2024 — Presente",
-        "description": "Construyo y mantengo componentes críticos utilizados para construir aplicaciones frontend en todo el producto. Trabajo en estrecha colaboración con equipos multifuncionales, incluyendo desarrolladores, diseñadores y gerentes de producto."
-      }
+      "title": "Experiencia"
     },
     "skills": {
       "title": "Habilidades y Tecnologías",

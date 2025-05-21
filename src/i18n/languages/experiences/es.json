@@ -1,0 +1,76 @@
+{
+  "experiences": [
+    {
+      "role": "Ingeniero Frontend Senior",
+      "company": "Wizeline",
+      "period": "2024 — Presente",
+      "description": "Liderar iniciativas de desarrollo frontend y mentoría de miembros del equipo mientras construyo aplicaciones web escalables. Enfoque en React, TypeScript y tecnologías web modernas.",
+      "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+      "achievements": [
+        "Liderar decisiones de arquitectura frontend y estrategias de implementación",
+        "Mentoría a desarrolladores junior y conducción de entrevistas técnicas",
+        "Implementar mejores prácticas y estándares de código"
+      ]
+    },
+    {
+      "role": "Ingeniero Frontend",
+      "company": "Globant",
+      "period": "2022 — 2024",
+      "description": "Desarrollo y mantenimiento de aplicaciones web a gran escala para clientes internacionales. Especialización en React y frameworks modernos de JavaScript.",
+      "technologies": ["React", "JavaScript", "Redux", "Material-UI", "Jest"],
+      "achievements": [
+        "Desarrollo de bibliotecas de componentes reutilizables mejorando la eficiencia del desarrollo",
+        "Implementación de interfaces web responsivas y accesibles",
+        "Colaboración con equipos multifuncionales para entregar soluciones de alta calidad"
+      ]
+    },
+    {
+      "role": "Desarrollador Web",
+      "company": "Freelance",
+      "period": "2020 — 2022",
+      "description": "Trabajo independiente con varios clientes para entregar soluciones web personalizadas. Enfoque en desarrollo frontend e implementación de UI/UX.",
+      "technologies": ["React", "Vue.js", "Node.js", "CSS3", "WordPress"],
+      "achievements": [
+        "Entrega exitosa de múltiples proyectos de clientes a tiempo y dentro del presupuesto",
+        "Creación de temas y plugins personalizados de WordPress",
+        "Implementación de diseños responsivos y mobile-first"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend",
+      "company": "Tech Solutions Inc.",
+      "period": "2022 — 2024",
+      "description": "Desarrollo y mantenimiento de múltiples aplicaciones web orientadas al cliente. Colaboración con diseñadores UX para implementar interfaces responsivas y accesibles.",
+      "technologies": ["Vue.js", "JavaScript", "SASS", "Vuex"],
+      "achievements": [
+        "Implementación de nuevas funcionalidades resultando en un aumento del 25% en la participación de usuarios",
+        "Reducción del tiempo de compilación en un 50% mediante la optimización de webpack",
+        "Creación de una biblioteca de componentes reutilizables utilizada en múltiples proyectos"
+      ]
+    },
+    {
+      "role": "Desarrollador Web",
+      "company": "Agencia Digital",
+      "period": "2020 — 2022",
+      "description": "Creación de sitios web y aplicaciones web personalizadas para diversos clientes. Enfoque en la entrega de soluciones de alta calidad y rendimiento cumpliendo con plazos ajustados.",
+      "technologies": ["React", "Node.js", "MongoDB", "Express"],
+      "achievements": [
+        "Entrega exitosa de más de 15 proyectos de clientes a tiempo y dentro del presupuesto",
+        "Implementación de pipelines CI/CD reduciendo el tiempo de despliegue en un 60%",
+        "Desarrollo de solución CMS personalizada para gestión de contenido"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend Junior",
+      "company": "Startup Hub",
+      "period": "2019 — 2020",
+      "description": "Trabajo en el desarrollo y mantenimiento de la interfaz del producto principal de la empresa. Colaboración con desarrolladores senior para implementar nuevas funcionalidades y corregir errores.",
+      "technologies": ["HTML5", "CSS3", "JavaScript", "jQuery"],
+      "achievements": [
+        "Contribución al proyecto de rediseño principal de la interfaz de usuario",
+        "Mejora de la accesibilidad del sitio para cumplir con los estándares WCAG 2.1",
+        "Desarrollo de suite de pruebas automatizadas para componentes críticos"
+      ]
+    }
+  ]
+}
