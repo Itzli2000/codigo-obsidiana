@@ -1,58 +1,72 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProfileCard from '../../components/about/ProfileCard.astro';
-import ExperienceCard from '../../components/about/ExperienceCard.astro';
-import SkillsCard from '../../components/about/SkillsCard.astro';
-import EducationCard from '../../components/about/EducationCard.astro';
-import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import EducationCard from "../../components/about/EducationCard.astro";
+import ExperienceCard from "../../components/about/ExperienceCard.astro";
+import ProfileCard from "../../components/about/ProfileCard.astro";
+import SkillsCard from "../../components/about/SkillsCard.astro";
+import SummaryCard from "../../components/about/SummaryCard.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
 ---
 
-<BaseLayout title={t('about.title')} lang={lang}>
-  <div class="min-h-screen lg:flex lg:flex-row lg:gap-4 about-page">
-    <!-- Columna izquierda / Header en móvil -->
-    <header class="bg-base-200 lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
+<BaseLayout title={t("about.title")} lang={lang}>
+  <div
+    class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0"
+  >
+    <div class="lg:flex lg:justify-between lg:gap-4">
+      <!-- Columna izquierda / Header en móvil -->
+      <header
+        class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24"
+      >
         <ProfileCard
-          role={t('about.role')}
-          tagline={t('about.tagline')}
-          description={t('about.description')}
+          role={t("about.role")}
+          tagline={t("about.tagline")}
+          description={t("about.description")}
         />
-    </header>
+      </header>
 
-    <!-- Contenido principal scrolleable -->
-    <main class="pt-24 lg:w-[52%] lg:py-24">
-      <div class="max-w-3xl mx-auto space-y-16">
-        <section>
-          <ExperienceCard
-            title={t('about.experience.title')}
-            currentRole={t('about.experience.current.role')}
-            currentPeriod={t('about.experience.current.period')}
-            currentDescription={t('about.experience.current.description')}
-          />
-        </section>
+      <!-- Contenido principal scrolleable -->
+      <main class="pt-24 lg:w-1/2 lg:py-24">
+        <div class="space-y-16">
+          <section class="group/section">
+            <SummaryCard
+              title={t("about.summary.title")}
+              summary={t("about.summary.content")}
+            />
+          </section>
 
-        <section>
-          <SkillsCard
-            title={t('about.skills.title')}
-            languagesTitle={t('about.skills.languages')}
-            frameworksTitle={t('about.skills.frameworks')}
-            toolsTitle={t('about.skills.tools')}
-            otherTitle={t('about.skills.other')}
-          />
-        </section>
+          <section class="group/section">
+            <ExperienceCard
+              title={t("about.experience.title")}
+              currentRole={t("about.experience.current.role")}
+              currentPeriod={t("about.experience.current.period")}
+              currentDescription={t("about.experience.current.description")}
+            />
+          </section>
 
-        <section>
-          <EducationCard
-            title={t('about.education.title')}
-            degree={t('about.education.degree')}
-            period={t('about.education.period')}
-            description={t('about.education.description')}
-          />
-        </section>
-      </div>
-    </main>
+          <section class="group/section">
+            <SkillsCard
+              title={t("about.skills.title")}
+              languagesTitle={t("about.skills.languages")}
+              frameworksTitle={t("about.skills.frameworks")}
+              toolsTitle={t("about.skills.tools")}
+              otherTitle={t("about.skills.other")}
+            />
+          </section>
+
+          <section class="group/section">
+            <EducationCard
+              title={t("about.education.title")}
+              degree={t("about.education.degree")}
+              period={t("about.education.period")}
+              description={t("about.education.description")}
+            />
+          </section>
+        </div>
+      </main>
+    </div>
   </div>
 </BaseLayout>
 
@@ -63,7 +77,7 @@ const t = useTranslations(lang);
   }
 
   aside::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100vw;
@@ -82,4 +96,5 @@ const t = useTranslations(lang);
   section {
     scroll-margin-top: 2rem;
   }
-</style> 
+</style>
+

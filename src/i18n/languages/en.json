@@ -15,8 +15,12 @@
   "about": {
     "title": "About Me",
     "role": "Front End Engineer",
-    "tagline": "I build accessible, pixel-perfect digital experiences for the web.",
-    "description": "I'm a developer passionate about crafting accessible, pixel-perfect user interfaces that blend thoughtful design with robust engineering. My favorite work lies at the intersection of design and development, creating experiences that not only look great but are meticulously built for performance and usability.",
+    "tagline": "Crafting elegant digital experiences with the resilience of obsidian and the precision of code.",
+    "description": "Passionate about creating accessible and performant web applications.",
+    "summary": {
+      "title": "Professional Journey",
+      "content": "I find inspiration in the duality of obsidian - both raw and refined, powerful yet elegant. My expertise lies in creating web experiences that combine robust architecture with thoughtful design. I focus on accessibility and performance, transforming complex technical challenges into seamless, beautiful interfaces that stand the test of time."
+    },
     "experience": {
       "title": "Experience",
       "current": {
