@@ -66,7 +66,7 @@
   --color-error-content: oklch(26.2% 0.003 262.2);
 }
 
-/* Theme transition variables */
+/* Theme transition variables
 :root {
   --theme-transition-duration: 0.2s;
   --theme-transition-timing: ease-in-out;

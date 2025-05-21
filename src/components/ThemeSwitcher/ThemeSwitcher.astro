@@ -32,8 +32,7 @@ const { class: className = "" } = Astro.props;
   </svg>
 </label>
 
-<script>
-  // Check for saved theme preference or use dark theme as default
+<script is:inline>
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme');
@@ -41,7 +40,6 @@ const { class: className = "" } = Astro.props;
     return 'obsidiana-dark';
   })();
 
-  // Set initial theme
   if (theme === 'obsidiana-dark') {
     document.documentElement.setAttribute('data-theme', 'obsidiana-dark');
     document.querySelector('.theme-controller')?.setAttribute('checked', '');
@@ -49,11 +47,10 @@ const { class: className = "" } = Astro.props;
     document.documentElement.setAttribute('data-theme', 'obsidiana-light');
   }
 
-  // Handle theme toggle
   const themeToggle = document.querySelector('.theme-controller');
   themeToggle?.addEventListener('change', (e) => {
-    const target = e.target as HTMLInputElement;
-    if (target.checked) {
+    const target = e.target;
+    if (target instanceof HTMLInputElement && target.checked) {
       document.documentElement.setAttribute('data-theme', 'obsidiana-dark');
       localStorage.setItem('theme', 'obsidiana-dark');
     } else {
