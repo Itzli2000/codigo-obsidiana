@@ -348,12 +348,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify-json/material-symbols@npm:^1.2.21":
-  version: 1.2.21
-  resolution: "@iconify-json/material-symbols@npm:1.2.21"
+"@iconify-json/mdi@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@iconify-json/mdi@npm:1.2.3"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 10c0/a7ab00f68eed4562987f8fd95f082ce1f4de3640201b941d74415558d8a46691c3b56783119ea6431b347968de0032e246c76108faab2dba3057c083bfdd53ef
+  checksum: 10c0/4d11426abba03464e5ebe4675c87cc39c720e54b7c28265ff9ccd93f229a51f7616bb0a8f1c01412eac3cc9a1ebdc0a122bbaa3395c14d30834d96f8a141e96d
   languageName: node
   linkType: hard
 
@@ -1740,7 +1740,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "codigo-obsidiana@workspace:."
   dependencies:
-    "@iconify-json/material-symbols": "npm:^1.2.21"
+    "@iconify-json/mdi": "npm:^1.2.3"
     "@tailwindcss/typography": "npm:^0.5.16"
     "@tailwindcss/vite": "npm:^4.1.7"
     "@types/generate-changelog": "npm:^1.8.3"

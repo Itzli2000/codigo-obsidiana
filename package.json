@@ -21,7 +21,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
-    "@iconify-json/material-symbols": "^1.2.21",
+    "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/typography": "^0.5.16",
     "@types/generate-changelog": "^1.8.3",
     "@types/shelljs": "^0.8.16",

@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import SectionNav from "../Navigation/SectionNav.astro";
 
 interface Props {
@@ -20,41 +21,48 @@ const { role, tagline, description, sections } = Astro.props;
   >
     Ariel Itzli Molina Sánchez
   </h1>
-  <p class="text-xl md:text-2xl font-playfair font-bold text-base-content">
+  <p
+    class="text-xl md:text-2xl font-playfair font-bold text-base-content sr-only"
+  >
     {role}
   </p>
-  <h2 class="text-base md:text-lg font-inter text-base-content/80 leading-relaxed">
+  <h2
+    class="text-base md:text-lg lg:text-xl font-inter text-base-content/80 leading-relaxed"
+  >
     {tagline}
   </h2>
-  <div class="prose prose-base md:prose-lg prose-base-content">
-    <p class="leading-relaxed">
-      {description}
-    </p>
-  </div>
+  <p class="leading-relaxed text-xs md:text-sm lg:text-base">
+    {description}
+  </p>
 
   <div class="pb-4 pt-1 hidden lg:block">
     <SectionNav sections={sections} orientation="vertical" className="w-full" />
   </div>
 
-  <div class="flex flex-wrap gap-3 md:gap-4">
+  <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4">
     <a
       href="https://github.com/Itzli2000"
       target="_blank"
-      class="btn btn-ghost btn-sm md:btn-md"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
       aria-label="GitHub Profile"
     >
-      GitHub
+      <Icon name="mdi:github" class="h-[80%] w-auto" />
     </a>
     <a
       href="https://www.linkedin.com/in/ariel-itzli-molina-s%C3%A1nchez-0b4a09129/"
       target="_blank"
-      class="btn btn-ghost btn-sm md:btn-md"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
       aria-label="LinkedIn Profile"
     >
-      LinkedIn
+      <Icon name="mdi:linkedin" class="h-[80%] w-auto" />
     </a>
-    <a href="/resume.pdf" target="_blank" class="btn btn-ghost btn-sm md:btn-md" aria-label="Download Resume">
-      Resume
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
+      aria-label="Download Resume"
+    >
+      <Icon name="mdi:file-pdf" class="h-[80%] w-auto" />
     </a>
   </div>
 </div>
