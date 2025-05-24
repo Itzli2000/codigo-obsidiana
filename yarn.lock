@@ -46,12 +46,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/markdown-remark@npm:6.3.1":
-  version: 6.3.1
-  resolution: "@astrojs/markdown-remark@npm:6.3.1"
+"@astrojs/markdown-remark@npm:6.3.2":
+  version: 6.3.2
+  resolution: "@astrojs/markdown-remark@npm:6.3.2"
   dependencies:
     "@astrojs/internal-helpers": "npm:0.6.1"
-    "@astrojs/prism": "npm:3.2.0"
+    "@astrojs/prism": "npm:3.3.0"
     github-slugger: "npm:^2.0.0"
     hast-util-from-html: "npm:^2.0.3"
     hast-util-to-text: "npm:^4.0.2"
@@ -62,31 +62,31 @@ __metadata:
     rehype-stringify: "npm:^10.0.1"
     remark-gfm: "npm:^4.0.1"
     remark-parse: "npm:^11.0.0"
-    remark-rehype: "npm:^11.1.1"
+    remark-rehype: "npm:^11.1.2"
     remark-smartypants: "npm:^3.0.2"
-    shiki: "npm:^3.0.0"
+    shiki: "npm:^3.2.1"
     smol-toml: "npm:^1.3.1"
     unified: "npm:^11.0.5"
     unist-util-remove-position: "npm:^5.0.0"
     unist-util-visit: "npm:^5.0.0"
     unist-util-visit-parents: "npm:^6.0.1"
     vfile: "npm:^6.0.3"
-  checksum: 10c0/ebb5a1d85042590d7ec6e2ea0bd4b0a221dc53b8b67e57964fc13335616737cc545fdea5fbcde107175d608f0bba8a8b76580293bfe389dcb076c9747e91f00c
+  checksum: 10c0/e4e9926286def70548505d49333c0b80624e36dad035d0b943ef4d56211530784a8317f92277c702b6a47b68dea0f9afd154aacf2c6b8361177a51ac3c8b20bc
   languageName: node
   linkType: hard
 
-"@astrojs/prism@npm:3.2.0":
-  version: 3.2.0
-  resolution: "@astrojs/prism@npm:3.2.0"
+"@astrojs/prism@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@astrojs/prism@npm:3.3.0"
   dependencies:
-    prismjs: "npm:^1.29.0"
-  checksum: 10c0/da1bea22fa82e411fb751e8c1cf8fcf6c466eb28e2caea80b0c8d1f550bb0bc4ab6ab7220efd50ecb95513fe87be2c56873e1afffd1753829a5979dbe6f961ac
+    prismjs: "npm:^1.30.0"
+  checksum: 10c0/8a87f2589f4a3e9ea982e3dd0a3e4ebf565b2e5cf16aa70d979cbddab241a7a24d7be45176fa8c5f69f000cd9ab311ab4677d7a15e2ba0cbd610c80db8b9d7dd
   languageName: node
   linkType: hard
 
-"@astrojs/telemetry@npm:3.2.1":
-  version: 3.2.1
-  resolution: "@astrojs/telemetry@npm:3.2.1"
+"@astrojs/telemetry@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@astrojs/telemetry@npm:3.3.0"
   dependencies:
     ci-info: "npm:^4.2.0"
     debug: "npm:^4.4.0"
@@ -95,7 +95,7 @@ __metadata:
     is-docker: "npm:^3.0.0"
     is-wsl: "npm:^3.1.0"
     which-pm-runs: "npm:^1.1.0"
-  checksum: 10c0/7af06ba35fdd6f4c6b27e4bb3f1071b43a8918d046ddebf201fcbce7e6b1b8902be34abf2b00f7a647a0f03d5738f7d9f67b4d852a2032634cbe64abb68518d3
+  checksum: 10c0/7c575aad221d7335b6b1378ceac0e60a25c9540cdde8f5584b0ffe565d06b3ecfc2217738d1ce55ac13eb66e1a6251453bddf117d7f793e51b3fc7be5d001ea4
   languageName: node
   linkType: hard
 
@@ -1099,6 +1099,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tailwindcss/typography@npm:^0.5.16":
+  version: 0.5.16
+  resolution: "@tailwindcss/typography@npm:0.5.16"
+  dependencies:
+    lodash.castarray: "npm:^4.4.0"
+    lodash.isplainobject: "npm:^4.0.6"
+    lodash.merge: "npm:^4.6.2"
+    postcss-selector-parser: "npm:6.0.10"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10c0/35a7387876810c23c270a23848b920517229b707c8ead6a63c8bb7d6720a62f23728c3117f0a93b422a66d1e5ee9c7ad8a6c3f0fbf5255b535c0e4971ffa0158
+  languageName: node
+  linkType: hard
+
 "@tailwindcss/vite@npm:^4.1.7":
   version: 4.1.7
   resolution: "@tailwindcss/vite@npm:4.1.7"
@@ -1367,14 +1381,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^5.7.13":
-  version: 5.7.13
-  resolution: "astro@npm:5.7.13"
+"astro@npm:5.8.0":
+  version: 5.8.0
+  resolution: "astro@npm:5.8.0"
   dependencies:
     "@astrojs/compiler": "npm:^2.11.0"
     "@astrojs/internal-helpers": "npm:0.6.1"
-    "@astrojs/markdown-remark": "npm:6.3.1"
-    "@astrojs/telemetry": "npm:3.2.1"
+    "@astrojs/markdown-remark": "npm:6.3.2"
+    "@astrojs/telemetry": "npm:3.3.0"
     "@capsizecss/unpack": "npm:^2.4.0"
     "@oslojs/encoding": "npm:^1.1.0"
     "@rollup/pluginutils": "npm:^5.1.4"
@@ -1401,6 +1415,7 @@ __metadata:
     github-slugger: "npm:^2.0.0"
     html-escaper: "npm:3.0.3"
     http-cache-semantics: "npm:^4.1.1"
+    import-meta-resolve: "npm:^4.1.0"
     js-yaml: "npm:^4.1.0"
     kleur: "npm:^4.1.5"
     magic-string: "npm:^0.30.17"
@@ -1437,7 +1452,7 @@ __metadata:
       optional: true
   bin:
     astro: astro.js
-  checksum: 10c0/4a057967d5d30a6fb85710912386a0d3cdf0ffececaa966685a38f0d5f10de66ba4db796eb4dc585f290ed322ded09f50b6e237ac7110022ec562a98193a4265
+  checksum: 10c0/124d40e023d3126ecb307ccdc17f7a195ddac8d22a8ef826f5915ef2c41f38e63976a10738705afc1b60119dcd32f26a9e3a3799b297df611dfe75e2124273f5
   languageName: node
   linkType: hard
 
@@ -1726,10 +1741,11 @@ __metadata:
   resolution: "codigo-obsidiana@workspace:."
   dependencies:
     "@iconify-json/material-symbols": "npm:^1.2.21"
+    "@tailwindcss/typography": "npm:^0.5.16"
     "@tailwindcss/vite": "npm:^4.1.7"
     "@types/generate-changelog": "npm:^1.8.3"
     "@types/shelljs": "npm:^0.8.16"
-    astro: "npm:^5.7.13"
+    astro: "npm:5.8.0"
     astro-icon: "npm:^1.1.5"
     daisyui: "npm:^5.0.35"
     generate-changelog: "npm:^1.8.0"
@@ -3277,6 +3293,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.castarray@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.castarray@npm:4.4.0"
+  checksum: 10c0/0bf523ad1596a5bf17869ba047235b4453eee927005013ae152345e2b291b81a02e7f2b7c38f876a1d16f73c34aa3c3241e965193e5b31595035bc8f330c4358
+  languageName: node
+  linkType: hard
+
+"lodash.isplainobject@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "lodash.isplainobject@npm:4.0.6"
+  checksum: 10c0/afd70b5c450d1e09f32a737bed06ff85b873ecd3d3d3400458725283e3f2e0bb6bf48e67dbe7a309eb371a822b16a26cca4a63c8c52db3fc7dc9d5f9dd324cbb
+  languageName: node
+  linkType: hard
+
+"lodash.merge@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "lodash.merge@npm:4.6.2"
+  checksum: 10c0/402fa16a1edd7538de5b5903a90228aa48eb5533986ba7fa26606a49db2572bf414ff73a2c9f5d5fd36b31c46a5d5c7e1527749c07cbcf965ccff5fbdf32c506
+  languageName: node
+  linkType: hard
+
 "longest-streak@npm:^3.0.0":
   version: 3.1.0
   resolution: "longest-streak@npm:3.1.0"
@@ -4414,6 +4451,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-selector-parser@npm:6.0.10":
+  version: 6.0.10
+  resolution: "postcss-selector-parser@npm:6.0.10"
+  dependencies:
+    cssesc: "npm:^3.0.0"
+    util-deprecate: "npm:^1.0.2"
+  checksum: 10c0/a0b27c5e3f7604c8dc7cd83f145fdd7b21448e0d86072da99e0d78e536ba27aa9db2d42024c50aa530408ee517c4bdc0260529e1afb56608f9a82e839c207e82
+  languageName: node
+  linkType: hard
+
 "postcss@npm:^8.5.3":
   version: 8.5.3
   resolution: "postcss@npm:8.5.3"
@@ -4425,7 +4472,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prismjs@npm:^1.29.0":
+"prismjs@npm:^1.30.0":
   version: 1.30.0
   resolution: "prismjs@npm:1.30.0"
   checksum: 10c0/f56205bfd58ef71ccfcbcb691fd0eb84adc96c6ff21b0b69fc6fdcf02be42d6ef972ba4aed60466310de3d67733f6a746f89f2fb79c00bf217406d465b3e8f23
@@ -4614,7 +4661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-rehype@npm:^11.1.1":
+"remark-rehype@npm:^11.1.2":
   version: 11.1.2
   resolution: "remark-rehype@npm:11.1.2"
   dependencies:
@@ -4911,7 +4958,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"shiki@npm:^3.0.0, shiki@npm:^3.2.1":
+"shiki@npm:^3.2.1":
   version: 3.4.2
   resolution: "shiki@npm:3.4.2"
   dependencies:
@@ -5492,6 +5539,13 @@ __metadata:
     uploadthing:
       optional: true
   checksum: 10c0/f719a6483fd71d0a6d4f2e98ec29721c352618c4f3641f96d0c703866dc13cda071e8afda5a68bac4e7d3880c8eece0edb2057e96ce0ac4fb649998611430a09
+  languageName: node
+  linkType: hard
+
+"util-deprecate@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "util-deprecate@npm:1.0.2"
+  checksum: 10c0/41a5bdd214df2f6c3ecf8622745e4a366c4adced864bc3c833739791aeeeb1838119af7daed4ba36428114b5c67dcda034a79c882e97e43c03e66a4dd7389942
   languageName: node
   linkType: hard
 
