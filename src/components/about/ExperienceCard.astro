@@ -1,5 +1,7 @@
 ---
 import SectionTitle from "./SectionTitle.astro";
+import experiencesEn from "../../i18n/languages/experiences/en.json";
+import experiencesEs from "../../i18n/languages/experiences/es.json";
 
 interface Experience {
   role: string;
@@ -12,10 +14,12 @@ interface Experience {
 
 interface Props {
   title: string;
-  experiences: Experience[];
+  lang?: "en" | "es";
 }
 
-const { title, experiences } = Astro.props;
+const { title, lang = "en" } = Astro.props;
+
+const experiences = lang === "en" ? experiencesEn.experiences : experiencesEs.experiences;
 ---
 
 <div class="space-y-6 md:space-y-8">

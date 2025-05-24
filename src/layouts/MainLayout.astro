@@ -10,6 +10,7 @@ interface Props {
   image?: string;
   canonical?: string;
   type?: string;
+  tags?: string[];
 }
 
 const { 
@@ -18,7 +19,8 @@ const {
   description, 
   image = "/assets/og-image.jpg", 
   canonical = Astro.url.href,
-  type = "website"
+  type = "website",
+  tags
 } = Astro.props;
 
 const t = useTranslations(lang as "en" | "es");
@@ -33,12 +35,19 @@ const siteUrl = Astro.url.origin;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
+
+    {
+      tags?.map((tag) => (
+        <meta name="keywords" content={tag} />
+      ))
+    }
+
     <!-- Primary Meta Tags -->
     <title>{siteTitle}</title>
     <meta name="title" content={siteTitle} />
     <meta name="description" content={siteDescription} />
     <link rel="canonical" href={canonical} />
+
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />

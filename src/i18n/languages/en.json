@@ -29,7 +29,8 @@
       ]
     },
     "projects": {
-      "title": "Projects"
+      "title": "Projects",
+      "viewProject": "View Project"
     },
     "experience": {
       "title": "Experience"

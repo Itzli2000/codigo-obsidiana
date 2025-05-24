@@ -1,0 +1,138 @@
+---
+title: "Ixiptla - Archaeological Artifacts Showcase"
+description: "A bilingual interactive platform featuring 3D models of archaeological replicas"
+publishDate: 2023-10-15
+technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
+role: "Frontend Developer"
+company: "Personal Project"
+status: "Completed"
+lang: "en"
+imageName: "ixiptla"
+---
+
+# Ixiptla - Archaeological Artifacts Showcase
+
+![Project preview](/public/assets/projects/ixiptla.png)
+
+## Description
+Ixiptla is a modern web application that presents a curated collection of meticulously crafted archaeological reproductions. Built with Astro.js and React, this platform combines performance with stunning visual presentation to bring ancient artifacts to life in the digital realm. The project features interactive 3D models using Three.js, fully responsive design, and comprehensive internationalization support in English and Spanish.
+
+## Challenges
+
+- **Interactive 3D Model Integration**: Implementing 3D model viewing capabilities that are performant across devices while maintaining visual fidelity presented significant technical challenges.
+  
+- **Bilingual Content Management**: Creating a seamless content management system that maintains parity between English and Spanish translations while ensuring consistent metadata across language versions.
+  
+- **Performance Optimization**: Balancing high-quality visual content and 3D interactivity with fast load times and responsive performance across devices.
+  
+- **Content Organization Architecture**: Designing a flexible but rigorous schema for artifact data that accommodates diverse archaeological items with varying attributes and metadata requirements.
+  
+- **Advanced UI Interactions**: Implementing sophisticated UI features like advanced filtering, sorting, and visualization options for the artifact collection.
+
+## Solutions
+
+### 3D Model Implementation
+I leveraged React Three Fiber and Drei to create an abstracted 3D scene component that handles model loading, camera controls, and lighting. The implementation includes:
+
+```typescript
+// Scene3D component handles all Three.js setup
+export function Scene3D({ modelPath = '/images/models/colibri.glb' }: Scene3DProps) {
+  const [autoRotate, setAutoRotate] = useState(false);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+  
+  // Custom event system for external controls
+  useEffect(() => {
+    const handleResetCamera = () => {
+      if (controlsRef.current) {
+        controlsRef.current.reset();
+      }
+    };
+
+    window.addEventListener('reset-camera', handleResetCamera);
+    // Additional event handlers...
+    
+    return () => {
+      window.removeEventListener('reset-camera', handleResetCamera);
+      // Cleanup...
+    };
+  }, []);
+  
+  // Canvas, lighting, controls setup...
+}
+```
+
+### Internationalization Architecture
+I designed a robust i18n system using:
+
+1. Language detection based on browser settings
+2. URL-based language routing (`/en/`, `/es/`)
+3. JSON-based translation files with nested keys
+4. Custom translation utility functions
+
+```typescript
+// Translation utility function
+export function useTranslations(lang: "en" | "es") {
+  const translations = lang === "es" ? es : en;
+
+  return function t(key: string) {
+    const keys = key.split(".");
+    let value: any = translations;
+    for (const k of keys) {
+      value = value[k];
+      if (value === undefined) return key;
+    }
+
+    return value as string;
+  };
+}
+```
+
+### Content Schema and Organization
+I implemented a strongly typed content schema using Zod for validation, ensuring data integrity across all artifacts:
+
+```typescript
+const artifactSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  culture: z.string(),
+  period: z.string(),
+  image: z.string(),
+  description: z.string(),
+  museum: z.string(),
+  location: z.string(),
+  dimensions: z.string().optional(),
+  material: z.string().optional(),
+  technique: z.string().optional(),
+  has3DModel: z.boolean().optional(),
+  slug: z.string(),
+});
+```
+
+This approach enforces content consistency while providing flexibility for optional attributes.
+
+### Performance Optimizations
+To ensure optimal performance while maintaining visual quality:
+
+1. Implemented responsive image loading with proper dimensions and WebP format
+2. Used lazy loading for off-screen content
+3. Optimized 3D model loading with suspense and fallbacks
+4. Leveraged Astro's partial hydration for minimal JavaScript
+
+## Results
+
+- **Enhanced User Experience**: Created an immersive platform with interactive 3D models that allows users to explore archaeological artifacts from every angle.
+
+- **Performance Metrics**: Achieved excellent performance scores with load times under 3 seconds and a Largest Contentful Paint under 2.5 seconds, even with complex 3D content.
+
+- **Accessibility and Internationalization**: Delivered a fully bilingual experience with comprehensive accessibility features, making archaeological content available to a wider audience.
+
+- **Maintainable Architecture**: Established a flexible yet robust content schema and component architecture that supports easy addition of new artifacts and seamless content updates.
+
+- **Responsive Design**: Ensured a consistent experience across all devices from mobile to desktop with thoughtful responsive design implementations.
+
+## Visuals
+![Project preview](/public/assets/projects/ixiptla.png)
+
+## Links
+- [Live demo](https://ixiptla.com/)
+- [Repository](https://github.com/Itzli2000/ixiptla)

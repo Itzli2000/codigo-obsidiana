@@ -5,7 +5,6 @@ import ProfileCard from "../../components/about/ProfileCard.astro";
 import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
-import experiencesData from "../../i18n/languages/experiences/en.json";
 import Projects from "../../components/about/Projects.astro";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
@@ -23,7 +22,7 @@ const description =
   "Frontend Tech Lead & Architect with 8+ years of experience building modular and scalable UI systems, specializing in frontend architecture and design systems.";
 ---
 
-<MainLayout title={title} lang={lang} description={description} type="profile">
+<MainLayout title={title} lang={lang} description={description} type="profile" >
   <div class="lg:flex lg:justify-between lg:gap-10">
     <!-- Left column / Mobile header -->
     <header
@@ -49,7 +48,7 @@ const description =
         <section id="experience" class="group/section">
           <ExperienceCard
             title={t("about.experience.title")}
-            experiences={experiencesData.experiences}
+            lang={lang}
           />
         </section>
 
