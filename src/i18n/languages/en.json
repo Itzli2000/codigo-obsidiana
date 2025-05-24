@@ -14,29 +14,29 @@
     "rights": "All rights reserved"
   },
   "about": {
-    "title": "About Me",
-    "role": "Front End Engineer",
-    "tagline": "Crafting elegant digital experiences with the resilience of obsidian and the precision of code.",
-    "description": "Passionate about creating accessible and performant web applications.",
-    "summary": {
-      "title": "Professional Journey",
-      "content": "I find inspiration in the duality of obsidian - both raw and refined, powerful yet elegant. My expertise lies in creating web experiences that combine robust architecture with thoughtful design. I focus on accessibility and performance, transforming complex technical challenges into seamless, beautiful interfaces that stand the test of time."
-    },
-    "experience": {
-      "title": "Experience"
-    },
-    "skills": {
-      "title": "Skills & Technologies",
-      "languages": "Languages",
-      "frameworks": "Frameworks",
-      "tools": "Tools",
-      "other": "Other"
-    },
-    "education": {
-      "title": "Education",
-      "degree": "Computer Science",
-      "period": "2018 — 2022",
-      "description": "Focused on software engineering and web development."
-    }
+  "title": "About Me",
+  "role": "Frontend Tech Lead & Architect",
+  "tagline": "Crafting scalable digital platforms with the resilience of obsidian and the precision of code.",
+  "description": "I help teams ship faster by designing frontend infrastructures that are modular, maintainable, and built for scale.",
+  "summary": {
+    "title": "Professional Journey",
+    "content": "I'm a Frontend Tech Lead and Architect with over 8 years of experience building modular and scalable UI systems. My work focuses on frontend architecture, design systems, and developer experience (DX). I currently lead the frontend infrastructure at EFEX, where I architect microfrontend-based platforms using Nx, React, and internal tools I’ve built for release automation, quality control, and design token management. My passion is crafting consistent, reusable experiences through thoughtful code, clear structure, and strategic componentization."
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "languages": "Languages",
+    "frameworks": "Frameworks",
+    "tools": "Tools",
+    "other": "Other"
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Computer Science",
+    "period": "2010 — 2014",
+    "description": "Focused on software engineering, web architecture, and UI development."
   }
+}
 }

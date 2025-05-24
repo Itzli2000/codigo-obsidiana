@@ -2,12 +2,20 @@
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import Layout from "../../layouts/Layout.astro";
 
-
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
+
+// SEO metadata
+const title = "Código Obsidiana - Ariel Itzli Molina Sanchez";
+const description = "Sitio web personal y blog de Ariel Molina. Arquitecto frontend especializado en tecnologías web escalables y soluciones de desarrollo.";
 ---
 
-<Layout lang={lang} title={t("title")}>
+<Layout 
+    lang={lang} 
+    title={title} 
+    description={description}
+    type="website"
+>
     <main>
       <h1 class="text-4xl font-bold">¡Hola!</h1>
       <p class="text-lg">Bienvenido a mi sitio web</p>

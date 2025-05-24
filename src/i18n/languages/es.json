@@ -13,29 +13,29 @@
     "rights": "Todos los derechos reservados"
   },
   "about": {
-    "title": "Sobre Mí",
-    "role": "Ingeniero Front End",
-    "tagline": "Creando experiencias digitales elegantes con la resistencia de la obsidiana y la precisión del código.",
-    "description": "Apasionado por crear aplicaciones web accesibles y de alto rendimiento.",
-    "summary": {
-      "title": "Trayectoria Profesional",
-      "content": "Encuentro inspiración en la dualidad de la obsidiana - tanto cruda como refinada, poderosa pero elegante. Mi experiencia se centra en crear experiencias web que combinan una arquitectura robusta con un diseño reflexivo. Me enfoco en la accesibilidad y el rendimiento, transformando desafíos técnicos complejos en interfaces fluidas y hermosas que perduran en el tiempo."
-    },
-    "experience": {
-      "title": "Experiencia"
-    },
-    "skills": {
-      "title": "Habilidades y Tecnologías",
-      "languages": "Lenguajes",
-      "frameworks": "Frameworks",
-      "tools": "Herramientas",
-      "other": "Otros"
-    },
-    "education": {
-      "title": "Educación",
-      "degree": "Ciencias de la Computación",
-      "period": "2018 — 2022",
-      "description": "Enfocado en ingeniería de software y desarrollo web."
-    }
+  "title": "Sobre mí",
+  "role": "Líder Técnico Frontend y Arquitecto",
+  "tagline": "Diseñando plataformas digitales escalables con la fuerza de la obsidiana y la precisión del código.",
+  "description": "Ayudo a los equipos a lanzar más rápido diseñando infraestructuras frontend modulares, mantenibles y escalables.",
+  "summary": {
+    "title": "Trayectoria Profesional",
+    "content": "Soy un Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables. Me especializo en arquitectura frontend, sistemas de diseño y experiencia del desarrollador (DX). Actualmente lidero la infraestructura frontend en EFEX, donde diseño plataformas basadas en micro frontends utilizando Nx, React y herramientas internas que he desarrollado para automatizar lanzamientos, controlar calidad y gestionar tokens de diseño. Mi pasión es crear experiencias reutilizables y consistentes mediante código estructurado, componentes estratégicos y una visión técnica clara."
+  },
+  "experience": {
+    "title": "Experiencia"
+  },
+  "skills": {
+    "title": "Tecnologías y Herramientas",
+    "languages": "Lenguajes",
+    "frameworks": "Frameworks",
+    "tools": "Herramientas",
+    "other": "Otras"
+  },
+  "education": {
+    "title": "Educación",
+    "degree": "Ingeniería en Sistemas Computacionales",
+    "period": "2010 — 2014",
+    "description": "Enfocado en ingeniería de software, arquitectura web y desarrollo de interfaces de usuario."
   }
+}
 }

@@ -1,75 +1,64 @@
 {
   "experiences": [
     {
-      "role": "Ingeniero Frontend Senior",
-      "company": "Wizeline",
-      "period": "2024 — Presente",
-      "description": "Liderar iniciativas de desarrollo frontend y mentoría de miembros del equipo mientras construyo aplicaciones web escalables. Enfoque en React, TypeScript y tecnologías web modernas.",
-      "technologies": ["React", "TypeScript", "Next.js", "Tailwind CSS", "GraphQL"],
+      "role": "Líder Técnico Frontend",
+      "company": "EFEX",
+      "period": "2025 — Presente",
+      "description": "Lidero la arquitectura frontend, sistemas de diseño y herramientas internas en EFEX. Enfocado en escalabilidad, reutilización de código y buenas prácticas de ingeniería.",
+      "technologies": ["React", "TypeScript", "Nx", "Module Federation", "Material UI", "Storybook", "Zustand", "Vite"],
       "achievements": [
-        "Liderar decisiones de arquitectura frontend y estrategias de implementación",
-        "Mentoría a desarrolladores junior y conducción de entrevistas técnicas",
-        "Implementar mejores prácticas y estándares de código"
+        "Arquitectura y estandarización de la infraestructura frontend con Nx y Module Federation",
+        "Desarrollo de librerías internas para tokens de diseño, theming, componentes, peticiones HTTP y manejo de errores",
+        "Creación de un CLI interno para automatizar changelogs, QA, lanzamientos y flujos de ramas",
+        "Liderazgo en decisiones de arquitectura, documentación técnica y revisiones de código"
       ]
     },
     {
-      "role": "Ingeniero Frontend",
-      "company": "Globant",
+      "role": "Desarrollador Frontend Senior",
+      "company": "EFEX",
+      "period": "2023 — 2025",
+      "description": "Desarrollé y mantuve interfaces escalables y herramientas internas para las plataformas de EFEX. Enfoque en calidad de UI, reutilización de código y eficiencia para el equipo.",
+      "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
+      "achievements": [
+        "Co-creación de la primera librería de componentes compartidos de EFEX",
+        "Colaboración con diseño y backend para experiencias robustas y accesibles",
+        "Base para herramientas internas que se escalaron como solución organizacional"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend Senior",
+      "company": "Branch",
       "period": "2022 — 2024",
-      "description": "Desarrollo y mantenimiento de aplicaciones web a gran escala para clientes internacionales. Especialización en React y frameworks modernos de JavaScript.",
-      "technologies": ["React", "JavaScript", "Redux", "Material-UI", "Jest"],
+      "description": "Participé en el desarrollo del producto principal con enfoque en arquitectura limpia y escalabilidad frontend.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
       "achievements": [
-        "Desarrollo de bibliotecas de componentes reutilizables mejorando la eficiencia del desarrollo",
-        "Implementación de interfaces web responsivas y accesibles",
-        "Colaboración con equipos multifuncionales para entregar soluciones de alta calidad"
+        "Implementación de soluciones UI modulares y escalables",
+        "Mejora del onboarding mediante documentación de buenas prácticas",
+        "Entrega de funcionalidades complejas en colaboración con otros equipos"
       ]
     },
     {
-      "role": "Desarrollador Web",
-      "company": "Freelance",
+      "role": "Líder Técnico / Desarrollador Frontend Senior",
+      "company": "Globant (American Century Investments)",
       "period": "2020 — 2022",
-      "description": "Trabajo independiente con varios clientes para entregar soluciones web personalizadas. Enfoque en desarrollo frontend e implementación de UI/UX.",
-      "technologies": ["React", "Vue.js", "Node.js", "CSS3", "WordPress"],
+      "description": "Lideré el desarrollo frontend para soluciones web de gran escala con React y arquitectura modular.",
+      "technologies": ["React", "JavaScript", "Redux", "SASS", "Material UI"],
       "achievements": [
-        "Entrega exitosa de múltiples proyectos de clientes a tiempo y dentro del presupuesto",
-        "Creación de temas y plugins personalizados de WordPress",
-        "Implementación de diseños responsivos y mobile-first"
+        "Definición de estándares de frontend y prácticas de mentoría de equipo",
+        "Mejoras arquitectónicas y control de calidad de código",
+        "Entrega de funcionalidades accesibles y optimizadas en producción"
       ]
     },
     {
-      "role": "Desarrollador Frontend",
-      "company": "Tech Solutions Inc.",
-      "period": "2022 — 2024",
-      "description": "Desarrollo y mantenimiento de múltiples aplicaciones web orientadas al cliente. Colaboración con diseñadores UX para implementar interfaces responsivas y accesibles.",
-      "technologies": ["Vue.js", "JavaScript", "SASS", "Vuex"],
+      "role": "Chief UX Officer / Desarrollador Frontend Web",
+      "company": "Minds With Purpose Ltd",
+      "period": "2020 — 2024",
+      "description": "Lideré diseño UX y desarrollo frontend para plataformas educativas y de impacto social.",
+      "technologies": ["React", "Vue.js", "CSS3", "Node.js", "Figma"],
       "achievements": [
-        "Implementación de nuevas funcionalidades resultando en un aumento del 25% en la participación de usuarios",
-        "Reducción del tiempo de compilación en un 50% mediante la optimización de webpack",
-        "Creación de una biblioteca de componentes reutilizables utilizada en múltiples proyectos"
-      ]
-    },
-    {
-      "role": "Desarrollador Web",
-      "company": "Agencia Digital",
-      "period": "2020 — 2022",
-      "description": "Creación de sitios web y aplicaciones web personalizadas para diversos clientes. Enfoque en la entrega de soluciones de alta calidad y rendimiento cumpliendo con plazos ajustados.",
-      "technologies": ["React", "Node.js", "MongoDB", "Express"],
-      "achievements": [
-        "Entrega exitosa de más de 15 proyectos de clientes a tiempo y dentro del presupuesto",
-        "Implementación de pipelines CI/CD reduciendo el tiempo de despliegue en un 60%",
-        "Desarrollo de solución CMS personalizada para gestión de contenido"
-      ]
-    },
-    {
-      "role": "Desarrollador Frontend Junior",
-      "company": "Startup Hub",
-      "period": "2019 — 2020",
-      "description": "Trabajo en el desarrollo y mantenimiento de la interfaz del producto principal de la empresa. Colaboración con desarrolladores senior para implementar nuevas funcionalidades y corregir errores.",
-      "technologies": ["HTML5", "CSS3", "JavaScript", "jQuery"],
-      "achievements": [
-        "Contribución al proyecto de rediseño principal de la interfaz de usuario",
-        "Mejora de la accesibilidad del sitio para cumplir con los estándares WCAG 2.1",
-        "Desarrollo de suite de pruebas automatizadas para componentes críticos"
+        "Diseño completo de flujos UI/UX y desarrollo de SPAs responsivas",
+        "Creación de experiencias accesibles e inclusivas",
+        "Pruebas con usuarios y mejoras de usabilidad"
       ]
     }
   ]

@@ -17,9 +17,18 @@ const sections = [
   { id: 'skills', label: t('about.skills.title') },
   { id: 'education', label: t('about.education.title') }
 ];
+
+// SEO metadata
+const title = "Ariel Itzli Molina Sánchez | Código Obsidiana";
+const description = "Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables, especializado en arquitectura frontend y sistemas de diseño.";
 ---
 
-<BaseLayout title={t("about.title")} lang={lang}>
+<BaseLayout 
+  title={title} 
+  lang={lang} 
+  description={description}
+  type="profile"
+>
   <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
     <div class="lg:flex lg:justify-between lg:gap-10">
       <!-- Columna izquierda / Header en móvil -->
