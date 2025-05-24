@@ -60,7 +60,7 @@ const siteUrl = Astro.url.origin;
     <header>
       <Navigation lang={lang} />
     </header>
-    <main>
+    <main class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-12 lg:px-24">
       <slot />
     </main>
     <footer class="text-center py-8">
@@ -73,11 +73,5 @@ const siteUrl = Astro.url.origin;
   body {
     margin: 0;
     min-height: 100vh;
-  }
-
-  main {
-    max-width: max(1000px, 90vw);
-    margin: 0 auto;
-    padding: 1rem 0;
   }
 </style>

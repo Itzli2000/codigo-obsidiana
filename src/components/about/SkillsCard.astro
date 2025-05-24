@@ -8,82 +8,44 @@ interface Props {
 }
 
 const { title, languagesTitle, frameworksTitle, toolsTitle, otherTitle } = Astro.props;
+
+// Define skill categories and their items
+const skillCategories = [
+  {
+    title: languagesTitle,
+    items: ["JavaScript (ES6+)", "TypeScript", "HTML & CSS"]
+  },
+  {
+    title: frameworksTitle,
+    items: ["React", "Next.js", "Astro"]
+  },
+  {
+    title: toolsTitle,
+    items: ["Git", "VS Code", "Figma"]
+  },
+  {
+    title: otherTitle,
+    items: ["Accessibility", "Performance", "Testing"]
+  }
+];
 ---
 
-<div class="space-y-8">
-  <h2 class="text-2xl font-playfair font-bold tracking-tight">{title}</h2>
+<div class="space-y-6 md:space-y-8">
+  <h2 class="text-xl md:text-2xl lg:text-3xl font-playfair font-bold tracking-tight">{title}</h2>
   
-  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium text-base-content/80">{languagesTitle}</h3>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          JavaScript (ES6+)
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          TypeScript
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          HTML & CSS
-        </li>
-      </ul>
-    </div>
-    
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium text-base-content/80">{frameworksTitle}</h3>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          React
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Next.js
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Astro
-        </li>
-      </ul>
-    </div>
-    
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium text-base-content/80">{toolsTitle}</h3>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Git
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          VS Code
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Figma
-        </li>
-      </ul>
-    </div>
-    
-    <div class="space-y-4">
-      <h3 class="text-lg font-medium text-base-content/80">{otherTitle}</h3>
-      <ul class="space-y-2 text-sm">
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Accessibility
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Performance
-        </li>
-        <li class="flex items-center gap-2">
-          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-          Testing
-        </li>
-      </ul>
-    </div>
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:gap-10">
+    {skillCategories.map(category => (
+      <div class="space-y-3 md:space-y-4">
+        <h3 class="text-base md:text-lg font-medium text-base-content/80 border-b border-base-content/10 pb-1">{category.title}</h3>
+        <ul class="space-y-2 md:space-y-3">
+          {category.items.map(item => (
+            <li class="flex items-center gap-2 text-sm md:text-base transition-all duration-200 hover:translate-x-1 hover:text-primary">
+              <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </div>
 </div> 
