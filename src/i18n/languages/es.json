@@ -16,29 +16,33 @@
     "title": "Blog"
   },
   "about": {
-  "title": "Sobre mí",
-  "role": "Líder Técnico Frontend y Arquitecto",
-  "tagline": "Diseñando plataformas digitales escalables con la fuerza de la obsidiana y la precisión del código.",
-  "description": "Ayudo a los equipos a lanzar más rápido diseñando infraestructuras frontend modulares, mantenibles y escalables.",
-  "summary": {
-    "title": "Trayectoria Profesional",
-    "content": "Soy un Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables. Me especializo en arquitectura frontend, sistemas de diseño y experiencia del desarrollador (DX). Actualmente lidero la infraestructura frontend en EFEX, donde diseño plataformas basadas en micro frontends utilizando Nx, React y herramientas internas que he desarrollado para automatizar lanzamientos, controlar calidad y gestionar tokens de diseño. Mi pasión es crear experiencias reutilizables y consistentes mediante código estructurado, componentes estratégicos y una visión técnica clara."
-  },
-  "experience": {
-    "title": "Experiencia"
-  },
-  "skills": {
-    "title": "Tecnologías y Herramientas",
-    "languages": "Lenguajes",
-    "frameworks": "Frameworks",
-    "tools": "Herramientas",
-    "other": "Otras"
-  },
-  "education": {
-    "title": "Educación",
-    "degree": "Ingeniería en Sistemas Computacionales",
-    "period": "2010 — 2014",
-    "description": "Enfocado en ingeniería de software, arquitectura web y desarrollo de interfaces de usuario."
+    "title": "Sobre mí",
+    "role": "Líder Técnico Frontend y Arquitecto",
+    "tagline": "Diseñando plataformas digitales escalables con la fuerza de la obsidiana y la precisión del código.",
+    "description": "Ayudo a los equipos a lanzar más rápido diseñando infraestructuras frontend modulares, mantenibles y escalables.",
+    "summary": {
+      "title": "Trayectoria Profesional",
+      "content": [
+        "Soy un Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables. Mi trabajo se enfoca en arquitectura frontend, sistemas de diseño y experiencia del desarrollador (DX).",
+        "En EFEX, lidero la infraestructura frontend, donde diseño plataformas basadas en micro frontends utilizando Nx, React y herramientas internas que he desarrollado para automatizar lanzamientos, controlar calidad y gestionar tokens de diseño.",
+        "Mi pasión es crear experiencias consistentes y reutilizables mediante código estructurado, componentes estratégicos y una visión técnica clara."
+      ]
+    },
+    "experience": {
+      "title": "Experiencia"
+    },
+    "skills": {
+      "title": "Tecnologías y Herramientas",
+      "languages": "Lenguajes",
+      "frameworks": "Frameworks",
+      "tools": "Herramientas",
+      "other": "Otras"
+    },
+    "education": {
+      "title": "Educación",
+      "degree": "Ingeniería en Sistemas Computacionales",
+      "period": "2010 — 2014",
+      "description": "Enfocado en ingeniería de software, arquitectura web y desarrollo de interfaces de usuario."
+    }
   }
-}
 }

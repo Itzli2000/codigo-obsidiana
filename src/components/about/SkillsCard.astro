@@ -1,4 +1,6 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
+
 interface Props {
   title: string;
   languagesTitle: string;
@@ -31,7 +33,7 @@ const skillCategories = [
 ---
 
 <div class="space-y-6 md:space-y-8">
-  <h2 class="text-lg md:text-xl lg:text-2xl font-playfair font-bold">{title}</h2>
+  <SectionTitle title={title} />
   
   <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:gap-10">
     {skillCategories.map(category => (
