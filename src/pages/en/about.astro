@@ -2,7 +2,6 @@
 import EducationCard from "../../components/about/EducationCard.astro";
 import ExperienceCard from "../../components/about/ExperienceCard.astro";
 import ProfileCard from "../../components/about/ProfileCard.astro";
-import SkillsCard from "../../components/about/SkillsCard.astro";
 import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
@@ -14,7 +13,6 @@ const t = useTranslations(lang);
 const sections = [
   { id: "summary", label: t("about.summary.title") },
   { id: "experience", label: t("about.experience.title") },
-  { id: "skills", label: t("about.skills.title") },
   { id: "education", label: t("about.education.title") },
 ];
 
@@ -52,16 +50,6 @@ const description =
           <ExperienceCard
             title={t("about.experience.title")}
             experiences={experiencesData.experiences}
-          />
-        </section>
-
-        <section id="skills" class="group/section">
-          <SkillsCard
-            title={t("about.skills.title")}
-            languagesTitle={t("about.skills.languages")}
-            frameworksTitle={t("about.skills.frameworks")}
-            toolsTitle={t("about.skills.tools")}
-            otherTitle={t("about.skills.other")}
           />
         </section>
 

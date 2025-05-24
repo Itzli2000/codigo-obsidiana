@@ -31,13 +31,6 @@
     "experience": {
       "title": "Experiencia"
     },
-    "skills": {
-      "title": "Tecnologías y Herramientas",
-      "languages": "Lenguajes",
-      "frameworks": "Frameworks",
-      "tools": "Herramientas",
-      "other": "Otras"
-    },
     "education": {
       "title": "Educación",
       "degree": "Ingeniería en Sistemas Computacionales",

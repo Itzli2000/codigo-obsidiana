@@ -31,13 +31,6 @@
     "experience": {
       "title": "Experience"
     },
-    "skills": {
-      "title": "Skills & Technologies",
-      "languages": "Languages",
-      "frameworks": "Frameworks",
-      "tools": "Tools",
-      "other": "Other"
-    },
     "education": {
       "title": "Education",
       "degree": "Computer Science",
