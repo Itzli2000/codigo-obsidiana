@@ -6,13 +6,9 @@ interface Props {
   role: string;
   tagline: string;
   description: string;
-  sections: {
-    id: string;
-    label: string;
-  }[];
 }
 
-const { role, tagline, description, sections } = Astro.props;
+const { role, tagline, description } = Astro.props;
 ---
 
 <div class="space-y-4 md:space-y-6 lg:space-y-7">
@@ -36,7 +32,7 @@ const { role, tagline, description, sections } = Astro.props;
   </p>
 
   <div class="pb-4 pt-1 hidden lg:block">
-    <SectionNav sections={sections} orientation="vertical" className="w-full" />
+    <SectionNav orientation="vertical" className="w-full" />
   </div>
 
   <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4">

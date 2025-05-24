@@ -11,12 +11,6 @@ import Projects from "../../components/about/Projects.astro";
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
 
-const sections = [
-  { id: "summary", label: t("about.summary.title") },
-  { id: "experience", label: t("about.experience.title") },
-  { id: "education", label: t("about.education.title") },
-];
-
 // SEO metadata
 const title = "Ariel Itzli Molina Sanchez | Código Obsidiana";
 const description =
@@ -33,7 +27,6 @@ const description =
         role={t("about.role")}
         tagline={t("about.tagline")}
         description={t("about.description")}
-        sections={sections}
       />
     </header>
 
