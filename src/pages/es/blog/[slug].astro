@@ -1,0 +1,34 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Prose from "../../../components/prose/Prose.astro";
+
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blogEs");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const post = await getEntry("blogEs", slug as string);
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(post);
+---
+
+<Prose>
+  {post.collection}
+  <h1>{post.data.title}</h1>
+  <p>{post.data.description}</p>
+  <Content />
+</Prose>

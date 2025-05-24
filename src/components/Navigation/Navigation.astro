@@ -11,7 +11,19 @@ interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang as "en" | "es");
 
-const aboutPath = lang === "en" ? "/en/about" : "/es/about";
+// Define navigation links
+const navLinks = [
+  {
+    key: "about",
+    path: `/${lang}/about`,
+    label: t("about.title")
+  },
+  {
+    key: "blog",
+    path: `/${lang}/blog`, 
+    label: t("blog.title")
+  }
+];
 ---
 
 <nav class="navigation" aria-label="Main Navigation">
@@ -22,15 +34,17 @@ const aboutPath = lang === "en" ? "/en/about" : "/es/about";
     
     <div class="nav-right">
       <ul class="nav-list" id="nav-menu">
-        <li>
-          <a 
-            href={aboutPath}
-            class={Astro.url.pathname === aboutPath ? "active" : ""}
-            aria-current={Astro.url.pathname === aboutPath ? "page" : undefined}
-          >
-            {t("about.title")}
-          </a>
-        </li>
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.path}
+              data-section={link.key}
+              class="nav-link"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
 
       <ThemeSwitcher class="mr-4" />
@@ -46,15 +60,17 @@ const aboutPath = lang === "en" ? "/en/about" : "/es/about";
       </button>
 
       <ul class="nav-list mobile-only" id="mobile-menu">
-        <li>
-          <a 
-            href={aboutPath}
-            class={Astro.url.pathname === aboutPath ? "active" : ""}
-            aria-current={Astro.url.pathname === aboutPath ? "page" : undefined}
-          >
-            {t("about.title")}
-          </a>
-        </li>
+        {navLinks.map(link => (
+          <li>
+            <a 
+              href={link.path}
+              data-section={link.key}
+              class="nav-link"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
   </div>
@@ -226,7 +242,8 @@ const aboutPath = lang === "en" ? "/en/about" : "/es/about";
   }
 </style>
 
-<script>
+<script is:inline>
+  // Handle mobile menu toggle
   const mobileMenuButton = document.querySelector('.mobile-menu-button');
   const mobileMenu = document.querySelector('.mobile-only');
   const mobileMenuLinks = document.querySelectorAll('.mobile-only a');
@@ -250,13 +267,41 @@ const aboutPath = lang === "en" ? "/en/about" : "/es/about";
 
   // Close menu when clicking outside
   document.addEventListener('click', (event) => {
-    const isClickInside = mobileMenu?.contains(event.target as Node) || 
-                         mobileMenuButton?.contains(event.target as Node);
+    const isClickInside = mobileMenu?.contains(event.target) || 
+                         mobileMenuButton?.contains(event.target);
     
     if (!isClickInside && window.innerWidth <= 768 && 
         mobileMenuButton?.getAttribute('aria-expanded') === 'true') {
       toggleMenu();
     }
   });
+
+  // Handle active navigation links
+  function updateActiveLinks() {
+    const path = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      const section = link.getAttribute('data-section');
+      
+      // Check if current path contains the section name
+      if (section && path.includes(`/${section}`) || 
+          (section === 'about' && path.endsWith('/about')) || 
+          (section === 'blog' && path.endsWith('/blog'))) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
+    });
+  }
+  
+  // Run on page load
+  updateActiveLinks();
+  
+  // Update when the page changes (for SPA navigation)
+  document.addEventListener('astro:page-load', updateActiveLinks);
+  document.addEventListener('DOMContentLoaded', updateActiveLinks);
 </script>
 

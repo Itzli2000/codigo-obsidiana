@@ -12,6 +12,9 @@
   "footer": {
     "rights": "Todos los derechos reservados"
   },
+  "blog": {
+    "title": "Blog"
+  },
   "about": {
   "title": "Sobre mí",
   "role": "Líder Técnico Frontend y Arquitecto",

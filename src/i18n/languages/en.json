@@ -13,6 +13,9 @@
   "footer": {
     "rights": "All rights reserved"
   },
+  "blog": {
+    "title": "Blog"
+  },
   "about": {
   "title": "About Me",
   "role": "Frontend Tech Lead & Architect",
