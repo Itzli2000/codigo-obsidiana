@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
+
+const projects = await getCollection(
+  lang === "en" ? "projectsEn" : "projectsEs"
+);
+---
+
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:gap-8 lg:gap-10">
+  {
+    projects.map((project) => (
+      <div class="card bg-base-100 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title">{project.data.title}</h2>
+
+          <p class="card-text">{project.data.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

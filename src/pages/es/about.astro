@@ -6,6 +6,7 @@ import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
 import experiencesData from "../../i18n/languages/experiences/en.json";
+import Projects from "../../components/about/Projects.astro";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
@@ -51,6 +52,10 @@ const description =
             title={t("about.experience.title")}
             experiences={experiencesData.experiences}
           />
+        </section>
+
+        <section id="projects" class="group/section">
+          <Projects />
         </section>
 
         <section id="education" class="group/section">
