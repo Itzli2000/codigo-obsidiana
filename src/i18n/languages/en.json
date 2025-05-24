@@ -1,0 +1,45 @@
+
+{
+  "language": {
+    "en": "English",
+    "es": "Spanish",
+    "switcher": "Language switcher",
+    "switch": "Switch language"
+  },
+  "meta": {
+    "description": "Código Obsidiana - Personal website and blog of Ariel Molina. Software development, web technologies, and programming tutorials."
+  },
+  "title": "Código Obsidiana - Ariel Molina",
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "blog": {
+    "title": "Blog"
+  },
+  "about": {
+  "title": "About Me",
+  "role": "Frontend Tech Lead & Architect",
+  "tagline": "Crafting scalable digital platforms with the resilience of obsidian and the precision of code.",
+  "description": "I help teams ship faster by designing frontend infrastructures that are modular, maintainable, and built for scale.",
+  "summary": {
+    "title": "Professional Journey",
+    "content": "I'm a Frontend Tech Lead and Architect with over 8 years of experience building modular and scalable UI systems. My work focuses on frontend architecture, design systems, and developer experience (DX). I currently lead the frontend infrastructure at EFEX, where I architect microfrontend-based platforms using Nx, React, and internal tools I’ve built for release automation, quality control, and design token management. My passion is crafting consistent, reusable experiences through thoughtful code, clear structure, and strategic componentization."
+  },
+  "experience": {
+    "title": "Experience"
+  },
+  "skills": {
+    "title": "Skills & Technologies",
+    "languages": "Languages",
+    "frameworks": "Frameworks",
+    "tools": "Tools",
+    "other": "Other"
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Computer Science",
+    "period": "2010 — 2014",
+    "description": "Focused on software engineering, web architecture, and UI development."
+  }
+}
+}

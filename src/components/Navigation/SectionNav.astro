@@ -1,0 +1,174 @@
+---
+interface Props {
+  sections: {
+    id: string;
+    label: string;
+  }[];
+  orientation?: 'horizontal' | 'vertical';
+  className?: string;
+}
+
+const { sections, orientation = 'horizontal', className = '' } = Astro.props;
+
+const menuClass = orientation === 'vertical' 
+  ? 'flex flex-col gap-4'
+  : 'flex flex-row gap-6';
+---
+
+<div class={className}>
+  <nav class="flex justify-start pl-7" aria-label="Section Navigation">
+    <ul class={menuClass}>
+      {
+        sections.map(({ id, label }) => (
+          <li>
+            <a
+              href={`#${id}`}
+              class="section-link text-base-content/60 hover:text-base-content transition-colors duration-200"
+              data-section={id}
+              aria-current="false"
+            >
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  class SectionObserver {
+    private observer: IntersectionObserver;
+    private sectionLinks: NodeListOf<Element>;
+    private sections: NodeListOf<Element>;
+    private currentSection: string | null = null;
+
+    constructor() {
+      this.sectionLinks = document.querySelectorAll('.section-link');
+      this.sections = document.querySelectorAll('section[id]');
+      
+      // Configure observer with more balanced thresholds
+      this.observer = new IntersectionObserver(
+        this.handleIntersection.bind(this),
+        {
+          rootMargin: '-10% 0px -40% 0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        }
+      );
+
+      this.init();
+    }
+
+    private init(): void {
+      // Observe all sections
+      this.sections.forEach(section => this.observer.observe(section));
+
+      // Set up smooth scrolling
+      this.sectionLinks.forEach(link => {
+        link.addEventListener('click', this.handleClick.bind(this));
+      });
+
+      // Initial check for hash
+      this.checkInitialHash();
+    }
+
+    private handleIntersection(entries: IntersectionObserverEntry[]): void {
+      // Sort entries by their intersection ratio
+      const visibleSections = entries
+        .filter(entry => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+      if (visibleSections.length === 0) return;
+
+      // Get the most visible section
+      const mostVisible = visibleSections[0];
+      const sectionId = mostVisible.target.getAttribute('id');
+
+      if (sectionId && this.currentSection !== sectionId) {
+        this.currentSection = sectionId;
+        this.updateActiveLink(sectionId);
+      }
+    }
+
+    private updateActiveLink(sectionId: string): void {
+      // Remove active state from all links
+      this.sectionLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+
+      // Add active state to current section link
+      const activeLink = document.querySelector(`.section-link[data-section="${sectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+    }
+
+    private handleClick(e: Event): void {
+      e.preventDefault();
+      const link = e.currentTarget as HTMLAnchorElement;
+      const targetId = link.getAttribute('data-section');
+      
+      if (!targetId) return;
+
+      const targetSection = document.getElementById(targetId);
+      if (!targetSection) return;
+
+      // Update URL hash without scrolling
+      history.pushState(null, '', `#${targetId}`);
+      
+      // Smooth scroll to target
+      targetSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+
+    private checkInitialHash(): void {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const section = document.getElementById(hash);
+        if (section) {
+          section.scrollIntoView({ block: 'start' });
+          this.updateActiveLink(hash);
+        }
+      }
+    }
+  }
+
+  // Initialize the section observer when the DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new SectionObserver();
+  });
+</script>
+
+<style>
+  .section-link {
+    position: relative;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.25rem 0;
+  }
+
+  .section-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: hsl(var(--p));
+    transition: width 0.3s ease;
+  }
+
+  .section-link:hover::after {
+    width: 100%;
+  }
+
+  .section-link.active {
+    color: hsl(var(--p));
+  }
+
+  .section-link.active::after {
+    width: 100%;
+  }
+</style> 

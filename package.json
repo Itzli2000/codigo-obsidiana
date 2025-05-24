@@ -1,7 +1,7 @@
 {
   "name": "codigo-obsidiana",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -15,10 +15,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.7",
-    "astro": "^5.7.13",
+    "astro": "5.8.0",
+    "astro-icon": "^1.1.5",
+    "daisyui": "^5.0.35",
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@iconify-json/material-symbols": "^1.2.21",
+    "@tailwindcss/typography": "^0.5.16",
     "@types/generate-changelog": "^1.8.3",
     "@types/shelljs": "^0.8.16",
     "generate-changelog": "^1.8.0",

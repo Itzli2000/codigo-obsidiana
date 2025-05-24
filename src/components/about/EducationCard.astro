@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  degree: string;
+  period: string;
+  description: string;
+}
+
+const { title, degree, period, description } = Astro.props;
+---
+
+<div class="space-y-8">
+  <h2 class="text-2xl font-playfair font-bold tracking-tight">{title}</h2>
+  
+  <div class="space-y-12">
+    <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
+      <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block"></div>
+      
+      <header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-base-content/50 sm:col-span-2">
+        {period}
+      </header>
+      
+      <div class="z-10 sm:col-span-6">
+        <h3 class="font-medium leading-snug text-base-content">
+          <div>
+            <span class="text-lg font-semibold">{degree}</span>
+          </div>
+        </h3>
+        
+        <p class="mt-2 text-sm leading-normal">
+          {description}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -2rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: hsl(var(--p));
+    border: 2px solid hsl(var(--b1));
+  }
+
+  .timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 1rem;
+    bottom: 0;
+    width: 2px;
+    background-color: hsl(var(--p));
+  }
+</style> 

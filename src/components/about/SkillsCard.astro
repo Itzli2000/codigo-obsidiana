@@ -1,0 +1,89 @@
+---
+interface Props {
+  title: string;
+  languagesTitle: string;
+  frameworksTitle: string;
+  toolsTitle: string;
+  otherTitle: string;
+}
+
+const { title, languagesTitle, frameworksTitle, toolsTitle, otherTitle } = Astro.props;
+---
+
+<div class="space-y-8">
+  <h2 class="text-2xl font-playfair font-bold tracking-tight">{title}</h2>
+  
+  <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium text-base-content/80">{languagesTitle}</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          JavaScript (ES6+)
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          TypeScript
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          HTML & CSS
+        </li>
+      </ul>
+    </div>
+    
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium text-base-content/80">{frameworksTitle}</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          React
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Next.js
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Astro
+        </li>
+      </ul>
+    </div>
+    
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium text-base-content/80">{toolsTitle}</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Git
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          VS Code
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Figma
+        </li>
+      </ul>
+    </div>
+    
+    <div class="space-y-4">
+      <h3 class="text-lg font-medium text-base-content/80">{otherTitle}</h3>
+      <ul class="space-y-2 text-sm">
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Accessibility
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Performance
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Testing
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> 

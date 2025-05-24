@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+const posts = await getCollection("blogEs");
+---
+
+<Layout lang="en" title="Blog" description="Blog of Ariel Molina">
+  <h1 class="text-4xl font-bold">Blog</h1>
+  {
+    posts.map((post) => (
+      <a href={`/es/blog/${post.id}`}>
+        <div class="card bg-base-100 w-96 shadow-sm">
+          <div class="card-body">
+            <h2 class="card-title">{post.data.title}</h2>
+            <p class="card-text">{post.data.description}</p>
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</Layout>

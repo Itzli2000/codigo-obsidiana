@@ -1,0 +1,65 @@
+{
+  "experiences": [
+    {
+      "role": "Líder Técnico Frontend",
+      "company": "EFEX",
+      "period": "2025 — Presente",
+      "description": "Lidero la arquitectura frontend, sistemas de diseño y herramientas internas en EFEX. Enfocado en escalabilidad, reutilización de código y buenas prácticas de ingeniería.",
+      "technologies": ["React", "TypeScript", "Nx", "Module Federation", "Material UI", "Storybook", "Zustand", "Vite"],
+      "achievements": [
+        "Arquitectura y estandarización de la infraestructura frontend con Nx y Module Federation",
+        "Desarrollo de librerías internas para tokens de diseño, theming, componentes, peticiones HTTP y manejo de errores",
+        "Creación de un CLI interno para automatizar changelogs, QA, lanzamientos y flujos de ramas",
+        "Liderazgo en decisiones de arquitectura, documentación técnica y revisiones de código"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend Senior",
+      "company": "EFEX",
+      "period": "2023 — 2025",
+      "description": "Desarrollé y mantuve interfaces escalables y herramientas internas para las plataformas de EFEX. Enfoque en calidad de UI, reutilización de código y eficiencia para el equipo.",
+      "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
+      "achievements": [
+        "Co-creación de la primera librería de componentes compartidos de EFEX",
+        "Colaboración con diseño y backend para experiencias robustas y accesibles",
+        "Base para herramientas internas que se escalaron como solución organizacional"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend Senior",
+      "company": "Branch",
+      "period": "2022 — 2024",
+      "description": "Participé en el desarrollo del producto principal con enfoque en arquitectura limpia y escalabilidad frontend.",
+      "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
+      "achievements": [
+        "Implementación de soluciones UI modulares y escalables",
+        "Mejora del onboarding mediante documentación de buenas prácticas",
+        "Entrega de funcionalidades complejas en colaboración con otros equipos"
+      ]
+    },
+    {
+      "role": "Líder Técnico / Desarrollador Frontend Senior",
+      "company": "Globant (American Century Investments)",
+      "period": "2020 — 2022",
+      "description": "Lideré el desarrollo frontend para soluciones web de gran escala con React y arquitectura modular.",
+      "technologies": ["React", "JavaScript", "Redux", "SASS", "Material UI"],
+      "achievements": [
+        "Definición de estándares de frontend y prácticas de mentoría de equipo",
+        "Mejoras arquitectónicas y control de calidad de código",
+        "Entrega de funcionalidades accesibles y optimizadas en producción"
+      ]
+    },
+    {
+      "role": "Chief UX Officer / Desarrollador Frontend Web",
+      "company": "Minds With Purpose Ltd",
+      "period": "2020 — 2024",
+      "description": "Lideré diseño UX y desarrollo frontend para plataformas educativas y de impacto social.",
+      "technologies": ["React", "Vue.js", "CSS3", "Node.js", "Figma"],
+      "achievements": [
+        "Diseño completo de flujos UI/UX y desarrollo de SPAs responsivas",
+        "Creación de experiencias accesibles e inclusivas",
+        "Pruebas con usuarios y mejoras de usabilidad"
+      ]
+    }
+  ]
+}

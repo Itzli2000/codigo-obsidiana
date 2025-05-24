@@ -1,0 +1,52 @@
+---
+import SectionNav from '../Navigation/SectionNav.astro';
+
+interface Props {
+  role: string;
+  tagline: string;
+  description: string;
+  sections: {
+    id: string;
+    label: string;
+  }[];
+}
+
+const { role, tagline, description, sections } = Astro.props;
+---
+
+<div class="space-y-8">
+  <h1 class="text-base-content/80 font-playfair font-bold text-2xl tracking-tight">
+    Ariel Itzli Molina Sánchez
+  </h1>
+  <p class="text-3xl font-playfair font-bold tracking-tight text-base-content">
+    {role}
+  </p>
+  <h2 class="text-xl font-inter text-base-content/80">
+    {tagline}
+  </h2>
+  <div class="prose prose-lg prose-base-content">
+    <p class="leading-relaxed">
+      {description}
+    </p>
+  </div>
+
+  <div class="pb-4 pt-1">
+    <SectionNav 
+      sections={sections} 
+      orientation="vertical" 
+      className="w-full"
+    />
+  </div>
+  
+  <div class="flex gap-4">
+    <a href="https://github.com/yourusername" class="btn btn-ghost btn-sm">
+      GitHub
+    </a>
+    <a href="https://linkedin.com/in/yourusername" class="btn btn-ghost btn-sm">
+      LinkedIn
+    </a>
+    <a href="/resume.pdf" class="btn btn-ghost btn-sm">
+      Resume
+    </a>
+  </div>
+</div> 

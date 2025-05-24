@@ -1,0 +1,22 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Defines the overarching goal and context of the Código Obsidiana project
+globs: src/content/**/*.{md,mdx,ts,tsx,astro}
+alwaysApply: true
+---
+
+## project-purpose
+
+This project is the source code for **“Código Obsidiana”** — a bilingual personal website built with Astro, Tailwind CSS, and DaisyUI.
+
+Its purpose is to serve as both:
+- A technical blog where Ariel Molina shares in-depth frontend content, tutorials, and project insights (with focus on React, 3D, education, architecture, tooling).
+- A lightweight but elegant personal portfolio under the `/about` route.
+
+The homepage prioritizes content creation and community growth. Posts are central to the experience and link naturally to open-source tools, experiments, and long-term side projects.
+
+The site is fully multilingual (English & Spanish), SEO-optimized, and structured to scale with future initiatives like newsletters and Discord.

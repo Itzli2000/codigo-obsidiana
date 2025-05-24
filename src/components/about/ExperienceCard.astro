@@ -1,0 +1,69 @@
+---
+interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  technologies: string[];
+  achievements: string[];
+}
+
+interface Props {
+  title: string;
+  experiences: Experience[];
+}
+
+const { title, experiences } = Astro.props;
+---
+
+<div class="space-y-8">
+  <h2 class="text-2xl font-playfair font-bold tracking-tight">{title}</h2>
+  
+  <div class="space-y-12">
+    {experiences.map((experience) => (
+      <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
+        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block"></div>
+        
+        <header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-base-content/50 sm:col-span-2">
+          {experience.period}
+        </header>
+        
+        <div class="z-10 sm:col-span-6">
+          <h3 class="font-medium leading-snug text-base-content">
+            <div>
+              <span class="text-lg font-semibold">{experience.role}</span>
+              <span class="text-base-content/50"> @ </span>
+              <span class="text-base-content/90">{experience.company}</span>
+            </div>
+          </h3>
+          
+          <p class="mt-2 text-sm leading-normal text-base-content/90">
+            {experience.description}
+          </p>
+
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {experience.technologies.map((tech) => (
+              <li class="rounded-full bg-base-200 px-3 py-1 text-xs text-base-content/75">
+                {tech}
+              </li>
+            ))}
+          </ul>
+
+          <ul class="mt-4 space-y-2">
+            {experience.achievements.map((achievement) => (
+              <li class="text-sm text-base-content/75 before:content-['▹'] before:text-primary before:mr-2">
+                {achievement}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .group:hover .absolute {
+    background-color: hsl(var(--b2));
+  }
+</style> 

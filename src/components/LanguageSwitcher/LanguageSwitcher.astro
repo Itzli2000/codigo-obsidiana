@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl } from "../../i18n/utils";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+
+// Get current path and calculate other language path
+const currentPath = Astro.url.pathname;
+let otherLangPath = currentPath.replace(
+  new RegExp(`^/${lang}`), 
+  `/${lang === "en" ? "es" : "en"}`
+);
+
+// Handle special case for about route
+if (otherLangPath.includes("/about")) {
+  otherLangPath = otherLangPath.replace("/about", "/about");
+} else if (otherLangPath.includes("/about")) {
+  otherLangPath = otherLangPath.replace("/about", "/about");
+}
+
+// If no specific route mapping found, default to language root
+if (otherLangPath === currentPath) {
+  otherLangPath = `/${lang === "en" ? "es" : "en"}/`;
+}
+---
+
+<div class:list={["language-switcher", className]} role="navigation" aria-label="Language switcher">
+  <label class="swap swap-flip">
+    <input 
+      type="checkbox" 
+      checked={lang === "en"}
+      aria-label="Switch language"
+    />
+    
+    <a 
+      href={otherLangPath}
+      class="swap-on btn btn-sm btn-ghost font-medium"
+      hreflang="es"
+      lang="es"
+    >
+      ES
+    </a>
+    
+    <a 
+      href={otherLangPath}
+      class="swap-off btn btn-sm btn-ghost font-medium"
+      hreflang="en" 
+      lang="en"
+    >
+      EN
+    </a>
+  </label>
+</div>
+
+<style>
+  .language-switcher {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .btn-ghost {
+    text-transform: uppercase;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.05em;
+    transition: all var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--color-base-200);
+    color: var(--color-accent);
+  }
+
+  /* Ensure the swap animation is smooth */
+  .swap {
+    transition: transform var(--theme-transition-duration) var(--theme-transition-timing);
+  }
+</style> 
