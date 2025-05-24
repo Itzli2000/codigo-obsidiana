@@ -7,8 +7,8 @@ interface Props {
 const { title, summary } = Astro.props;
 ---
 
-<div class="space-y-4">
-  <h2 class="text-2xl font-playfair font-bold">{title}</h2>
+<div class="space-y-4 md:space-y-6">
+  <h2 class="text-xl md:text-2xl lg:text-3xl font-playfair font-bold tracking-tight">{title}</h2>
 
   <div
     class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4"
@@ -19,7 +19,7 @@ const { title, summary } = Astro.props;
     </div>
 
     <div class="z-10 sm:col-span-8">
-      <p class="text-base leading-relaxed text-base-content/80">
+      <p class="text-sm md:text-base lg:text-lg leading-relaxed text-base-content/80">
         {summary}
       </p>
     </div>

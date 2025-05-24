@@ -11,19 +11,19 @@ interface Props {
 const { sections, orientation = 'horizontal', className = '' } = Astro.props;
 
 const menuClass = orientation === 'vertical' 
-  ? 'flex flex-col gap-4'
-  : 'flex flex-row gap-6';
+  ? 'flex flex-col gap-3 md:gap-4'
+  : 'flex flex-row gap-4 md:gap-6';
 ---
 
 <div class={className}>
-  <nav class="flex justify-start pl-7" aria-label="Section Navigation">
+  <nav class="flex justify-start pl-4 md:pl-7" aria-label="Section Navigation">
     <ul class={menuClass}>
       {
         sections.map(({ id, label }) => (
           <li>
             <a
               href={`#${id}`}
-              class="section-link text-base-content/60 hover:text-base-content transition-colors duration-200"
+              class="section-link text-sm md:text-base text-base-content/60 hover:text-base-content transition-colors duration-200"
               data-section={id}
               aria-current="false"
             >
@@ -156,7 +156,7 @@ const menuClass = orientation === 'vertical'
     left: 0;
     width: 0;
     height: 2px;
-    background-color: hsl(var(--p));
+    background-color: var(--color-primary);
     transition: width 0.3s ease;
   }
 
@@ -165,7 +165,7 @@ const menuClass = orientation === 'vertical'
   }
 
   .section-link.active {
-    color: hsl(var(--p));
+    color: var(--color-primary);
   }
 
   .section-link.active::after {
