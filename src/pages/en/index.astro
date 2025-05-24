@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import Layout from "../../layouts/Layout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
@@ -10,7 +10,7 @@ const title = "Código Obsidiana - Ariel Itzli Molina Sanchez";
 const description = "Personal website and blog of Ariel Molina. Frontend architect specializing in scalable web technologies and development solutions.";
 ---
 
-<Layout 
+<MainLayout 
     lang={lang} 
     title={title} 
     description={description}
@@ -20,4 +20,4 @@ const description = "Personal website and blog of Ariel Molina. Frontend archite
         <h1 class="text-4xl font-bold">Hello!</h1>
         <p class="text-lg">Welcome to my website</p>
     </main>
-</Layout>
+</MainLayout>

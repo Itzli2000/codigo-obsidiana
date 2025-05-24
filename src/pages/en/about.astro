@@ -5,7 +5,7 @@ import ProfileCard from '../../components/about/ProfileCard.astro';
 import SkillsCard from '../../components/about/SkillsCard.astro';
 import SummaryCard from '../../components/about/SummaryCard.astro';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import MainLayout from '../../layouts/MainLayout.astro';
 import experiencesData from '../../i18n/languages/experiences/en.json';
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
@@ -23,7 +23,7 @@ const title = "Ariel Itzli Molina Sanchez | Código Obsidiana";
 const description = "Frontend Tech Lead & Architect with 8+ years of experience building modular and scalable UI systems, specializing in frontend architecture and design systems.";
 ---
 
-<BaseLayout 
+<MainLayout 
   title={title} 
   lang={lang} 
   description={description}
@@ -80,7 +80,7 @@ const description = "Frontend Tech Lead & Architect with 8+ years of experience 
       </main>
     </div>
   </div>
-</BaseLayout>
+</MainLayout>
 
 <style>
   /* Smooth scrolling between sections */

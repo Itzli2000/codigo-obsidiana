@@ -5,7 +5,7 @@ import ProfileCard from "../../components/about/ProfileCard.astro";
 import SkillsCard from "../../components/about/SkillsCard.astro";
 import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
 import experiencesData from '../../i18n/languages/experiences/es.json';
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
@@ -23,7 +23,7 @@ const title = "Ariel Itzli Molina Sánchez | Código Obsidiana";
 const description = "Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables, especializado en arquitectura frontend y sistemas de diseño.";
 ---
 
-<BaseLayout 
+<MainLayout 
   title={title} 
   lang={lang} 
   description={description}
@@ -80,7 +80,7 @@ const description = "Líder Técnico Frontend y Arquitecto con más de 8 años d
       </main>
     </div>
   </div>
-</BaseLayout>
+</MainLayout>
 
 <style>
   /* Smooth scrolling between sections */
