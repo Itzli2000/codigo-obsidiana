@@ -12,7 +12,7 @@ imageName: "ixiptla"
 
 # Ixiptla - Archaeological Artifacts Showcase
 
-![Project preview](/public/assets/projects/ixiptla.png)
+![Project preview](/assets/projects/ixiptla.png)
 
 ## Description
 Ixiptla is a modern web application that presents a curated collection of meticulously crafted archaeological reproductions. Built with Astro.js and React, this platform combines performance with stunning visual presentation to bring ancient artifacts to life in the digital realm. The project features interactive 3D models using Three.js, fully responsive design, and comprehensive internationalization support in English and Spanish.
@@ -131,7 +131,7 @@ To ensure optimal performance while maintaining visual quality:
 - **Responsive Design**: Ensured a consistent experience across all devices from mobile to desktop with thoughtful responsive design implementations.
 
 ## Visuals
-![Project preview](/public/assets/projects/ixiptla.png)
+![Project preview](/assets/projects/ixiptla.png)
 
 ## Links
 - [Live demo](https://ixiptla.com/)

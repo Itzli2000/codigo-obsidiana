@@ -12,7 +12,7 @@ imageName: "estacionandome"
 
 # Yo Estacionándome - Smart Parking Management Platform
 
-![Project preview](/public/assets/projects/estacionandome.png)
+![Project preview](/assets/projects/estacionandome.png)
 
 ## Description
 Yo Estacionándome is a comprehensive parking management platform that combines modern 3D visualization with practical functionality. The system serves three main user groups: individual parkers, businesses, and government entities. It features interactive 3D models of parking kiosks, responsive design across all devices, and seamless integration with payment systems. The platform aims to simplify the parking experience while providing advanced management tools for operators.
@@ -41,7 +41,7 @@ I utilized extensive user testing to refine the interface, particularly for the 
 - Modern, visually impressive design that enhances brand perception
 
 ## Visuals
-![Project preview](/public/assets/projects/estacionandome.png)
+![Project preview](/assets/projects/estacionandome.png)
 
 ## Links
 - [Live demo](https://yo-estacionandome-dev.vercel.app/)
