@@ -54,7 +54,7 @@
       "company": "Minds With Purpose Ltd",
       "period": "2020 — 2024",
       "description": "Lideré diseño UX y desarrollo frontend para plataformas educativas y de impacto social.",
-      "technologies": ["React", "Vue.js", "CSS3", "Node.js", "Figma"],
+      "technologies": ["React", "CSS3", "Node.js", "Figma"],
       "achievements": [
         "Diseño completo de flujos UI/UX y desarrollo de SPAs responsivas",
         "Creación de experiencias accesibles e inclusivas",

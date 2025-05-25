@@ -1,52 +1,65 @@
 ---
-import SectionNav from '../Navigation/SectionNav.astro';
+import { Icon } from "astro-icon/components";
+import SectionNav from "../Navigation/SectionNav.astro";
+import { NETWORK } from "../../constants/network";
 
 interface Props {
   role: string;
   tagline: string;
   description: string;
-  sections: {
-    id: string;
-    label: string;
-  }[];
 }
 
-const { role, tagline, description, sections } = Astro.props;
+const { role, tagline, description } = Astro.props;
 ---
 
-<div class="space-y-8">
-  <h1 class="text-base-content/80 font-playfair font-bold text-2xl tracking-tight">
+<div class="space-y-4 md:space-y-6 lg:space-y-7">
+  <h1
+    class="text-base-content/80 font-playfair font-bold text-2xl md:text-3xl lg:text-4xl"
+  >
     Ariel Itzli Molina Sánchez
   </h1>
-  <p class="text-3xl font-playfair font-bold tracking-tight text-base-content">
+  <p
+    class="text-xl md:text-2xl font-playfair font-bold text-base-content sr-only"
+  >
     {role}
   </p>
-  <h2 class="text-xl font-inter text-base-content/80">
+  <h2
+    class="text-base md:text-lg lg:text-xl font-inter text-base-content/80 leading-relaxed"
+  >
     {tagline}
   </h2>
-  <div class="prose prose-lg prose-base-content">
-    <p class="leading-relaxed">
-      {description}
-    </p>
+  <p class="leading-relaxed text-xs md:text-sm lg:text-base">
+    {description}
+  </p>
+
+  <div class="pb-4 pt-1 hidden lg:block">
+    <SectionNav orientation="vertical" className="w-full" />
   </div>
 
-  <div class="pb-4 pt-1">
-    <SectionNav 
-      sections={sections} 
-      orientation="vertical" 
-      className="w-full"
-    />
+  <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4">
+    <a
+      href={NETWORK.GITHUB}
+      target="_blank"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
+      aria-label="GitHub Profile"
+    >
+      <Icon name="mdi:github" class="h-[80%] w-auto" />
+    </a>
+    <a
+      href={NETWORK.LINKEDIN}
+      target="_blank"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
+      aria-label="LinkedIn Profile"
+    >
+      <Icon name="mdi:linkedin" class="h-[80%] w-auto" />
+    </a>
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      class="btn btn-ghost btn-circle btn-sm md:btn-md"
+      aria-label="Download Resume"
+    >
+      <Icon name="mdi:file-pdf" class="h-[80%] w-auto" />
+    </a>
   </div>
-  
-  <div class="flex gap-4">
-    <a href="https://github.com/yourusername" class="btn btn-ghost btn-sm">
-      GitHub
-    </a>
-    <a href="https://linkedin.com/in/yourusername" class="btn btn-ghost btn-sm">
-      LinkedIn
-    </a>
-    <a href="/resume.pdf" class="btn btn-ghost btn-sm">
-      Resume
-    </a>
-  </div>
-</div> 
+</div>

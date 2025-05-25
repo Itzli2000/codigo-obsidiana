@@ -1,4 +1,8 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
+import experiencesEn from "../../i18n/languages/experiences/en.json";
+import experiencesEs from "../../i18n/languages/experiences/es.json";
+
 interface Experience {
   role: string;
   company: string;
@@ -10,48 +14,50 @@ interface Experience {
 
 interface Props {
   title: string;
-  experiences: Experience[];
+  lang?: "en" | "es";
 }
 
-const { title, experiences } = Astro.props;
+const { title, lang = "en" } = Astro.props;
+
+const experiences = lang === "en" ? experiencesEn.experiences : experiencesEs.experiences;
 ---
 
-<div class="space-y-8">
-  <h2 class="text-2xl font-playfair font-bold tracking-tight">{title}</h2>
+<div class="space-y-6 md:space-y-8">
+  <SectionTitle title={title} />
   
-  <div class="space-y-12">
+  <div class="space-y-8 md:space-y-12">
     {experiences.map((experience) => (
-      <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4">
-        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block"></div>
+      <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-6 md:gap-8 hover:z-10">
+        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition-all duration-300 motion-reduce:transition-none lg:-inset-x-6 lg:block bg-base-200/0 group-hover:bg-base-200/70"></div>
         
-        <header class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-base-content/50 sm:col-span-2">
+        <header class="z-10 mb-2 mt-1 text-xs md:text-sm font-semibold uppercase tracking-wide text-base-content/50 sm:col-span-2 transition-opacity duration-300">
           {experience.period}
         </header>
         
         <div class="z-10 sm:col-span-6">
-          <h3 class="font-medium leading-snug text-base-content">
+          <h3 class="font-medium leading-snug text-base-content transition-opacity duration-300">
             <div>
-              <span class="text-lg font-semibold">{experience.role}</span>
+              <span class="text-base md:text-lg font-semibold">{experience.role}</span>
               <span class="text-base-content/50"> @ </span>
               <span class="text-base-content/90">{experience.company}</span>
             </div>
           </h3>
           
-          <p class="mt-2 text-sm leading-normal text-base-content/90">
+          <p class="mt-2 text-xs md:text-sm leading-relaxed text-base-content/90 transition-opacity duration-300">
             {experience.description}
           </p>
 
-          <ul class="mt-4 flex flex-wrap gap-2">
+          <ul class="mt-3 md:mt-4 flex flex-wrap gap-1.5 md:gap-2">
             {experience.technologies.map((tech) => (
-              <li class="rounded-full bg-base-200 px-3 py-1 text-xs text-base-content/75">
+              <li class="rounded-full bg-base-200 px-2 md:px-3 py-0.5 md:py-1 text-xs text-base-content/75 transition-all duration-300 hover:bg-base-300">
                 {tech}
               </li>
             ))}
           </ul>
 
-          <ul class="mt-4 space-y-2">
+          <ul class="mt-3 md:mt-4 space-y-1 md:space-y-2">
             {experience.achievements.map((achievement) => (
-              <li class="text-sm text-base-content/75 before:content-['▹'] before:text-primary before:mr-2">
+              <li class="text-xs md:text-sm text-base-content/75 before:content-['▹'] before:text-primary before:mr-2 transition-all duration-300 hover:text-base-content/90">
                 {achievement}
               </li>
             ))}
@@ -63,7 +69,21 @@ const { title, experiences } = Astro.props;
 </div>
 
 <style>
-  .group:hover .absolute {
-    background-color: hsl(var(--b2));
+  /* Efecto de opacidad para las tarjetas no seleccionadas */
+  .group:has(~ .group:hover),
+  .group:hover ~ .group {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
   }
-</style> 
+
+  /* Grupo que tiene hover */
+  .group:hover {
+    opacity: 1;
+  }
+
+  /* Estado por defecto de todos los grupos */
+  .group {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+</style>

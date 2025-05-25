@@ -1,23 +1,29 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import Layout from "../../layouts/Layout.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+import HeroSection from "../../components/home/HeroSection.astro";
+import FeaturedPostsSection from "../../components/home/FeaturedPostsSection.astro";
+import AboutPreviewSection from "../../components/home/AboutPreviewSection.astro";
+import ConnectSection from "../../components/home/ConnectSection.astro";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
 
 // SEO metadata
-const title = "Código Obsidiana - Ariel Itzli Molina Sanchez";
-const description = "Personal website and blog of Ariel Molina. Frontend architect specializing in scalable web technologies and development solutions.";
+const title = t('home.meta.title');
+const description = t('home.meta.description');
 ---
 
-<Layout 
+<MainLayout 
     lang={lang} 
     title={title} 
     description={description}
     type="website"
 >
-    <main>
-        <h1 class="text-4xl font-bold">Hello!</h1>
-        <p class="text-lg">Welcome to my website</p>
+    <main class="flex flex-col gap-12 md:gap-16 lg:gap-24">
+        <HeroSection lang={lang} t={t} />
+        <FeaturedPostsSection lang={lang} t={t} />
+        <AboutPreviewSection lang={lang} t={t} />
+        <ConnectSection lang={lang} t={t} />
     </main>
-</Layout>
+</MainLayout>

@@ -1,0 +1,48 @@
+---
+title: "Yo Estacionándome - Smart Parking Management Platform"
+description: "A modern 3D interactive parking management platform with multiple user interfaces"
+publishDate: 2023-09-18
+technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
+role: "Frontend Developer"
+company: "Yo Estacionándome"
+status: "Completed"
+lang: "es"
+imageName: "estacionandome"
+---
+
+# Yo Estacionándome - Plataforma de Gestión de Estacionamiento Inteligente
+
+![Project preview](/public/assets/projects/estacionandome.png)
+
+## Descripción
+Yo Estacionándome es una plataforma integral de gestión de estacionamiento que combina visualización 3D moderna con funcionalidad práctica. El sistema atiende a tres grupos principales de usuarios: conductores individuales, empresas y entidades gubernamentales. Presenta modelos 3D interactivos de quioscos de estacionamiento, diseño responsivo en todos los dispositivos e integración perfecta con sistemas de pago. La plataforma busca simplificar la experiencia de estacionamiento mientras proporciona herramientas avanzadas de gestión para los operadores.
+
+## Desafíos
+- Crear visualizaciones 3D inmersivas con buen rendimiento en diferentes dispositivos
+- Desarrollar una plataforma unificada que atienda a tres grupos distintos de usuarios con necesidades diferentes
+- Implementar animaciones complejas e interacciones basadas en scroll manteniendo el rendimiento
+- Diseñar una interfaz intuitiva tanto para usuarios con conocimientos tecnológicos como para aquellos menos familiarizados
+- Asegurar que los elementos 3D mejoraran la funcionalidad principal sin distraer
+
+## Soluciones
+Desarrollé un sistema de renderizado 3D altamente optimizado utilizando React Three Fiber y Three.js, implementando técnicas como carga diferida, renderizado dependiente de la vista y optimización de modelos para garantizar un rendimiento fluido incluso en dispositivos de gama baja.
+
+Para el enfoque multi-audiencia, creé una arquitectura de componentes modular que permitía compartir funcionalidades mientras mantenía recorridos de usuario distintos para individuos, empresas y entidades gubernamentales. Cada interfaz fue adaptada a su caso de uso específico pero mantuvo un lenguaje de diseño coherente.
+
+Las animaciones complejas se implementaron utilizando Framer Motion 3D con optimizaciones de rendimiento como renderizado basado en opacidad y observadores de intersección para activar animaciones solo cuando los elementos están a la vista. Este enfoque redujo significativamente el renderizado innecesario y mejoró el rendimiento general.
+
+Utilicé pruebas de usuario extensivas para refinar la interfaz, particularmente para las interacciones con los quioscos, asegurando que usuarios de todos los niveles técnicos pudieran navegar fácilmente por el sistema. El diseño final equilibra el atractivo visual con la claridad funcional.
+
+## Resultados
+- 40% de reducción en el tiempo de carga de página en comparación con los prototipos iniciales
+- Integración exitosa de modelos 3D complejos sin degradación del rendimiento
+- Experiencia de usuario perfecta en dispositivos móviles, tablets y escritorio
+- Plataforma unificada que atiende a tres grupos distintos de usuarios con interfaces adaptadas
+- Diseño moderno y visualmente impresionante que mejora la percepción de la marca
+
+## Visuales
+![Vista previa del proyecto](/public/assets/projects/estacionandome.png)
+
+## Enlaces
+- [Demo en vivo](https://yo-estacionandome-dev.vercel.app/)
+- Repositorio privado

@@ -20,7 +20,7 @@
       "description": "Developed and maintained scalable interfaces and internal tooling across EFEX platforms. Focused on UI quality, reusable code, and developer efficiency.",
       "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
       "achievements": [
-        "Helped build EFEX’s shared component library from scratch",
+        "Helped build EFEX's shared component library from scratch",
         "Collaborated with cross-functional teams to deliver robust and accessible user experiences",
         "Laid the groundwork for internal tools that evolved into company-wide CLI solutions"
       ]
@@ -54,7 +54,7 @@
       "company": "Minds With Purpose Ltd",
       "period": "2020 — 2024",
       "description": "Led UX and frontend development for educational and social impact platforms.",
-      "technologies": ["React", "Vue.js", "CSS3", "Node.js", "Figma"],
+      "technologies": ["React", "CSS3", "Node.js", "Figma"],
       "achievements": [
         "Designed full UI/UX flows and built responsive SPAs",
         "Developed inclusive, accessible web experiences",

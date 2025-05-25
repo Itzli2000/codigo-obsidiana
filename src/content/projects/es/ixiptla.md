@@ -1,0 +1,138 @@
+---
+title: "Ixiptla - Exposición de Artefactos Arqueológicos"
+description: "Plataforma interactiva bilingüe con modelos 3D de réplicas arqueológicas"
+publishDate: 2023-10-15
+technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
+role: "Desarrollador Frontend"
+company: "Proyecto Personal"
+status: "Completado"
+lang: "es"
+imageName: "ixiptla"
+---
+
+# Ixiptla - Exposición de Artefactos Arqueológicos
+
+![Project preview](/public/assets/projects/ixiptla.png)
+
+## Descripción
+Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a artefactos antiguos en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.
+
+## Desafíos
+
+- **Integración de Modelos 3D Interactivos**: Implementar capacidades de visualización de modelos 3D que sean eficientes en todos los dispositivos mientras se mantiene la fidelidad visual presentó desafíos técnicos significativos.
+  
+- **Gestión de Contenido Bilingüe**: Crear un sistema de gestión de contenido fluido que mantuviera la paridad entre las traducciones en inglés y español, asegurando metadatos consistentes en todas las versiones de idioma.
+  
+- **Optimización de Rendimiento**: Equilibrar contenido visual de alta calidad e interactividad 3D con tiempos de carga rápidos y rendimiento responsivo en todos los dispositivos.
+  
+- **Arquitectura de Organización de Contenido**: Diseñar un esquema flexible pero riguroso para datos de artefactos que acomode diversos elementos arqueológicos con atributos y requisitos de metadatos variables.
+  
+- **Interacciones Avanzadas de UI**: Implementar características sofisticadas de UI como filtrado avanzado, ordenación y opciones de visualización para la colección de artefactos.
+
+## Soluciones
+
+### Implementación de Modelos 3D
+Utilicé React Three Fiber y Drei para crear un componente de escena 3D abstracto que maneja la carga de modelos, controles de cámara e iluminación. La implementación incluye:
+
+```typescript
+// El componente Scene3D maneja toda la configuración de Three.js
+export function Scene3D({ modelPath = '/images/models/colibri.glb' }: Scene3DProps) {
+  const [autoRotate, setAutoRotate] = useState(false);
+  const controlsRef = useRef<OrbitControlsImpl>(null);
+  
+  // Sistema de eventos personalizados para controles externos
+  useEffect(() => {
+    const handleResetCamera = () => {
+      if (controlsRef.current) {
+        controlsRef.current.reset();
+      }
+    };
+
+    window.addEventListener('reset-camera', handleResetCamera);
+    // Manejadores de eventos adicionales...
+    
+    return () => {
+      window.removeEventListener('reset-camera', handleResetCamera);
+      // Limpieza...
+    };
+  }, []);
+  
+  // Configuración de Canvas, iluminación, controles...
+}
+```
+
+### Arquitectura de Internacionalización
+Diseñé un sistema i18n robusto utilizando:
+
+1. Detección de idioma basada en la configuración del navegador
+2. Enrutamiento basado en idioma en URL (`/en/`, `/es/`)
+3. Archivos de traducción basados en JSON con claves anidadas
+4. Funciones de utilidad de traducción personalizadas
+
+```typescript
+// Función de utilidad de traducción
+export function useTranslations(lang: "en" | "es") {
+  const translations = lang === "es" ? es : en;
+
+  return function t(key: string) {
+    const keys = key.split(".");
+    let value: any = translations;
+    for (const k of keys) {
+      value = value[k];
+      if (value === undefined) return key;
+    }
+
+    return value as string;
+  };
+}
+```
+
+### Esquema y Organización de Contenido
+Implementé un esquema de contenido fuertemente tipado utilizando Zod para validación, asegurando la integridad de datos en todos los artefactos:
+
+```typescript
+const artifactSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  culture: z.string(),
+  period: z.string(),
+  image: z.string(),
+  description: z.string(),
+  museum: z.string(),
+  location: z.string(),
+  dimensions: z.string().optional(),
+  material: z.string().optional(),
+  technique: z.string().optional(),
+  has3DModel: z.boolean().optional(),
+  slug: z.string(),
+});
+```
+
+Este enfoque refuerza la consistencia del contenido a la vez que proporciona flexibilidad para atributos opcionales.
+
+### Optimizaciones de Rendimiento
+Para asegurar un rendimiento óptimo manteniendo la calidad visual:
+
+1. Implementé carga de imágenes responsiva con dimensiones adecuadas y formato WebP
+2. Utilicé carga diferida para contenido fuera de pantalla
+3. Optimicé la carga de modelos 3D con suspense y fallbacks
+4. Aproveché la hidratación parcial de Astro para JavaScript mínimo
+
+## Resultados
+
+- **Experiencia de Usuario Mejorada**: Creé una plataforma inmersiva con modelos 3D interactivos que permite a los usuarios explorar artefactos arqueológicos desde todos los ángulos.
+
+- **Métricas de Rendimiento**: Logré excelentes puntuaciones de rendimiento con tiempos de carga por debajo de 3 segundos y un Largest Contentful Paint por debajo de 2.5 segundos, incluso con contenido 3D complejo.
+
+- **Accesibilidad e Internacionalización**: Entregué una experiencia completamente bilingüe con características de accesibilidad integrales, haciendo que el contenido arqueológico esté disponible para una audiencia más amplia.
+
+- **Arquitectura Mantenible**: Establecí un esquema de contenido y una arquitectura de componentes flexible pero robusta que facilita la adición de nuevos artefactos y actualizaciones de contenido sin problemas.
+
+- **Diseño Responsivo**: Aseguré una experiencia consistente en todos los dispositivos, desde móviles hasta escritorio, con implementaciones de diseño responsivo bien pensadas.
+
+## Visuales
+![Vista previa del proyecto](/public/assets/projects/ixiptla.png)
+
+## Enlaces
+- [Demostración en vivo](https://ixiptla.com/)
+- [Repositorio](https://github.com/Itzli2000/ixiptla)

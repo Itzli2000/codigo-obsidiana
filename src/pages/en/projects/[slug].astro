@@ -1,0 +1,38 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import Prose from "../../../components/prose/Prose.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projectsEn");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const project = await getEntry("projectsEn", slug as string);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(project);
+---
+
+<MainLayout
+  lang="en"
+  title={project.data.title}
+  description={project.data.description}
+  tags={project.data.tags}
+  image={`/assets/projects/${project.data.imageName}.png`}
+>
+<a href="/es/about#projects" class="btn btn-outline btn-info btn-sm mb-5">
+    ← Back to Projects
+  </a>
+
+  <Prose>
+    <Content />
+  </Prose>
+</MainLayout>

@@ -1,29 +1,32 @@
 ---
+import { ABOUT_SECTIONS } from "../../constants/aboutSections";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+
 interface Props {
-  sections: {
-    id: string;
-    label: string;
-  }[];
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: "horizontal" | "vertical";
   className?: string;
 }
 
-const { sections, orientation = 'horizontal', className = '' } = Astro.props;
+const { orientation = "horizontal", className = "" } = Astro.props;
 
-const menuClass = orientation === 'vertical' 
-  ? 'flex flex-col gap-4'
-  : 'flex flex-row gap-6';
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
+
+const menuClass =
+  orientation === "vertical"
+    ? "flex flex-col gap-3 md:gap-4"
+    : "flex flex-row gap-4 md:gap-6";
 ---
 
 <div class={className}>
-  <nav class="flex justify-start pl-7" aria-label="Section Navigation">
+  <nav class="flex justify-start pl-4 md:pl-7" aria-label="Section Navigation">
     <ul class={menuClass}>
       {
-        sections.map(({ id, label }) => (
+        ABOUT_SECTIONS({ t }).map(({ id, label }) => (
           <li>
             <a
               href={`#${id}`}
-              class="section-link text-base-content/60 hover:text-base-content transition-colors duration-200"
+              class="section-link text-sm md:text-base text-base-content/60 hover:text-base-content transition-colors duration-200"
               data-section={id}
               aria-current="false"
             >
@@ -44,15 +47,15 @@ const menuClass = orientation === 'vertical'
     private currentSection: string | null = null;
 
     constructor() {
-      this.sectionLinks = document.querySelectorAll('.section-link');
-      this.sections = document.querySelectorAll('section[id]');
-      
+      this.sectionLinks = document.querySelectorAll(".section-link");
+      this.sections = document.querySelectorAll("section[id]");
+
       // Configure observer with more balanced thresholds
       this.observer = new IntersectionObserver(
         this.handleIntersection.bind(this),
         {
-          rootMargin: '-10% 0px -40% 0px',
-          threshold: [0, 0.25, 0.5, 0.75, 1]
+          rootMargin: "-10% 0px -40% 0px",
+          threshold: [0, 0.25, 0.5, 0.75, 1],
         }
       );
 
@@ -61,11 +64,11 @@ const menuClass = orientation === 'vertical'
 
     private init(): void {
       // Observe all sections
-      this.sections.forEach(section => this.observer.observe(section));
+      this.sections.forEach((section) => this.observer.observe(section));
 
       // Set up smooth scrolling
-      this.sectionLinks.forEach(link => {
-        link.addEventListener('click', this.handleClick.bind(this));
+      this.sectionLinks.forEach((link) => {
+        link.addEventListener("click", this.handleClick.bind(this));
       });
 
       // Initial check for hash
@@ -75,14 +78,14 @@ const menuClass = orientation === 'vertical'
     private handleIntersection(entries: IntersectionObserverEntry[]): void {
       // Sort entries by their intersection ratio
       const visibleSections = entries
-        .filter(entry => entry.isIntersecting)
+        .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
       if (visibleSections.length === 0) return;
 
       // Get the most visible section
       const mostVisible = visibleSections[0];
-      const sectionId = mostVisible.target.getAttribute('id');
+      const sectionId = mostVisible.target.getAttribute("id");
 
       if (sectionId && this.currentSection !== sectionId) {
         this.currentSection = sectionId;
@@ -92,34 +95,36 @@ const menuClass = orientation === 'vertical'
 
     private updateActiveLink(sectionId: string): void {
       // Remove active state from all links
-      this.sectionLinks.forEach(link => {
-        link.classList.remove('active');
+      this.sectionLinks.forEach((link) => {
+        link.classList.remove("active");
       });
 
       // Add active state to current section link
-      const activeLink = document.querySelector(`.section-link[data-section="${sectionId}"]`);
+      const activeLink = document.querySelector(
+        `.section-link[data-section="${sectionId}"]`
+      );
       if (activeLink) {
-        activeLink.classList.add('active');
+        activeLink.classList.add("active");
       }
     }
 
     private handleClick(e: Event): void {
       e.preventDefault();
       const link = e.currentTarget as HTMLAnchorElement;
-      const targetId = link.getAttribute('data-section');
-      
+      const targetId = link.getAttribute("data-section");
+
       if (!targetId) return;
 
       const targetSection = document.getElementById(targetId);
       if (!targetSection) return;
 
       // Update URL hash without scrolling
-      history.pushState(null, '', `#${targetId}`);
-      
+      history.pushState(null, "", `#${targetId}`);
+
       // Smooth scroll to target
-      targetSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
       });
     }
 
@@ -128,7 +133,7 @@ const menuClass = orientation === 'vertical'
       if (hash) {
         const section = document.getElementById(hash);
         if (section) {
-          section.scrollIntoView({ block: 'start' });
+          section.scrollIntoView({ block: "start" });
           this.updateActiveLink(hash);
         }
       }
@@ -136,7 +141,7 @@ const menuClass = orientation === 'vertical'
   }
 
   // Initialize the section observer when the DOM is ready
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     new SectionObserver();
   });
 </script>
@@ -150,13 +155,13 @@ const menuClass = orientation === 'vertical'
   }
 
   .section-link::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     left: 0;
     width: 0;
     height: 2px;
-    background-color: hsl(var(--p));
+    background-color: var(--color-primary);
     transition: width 0.3s ease;
   }
 
@@ -165,10 +170,11 @@ const menuClass = orientation === 'vertical'
   }
 
   .section-link.active {
-    color: hsl(var(--p));
+    color: var(--color-primary);
   }
 
   .section-link.active::after {
     width: 100%;
   }
-</style> 
+</style>
+
