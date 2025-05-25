@@ -15,6 +15,54 @@
   "blog": {
     "title": "Blog"
   },
+  "home": {
+    "meta": {
+      "title": "Código Obsidiana - Ariel Itzli Molina Sanchez",
+      "description": "Personal website and blog of Ariel Molina. Frontend architect specializing in scalable web technologies and development solutions."
+    },
+    "hero": {
+      "name": "by Ariel Molina",
+      "tagline": "Frontend architect specializing in <0>scalable infrastructures</0>, design systems, and developer experience.",
+      "about_button": "About me",
+      "blog_button": "Explore blog"
+    },
+    "featured": {
+      "title": "Featured Posts",
+      "posts": [
+        {
+          "title": "Modular Frontend Architecture",
+          "description": "Strategies for building scalable frontend systems using micro-frontends and modular architecture.",
+          "read_more": "Read more"
+        },
+        {
+          "title": "Design Systems in React",
+          "description": "Effective implementation of scalable design systems with React, TypeScript, and Storybook.",
+          "read_more": "Read more"
+        },
+        {
+          "title": "Web Performance Optimization",
+          "description": "Advanced techniques to improve speed and performance in modern web applications.",
+          "read_more": "Read more"
+        }
+      ],
+      "view_all": "View all posts"
+    },
+    "about_preview": {
+      "title": "About Me",
+      "content": [
+        "I'm a Frontend Technical Lead and Architect with over 8 years of experience building modular and scalable interface systems. My work focuses on frontend architecture, design systems, and developer experience (DX).",
+        "At EFEX, I lead the frontend infrastructure, designing platforms based on micro-frontends using Nx, React, and internal tools I've developed to automate releases, control quality, and manage design tokens."
+      ],
+      "learn_more": "Learn more"
+    },
+    "connect": {
+      "title": "Let's Connect",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "contact": "Contact"
+    }
+  },
   "about": {
     "title": "About Me",
     "role": "Frontend Tech Lead & Architect",
@@ -24,7 +72,7 @@
       "title": "Professional Journey",
       "content": [
         "I'm a Frontend Tech Lead and Architect with over 8 years of experience building modular and scalable UI systems. My work focuses on frontend architecture, design systems, and developer experience (DX).",
-        "At EFEX, I lead the frontend infrastructure, where I architect microfrontend-based platforms using Nx, React, and internal tools I’ve developed for release automation, quality control, and design token management.",
+        "At EFEX, I lead the frontend infrastructure, where I architect microfrontend-based platforms using Nx, React, and internal tools I've developed for release automation, quality control, and design token management.",
         "My passion is crafting consistent, reusable experiences through thoughtful code, clear structure, and strategic componentization."
       ]
     },

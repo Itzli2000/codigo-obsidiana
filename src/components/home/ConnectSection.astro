@@ -1,0 +1,33 @@
+---
+import { Icon } from 'astro-icon/components';
+import { NETWORK } from '../../constants/network';
+
+interface Props {
+    lang: "en" | "es";
+    t: (key: string) => string;
+}
+
+const { lang, t } = Astro.props;
+
+---
+
+<section class="py-8 md:py-12">
+    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-6">
+        {t('home.connect.title')}
+    </h2>
+    
+    <div class="flex flex-wrap gap-4">
+        <a href={NETWORK.GITHUB} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <Icon name="mdi:github" class="w-5 h-5 mr-2" />
+            {t('home.connect.github')}
+        </a>
+        <a href={NETWORK.LINKEDIN} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <Icon name="mdi:linkedin" class="w-5 h-5 mr-2" />
+            {t('home.connect.linkedin')}
+        </a>
+        <a href={NETWORK.EMAIL} class="btn btn-outline">
+            <Icon name="mdi:mail" class="w-5 h-5 mr-2" />
+            {t('home.connect.contact')}
+        </a>
+    </div>
+</section> 

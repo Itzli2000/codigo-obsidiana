@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import SectionNav from "../Navigation/SectionNav.astro";
+import { NETWORK } from "../../constants/network";
 
 interface Props {
   role: string;
@@ -37,7 +38,7 @@ const { role, tagline, description } = Astro.props;
 
   <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4">
     <a
-      href="https://github.com/Itzli2000"
+      href={NETWORK.GITHUB}
       target="_blank"
       class="btn btn-ghost btn-circle btn-sm md:btn-md"
       aria-label="GitHub Profile"
@@ -45,7 +46,7 @@ const { role, tagline, description } = Astro.props;
       <Icon name="mdi:github" class="h-[80%] w-auto" />
     </a>
     <a
-      href="https://www.linkedin.com/in/ariel-itzli-molina-s%C3%A1nchez-0b4a09129/"
+      href={NETWORK.LINKEDIN}
       target="_blank"
       class="btn btn-ghost btn-circle btn-sm md:btn-md"
       aria-label="LinkedIn Profile"

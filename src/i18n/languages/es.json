@@ -15,6 +15,54 @@
   "blog": {
     "title": "Blog"
   },
+  "home": {
+    "meta": {
+      "title": "Código Obsidiana - Ariel Itzli Molina Sanchez",
+      "description": "Sitio web personal y blog de Ariel Molina. Arquitecto frontend especializado en tecnologías web escalables y soluciones de desarrollo."
+    },
+    "hero": {
+      "name": "por Ariel Molina",
+      "tagline": "Arquitecto frontend especializado en <0>infraestructuras escalables</0>, sistemas de diseño y experiencia del desarrollador.",
+      "about_button": "Conóceme",
+      "blog_button": "Explorar blog"
+    },
+    "featured": {
+      "title": "Publicaciones destacadas",
+      "posts": [
+        {
+          "title": "Arquitectura Frontend Modular",
+          "description": "Estrategias para construir sistemas frontend escalables usando micro-frontends y arquitectura modular.",
+          "read_more": "Leer más"
+        },
+        {
+          "title": "Sistemas de Diseño en React",
+          "description": "Implementación efectiva de sistemas de diseño escalables con React, TypeScript y Storybook.",
+          "read_more": "Leer más"
+        },
+        {
+          "title": "Optimización de Rendimiento Web",
+          "description": "Técnicas avanzadas para mejorar la velocidad y rendimiento de aplicaciones web modernas.",
+          "read_more": "Leer más"
+        }
+      ],
+      "view_all": "Ver todas las publicaciones"
+    },
+    "about_preview": {
+      "title": "Sobre mí",
+      "content": [
+        "Soy un Líder Técnico Frontend y Arquitecto con más de 8 años de experiencia construyendo sistemas de interfaces modulares y escalables. Mi trabajo se enfoca en arquitectura frontend, sistemas de diseño y experiencia del desarrollador (DX).",
+        "En EFEX, lidero la infraestructura frontend, donde diseño plataformas basadas en micro frontends utilizando Nx, React y herramientas internas que he desarrollado para automatizar lanzamientos, controlar calidad y gestionar tokens de diseño."
+      ],
+      "learn_more": "Conocer más"
+    },
+    "connect": {
+      "title": "Conectemos",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "twitter": "Twitter",
+      "contact": "Contacto"
+    }
+  },
   "about": {
     "title": "Sobre mí",
     "role": "Líder Técnico Frontend y Arquitecto",
