@@ -1,12 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
+import AvatarCanvas from '../react/AvatarCanvas';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-interface Props {
-    lang: "en" | "es";
-    t: (key: string) => string;
-}
-
-const { lang, t } = Astro.props;
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
 
 ---
 
@@ -35,13 +33,8 @@ const { lang, t } = Astro.props;
     
     <div class="flex-1 flex justify-center md:justify-end">
         <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-base-content shadow-2xl">
-            <img 
-                src="/assets/profile.jpg" 
-                alt="Ariel Molina" 
-                class="w-full h-full object-cover"
-                loading="eager"
-            />
             <div class="absolute inset-0 bg-gradient-to-t from-base-content/80 to-transparent"></div>
+            <AvatarCanvas client:load />
         </div>
     </div>
 </section> 

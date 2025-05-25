@@ -12,7 +12,7 @@ imageName: "estacionandome"
 
 # Yo Estacionándome - Plataforma de Gestión de Estacionamiento Inteligente
 
-![Project preview](/public/assets/projects/estacionandome.png)
+![Project preview](/assets/projects/estacionandome.png)
 
 ## Descripción
 Yo Estacionándome es una plataforma integral de gestión de estacionamiento que combina visualización 3D moderna con funcionalidad práctica. El sistema atiende a tres grupos principales de usuarios: conductores individuales, empresas y entidades gubernamentales. Presenta modelos 3D interactivos de quioscos de estacionamiento, diseño responsivo en todos los dispositivos e integración perfecta con sistemas de pago. La plataforma busca simplificar la experiencia de estacionamiento mientras proporciona herramientas avanzadas de gestión para los operadores.
@@ -41,7 +41,7 @@ Utilicé pruebas de usuario extensivas para refinar la interfaz, particularmente
 - Diseño moderno y visualmente impresionante que mejora la percepción de la marca
 
 ## Visuales
-![Vista previa del proyecto](/public/assets/projects/estacionandome.png)
+![Vista previa del proyecto](/assets/projects/estacionandome.png)
 
 ## Enlaces
 - [Demo en vivo](https://yo-estacionandome-dev.vercel.app/)

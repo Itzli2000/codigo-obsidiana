@@ -12,7 +12,7 @@ imageName: "qr-generator"
 
 # Batch QR Generator
 
-![Project preview](/public/assets/projects/qr-generator.png)
+![Project preview](/assets/projects/qr-generator.png)
 
 ## Description
 Batch QR Generator is a high-performance web application that enables users to generate multiple customized QR codes simultaneously. Built with modern frontend technologies, it offers a seamless user experience with real-time preview capabilities and batch processing functionality. The application is particularly useful for businesses and individuals who need to generate large volumes of QR codes with consistent styling but different data.
@@ -133,7 +133,7 @@ The Batch QR Generator delivers significant improvements over manual QR code cre
 The application successfully combines advanced frontend technologies with a user-friendly interface, making it accessible to both technical and non-technical users. The modular architecture ensures maintainability and extensibility for future enhancements.
 
 ## Visuals
-![Batch QR Generator Preview](/public/assets/projects/qr-generator.png)
+![Batch QR Generator Preview](/assets/projects/qr-generator.png)
 
 ## Links
 - [Repository](https://github.com/Itzli2000/batch-qr-generator)

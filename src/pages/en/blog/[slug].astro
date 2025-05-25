@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry, render } from "astro:content";
 import Prose from "../../../components/prose/Prose.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
 
 interface Props {
   params: {
@@ -26,9 +27,16 @@ if (!post) {
 const { Content } = await render(post);
 ---
 
-<Prose>
-  {post.collection}
-  <h1>{post.data.title}</h1>
-  <p>{post.data.description}</p>
-  <Content />
-</Prose>
+<MainLayout
+  lang="en"
+  title={post.data.title}
+  description={post.data.description}
+  tags={post.data.tags}
+>
+  <a href="/en/blog" class="btn btn-outline btn-sm mb-5">
+    ← Back to Blog
+  </a>
+  <Prose>
+    <Content />
+  </Prose>
+</MainLayout>

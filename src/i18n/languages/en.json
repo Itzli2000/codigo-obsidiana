@@ -13,7 +13,8 @@
     "rights": "All rights reserved"
   },
   "blog": {
-    "title": "Blog"
+    "title": "Blog",
+    "subtitle": "Thoughts, ideas, and explorations on frontend development and beyond."
   },
   "home": {
     "meta": {
@@ -28,23 +29,7 @@
     },
     "featured": {
       "title": "Featured Posts",
-      "posts": [
-        {
-          "title": "Modular Frontend Architecture",
-          "description": "Strategies for building scalable frontend systems using micro-frontends and modular architecture.",
-          "read_more": "Read more"
-        },
-        {
-          "title": "Design Systems in React",
-          "description": "Effective implementation of scalable design systems with React, TypeScript, and Storybook.",
-          "read_more": "Read more"
-        },
-        {
-          "title": "Web Performance Optimization",
-          "description": "Advanced techniques to improve speed and performance in modern web applications.",
-          "read_more": "Read more"
-        }
-      ],
+      "read_more": "Read more",
       "view_all": "View all posts"
     },
     "about_preview": {

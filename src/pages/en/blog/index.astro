@@ -1,22 +1,91 @@
 ---
 import { getCollection } from "astro:content";
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { Icon } from 'astro-icon/components';
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 
 const posts = await getCollection("blogEn");
+
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
+
+function formatDate(date: Date | string): string {
+  const dateObj = new Date(date);
+  // Adjust for timezone offset to ensure consistent display
+  const utcDate = new Date(
+    dateObj.getUTCFullYear(),
+    dateObj.getUTCMonth(),
+    dateObj.getUTCDate()
+  );
+  
+  return utcDate.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+}
 ---
 
 <MainLayout lang="en" title="Blog" description="Blog of Ariel Molina">
-  <h1 class="text-4xl font-bold">Blog</h1>
-  {
-    posts.map((post) => (
-      <a href={`/es/blog/${post.id}`}>
-        <div class="card bg-base-100 w-96 shadow-sm">
+  <section class="hero-section mb-16">
+    <h1 class="text-5xl font-bold font-serif mb-4 text-center md:text-left">{t("blog.title")}</h1>
+    <p class="text-xl text-base-content/70 max-w-2xl mb-8 text-center md:text-left">
+      {t("blog.subtitle") || "Thoughts, ideas, and explorations on frontend development and beyond."}
+    </p>
+  </section>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    {posts.map((post) => (
+      <a href={`/en/blog/${post.id}`} class="card-link group">
+        <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
+          {post.data.image && (
+            <figure class="h-48 overflow-hidden">
+              <img 
+                src={`/assets/blog/${post.data.image}`} 
+                alt={post.data.title}
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </figure>
+          )}
+          
           <div class="card-body">
-            <h2 class="card-title">{post.data.title}</h2>
-            <p class="card-text">{post.data.description}</p>
+            <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
+              <span class="flex items-center gap-1">
+                <Icon name="mdi:calendar" class="w-4 h-4" />
+                {formatDate(post.data.publishDate)}
+              </span>
+              
+              {post.data.readingTime && (
+                <span class="flex items-center gap-1">
+                  <Icon name="mdi:clock" class="w-4 h-4" />
+                  {post.data.readingTime} min read
+                </span>
+              )}
+            </div>
+            
+            <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
+              {post.data.title}
+            </h2>
+            
+            <p class="text-base-content/80">
+              {post.data.description}
+            </p>
+            
+            <div class="card-actions justify-end mt-4">
+              <div class="badge badge-outline">{post.data.tags?.[0] || "Article"}</div>
+              {post.data.tags?.[1] && <div class="badge badge-outline">{post.data.tags[1]}</div>}
+            </div>
           </div>
-        </div>
+        </article>
       </a>
-    ))
-  }
+    ))}
+  </div>
+  
+  {posts.length === 0 && (
+    <div class="text-center py-16">
+      <Icon name="mdi:empty" class="w-16 h-16 mx-auto mb-4 text-base-content/30" />
+      <h2 class="text-2xl font-bold mb-2">No posts yet</h2>
+      <p class="text-base-content/70">Check back soon for new content!</p>
+    </div>
+  )}
 </MainLayout>

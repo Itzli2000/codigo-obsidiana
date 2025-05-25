@@ -1,76 +1,60 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 
-interface Props {
-    lang: "en" | "es";
-    t: (key: string) => string;
-}
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
 
-interface Post {
-    title: string;
-    description: string;
-    read_more: string;
-}
-
-const { lang, t } = Astro.props;
+const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs");
+const featuredPosts = posts.slice(0, 3);
 ---
 
 <section class="py-8 md:py-12">
-    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-8 border-b border-base-300 pb-4">
-        {t('home.featured.title')}
-    </h2>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <h2
+    class="font-serif text-2xl md:text-3xl font-bold mb-8 border-b border-base-300 pb-4"
+  >
+    {t("home.featured.title")}
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      featuredPosts.map((post) => (
         <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <figure class="h-48 bg-base-300 overflow-hidden">
-                <div class="w-full h-full flex items-center justify-center text-base-content/20">
-                    <Icon name="mdi:document" class="w-16 h-16" />
-                </div>
-            </figure>
-            <div class="card-body">
-                <h3 class="card-title font-serif">{t('home.featured.posts.0.title')}</h3>
-                <p class="text-base-content/80">{t('home.featured.posts.0.description')}</p>
-                <div class="card-actions justify-end mt-4">
-                    <a href="#" class="btn btn-sm btn-primary">{t('home.featured.posts.0.read_more')}</a>
-                </div>
+          <figure class="h-48 bg-base-300 overflow-hidden">
+            {post.data.image ? (
+              <img
+                src={`/assets/blog/${post.data.image}`}
+                alt={post.data.title}
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-base-content/20">
+                <Icon name="mdi:document" class="w-16 h-16" />
+              </div>
+            )}
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title font-serif">{post.data.title}</h3>
+            <p class="text-base-content/80">{post.data.description}</p>
+            <div class="card-actions justify-end mt-4">
+              <a
+                href={`/${lang}/blog/${post.id}`}
+                class="btn btn-sm btn-primary"
+              >
+                {t("home.featured.read_more")}
+              </a>
             </div>
+          </div>
         </article>
-        
-        <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <figure class="h-48 bg-base-300 overflow-hidden">
-                <div class="w-full h-full flex items-center justify-center text-base-content/20">
-                    <Icon name="mdi:document" class="w-16 h-16" />
-                </div>
-            </figure>
-            <div class="card-body">
-                <h3 class="card-title font-serif">{t('home.featured.posts.1.title')}</h3>
-                <p class="text-base-content/80">{t('home.featured.posts.1.description')}</p>
-                <div class="card-actions justify-end mt-4">
-                    <a href="#" class="btn btn-sm btn-primary">{t('home.featured.posts.1.read_more')}</a>
-                </div>
-            </div>
-        </article>
-        
-        <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-            <figure class="h-48 bg-base-300 overflow-hidden">
-                <div class="w-full h-full flex items-center justify-center text-base-content/20">
-                    <Icon name="mdi:document" class="w-16 h-16" />
-                </div>
-            </figure>
-            <div class="card-body">
-                <h3 class="card-title font-serif">{t('home.featured.posts.2.title')}</h3>
-                <p class="text-base-content/80">{t('home.featured.posts.2.description')}</p>
-                <div class="card-actions justify-end mt-4">
-                    <a href="#" class="btn btn-sm btn-primary">{t('home.featured.posts.2.read_more')}</a>
-                </div>
-            </div>
-        </article>
-    </div>
-    
-    <div class="flex justify-center mt-8">
-        <a href={`/${lang}/blog`} class="btn btn-outline">
-            {t('home.featured.view_all')}
-            <Icon name="mdi:arrow-right" class="w-5 h-5" />
-        </a>
-    </div>
-</section> 
+      ))
+    }
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <a href={`/${lang}/blog`} class="btn btn-outline">
+      {t("home.featured.view_all")}
+      <Icon name="mdi:arrow-right" class="w-5 h-5" />
+    </a>
+  </div>
+</section>
