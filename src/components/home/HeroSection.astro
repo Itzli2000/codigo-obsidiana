@@ -12,13 +12,13 @@ const { lang, t } = Astro.props;
 
 <section class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between py-8 md:py-12">
     <div class="flex-1 space-y-6">
-        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#4CA5FF] via-[#5FBCFF] to-[#FF8357] bg-clip-text text-transparent">
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-accent to-primary !text-transparent bg-clip-text">
             <span class="block">Código Obsidiana</span>
             <span class="text-base-content text-3xl md:text-4xl font-medium mt-2">{t('home.hero.name')}</span>
         </h1>
         
         <p class="text-lg md:text-xl max-w-prose" set:html={t('home.hero.tagline')
-            .replace('<0>', '<span class="text-[#FF8357] font-medium">')
+            .replace('<0>', '<span class="text-accent font-medium">')
             .replace('</0>', '</span>')}
         />
         
@@ -34,14 +34,14 @@ const { lang, t } = Astro.props;
     </div>
     
     <div class="flex-1 flex justify-center md:justify-end">
-        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-[#0f1923] shadow-2xl">
+        <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-base-content shadow-2xl">
             <img 
                 src="/assets/profile.jpg" 
                 alt="Ariel Molina" 
                 class="w-full h-full object-cover"
                 loading="eager"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#0f1923]/80 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-base-content/80 to-transparent"></div>
         </div>
     </div>
 </section> 
