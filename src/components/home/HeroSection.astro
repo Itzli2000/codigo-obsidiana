@@ -1,13 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 import AvatarCanvas from '../react/AvatarCanvas';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 
-interface Props {
-    lang: "en" | "es";
-    t: (key: string) => string;
-}
-
-const { lang, t } = Astro.props;
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const t = useTranslations(lang);
 
 ---
 

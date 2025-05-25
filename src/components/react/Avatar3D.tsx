@@ -25,7 +25,6 @@ export function AvatarModel(props: any) {
   const { animations: greetingAnimation } = useFBX("/assets/model/greeting.fbx");
   greetingAnimation[0].name = "Greeting";
   const { actions } = useAnimations(greetingAnimation, groupRef);
-  console.log(actions);
 
   useEffect(() => {
     if (actions["Greeting"]) {

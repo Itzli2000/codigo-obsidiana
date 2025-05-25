@@ -8,8 +8,6 @@ const t = useTranslations(lang);
 
 const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs");
 const featuredPosts = posts.slice(0, 3);
-
-console.log(featuredPosts);
 ---
 
 <section class="py-8 md:py-12">
