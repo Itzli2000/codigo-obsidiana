@@ -27,10 +27,10 @@ export function AvatarModel(props: any) {
   const { actions } = useAnimations(greetingAnimation, groupRef);
 
   useEffect(() => {
-    if (actions["Greeting"]) {
-      actions["Greeting"].play();
+    if (actions["Greeting"] && groupRef.current) {
+      actions["Greeting"]?.reset().play();
     }
-  }, [actions]);
+  }, [actions, groupRef.current]);
 
   return (
     <group {...props} ref={groupRef} dispose={null}>

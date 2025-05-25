@@ -3,6 +3,7 @@ title: "Ixiptla - Exposición de Artefactos Arqueológicos"
 description: "Plataforma interactiva bilingüe con modelos 3D de réplicas arqueológicas"
 publishDate: 2023-10-15
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
+tags: ["frontend", "3d", "interactive", "archaeology", "replicas", "platform"]
 role: "Desarrollador Frontend"
 company: "Proyecto Personal"
 status: "Completado"

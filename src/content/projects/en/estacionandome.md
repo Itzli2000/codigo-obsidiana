@@ -3,6 +3,7 @@ title: "Yo Estacionándome - Smart Parking Management Platform"
 description: "A modern 3D interactive parking management platform with multiple user interfaces"
 publishDate: 2023-09-18
 technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
+tags: ["frontend", "3d", "interactive", "parking", "management", "platform"]
 role: "Frontend Developer"
 company: "Yo Estacionándome"
 status: "Completed"
