@@ -13,7 +13,8 @@
     "rights": "All rights reserved"
   },
   "blog": {
-    "title": "Blog"
+    "title": "Blog",
+    "subtitle": "Thoughts, ideas, and explorations on frontend development and beyond."
   },
   "home": {
     "meta": {
