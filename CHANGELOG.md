@@ -1,3 +1,13 @@
+#### 1.0.1 (2025-05-25)
+
+##### Bug Fixes
+
+* **Avatar:**  ensure greeting animation plays correctly with group reference (9f0de38d)
+
+##### Refactors
+
+* **About:**  standardize text sizes across education, experience, profile, and summary cards (9a0f77bd)
+
 ## 1.0.0 (2025-05-25)
 
 ##### Chores
