@@ -25,11 +25,19 @@ Inside this project, you'll see the following directory structure:
 ├── src/
 │   ├── assets/            # Project assets processed during build
 │   ├── components/        # Reusable UI components
-│   │   └── react/         # React-specific interactive components
+│   │   ├── react/         # React-specific interactive components
+│   │   ├── home/          # Homepage specific components
+│   │   ├── about/         # About page components
+│   │   ├── prose/         # Text content styling components
+│   │   ├── Navigation/    # Site navigation components
+│   │   ├── ThemeSwitcher/ # Theme toggle components
+│   │   └── LanguageSwitcher/ # Language selection components
+│   ├── constants/         # Shared constant values
 │   ├── content/           # Content collections
-│   │   └── blog/          # Blog posts organized by language
-│   │       ├── en/        # English blog content
-│   │       └── es/        # Spanish blog content
+│   │   ├── blog/          # Blog posts organized by language
+│   │   │   ├── en/        # English blog content
+│   │   │   └── es/        # Spanish blog content
+│   │   └── projects/      # Project showcases and descriptions
 │   ├── i18n/              # Internationalization configuration
 │   ├── layouts/           # Page layouts and templates
 │   ├── pages/             # Page components and routes
@@ -39,10 +47,11 @@ Inside this project, you'll see the following directory structure:
 
 ## 🛠️ Technologies
 
-- **[Astro](https://astro.build/)**: Core framework for building the site
-- **[Tailwind CSS](https://tailwindcss.com/)**: Utility-first CSS framework
-- **[DaisyUI](https://daisyui.com/)**: Component library for Tailwind CSS
-- **[React](https://reactjs.org/)**: For interactive components
+- **[Astro](https://astro.build/) v5.8.0**: Core framework for building the site
+- **[Tailwind CSS](https://tailwindcss.com/) v4**: Utility-first CSS framework
+- **[DaisyUI](https://daisyui.com/) v5**: Component library for Tailwind CSS
+- **[React](https://reactjs.org/) v19**: For interactive components
+- **[Three.js](https://threejs.org/) v0.176.0**: For 3D visualizations
 - **Content Collections**: For organizing and managing blog posts and other content
 - **Multilingual Support**: Full English and Spanish language support
 
