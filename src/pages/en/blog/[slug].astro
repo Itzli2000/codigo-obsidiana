@@ -33,6 +33,9 @@ const { Content } = await render(post);
   description={post.data.description}
   tags={post.data.tags}
 >
+  <a href="/en/blog" class="btn btn-outline btn-sm mb-5">
+    ← Back to Blog
+  </a>
   <Prose>
     <Content />
   </Prose>

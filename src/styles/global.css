@@ -69,7 +69,7 @@
 
 /* Theme transition variables
 :root {
-  --theme-transition-duration: 0.2s;
+  --theme-transition-duration: 0.3s;
   --theme-transition-timing: ease-in-out;
 }
 
