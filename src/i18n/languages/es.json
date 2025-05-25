@@ -28,23 +28,7 @@
     },
     "featured": {
       "title": "Publicaciones destacadas",
-      "posts": [
-        {
-          "title": "Arquitectura Frontend Modular",
-          "description": "Estrategias para construir sistemas frontend escalables usando micro-frontends y arquitectura modular.",
-          "read_more": "Leer más"
-        },
-        {
-          "title": "Sistemas de Diseño en React",
-          "description": "Implementación efectiva de sistemas de diseño escalables con React, TypeScript y Storybook.",
-          "read_more": "Leer más"
-        },
-        {
-          "title": "Optimización de Rendimiento Web",
-          "description": "Técnicas avanzadas para mejorar la velocidad y rendimiento de aplicaciones web modernas.",
-          "read_more": "Leer más"
-        }
-      ],
+      "read_more": "Leer más",
       "view_all": "Ver todas las publicaciones"
     },
     "about_preview": {
