@@ -1,3 +1,13 @@
+#### 1.0.2 (2025-05-26)
+
+##### New Features
+
+* **ThemeSwitcher:**  add theme switcher visibility based on system dark mode (545f5329)
+
+##### Refactors
+
+* **Navigation:**  streamline language handling across navigation components (c6451ce8)
+
 #### 1.0.1 (2025-05-25)
 
 ##### Bug Fixes
