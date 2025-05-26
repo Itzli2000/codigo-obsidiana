@@ -1,14 +1,10 @@
 ---
-import { useTranslations } from "../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Icon } from 'astro-icon/components';
 import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher.astro';
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher.astro';
 
-interface Props {
-  lang: string;
-}
-
-const { lang } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang as "en" | "es");
 
 // Define navigation links

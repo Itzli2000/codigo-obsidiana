@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from "astro:content";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
+import { getLangFromUrl } from "../../../i18n/utils";
 
 interface Props {
   params: {
@@ -18,6 +19,8 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 
+const lang = getLangFromUrl(Astro.url) as "en" | "es";
+
 const post = await getEntry("blogEs", slug as string);
 
 if (!post) {
@@ -28,12 +31,14 @@ const { Content } = await render(post);
 ---
 
 <MainLayout
-  lang="en"
+  lang={lang}
   title={post.data.title}
   description={post.data.description}
   tags={post.data.tags}
 >
-  <a href="/es/blog" class="btn btn-outline btn-sm mb-5"> ← Volver al blog </a>
+  <a href={`/${lang}/blog`} class="btn btn-outline btn-sm mb-5">
+    ← Volver al blog
+  </a>
   <Prose>
     <Content />
   </Prose>
