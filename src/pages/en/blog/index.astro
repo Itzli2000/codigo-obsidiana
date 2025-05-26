@@ -36,7 +36,7 @@ function formatDate(date: Date | string): string {
   
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
     {posts.map((post) => (
-      <a href={`/en/blog/${post.id}`} class="card-link group">
+      <a href={`/${lang}/blog/${post.id}`} class="card-link group">
         <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
           {post.data.image && (
             <figure class="h-48 overflow-hidden">
