@@ -3,62 +3,113 @@
     {
       "role": "Líder Técnico Frontend",
       "company": "EFEX",
-      "period": "2025 — Presente",
-      "description": "Lidero la arquitectura frontend, sistemas de diseño y herramientas internas en EFEX. Enfocado en escalabilidad, reutilización de código y buenas prácticas de ingeniería.",
+      "period": "2025 — Actualidad",
+      "description": "Responsable de la arquitectura frontend, sistemas de diseño y herramientas internas para desarrolladores en EFEX. Enfocado en la escalabilidad, reutilización de código y buenas prácticas de ingeniería.",
       "technologies": ["React", "TypeScript", "Nx", "Module Federation", "Material UI", "Storybook", "Zustand", "Vite"],
       "achievements": [
-        "Arquitectura y estandarización de la infraestructura frontend con Nx y Module Federation",
-        "Desarrollo de librerías internas para tokens de diseño, theming, componentes, peticiones HTTP y manejo de errores",
-        "Creación de un CLI interno para automatizar changelogs, QA, lanzamientos y flujos de ramas",
-        "Liderazgo en decisiones de arquitectura, documentación técnica y revisiones de código"
+        "Arquitectura e implementación de toda la infraestructura frontend usando Nx y Module Federation",
+        "Desarrollo de librerías internas para tokens de diseño, temas, componentes, manejo de errores y peticiones HTTP",
+        "Creación de un CLI interno para automatizar changelogs, QA, versiones y flujos de ramas",
+        "Liderazgo en decisiones de arquitectura, documentación técnica y revisiones de código entre equipos"
       ]
     },
     {
-      "role": "Desarrollador Frontend Senior",
+      "role": "Ingeniero Frontend Senior",
       "company": "EFEX",
       "period": "2023 — 2025",
-      "description": "Desarrollé y mantuve interfaces escalables y herramientas internas para las plataformas de EFEX. Enfoque en calidad de UI, reutilización de código y eficiencia para el equipo.",
+      "description": "Desarrollo y mantenimiento de interfaces escalables y herramientas internas en múltiples plataformas de EFEX. Enfocado en calidad de UI, código reutilizable y eficiencia del desarrollador.",
       "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
       "achievements": [
-        "Co-creación de la primera librería de componentes compartidos de EFEX",
-        "Colaboración con diseño y backend para experiencias robustas y accesibles",
-        "Base para herramientas internas que se escalaron como solución organizacional"
+        "Desarrollo desde cero de la librería de componentes compartidos de EFEX",
+        "Colaboración con equipos multidisciplinarios para entregar experiencias accesibles y robustas",
+        "Fundamentos de herramientas internas que evolucionaron en soluciones CLI de uso global dentro de la empresa"
       ]
     },
     {
-      "role": "Desarrollador Frontend Senior",
+      "role": "Ingeniero Frontend Senior",
       "company": "Branch",
       "period": "2022 — 2024",
-      "description": "Participé en el desarrollo del producto principal con enfoque en arquitectura limpia y escalabilidad frontend.",
+      "description": "Contribución en dos verticales frontend (Advertiser Dashboard y Customer Platform) bajo una arquitectura compartida. Enfoque en modularidad, escalabilidad y consistencia de UX.",
       "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
       "achievements": [
-        "Implementación de soluciones UI modulares y escalables",
-        "Mejora del onboarding mediante documentación de buenas prácticas",
-        "Entrega de funcionalidades complejas en colaboración con otros equipos"
+        "Desarrollo de un dashboard de analíticas visuales con visualizaciones complejas",
+        "Creación de vistas administrativas basadas en roles y mejora de experiencias de onboarding",
+        "Entrega de componentes reutilizables y utilidades frontend transversales",
+        "Alineación de prioridades técnicas con necesidades del producto y negocio"
       ]
     },
     {
-      "role": "Líder Técnico / Desarrollador Frontend Senior",
+      "role": "Líder Frontend",
       "company": "Globant (American Century Investments)",
-      "period": "2020 — 2022",
-      "description": "Lideré el desarrollo frontend para soluciones web de gran escala con React y arquitectura modular.",
-      "technologies": ["React", "JavaScript", "Redux", "SASS", "Material UI"],
+      "period": "2021 — 2022",
+      "description": "Liderazgo en el desarrollo frontend de aplicaciones financieras a nivel empresarial, desde cero y con soporte a sistemas de diseño compartidos.",
+      "technologies": ["React", "JavaScript", "Redux", "Material UI", "SASS", "Next.js"],
       "achievements": [
-        "Definición de estándares de frontend y prácticas de mentoría de equipo",
-        "Mejoras arquitectónicas y control de calidad de código",
-        "Entrega de funcionalidades accesibles y optimizadas en producción"
+        "Construcción de una solución desde cero con integración a APIs REST",
+        "Diseño y mantenimiento de un sistema de diseño de uso transversal",
+        "Desarrollo de un marketplace con búsqueda y filtros según roles",
+        "Soporte a otros equipos para consumir y adaptar el sistema de diseño"
       ]
     },
     {
-      "role": "Chief UX Officer / Desarrollador Frontend Web",
+      "role": "Chief UX Officer / Desarrollador Frontend",
       "company": "Minds With Purpose Ltd",
-      "period": "2020 — 2024",
-      "description": "Lideré diseño UX y desarrollo frontend para plataformas educativas y de impacto social.",
-      "technologies": ["React", "CSS3", "Node.js", "Figma"],
+      "period": "2019 — 2022",
+      "description": "Liderazgo en diseño UX y desarrollo frontend para plataformas educativas y de impacto social, con enfoque en accesibilidad, inclusión y rendimiento.",
+      "technologies": ["React", "SASS", "BEM", "Stripe", "OpenTok"],
       "achievements": [
-        "Diseño completo de flujos UI/UX y desarrollo de SPAs responsivas",
-        "Creación de experiencias accesibles e inclusivas",
-        "Pruebas con usuarios y mejoras de usabilidad"
+        "Desarrollo de SPAs responsivas con flujos complejos de onboarding y búsqueda",
+        "Integración de pagos con Stripe y videochat en tiempo real",
+        "Diseño de paneles administrativos y dashboards de control",
+        "Mejoras continuas de UX mediante auditorías de usabilidad"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend",
+      "company": "RAO File Viewer",
+      "period": "2020 — 2021",
+      "description": "Desarrollo de una aplicación segura de visualización de archivos con funcionalidades de edición y cifrado avanzadas.",
+      "technologies": ["Angular", "TypeScript", "SASS", "RxJS", "cryptoJS"],
+      "achievements": [
+        "Implementación de login encriptado y flujos de desencriptación de archivos",
+        "Edición visual integrada con rotación, zoom y escalado",
+        "Desarrollo de un calendario personalizado para filtrado de archivos"
+      ]
+    },
+    {
+      "role": "Líder Frontend",
+      "company": "ATOMS Ecommerce",
+      "period": "2019 — 2020",
+      "description": "Liderazgo en el desarrollo frontend de múltiples tiendas ecommerce, creando flujos de trabajo y plantillas escalables.",
+      "technologies": ["React", "Liquid", "SASS", "Bootstrap", "VTEX", "Shopify"],
+      "achievements": [
+        "Establecimiento de estándares de colaboración y control de versiones con Git",
+        "Construcción de tiendas personalizadas según requerimientos de clientes",
+        "Resolución de bugs críticos y mejora del rendimiento de las tiendas"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend",
+      "company": "ZERMAT USA",
+      "period": "2018 — 2020",
+      "description": "Soporte en la migración y mejora de funcionalidades en plataformas internas para vendedores.",
+      "technologies": ["React", "AngularJS"],
+      "achievements": [
+        "Migración de sistemas legacy desde AngularJS a React",
+        "Desarrollo de micrositios internos para operaciones de negocio",
+        "Optimización del rendimiento y la experiencia de usuario en plataformas de venta"
+      ]
+    },
+    {
+      "role": "Líder / Desarrollador Frontend",
+      "company": "Digimundo Technologies",
+      "period": "2016 — 2018",
+      "description": "Entrega de soluciones web empresariales personalizadas, evolucionando de desarrollador a líder técnico.",
+      "technologies": ["HTML", "CSS", "JavaScript"],
+      "achievements": [
+        "Gestión de proyectos, tiempos y comunicación directa con clientes",
+        "Desarrollo de herramientas internas para procesos empresariales",
+        "Levantamiento de requerimientos y entrega de soluciones adaptadas"
       ]
     }
   ]
