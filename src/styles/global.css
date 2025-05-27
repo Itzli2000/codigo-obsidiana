@@ -67,7 +67,7 @@
   --color-error-content: oklch(26.2% 0.003 262.2);
 }
 
-/* Theme transition variables
+/* Theme transition variables */
 :root {
   --theme-transition-duration: 0.3s;
   --theme-transition-timing: ease-in-out;
@@ -80,6 +80,13 @@
                 border-color var(--theme-transition-duration) var(--theme-transition-timing),
                 box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
   }
+}
+
+/* Base typography styles */
+html, body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
 }
 
 h1,
@@ -98,4 +105,6 @@ body {
   background-color: var(--color-base-100);
   color: var(--color-base-content);
 }
+
+
 
