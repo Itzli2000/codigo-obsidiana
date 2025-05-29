@@ -36,8 +36,6 @@
 
 @plugin "daisyui/theme" {
   name: "obsidiana-dark";
-  default: true;
-  prefersdark: true;
   color-scheme: dark;
 
   --color-base-100: oklch(22.3% 0.014 261.3);
