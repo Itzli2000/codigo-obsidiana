@@ -330,6 +330,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@codigo-obsidiana/design-tokens@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "@codigo-obsidiana/design-tokens@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40codigo-obsidiana%2Fdesign-tokens%2F0.0.6%2F3e6e9065bd0914e5eafdb34518603dbe084329ba"
+  checksum: 10c0/bac973b700987d16d4eeef36a3b471f58ef1b583c90ecc775ebebbb88978657cc268e0c4f89306323e0e4d7012d265b70916dcc341b09f21902160cf33d9fbc7
+  languageName: node
+  linkType: hard
+
 "@dimforge/rapier3d-compat@npm:^0.12.0":
   version: 0.12.0
   resolution: "@dimforge/rapier3d-compat@npm:0.12.0"
@@ -2245,6 +2252,7 @@ __metadata:
   resolution: "codigo-obsidiana@workspace:."
   dependencies:
     "@astrojs/react": "npm:^4.3.0"
+    "@codigo-obsidiana/design-tokens": "npm:^0.0.6"
     "@iconify-json/mdi": "npm:^1.2.3"
     "@react-three/drei": "npm:^10.0.8"
     "@react-three/fiber": "npm:^9.1.2"
