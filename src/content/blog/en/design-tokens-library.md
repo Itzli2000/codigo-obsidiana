@@ -3,7 +3,6 @@ title: "CoDesignSystem – A Scalable Design Tokens Architecture"
 description: "A multi-format design tokens library powering the visual foundation of Código Obsidiana’s frontend ecosystem."
 publishDate: 2025-05-29
 lang: "en"
-slug: "design-tokens-library"
 tags:
   [
     "Style Dictionary",

@@ -3,7 +3,6 @@ title: "CoDesignSystem – Una arquitectura escalable de design tokens"
 description: "Una librería de design tokens multi-formato que impulsa la base visual del ecosistema frontend de Código Obsidiana."
 publishDate: 2025-05-29
 lang: "es"
-slug: "design-tokens-library"
 tags: ["Style Dictionary", "TypeScript", "Nx", "OKLCH", "PNPM", "Jest", "ESLint", "Prettier"]
 author: "Ariel Molina"
 readingTime: 4

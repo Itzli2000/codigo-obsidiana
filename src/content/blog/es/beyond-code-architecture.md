@@ -3,7 +3,6 @@ title: "Más allá del código bonito: Arquitectura frontend con propósito"
 description: "Una reflexión sobre cómo la arquitectura modular y la experiencia del desarrollador (DX) pueden llevar el desarrollo frontend a un nivel estratégico."
 publishDate: 2025-05-25
 lang: "es"
-slug: "beyond-code-architecture"
 tags: ["frontend", "arquitectura", "developer experience", "react", "microfrontends"]
 author: "Ariel Molina"
 readingTime: 4

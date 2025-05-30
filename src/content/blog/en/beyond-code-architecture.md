@@ -3,7 +3,6 @@ title: "Beyond Pretty Code: Frontend Architecture with Purpose"
 description: "A reflection on how modular architecture and developer experience (DX) can elevate frontend development to a strategic level."
 publishDate: 2025-05-25
 lang: "en"
-slug: "beyond-code-architecture"
 tags: ["frontend", "architecture", "developer experience", "react", "microfrontends"]
 author: "Ariel Molina"
 readingTime: 4
