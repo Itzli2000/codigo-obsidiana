@@ -41,7 +41,7 @@ function formatDate(date: Date | string): string {
           {post.data.image && (
             <figure class="h-48 overflow-hidden">
               <img 
-                src={`/assets/blog/${post.data.image}`} 
+                src={post.data.image} 
                 alt={post.data.title}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

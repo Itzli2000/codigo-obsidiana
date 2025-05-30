@@ -7,12 +7,12 @@ slug: "design-tokens-library"
 tags: ["Style Dictionary", "TypeScript", "Nx", "OKLCH", "PNPM", "Jest", "ESLint", "Prettier"]
 author: "Ariel Molina"
 readingTime: 4
-image: "design-tokens.png"
+image: "https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp"
 ---
 
 # CoDesignSystem – Una arquitectura escalable de design tokens
 
-![CoDesignSystem – Una arquitectura escalable de design tokens](/assets/blog/design-tokens.png)
+![CoDesignSystem – Una arquitectura escalable de design tokens](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp)
 
 ## Descripción
 
@@ -126,7 +126,7 @@ Seguimos una estrategia semántica clara con categorías bien definidas:
 
 ## Visuales
 
-![CoDesignSystem – A Scalable Design Tokens Architecture](/assets/blog/design-tokens.png)
+![CoDesignSystem – A Scalable Design Tokens Architecture](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp)
 
 ---
 

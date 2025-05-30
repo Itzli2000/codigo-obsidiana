@@ -17,12 +17,12 @@ tags:
   ]
 author: "Ariel Molina"
 readingTime: 4
-image: "design-tokens.png"
+image: "https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp"
 ---
 
 # CoDesignSystem – A Scalable Design Tokens Architecture
 
-![CoDesignSystem – A Scalable Design Tokens Architecture](/assets/blog/design-tokens.png)
+![CoDesignSystem – A Scalable Design Tokens Architecture](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp)
 
 ## Description
 
@@ -140,7 +140,7 @@ We follow a **semantic-first token strategy** with clear categorization:
 
 ## Visuals
 
-![CoDesignSystem – A Scalable Design Tokens Architecture](/assets/blog/design-tokens.png)
+![CoDesignSystem – A Scalable Design Tokens Architecture](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/design-tokens-FOOwcBPj2V40jdePcxtKnn4c0A8CGB.webp)
 
 ---
 

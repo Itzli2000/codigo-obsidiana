@@ -24,7 +24,7 @@ const featuredPosts = posts.slice(0, 3);
           <figure class="h-48 bg-base-300 overflow-hidden">
             {post.data.image ? (
               <img
-                src={`/assets/blog/${post.data.image}`}
+                src={post.data.image}
                 alt={post.data.title}
                 class="w-full h-full object-cover"
               />

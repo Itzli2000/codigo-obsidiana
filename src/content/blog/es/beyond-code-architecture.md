@@ -7,12 +7,12 @@ slug: "beyond-code-architecture"
 tags: ["frontend", "arquitectura", "developer experience", "react", "microfrontends"]
 author: "Ariel Molina"
 readingTime: 4
-image: "post1.png"
+image: "https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/post1-mXkQzm3lFYk7bSWAEnIj9EaG02PNq7.webp"
 ---
 
 # Más allá del código bonito: Arquitectura frontend con propósito
 
-![Más allá del código bonito: Arquitectura frontend con propósito](/assets/blog/post1.png)
+![Más allá del código bonito: Arquitectura frontend con propósito](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/post1-mXkQzm3lFYk7bSWAEnIj9EaG02PNq7.webp)
 
 El desarrollo frontend suele juzgarse por lo visible: una interfaz pulida, animaciones suaves, diseño responsive.  
 Pero debajo de la superficie, lo que realmente define el éxito de un proyecto es su **arquitectura** — cómo escala, cómo se adapta y cómo empodera a los equipos.

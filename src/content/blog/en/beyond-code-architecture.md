@@ -7,12 +7,12 @@ slug: "beyond-code-architecture"
 tags: ["frontend", "architecture", "developer experience", "react", "microfrontends"]
 author: "Ariel Molina"
 readingTime: 4
-image: "post1.png"
+image: "https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/post1-mXkQzm3lFYk7bSWAEnIj9EaG02PNq7.webp"
 ---
 
 # Beyond Pretty Code: Frontend Architecture with Purpose
 
-![Beyond Pretty Code: Frontend Architecture with Purpose](/assets/blog/post1.png)
+![Beyond Pretty Code: Frontend Architecture with Purpose](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/post1-mXkQzm3lFYk7bSWAEnIj9EaG02PNq7.webp)
 
 Frontend development is often judged by what’s visible: the polish of a UI, the animations, the responsiveness. But under the surface, what really defines the success of a frontend project is its **architecture** — how it scales, adapts, and empowers teams.
 
