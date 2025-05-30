@@ -4,7 +4,17 @@ description: "A multi-format design tokens library powering the visual foundatio
 publishDate: 2025-05-29
 lang: "en"
 slug: "design-tokens-library"
-tags: ["Style Dictionary", "TypeScript", "Nx", "OKLCH", "PNPM", "Jest", "ESLint", "Prettier"]
+tags:
+  [
+    "Style Dictionary",
+    "TypeScript",
+    "Nx",
+    "OKLCH",
+    "PNPM",
+    "Jest",
+    "ESLint",
+    "Prettier",
+  ]
 author: "Ariel Molina"
 readingTime: 4
 image: "design-tokens.png"
@@ -16,7 +26,7 @@ image: "design-tokens.png"
 
 ## Description
 
-CoDesignSystem is a professional-grade design tokens library built to serve as the foundation for UI consistency across all products under the *Código Obsidiana* ecosystem. Designed for scalability, maintainability, and precision, it provides a single source of truth for theming in web applications, component libraries, and embedded interfaces.
+CoDesignSystem is a professional-grade design tokens library built to serve as the foundation for UI consistency across all products under the _Código Obsidiana_ ecosystem. Designed for scalability, maintainability, and precision, it provides a single source of truth for theming in web applications, component libraries, and embedded interfaces.
 
 It outputs tokens in multiple formats (CSS variables, JavaScript objects, and TypeScript typings), and supports advanced theming with OKLCH color space. This system is ready to scale into multi-brand and multi-tenant scenarios with strong developer tooling support.
 
@@ -37,11 +47,13 @@ It outputs tokens in multiple formats (CSS variables, JavaScript objects, and Ty
 - ✅ **OKLCH-based Color System**: Tokens use OKLCH instead of HSL/RGB to ensure perceptual uniformity. Semantic tokens (`primary`, `accent`, `info`, `neutral`, etc.) are structured into multiple variants (e.g., `100`, `200`, `content`) for clarity and accessibility.
 
 - ✅ **Multi-Format Output** via **Style Dictionary**:
+
   - `_variables.css` for CSS custom properties
   - `index.js` as a JavaScript ES6 module
   - `index.d.ts` for full TypeScript typings
 
 - ✅ **Testable & Type-Safe Architecture**:
+
   - Token definitions are automatically tested with Jest to prevent regressions
   - TypeScript typings ensure safe consumption in UI libraries and apps
 
@@ -79,11 +91,13 @@ co-design-system/
 We follow a **semantic-first token strategy** with clear categorization:
 
 ### 🎨 Colors
-- Semantic tokens: `primary`, `secondary`, `accent`, `neutral`, `info`, `success`, `warning`, `error`
-- Variants: `100`, `200`, `content` for each color to handle base, emphasis, and contrast
-- Dual themes: `obsidiana-light` and `obsidiana-dark` using CSS media queries
+
+- Semantic tokens: <span class="badge badge-primary">primary</span>, <span class="badge badge-secondary">secondary</span>, <span class="badge badge-accent">accent</span>, <span class="badge badge-neutral">neutral</span>, <span class="badge badge-info">info</span>, <span class="badge badge-success">success</span>, <span class="badge badge-warning">warning</span>, <span class="badge badge-error">error</span>
+- Variants: <span class="badge badge-outline">100</span>, <span class="badge badge-outline">200</span>, <span class="badge badge-outline">content</span> for each color to handle base, emphasis, and contrast
+- Dual themes: <span class="badge badge-obsidiana-light">obsidiana-light</span> and <span class="badge badge-obsidiana-dark">obsidiana-dark</span> using CSS media queries
 
 ### 📐 Design Tokens
+
 - `radius`: small, medium, large for border radius
 - `size`: spacing and dimensions for layout
 - `border`: thickness and style for UI elements
@@ -103,14 +117,14 @@ We follow a **semantic-first token strategy** with clear categorization:
 
 ## Competitive Advantages
 
-| Feature                  | CoDesignSystem                          | Typical Token Systems          |
-|--------------------------|------------------------------------------|--------------------------------|
-| Color Model              | OKLCH – perceptual and accessible        | RGB / HSL – device-bound       |
-| Output Formats           | CSS, JS, TS                              | Often just CSS or JS           |
-| Type Safety              | ✅ Full TypeScript support               | ❌ Missing or manual typings    |
-| Architecture             | Nx monorepo with testable modules        | Flat folder with no structure  |
-| Developer Experience     | Husky, ESLint, Prettier, Jest            | Minimal tooling                |
-| Future-Ready             | Multi-theme and multi-brand architecture | Single-brand only              |
+| Feature              | CoDesignSystem                           | Typical Token Systems         |
+| -------------------- | ---------------------------------------- | ----------------------------- |
+| Color Model          | OKLCH – perceptual and accessible        | RGB / HSL – device-bound      |
+| Output Formats       | CSS, JS, TS                              | Often just CSS or JS          |
+| Type Safety          | ✅ Full TypeScript support               | ❌ Missing or manual typings  |
+| Architecture         | Nx monorepo with testable modules        | Flat folder with no structure |
+| Developer Experience | Husky, ESLint, Prettier, Jest            | Minimal tooling               |
+| Future-Ready         | Multi-theme and multi-brand architecture | Single-brand only             |
 
 ---
 

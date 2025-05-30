@@ -79,15 +79,15 @@ co-design-system/
 Seguimos una estrategia semántica clara con categorías bien definidas:
 
 ### 🎨 Colores
-- Tokens semánticos: `primary`, `secondary`, `accent`, `neutral`, `info`, `success`, `warning`, `error`
-- Variantes: `100`, `200`, `content` para cada color (base, énfasis, contraste)
-- Temas duales: `obsidiana-light` y `obsidiana-dark` usando media queries
+- Tokens semánticos: <span class="badge badge-primary">primary</span>, <span class="badge badge-secondary">secondary</span>, <span class="badge badge-accent">accent</span>, <span class="badge badge-neutral">neutral</span>, <span class="badge badge-info">info</span>, <span class="badge badge-success">success</span>, <span class="badge badge-warning">warning</span>, <span class="badge badge-error">error</span>
+- Variantes: <span class="badge badge-outline">100</span>, <span class="badge badge-outline">200</span>, <span class="badge badge-outline">content</span> para cada color (base, énfasis, contraste)
+- Temas duales: <span class="badge badge-obsidiana-light">obsidiana-light</span> y <span class="badge badge-obsidiana-dark">obsidiana-dark</span> usando media queries
 
 ### 📐 Tokens de Diseño
-- `radius`: bordes redondeados (pequeño, medio, grande)
-- `size`: espaciado y dimensiones para layout
-- `border`: grosor y estilo de bordes
-- `effects`: sombras, ruido, profundidad (preparado para Neumorfismo)
+- `radius`: small, medium, large para bordes redondeados
+- `size`: spacing, dimensions para espaciado y dimensiones de layout
+- `border`: thickness, style para grosor y estilo de bordes
+- `effects`: shadows, noise, depth para sombras, ruido y profundidad (preparado para Neumorfismo)
 
 ---
 
