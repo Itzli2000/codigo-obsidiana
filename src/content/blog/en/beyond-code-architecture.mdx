@@ -3,7 +3,14 @@ title: "Beyond Pretty Code: Frontend Architecture with Purpose"
 description: "A reflection on how modular architecture and developer experience (DX) can elevate frontend development to a strategic level."
 publishDate: 2025-05-25
 lang: "en"
-tags: ["frontend", "architecture", "developer experience", "react", "microfrontends"]
+tags:
+  [
+    "Frontend",
+    "Architecture",
+    "Developer Experience",
+    "React",
+    "Microfrontends",
+  ]
 author: "Ariel Molina"
 readingTime: 4
 image: "post1-fmEqxZARZ53f2NWM9qhVhl5K45fchz.webp"
@@ -13,11 +20,14 @@ import { CDN, TYPE } from "../../../constants/cdn";
 
 # Beyond Pretty Code: Frontend Architecture with Purpose
 
-<img src={`${CDN.IMAGES}${TYPE.BLOG}${frontmatter.image}`} alt={frontmatter.title} />
+<img
+  src={`${CDN.IMAGES}${TYPE.BLOG}${frontmatter.image}`}
+  alt={frontmatter.title}
+/>
 
 Frontend development is often judged by what’s visible: the polish of a UI, the animations, the responsiveness. But under the surface, what really defines the success of a frontend project is its **architecture** — how it scales, adapts, and empowers teams.
 
-As a Frontend Tech Lead, I’ve seen firsthand how beautiful interfaces can hide technical debt, bottlenecks, and frustration. And I’ve also seen how thoughtful architectural decisions can *transform* the developer experience (DX) and create systems that are not just functional — but resilient and joyful to work with.
+As a Frontend Tech Lead, I’ve seen firsthand how beautiful interfaces can hide technical debt, bottlenecks, and frustration. And I’ve also seen how thoughtful architectural decisions can _transform_ the developer experience (DX) and create systems that are not just functional — but resilient and joyful to work with.
 
 ## When Pretty Code Isn’t Enough
 
@@ -34,10 +44,10 @@ Design systems help. Lint rules help. But they’re not enough without **a clear
 
 At EFEX, I lead the frontend infrastructure using a modular approach based on:
 
-- **Nx workspaces** for scalable monorepos  
-- **Microfrontend architecture** using Module Federation  
-- **Custom libraries** for design tokens, themes, and reusable components  
-- **Automated release pipelines** and CI with GitHub Actions  
+- **Nx workspaces** for scalable monorepos
+- **Microfrontend architecture** using Module Federation
+- **Custom libraries** for design tokens, themes, and reusable components
+- **Automated release pipelines** and CI with GitHub Actions
 - A strong focus on **DX**: clear boundaries, fast feedback, and zero ambiguity
 
 Each decision serves a purpose: reducing friction, increasing clarity, and enabling long-term growth.
@@ -63,7 +73,7 @@ Think like a systems designer. Think with purpose.
 
 ---
 
-👋 I'd love to hear how *you* approach frontend architecture.  
+👋 I'd love to hear how _you_ approach frontend architecture.  
 What principles guide your decisions? What trade-offs have shaped your stack?
 
 Let’s talk.
