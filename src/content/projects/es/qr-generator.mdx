@@ -8,12 +8,14 @@ role: "Desarrollador Frontend"
 company: "Proyecto Personal"
 status: "Completado"
 lang: "es"
-imageName: "qr-generator"
+image: "qr-generator-DBITMU6zrdS6qpLhSVN4ptqbVLnFbe.webp"
 ---
+
+import { CDN, TYPE } from "../../../constants/cdn";
 
 # Generador de Códigos QR por Lotes
 
-![Project preview](/assets/projects/qr-generator.png)
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Descripción
 El Generador de Códigos QR por Lotes es una aplicación web de alto rendimiento que permite a los usuarios generar múltiples códigos QR personalizados simultáneamente. Construida con tecnologías frontend modernas, ofrece una experiencia de usuario fluida con capacidades de vista previa en tiempo real y funcionalidad de procesamiento por lotes. La aplicación es particularmente útil para empresas e individuos que necesitan generar grandes volúmenes de códigos QR con un estilo consistente pero datos diferentes.
@@ -134,7 +136,7 @@ El Generador de Códigos QR por Lotes ofrece mejoras significativas sobre la cre
 La aplicación combina exitosamente tecnologías frontend avanzadas con una interfaz amigable, haciéndola accesible tanto para usuarios técnicos como no técnicos. La arquitectura modular asegura mantenibilidad y extensibilidad para mejoras futuras.
 
 ## Visuales
-![Vista previa del Generador de Códigos QR por Lotes](/assets/projects/qr-generator.png)
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Enlaces
 - [Repositorio](https://github.com/Itzli2000/batch-qr-generator)

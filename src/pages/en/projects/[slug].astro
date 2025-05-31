@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from "astro:content";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import Prose from "../../../components/prose/Prose.astro";
+import { CDN, TYPE } from "../../../constants/cdn";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projectsEn");
@@ -26,7 +27,7 @@ const { Content } = await render(project);
   title={project.data.title}
   description={project.data.description}
   tags={project.data.tags}
-  image={`/assets/projects/${project.data.imageName}.png`}
+  image={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
 >
   <a href="/en/about#projects" class="btn btn-outline btn-info btn-sm mb-5">
     ← Back to Projects

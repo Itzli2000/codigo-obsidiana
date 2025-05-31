@@ -3,6 +3,7 @@ import { getCollection, getEntry, render } from "astro:content";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
+import { CDN, TYPE } from "../../../constants/cdn";
 
 interface Props {
   params: {
@@ -35,7 +36,7 @@ const { Content } = await render(post);
   title={post.data.title}
   description={post.data.description}
   tags={post.data.tags}
-  image={post.data.image}
+  image={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
 >
   <a href={`/${lang}/blog`} class="btn btn-outline btn-sm mb-5">
     ← Volver al blog

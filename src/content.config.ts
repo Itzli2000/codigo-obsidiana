@@ -24,7 +24,7 @@ const projectSchema = z.object({
   company: z.string(),
   status: z.string(),
   lang: z.enum(["en", "es"]),
-  imageName: z.string(),
+  image: z.string(),
 });
 
 const blogEn = defineCollection({
