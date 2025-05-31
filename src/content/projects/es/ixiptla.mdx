@@ -8,12 +8,14 @@ role: "Desarrollador Frontend"
 company: "Proyecto Personal"
 status: "Completado"
 lang: "es"
-imageName: "ixiptla"
+image: "ixiptla-dIlNxZYjPQKVvrAs5GNTI5YRsLjPL0.webp"
 ---
+
+import { CDN, TYPE } from "../../../constants/cdn";
 
 # Ixiptla - Exposición de Artefactos Arqueológicos
 
-![Project preview](/assets/projects/ixiptla.png)
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Descripción
 Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a artefactos antiguos en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.
@@ -132,7 +134,7 @@ Para asegurar un rendimiento óptimo manteniendo la calidad visual:
 - **Diseño Responsivo**: Aseguré una experiencia consistente en todos los dispositivos, desde móviles hasta escritorio, con implementaciones de diseño responsivo bien pensadas.
 
 ## Visuales
-![Vista previa del proyecto](/assets/projects/ixiptla.png)
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Enlaces
 - [Demostración en vivo](https://ixiptla.com/)
