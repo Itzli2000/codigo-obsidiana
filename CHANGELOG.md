@@ -1,3 +1,35 @@
+## 2.0.0 (2025-05-31)
+
+##### Chores
+
+* **content:**  remove outdated image assets and update project references (90d6fcac)
+* **blog:**  remove outdated image assets and update references (3fa0f200)
+* **npm:**  add .npmrc for GitHub npm registry configuration (0b34238e)
+* **vscode:**  add custom words to cSpell configuration (bc40a9aa)
+* **yarnrc:**  add yarn configuration for GitHub npm registry (2f4e2709)
+* **yarn.lock:**  update dependencies to latest versions (4701506c)
+
+##### New Features
+
+* **about:**  update resume link and enhance email copy functionality (4e79a14a)
+* **content:**
+  *  integrate MDX support and update content loaders (8a46084f)
+  *  add schemas for blog and project posts frontmatter (bac6ca57)
+* **blog:**  add design tokens library documentation in English and Spanish (6055dbc7)
+
+##### Bug Fixes
+
+* **home:**  correct image source path for featured posts (acf043f4)
+
+##### Refactors
+
+* **global.css:**
+  *  integrate design tokens and update color variables (1e651b98)
+  *  update theme transition styles for improved accessibility (315dd8a3)
+* **ThemeSwitcher:**  update theme handling and improve system theme detection (eedb1d43)
+* **About:**  standardize typography and layout across components (19bbf226)
+* **ExperienceCard:**  update text size and enhance experience descriptions (dcb2fcff)
+
 #### 1.0.2 (2025-05-26)
 
 ##### New Features
