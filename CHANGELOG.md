@@ -1,3 +1,12 @@
+### 2.2.0 (2025-05-31)
+
+##### Refactors
+
+* **Projects:**
+  *  update link formatting for project entries (57f8495f)
+  *  enhance project card structure and add icon (dfa8d5cc)
+* **blog:**  improve blog index layout and formatting (a348583b)
+
 ### 2.1.0 (2025-05-31)
 
 ##### New Features

@@ -1,7 +1,6 @@
 import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
-// Schema for blog posts frontmatter
 const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
@@ -13,7 +12,6 @@ const blogSchema = z.object({
   image: z.string(),
 });
 
-// Schema for project posts frontmatter
 const projectSchema = z.object({
   title: z.string(),
   description: z.string(),
