@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss";
+@import "@codigo-obsidiana/design-tokens/dist/css/_variables.css";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui";
 
@@ -7,79 +8,102 @@
   name: "obsidiana-light";
   color-scheme: light;
 
-  --color-base-100: oklch(98% 0.014 261.3);
-  --color-base-200: oklch(95% 0.026 261.2);
-  --color-base-300: oklch(90% 0.015 91.3);
-  --color-base-content: oklch(20% 0.006 262);
+  --color-base-100: var(--color-base-light-100);
+  --color-base-200: var(--color-base-light-200);
+  --color-base-300: var(--color-base-light-300);
+  --color-base-content: var(--color-base-light-content);
 
-  --color-primary: oklch(72.6% 0.21 245);
-  --color-primary-content: oklch(98% 0.003 262.2);
+  --color-primary: var(--color-primary-light-default);
+  --color-primary-content: var(--color-primary-light-content);
 
-  --color-secondary: oklch(78.3% 0.22 246);
-  --color-secondary-content: oklch(98% 0.003 262.2);
+  --color-secondary: var(--color-secondary-light-default);
+  --color-secondary-content: var(--color-secondary-light-content);
 
-  --color-accent: oklch(70.3% 0.16 35);
-  --color-accent-content: oklch(98% 0.003 262.2);
+  --color-accent: var(--color-accent-light-default);
+  --color-accent-content: var(--color-accent-light-content);
 
-  --color-neutral: oklch(95% 0.026 261.2);
-  --color-neutral-content: oklch(20% 0.006 262);
+  --color-neutral: var(--color-neutral-light-default);
+  --color-neutral-content: var(--color-neutral-light-content);
 
-  --color-info: oklch(72.6% 0.21 245);
-  --color-success: oklch(68% 0.18 150);
-  --color-warning: oklch(82% 0.16 85);
-  --color-error: oklch(70.3% 0.16 35);
-  --color-info-content: oklch(98% 0.003 262.2);
-  --color-success-content: oklch(98% 0.003 262.2);
-  --color-warning-content: oklch(98% 0.003 262.2);
-  --color-error-content: oklch(98% 0.003 262.2);
+  --color-info: var(--color-info-light-default);
+  --color-success: var(--color-success-light-default);
+  --color-warning: var(--color-warning-light-default);
+  --color-error: var(--color-error-light-default);
+  --color-info-content: var(--color-info-light-content);
+  --color-success-content: var(--color-success-light-content);
+  --color-warning-content: var(--color-warning-light-content);
+  --color-error-content: var(--color-error-light-content);
+
+  --radius-selector: var(--design-radius-selector);
+  --radius-field: var(--design-radius-field);
+  --radius-box: var(--design-radius-box);
+  --size-selector: var(--design-size-selector);
+  --size-field: var(--design-size-field);
+  --border: var(--design-border-width);
+  --depth: var(--design-effect-depth);
+  --noise: var(--design-effect-noise);
 }
 
 @plugin "daisyui/theme" {
   name: "obsidiana-dark";
-  default: true;
-  prefersdark: true;
   color-scheme: dark;
 
-  --color-base-100: oklch(22.3% 0.014 261.3);
-  --color-base-200: oklch(33.7% 0.026 261.2);
-  --color-base-300: oklch(94.4% 0.015 91.3);
-  --color-base-content: oklch(71.8% 0.006 262);
+  --color-base-100: var(--color-base-dark-100);
+  --color-base-200: var(--color-base-dark-200);
+  --color-base-300: var(--color-base-dark-300);
+  --color-base-content: var(--color-base-dark-content);
 
-  --color-primary: oklch(72.6% 0.21 245);
-  --color-primary-content: oklch(26.2% 0.003 262.2);
+  --color-primary: var(--color-primary-dark-default);
+  --color-primary-content: var(--color-primary-dark-content);
 
-  --color-secondary: oklch(78.3% 0.22 246);
-  --color-secondary-content: oklch(26.2% 0.003 262.2);
+  --color-secondary: var(--color-secondary-dark-default);
+  --color-secondary-content: var(--color-secondary-dark-content);
 
-  --color-accent: oklch(70.3% 0.16 35);
-  --color-accent-content: oklch(26.2% 0.003 262.2);
+  --color-accent: var(--color-accent-dark-default);
+  --color-accent-content: var(--color-accent-dark-content);
 
-  --color-neutral: oklch(33.7% 0.026 261.2);
-  --color-neutral-content: oklch(71.8% 0.006 262);
+  --color-neutral: var(--color-neutral-dark-default);
+  --color-neutral-content: var(--color-neutral-dark-content);
 
-  --color-info: oklch(72.6% 0.21 245);
-  --color-success: oklch(68% 0.18 150);
-  --color-warning: oklch(82% 0.16 85);
-  --color-error: oklch(70.3% 0.16 35);
-  --color-info-content: oklch(26.2% 0.003 262.2);
-  --color-success-content: oklch(26.2% 0.003 262.2);
-  --color-warning-content: oklch(26.2% 0.003 262.2);
-  --color-error-content: oklch(26.2% 0.003 262.2);
+  --color-info: var(--color-info-dark-default);
+  --color-success: var(--color-success-dark-default);
+  --color-warning: var(--color-warning-dark-default);
+  --color-error: var(--color-error-dark-default);
+  --color-info-content: var(--color-info-dark-content);
+  --color-success-content: var(--color-success-dark-content);
+  --color-warning-content: var(--color-warning-dark-content);
+  --color-error-content: var(--color-error-dark-content);
+
+  --radius-selector: var(--design-radius-selector);
+  --radius-field: var(--design-radius-field);
+  --radius-box: var(--design-radius-box);
+  --size-selector: var(--design-size-selector);
+  --size-field: var(--design-size-field);
+  --border: var(--design-border-width);
+  --depth: var(--design-effect-depth);
+  --noise: var(--design-effect-noise);
 }
 
-/* Theme transition variables
+/* Theme transition variables */
 :root {
   --theme-transition-duration: 0.3s;
   --theme-transition-timing: ease-in-out;
 }
 
 /* Theme transition styles */
-@media (prefers-reduced-motion: no-preference) {
+:root {
   * {
     transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
                 border-color var(--theme-transition-duration) var(--theme-transition-timing),
                 box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
   }
+}
+
+/* Base typography styles */
+html, body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-base-100);
+  color: var(--color-base-content);
 }
 
 h1,
@@ -98,4 +122,6 @@ body {
   background-color: var(--color-base-100);
   color: var(--color-base-content);
 }
+
+
 

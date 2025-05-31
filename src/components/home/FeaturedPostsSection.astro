@@ -2,6 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { CDN, TYPE } from "../../constants/cdn";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
@@ -24,7 +25,7 @@ const featuredPosts = posts.slice(0, 3);
           <figure class="h-48 bg-base-300 overflow-hidden">
             {post.data.image ? (
               <img
-                src={`/assets/blog/${post.data.image}`}
+                src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
                 alt={post.data.title}
                 class="w-full h-full object-cover"
               />

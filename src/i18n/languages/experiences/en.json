@@ -29,36 +29,87 @@
       "role": "Senior Frontend Engineer",
       "company": "Branch",
       "period": "2022 — 2024",
-      "description": "Worked on the core product team with a focus on clean architecture and frontend scalability.",
+      "description": "Contributed to two frontend verticals (Advertiser Dashboard and Customer Platform) under a shared architecture. Focused on modularity, scalability, and UX consistency.",
       "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
       "achievements": [
-        "Implemented modular and scalable UI solutions",
-        "Improved developer onboarding by formalizing internal frontend practices",
-        "Collaborated on cross-team delivery of complex features"
+        "Built a visual analytics dashboard with complex data visualizations",
+        "Developed role-based management views and improved onboarding experiences",
+        "Delivered reusable components and frontend utilities across teams",
+        "Aligned technical priorities with product and business needs"
       ]
     },
     {
-      "role": "Tech Lead / Senior Frontend Developer",
+      "role": "Frontend Lead",
       "company": "Globant (American Century Investments)",
-      "period": "2020 — 2022",
-      "description": "Led frontend delivery for enterprise-scale web solutions with React and modular architecture.",
-      "technologies": ["React", "JavaScript", "Redux", "SASS", "Material UI"],
+      "period": "2021 — 2022",
+      "description": "Led frontend development for enterprise-grade financial applications, building from scratch and supporting cross-team design system adoption.",
+      "technologies": ["React", "JavaScript", "Redux", "Material UI", "SASS", "Next.js"],
       "achievements": [
-        "Defined frontend standards and team mentoring practices",
-        "Drove architecture improvements and enforced code quality across teams",
-        "Shipped features to production with accessibility and performance in mind"
+        "Built a product from scratch with REST API integration and dynamic views",
+        "Designed and maintained a company-wide design system",
+        "Created a marketplace platform with role-based search and filters",
+        "Supported other teams in adoption of the design system"
       ]
     },
     {
-      "role": "Chief UX Officer / Web Frontend Developer",
+      "role": "Chief UX Officer / Frontend Developer",
       "company": "Minds With Purpose Ltd",
-      "period": "2020 — 2024",
-      "description": "Led UX and frontend development for educational and social impact platforms.",
-      "technologies": ["React", "CSS3", "Node.js", "Figma"],
+      "period": "2019 — 2022",
+      "description": "Led UX and frontend implementation for educational and social impact platforms, with a focus on accessibility, inclusive design, and performance.",
+      "technologies": ["React", "SASS", "BEM", "Stripe", "OpenTok"],
       "achievements": [
-        "Designed full UI/UX flows and built responsive SPAs",
-        "Developed inclusive, accessible web experiences",
-        "Conducted user testing and usability enhancements"
+        "Built responsive SPAs with complex onboarding and search filters",
+        "Integrated real-time video chat and Stripe payments",
+        "Designed admin panels and control dashboards",
+        "Improved UX through usability audits and enhancements"
+      ]
+    },
+    {
+      "role": "Frontend Developer",
+      "company": "RAO File Viewer",
+      "period": "2020 — 2021",
+      "description": "Built a secure file viewer application with advanced editing and encryption features.",
+      "technologies": ["Angular", "TypeScript", "SASS", "RxJS", "cryptoJS"],
+      "achievements": [
+        "Implemented encrypted login and file decryption workflows",
+        "Enabled in-view editing with zoom, rotation, and scaling",
+        "Developed a custom calendar interface for file filtering"
+      ]
+    },
+    {
+      "role": "Frontend Lead",
+      "company": "ATOMS Ecommerce",
+      "period": "2019 — 2020",
+      "description": "Led frontend efforts for multiple e-commerce stores, implementing scalable workflows and project templates.",
+      "technologies": ["React", "Liquid", "SASS", "Bootstrap", "VTEX", "Shopify"],
+      "achievements": [
+        "Created Git-based standards for team collaboration and repo management",
+        "Built custom storefronts tailored to client needs",
+        "Fixed critical bugs and enhanced store performance"
+      ]
+    },
+    {
+      "role": "Frontend Developer",
+      "company": "ZERMAT USA",
+      "period": "2018 — 2020",
+      "description": "Supported the migration and feature development of internal platforms for sellers.",
+      "technologies": ["React", "AngularJS"],
+      "achievements": [
+        "Migrated legacy systems from AngularJS to React",
+        "Built internal microsites for business operations",
+        "Improved performance and usability of seller platforms"
+      ]
+    },
+    {
+      "role": "Frontend Lead / Developer",
+      "company": "Digimundo Technologies",
+      "period": "2016 — 2018",
+      "description": "Delivered custom enterprise web solutions based on client requirements, transitioning from developer to team lead.",
+      "technologies": ["HTML", "CSS", "JavaScript"],
+      "achievements": [
+        "Led project planning and client communication for new software initiatives",
+        "Developed internal tools to support business operations",
+        "Gathered and analyzed requirements to deliver tailored solutions"
       ]
     }
   ]

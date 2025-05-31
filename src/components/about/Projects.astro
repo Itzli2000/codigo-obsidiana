@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import SectionTitle from "./SectionTitle.astro";
+import { CDN, TYPE } from "../../constants/cdn";
 
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
@@ -17,10 +18,10 @@ const projects = await getCollection(
     {
       projects.map((project) => (
         <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex-col md:card-side">
-          {project.data.imageName ? (
+          {project.data.image ? (
             <figure class="w-full md:w-2/3 md:max-w-xs">
               <img
-                src={`/assets/projects/${project.data.imageName}.png`}
+                src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
                 alt={project.data.title}
                 class="h-full object-cover"
               />

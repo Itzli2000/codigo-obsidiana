@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { CDN, TYPE } from "../../../constants/cdn";
 
 const posts = await getCollection("blogEn");
 
@@ -41,7 +42,7 @@ function formatDate(date: Date | string): string {
           {post.data.image && (
             <figure class="h-48 overflow-hidden">
               <img 
-                src={`/assets/blog/${post.data.image}`} 
+                src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`} 
                 alt={post.data.title}
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />

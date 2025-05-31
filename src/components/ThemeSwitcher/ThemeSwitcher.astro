@@ -7,7 +7,7 @@ const { class: className = "" } = Astro.props;
 ---
 
 <label class={`swap swap-rotate ${className}`} id="theme-switcher">
-  <input type="checkbox" class="theme-controller" value="obsidiana-dark" />
+  <input type="checkbox" class="theme-controller" value="ixpitla-dark" />
   
   <!-- sun icon -->
   <svg
@@ -33,27 +33,15 @@ const { class: className = "" } = Astro.props;
 </label>
 
 <script is:inline>
-  const themeSwitcher = document.getElementById('theme-switcher');
-  
-  const isSystemDarkMode = () => {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const getSystemTheme = () => {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'obsidiana-dark' : 'obsidiana-light';
   };
-
-  const updateSwitcherVisibility = () => {
-    if (themeSwitcher) {
-      themeSwitcher.style.display = isSystemDarkMode() ? 'none' : 'inline-grid';
-    }
-  };
-
-  updateSwitcherVisibility();
-
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateSwitcherVisibility);
 
   const theme = (() => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
       return localStorage.getItem('theme');
     }
-    return 'obsidiana-dark';
+    return getSystemTheme();
   })();
 
   if (theme === 'obsidiana-dark') {
@@ -73,5 +61,11 @@ const { class: className = "" } = Astro.props;
       document.documentElement.setAttribute('data-theme', 'obsidiana-light');
       localStorage.setItem('theme', 'obsidiana-light');
     }
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      const newTheme = e.matches ? 'obsidiana-dark' : 'obsidiana-light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      themeToggle?.click();
   });
 </script> 
