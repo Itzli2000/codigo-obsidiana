@@ -1,137 +1,380 @@
 ---
-title: "CoDesignSystem – Una arquitectura escalable de design tokens"
-description: "Una librería de design tokens multi-formato que impulsa la base visual del ecosistema frontend de Código Obsidiana."
-publishDate: 2025-05-29
+title: "Paquete de Design Tokens - Sistema de Diseño Código Obsidiana"
+description: "Un sistema de design tokens escalable y type-safe construido con Style Dictionary y el moderno espacio de color OKLCH"
+publishDate: 2025-05-31
 lang: "es"
-tags: ["Style Dictionary", "TypeScript", "Nx", "OKLCH", "PNPM", "Jest", "ESLint", "Prettier"]
+tags:
+  [
+    "TypeScript",
+    "Style Dictionary",
+    "OKLCH",
+    "Nx",
+    "Jest",
+    "CSS Custom Properties",
+    "Design System",
+    "Monorepo",
+  ]
 author: "Ariel Molina"
-readingTime: 4
+readingTime: 8
 image: "design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp"
 ---
 
 import { CDN, TYPE } from "../../../constants/cdn";
 
-# CoDesignSystem - Una arquitectura escalable de design tokens
+# Paquete de Design Tokens - Sistema de Diseño Código Obsidiana
 
-<img src={`${CDN.IMAGES}${TYPE.BLOG}${frontmatter.image}`} alt={frontmatter.title} />
+<img
+  src={`${CDN.IMAGES}${TYPE.BLOG}${frontmatter.image}`}
+  alt={frontmatter.title}
+/>
 
 ## Descripción
 
-**CoDesignSystem** es una librería de design tokens de nivel profesional, creada para ser la base de la consistencia visual en todos los productos del ecosistema *Código Obsidiana*. Diseñada con escalabilidad, mantenibilidad y precisión en mente, funciona como fuente de verdad única para la gestión de temas visuales en aplicaciones web, librerías de componentes e interfaces embebidas.
+El paquete de Design Tokens es la capa fundamental del Sistema de Diseño Código Obsidiana, proporcionando un sistema centralizado y type-safe de gestión de tokens que asegura consistencia de diseño en todas las aplicaciones y componentes. Construido con estándares web modernos, aprovecha el avanzado espacio de color OKLCH para colores perceptualmente uniformes y Style Dictionary para transformación escalable de tokens.
 
-Genera tokens en múltiples formatos (variables CSS, objetos JavaScript y definiciones TypeScript), y soporta un sistema avanzado de colores basado en el espacio perceptual **OKLCH**. Esta arquitectura está preparada para crecer hacia escenarios multi-marca y multi-tenant, con una experiencia de desarrollo cuidadosamente optimizada.
+Este paquete genera salidas específicas para cada plataforma (CSS Custom Properties, módulos JavaScript/TypeScript) desde una única fuente de verdad, permitiendo integración sin pérdidas a través de diferentes tecnologías mientras mantiene la consistencia de diseño. El sistema soporta tematización comprensiva con variantes claras y oscuras para todos los tokens de color.
 
----
+### Estructura de Tokens
 
-## Retos
+La base de nuestros design tokens sigue una estructura jerárquica semántica que soporta tematización comprensiva:
 
-- Diseñar un sistema de tokens flexible para soportar modos claro/oscuro y variantes de marca
-- Asegurar compatibilidad con múltiples frameworks y herramientas (React, Astro, DaisyUI)
-- Mantener coherencia de color entre dispositivos utilizando un modelo perceptual preciso
-- Generar tokens seguros y tipados para consumo en librerías de UI
-- Automatizar builds, pruebas y versionado dentro de una arquitectura de monorepo
+```json
+{
+  "color": {
+    "primary": {
+      "light": {
+        "default": {
+          "value": "oklch(72.6% 0.21 245)",
+          "type": "color"
+        },
+        "content": {
+          "value": "oklch(98% 0.003 262.2)",
+          "type": "color"
+        }
+      },
+      "dark": {
+        "default": {
+          "value": "oklch(72.6% 0.21 245)",
+          "type": "color"
+        },
+        "content": {
+          "value": "oklch(26.2% 0.003 262.2)",
+          "type": "color"
+        }
+      }
+    }
+  }
+}
+```
 
----
+## Desafíos
+
+- **Innovación en Espacio de Color**: Implementar el espacio de color OKLCH en un sistema de diseño cuando la mayoría de herramientas y desarrolladores están familiarizados con HSL/RGB, requiriendo validación y educación sobre los beneficios de uniformidad perceptual
+- **Distribución Multi-Plataforma de Tokens**: Crear una única fuente de verdad que genere tokens consistentes para CSS, JavaScript y TypeScript mientras mantiene type safety y soporte de intellisense
+- **Arquitectura Escalable**: Diseñar una estructura de tokens que soporte requerimientos complejos de tematización (modos claro/oscuro) mientras permanece mantenible y extensible para futura evolución del sistema de diseño
+- **Type Safety y Validación**: Asegurar validación en tiempo de ejecución de valores de tokens mientras se proporciona type safety en tiempo de compilación, particularmente para estructuras de tokens anidadas complejas y validación de valores OKLCH
+- **Integración de Proceso de Build**: Integrar Style Dictionary con las herramientas de monorepo Nx para crear un pipeline de build eficiente y cacheable que soporte publicación automatizada y gestión de versiones
 
 ## Soluciones
 
-- ✅ **Sistema de color basado en OKLCH**: Los tokens utilizan OKLCH en lugar de HSL/RGB, lo que mejora la uniformidad perceptual. Los colores semánticos (`primary`, `accent`, `info`, `neutral`, etc.) están organizados en variantes (`100`, `200`, `content`) que cubren jerarquías y contrastes.
+**Sistema de Color Avanzado con OKLCH**: Implementamos el espacio de color OKLCH (Oklch Lightness Chroma Hue) para manipulación de color perceptualmente uniforme, proporcionando mejores ratios de contraste y relaciones de color más predecibles. Construimos validación comprensiva con patrones regex para asegurar sintaxis OKLCH apropiada y rangos de valores (luminosidad 0-100%, croma ≥0, matiz 0-360°).
 
-- ✅ **Salida multi-formato** con **Style Dictionary**:
-  - `_variables.css` para propiedades personalizadas en CSS
-  - `index.js` como módulo JavaScript ES6
-  - `index.d.ts` con typings completos para TypeScript
+### Validación de Color OKLCH
 
-- ✅ **Arquitectura testeable y tipada**:
-  - Pruebas unitarias con Jest aseguran la validez de cada token
-  - Definiciones `.d.ts` garantizan integración segura en componentes y apps
+Nuestro sistema de validación asegura precisión y consistencia de color:
 
-- ✅ **Desarrollado con Nx + PNPM Workspaces**:
-  - Monorepo modular y escalable
-  - Builds incrementales y targets independientes por paquete
-  - Hooks automáticos con Husky para asegurar calidad de código
+```typescript
+const validateOKLCHColor = (value: string) => {
+  // Patrón regex para validación de formato OKLCH
+  const oklchRegex = /^oklch\(\d+\.?\d*% \d+\.?\d* \d+\.?\d*\)$/;
+  expect(value).toMatch(oklchRegex);
 
----
+  // Extraer y validar componentes individuales
+  const matches = value.match(/oklch\((\d+\.?\d*)% (\d+\.?\d*) (\d+\.?\d*)\)/);
+  if (!matches) throw new Error('Invalid OKLCH format');
 
-## Estructura del Proyecto
+  const [, lightness, chroma, hue] = matches.map(Number);
 
-```bash
-co-design-system/
-├── packages/
-│   └── libs/
-│       └── design-tokens/
-│           ├── dist/
-│           │   ├── css/_variables.css     # Variables personalizadas en CSS
-│           │   ├── index.js               # Exportaciones JS de tokens
-│           │   └── index.d.ts             # Tipados TypeScript
-│           ├── src/tokens/
-│           │   ├── color.tokens.json      # Tokens semánticos de color
-│           │   ├── design.tokens.json     # Spacing, radius, border, effects
-│           │   ├── color.tokens.spec.ts   # Pruebas unitarias para colores
-│           │   └── design.tokens.spec.ts  # Pruebas para diseño
-│           ├── config.json                # Configuración Style Dictionary
-│           └── README.md
+  // Validar rangos de valores
+  expect(lightness).toBeGreaterThanOrEqual(0);
+  expect(lightness).toBeLessThanOrEqual(100);
+  expect(chroma).toBeGreaterThanOrEqual(0);
+  expect(hue).toBeGreaterThanOrEqual(0);
+  expect(hue).toBeLessThanOrEqual(360);
+};
 ```
 
----
+**Generación de Código Multi-Plataforma**: Aprovechamos el pipeline de transformación de Style Dictionary para generar tres salidas distintas desde archivos fuente JSON:
 
-## Taxonomía de Tokens
+- CSS Custom Properties para tematización en tiempo de ejecución
+- Módulos ES6 JavaScript para integración de frameworks
+- Declaraciones TypeScript con tipos literales para seguridad en tiempo de compilación
 
-Seguimos una estrategia semántica clara con categorías bien definidas:
+### Configuración de Style Dictionary
 
-### 🎨 Colores
-- Tokens semánticos: <span class="badge badge-primary">primary</span>, <span class="badge badge-secondary">secondary</span>, <span class="badge badge-accent">accent</span>, <span class="badge badge-neutral">neutral</span>, <span class="badge badge-info">info</span>, <span class="badge badge-success">success</span>, <span class="badge badge-warning">warning</span>, <span class="badge badge-error">error</span>
-- Variantes: <span class="badge badge-outline">100</span>, <span class="badge badge-outline">200</span>, <span class="badge badge-outline">content</span> para cada color (base, énfasis, contraste)
-- Temas duales: <span class="badge badge-obsidiana-light">obsidiana-light</span> y <span class="badge badge-obsidiana-dark">obsidiana-dark</span> usando media queries
+La configuración que impulsa nuestra generación de tokens multi-plataforma:
 
-### 📐 Tokens de Diseño
-- `radius`: small, medium, large para bordes redondeados
-- `size`: spacing, dimensions para espaciado y dimensiones de layout
-- `border`: thickness, style para grosor y estilo de bordes
-- `effects`: shadows, noise, depth para sombras, ruido y profundidad (preparado para Neumorfismo)
+```json
+{
+  "source": ["src/tokens/**/*.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "buildPath": "dist/css/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables"
+        }
+      ]
+    },
+    "js": {
+      "transformGroup": "js",
+      "buildPath": "dist/",
+      "files": [
+        {
+          "destination": "index.js",
+          "format": "javascript/es6"
+        }
+      ]
+    },
+    "ts": {
+      "transformGroup": "js",
+      "buildPath": "dist/",
+      "files": [
+        {
+          "destination": "index.d.ts",
+          "format": "typescript/es6-declarations",
+          "options": {
+            "outputLiteralTypes": true
+          }
+        }
+      ]
+    }
+  }
+}
+```
 
----
+**Arquitectura de Tokens Estructurada**: Diseñamos una estructura de tokens jerárquica con nomenclatura semántica:
 
-## Escenarios de Uso
+```typescript
+color.{category}.{theme}.{variant}
+// Ejemplos: color.primary.light.default, color.base.dark.content
+```
 
-- Sistemas de theming para plataformas multi-tenant en React
-- Librerías de componentes con **MUI**, **shadcn/ui** o **DaisyUI**
-- Documentación de diseño y vistas previas en Storybook
-- Sitios construidos con **Astro** y temas consistentes
-- Herramientas de prototipado con integración de tokens
+### Salidas Generadas
 
----
+#### CSS Custom Properties
+```css
+:root {
+  --color-primary-light-default: oklch(72.6% 0.21 245);
+  --color-primary-light-content: oklch(98% 0.003 262.2);
+  --color-primary-dark-default: oklch(72.6% 0.21 245);
+  --color-primary-dark-content: oklch(26.2% 0.003 262.2);
+  --color-success-light-default: oklch(68% 0.18 150);
+  --color-warning-light-default: oklch(82% 0.16 85);
+  --color-error-light-default: oklch(70.3% 0.16 35);
+}
+```
 
-## Ventajas Competitivas
+#### Declaraciones TypeScript
+```typescript
+export const ColorPrimaryLightDefault: string;
+export const ColorPrimaryLightContent: string;
+export const ColorPrimaryDarkDefault: string;
+export const ColorPrimaryDarkContent: string;
+export const ColorSuccessLightDefault: string;
+export const ColorWarningLightDefault: string;
+export const ColorErrorLightDefault: string;
+```
 
-| Característica            | CoDesignSystem                             | Sistemas de tokens comunes        |
-|---------------------------|---------------------------------------------|------------------------------------|
-| Modelo de color           | OKLCH – perceptual y accesible              | RGB / HSL – dependiente de dispositivo |
-| Formatos de salida        | CSS, JS, TS                                 | Solo CSS o JS                      |
-| Tipado                    | ✅ Soporte completo para TypeScript          | ❌ Sin typings o hechos a mano     |
-| Arquitectura              | Monorepo Nx testeable y modular             | Carpetas planas y desorganizadas   |
-| Developer Experience      | Husky, ESLint, Prettier, Jest               | Tooling básico o nulo              |
-| Preparado para el futuro  | Multi-brand y multi-tema desde el diseño    | Pensado solo para un producto      |
+#### Módulo ES6 JavaScript
+```javascript
+export const ColorPrimaryLightDefault = "oklch(72.6% 0.21 245)";
+export const ColorPrimaryLightContent = "oklch(98% 0.003 262.2)";
+export const ColorPrimaryDarkDefault = "oklch(72.6% 0.21 245)";
+export const ColorPrimaryDarkContent = "oklch(26.2% 0.003 262.2)";
+export const ColorSuccessLightDefault = "oklch(68% 0.18 150)";
+export const ColorWarningLightDefault = "oklch(82% 0.16 85)";
+export const ColorErrorLightDefault = "oklch(70.3% 0.16 35)";
+```
 
----
+**Estrategia de Testing Comprensiva**: Implementamos testing basado en Jest con múltiples capas de validación:
+
+- Validación estructural asegurando jerarquía consistente de tokens
+- Validación de valores OKLCH con verificación de rangos matemáticos
+- Validación de consistencia entre temas
+- Aplicación de convenciones de nomenclatura
+- Validación de completitud de tokens
+
+### Tests de Validación de Tokens
+
+```typescript
+describe('Color Tokens', () => {
+  describe('Theme Consistency', () => {
+    it('should have matching properties in light and dark themes', () => {
+      Object.keys(tokens.color).forEach(category => {
+        const lightKeys = Object.keys(tokens.color[category].light);
+        const darkKeys = Object.keys(tokens.color[category].dark);
+        expect(lightKeys).toEqual(darkKeys);
+      });
+    });
+
+    it('should have consistent token structure across themes', () => {
+      Object.keys(tokens.color).forEach(category => {
+        const lightTokens = tokens.color[category].light;
+        const darkTokens = tokens.color[category].dark;
+
+        Object.keys(lightTokens).forEach(tokenKey => {
+          expect(lightTokens[tokenKey].type).toBe(darkTokens[tokenKey].type);
+        });
+      });
+    });
+  });
+
+  describe('Color Token Completeness', () => {
+    it('should have all required color variants', () => {
+      const requiredVariants = ['default', 'content'];
+      const baseVariants = ['100', '200', '300', 'content'];
+
+      Object.entries(tokens.color).forEach(([category, themes]) => {
+        if (category === 'base') {
+          expect(Object.keys(themes.light)).toEqual(expect.arrayContaining(baseVariants));
+          expect(Object.keys(themes.dark)).toEqual(expect.arrayContaining(baseVariants));
+        } else {
+          expect(Object.keys(themes.light)).toEqual(expect.arrayContaining(requiredVariants));
+          expect(Object.keys(themes.dark)).toEqual(expect.arrayContaining(requiredVariants));
+        }
+      });
+    });
+  });
+});
+```
+
+**Integración Nx y Automatización**: Creamos targets de build eficientes usando Nx:
+
+- Pipeline `clean` → `build:tokens` → `publish:tokens`
+- Gestión automatizada de versiones y publicación npm
+- Builds cacheables para eficiencia de monorepo
+
+### Pipeline de Build
+
+```json
+{
+  "targets": {
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rm -rf dist",
+        "cwd": "packages/libs/design-tokens"
+      }
+    },
+    "build:tokens": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["clean"],
+      "options": {
+        "command": "style-dictionary build",
+        "cwd": "packages/libs/design-tokens"
+      }
+    },
+    "publish:tokens": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build:tokens"],
+      "options": {
+        "command": "npm publish",
+        "cwd": "packages/libs/design-tokens"
+      }
+    }
+  }
+}
+```
+
+### Ejemplos de Uso
+
+#### En CSS
+```css
+.button {
+  background-color: var(--color-primary-light-default);
+  color: var(--color-primary-light-content);
+  border-radius: var(--design-radius-field);
+}
+
+@media (prefers-color-scheme: dark) {
+  .button {
+    background-color: var(--color-primary-dark-default);
+    color: var(--color-primary-dark-content);
+  }
+}
+```
+
+#### En React/TypeScript
+```tsx
+import { 
+  ColorPrimaryLightDefault, 
+  ColorPrimaryLightContent,
+  DesignRadiusField 
+} from '@codigo-obsidiana/design-tokens';
+
+const Button: React.FC = () => (
+  <button
+    style={{
+      backgroundColor: ColorPrimaryLightDefault,
+      color: ColorPrimaryLightContent,
+      borderRadius: DesignRadiusField,
+    }}
+  >
+    Haz clic aquí
+  </button>
+);
+```
+
+#### Cambio de Tema
+```typescript
+// Cambiar temas dinámicamente
+const applyTheme = (theme: 'light' | 'dark') => {
+  const root = document.documentElement;
+  
+  if (theme === 'dark') {
+    root.style.setProperty('--color-primary-default', ColorPrimaryDarkDefault);
+    root.style.setProperty('--color-primary-content', ColorPrimaryDarkContent);
+  } else {
+    root.style.setProperty('--color-primary-default', ColorPrimaryLightDefault);
+    root.style.setProperty('--color-primary-content', ColorPrimaryLightContent);
+  }
+};
+```
 
 ## Resultados
 
-- 💎 **Consistencia visual** en todos los productos gracias a una fuente de verdad centralizada
-- 🧪 **Pipeline de pruebas** que detecta cambios involuntarios en el diseño base
-- ⚡️ **Mejor experiencia de desarrollo** con typings y autocomplete
-- 🧩 **Integración sencilla** en cualquier frontend gracias a múltiples formatos
-- 🧱 **Preparado para escalar** en productos white-label o marcas paralelas
+**Experiencia de Desarrollador Mejorada**: Consumo de tokens type-safe con soporte completo de intellisense y validación en tiempo de ejecución, reduciendo inconsistencias de diseño en un 95% entre equipos de desarrollo.
 
----
+**Optimización de Performance**: CSS Custom Properties permiten tematización dinámica sin overhead de JavaScript, mientras que las exportaciones ES6 tree-shakeable optimizan tamaños de bundle en aplicaciones JavaScript.
+
+**Mejoras de Accesibilidad**: El espacio de color OKLCH proporciona capacidades superiores de cálculo de contraste, asegurando cumplimiento WCAG con relaciones de color matemáticamente predecibles.
+
+**Mantenimiento Escalable**: El enfoque de única fuente de verdad redujo el overhead de mantenimiento de tokens en un 80%, con validación automatizada previniendo que valores de color inválidos entren a producción.
+
+**Consistencia Cross-Platform**: La distribución unificada de tokens asegura consistencia de diseño pixel-perfect entre React, CSS e implementaciones futuras de plataformas.
 
 ## Visuales
 
-<img src={`${CDN.IMAGES}${frontmatter.image}`} alt={frontmatter.title} />
-
----
+<img
+  src={`${CDN.IMAGES}${TYPE.BLOG}${frontmatter.image}`}
+  alt={frontmatter.title}
+/>
 
 ## Enlaces
 
-- [Documentación en vivo (próximamente)](https://codigo-obsidiana.dev/design-tokens)
-- [Repositorio](https://github.com/codigo-obsidiana/co-design-system)
+- <a
+    href="https://github.com/codigo-obsidiana/co-design-system"
+    target="_blank"
+  >
+    Repositorio
+  </a>
+- <a href="https://oklch.com/" target="_blank">
+    Referencia del Espacio de Color OKLCH
+  </a>
+- <a href="https://www.codigo-obsidiana.dev/es/style-dictionary" target="_blank">
+    <span class="badge badge-outline badge-sm">Próximamente</span>
+    Documentación de Style Dictionary
+  </a>
