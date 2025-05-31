@@ -1,3 +1,9 @@
+### 2.1.0 (2025-05-31)
+
+##### New Features
+
+* **sitemap:**  integrate sitemap generation and update configuration (46ccec68)
+
 ## 2.0.0 (2025-05-31)
 
 ##### Chores
