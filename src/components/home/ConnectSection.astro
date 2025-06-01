@@ -6,9 +6,6 @@ import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 const lang = getLangFromUrl(Astro.url) as "en" | "es";
 const t = useTranslations(lang);
 
-// Extract email address without mailto:
-const emailAddress = NETWORK.EMAIL.replace('mailto:', '');
-
 // Prepare translations for client-side script
 const translations = {
     copySuccess: t('home.connect.copy_success'),
@@ -30,89 +27,9 @@ const translations = {
             <Icon name="mdi:linkedin" class="w-5 h-5 mr-2" />
             {t('home.connect.linkedin')}
         </a>
-        <button 
-            id="copy-email-btn" 
-            class="btn btn-outline"
-            data-email={emailAddress}
-            data-translations={JSON.stringify(translations)}
-            title={`${t('home.connect.contact')}: ${emailAddress}`}
-        >
-            <Icon name="mdi:content-copy" class="w-5 h-5 mr-2" />
+        <a href={`${lang}/contact`} class="btn btn-outline">
+            <Icon name="mdi:email" class="w-5 h-5 mr-2" />
             {t('home.connect.contact')}
-        </button>
+        </a>
     </div>
-    
-    <div id="toast-container" class="toast toast-bottom toast-center z-50"></div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const copyBtn = document.getElementById('copy-email-btn');
-    const toastContainer = document.getElementById('toast-container');
-    
-    if (copyBtn && toastContainer) {
-        const translations = JSON.parse(copyBtn.getAttribute('data-translations') || '{}');
-        
-        copyBtn.addEventListener('click', async () => {
-            const email = copyBtn.getAttribute('data-email');
-            
-            if (!email) return;
-            
-            try {
-                await navigator.clipboard.writeText(email);
-                showToast(translations.copySuccess, 'alert-success');
-            } catch (err) {
-                if (copyToClipboardFallback(email)) {
-                    showToast(translations.copySuccess, 'alert-success');
-                } else {
-                    showToast(translations.copyError + ' ' + email, 'alert-warning');
-                }
-            }
-        });
-    }
-    
-    function copyToClipboardFallback(text: string): boolean {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-999999px';
-        textArea.style.top = '-999999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        
-        try {
-            const successful = document.execCommand('copy');
-            document.body.removeChild(textArea);
-            return successful;
-        } catch (err) {
-            document.body.removeChild(textArea);
-            return false;
-        }
-    }
-    
-    function showToast(message: string, alertClass: string): void {
-        if (!toastContainer) return;
-        
-        toastContainer.innerHTML = '';
-        
-        const alert = document.createElement('div');
-        alert.className = `alert ${alertClass} shadow-lg`;
-        alert.innerHTML = `<span>${message}</span>`;
-        
-        toastContainer.appendChild(alert);
-        
-        setTimeout(() => {
-            if (toastContainer && toastContainer.contains(alert)) {
-                alert.style.opacity = '0';
-                alert.style.transform = 'translateY(-100%)';
-                setTimeout(() => {
-                    if (toastContainer && toastContainer.contains(alert)) {
-                        toastContainer.removeChild(alert);
-                    }
-                }, 300);
-            }
-        }, 3000);
-    }
-});
-</script> 
