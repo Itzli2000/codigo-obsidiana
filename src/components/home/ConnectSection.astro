@@ -8,6 +8,12 @@ const t = useTranslations(lang);
 
 // Extract email address without mailto:
 const emailAddress = NETWORK.EMAIL.replace('mailto:', '');
+
+// Prepare translations for client-side script
+const translations = {
+    copySuccess: t('home.connect.copy_success'),
+    copyError: t('home.connect.copy_error')
+};
 ---
 
 <section class="py-8 md:py-12">
@@ -28,6 +34,7 @@ const emailAddress = NETWORK.EMAIL.replace('mailto:', '');
             id="copy-email-btn" 
             class="btn btn-outline"
             data-email={emailAddress}
+            data-translations={JSON.stringify(translations)}
             title={`${t('home.connect.contact')}: ${emailAddress}`}
         >
             <Icon name="mdi:content-copy" class="w-5 h-5 mr-2" />
@@ -44,6 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const toastContainer = document.getElementById('toast-container');
     
     if (copyBtn && toastContainer) {
+        const translations = JSON.parse(copyBtn.getAttribute('data-translations') || '{}');
+        
         copyBtn.addEventListener('click', async () => {
             const email = copyBtn.getAttribute('data-email');
             
@@ -51,12 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             try {
                 await navigator.clipboard.writeText(email);
-                showToast('✓ Email copiado al portapapeles', 'alert-success');
+                showToast(translations.copySuccess, 'alert-success');
             } catch (err) {
                 if (copyToClipboardFallback(email)) {
-                    showToast('✓ Email copiado al portapapeles', 'alert-success');
+                    showToast(translations.copySuccess, 'alert-success');
                 } else {
-                    showToast('⚠ No se pudo copiar. Email: ' + email, 'alert-warning');
+                    showToast(translations.copyError + ' ' + email, 'alert-warning');
                 }
             }
         });
