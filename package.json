@@ -1,7 +1,7 @@
 {
   "name": "codigo-obsidiana",
   "type": "module",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -17,7 +17,7 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.4.0",
-    "@codigo-obsidiana/design-tokens": "^0.0.6",
+    "@codigo-obsidiana/design-tokens": "^0.0.8",
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
     "@tailwindcss/vite": "^4.1.7",
