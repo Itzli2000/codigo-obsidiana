@@ -1,3 +1,18 @@
+### 2.3.0 (2025-06-01)
+
+##### Chores
+
+* **vscode:**  update cSpell dictionary with additional words (82ed03e3)
+* **Design Tokens:**  update design tokens and add yarn configuration (c8edd072)
+
+##### New Features
+
+* **ConnectSection:**  add client-side translations for email copy notifications (b94a9b9b)
+
+##### Bug Fixes
+
+* **Navigation:**  correct logo link format for home navigation (411d86c5)
+
 ### 2.2.0 (2025-05-31)
 
 ##### Refactors
