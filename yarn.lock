@@ -364,10 +364,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codigo-obsidiana/design-tokens@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@codigo-obsidiana/design-tokens@npm:0.0.6::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40codigo-obsidiana%2Fdesign-tokens%2F0.0.6%2F3e6e9065bd0914e5eafdb34518603dbe084329ba"
-  checksum: 10c0/bac973b700987d16d4eeef36a3b471f58ef1b583c90ecc775ebebbb88978657cc268e0c4f89306323e0e4d7012d265b70916dcc341b09f21902160cf33d9fbc7
+"@codigo-obsidiana/design-tokens@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@codigo-obsidiana/design-tokens@npm:0.0.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40codigo-obsidiana%2Fdesign-tokens%2F0.0.8%2F9ee83fa643f99af88a80c966c68a13413a9c0f3f"
+  checksum: 10c0/10b39bfc93f92dad9dbf609d498cf46931c14cfbe121c71988c46b3fc9e3652b6a5209da90709522e4c8f84b5c2ad0035da400ad8526915b28def6950702eef0
   languageName: node
   linkType: hard
 
@@ -2391,7 +2391,7 @@ __metadata:
     "@astrojs/mdx": "npm:^4.3.0"
     "@astrojs/react": "npm:^4.3.0"
     "@astrojs/sitemap": "npm:^3.4.0"
-    "@codigo-obsidiana/design-tokens": "npm:^0.0.6"
+    "@codigo-obsidiana/design-tokens": "npm:^0.0.8"
     "@iconify-json/mdi": "npm:^1.2.3"
     "@react-three/drei": "npm:^10.0.8"
     "@react-three/fiber": "npm:^9.1.2"
