@@ -45,7 +45,9 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "twitter": "Twitter",
-      "contact": "Contacto"
+      "contact": "Contacto",
+      "copy_success": "✓ Email copiado al portapapeles",
+      "copy_error": "⚠ No se pudo copiar. Email:"
     }
   },
   "about": {
