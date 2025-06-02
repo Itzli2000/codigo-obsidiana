@@ -76,5 +76,47 @@
       "period": "2010 — 2014",
       "description": "Focused on software engineering, web architecture, and UI development."
     }
+  },
+  "contact": {
+    "title": "Let's Talk",
+    "description": "I'm always looking for new opportunities and collaborations. Feel free to reach out to me via email or through my social media profiles.",
+    "form": {
+      "title": "Contact Form",
+      "name": "Name",
+      "email": "Email",
+      "emailPlaceholder": "Your email address",
+      "subjectPlaceholder": "What do you want to talk about?",
+      "subject": "Subject",
+      "message": "Message",
+      "messagePlaceholder": "Write your message here...",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent!",
+      "successMessage": "Your message has been sent successfully. I'll get back to you soon.",
+      "reset": "Reset form",
+      "required": "All fields are required",
+      "avatarText": "* The avatar will react to your actions while you write your message.",
+      "fastResponse": "Fast response",
+      "secure": "Secure",
+      "noSpam": "No spam",
+      "responseTime": "Response time",
+      "maximum": "maximum",
+      "messages": "Messages",
+      "read": "read"
+    },
+    "validation": {
+      "nameRequired": "Name is required",
+      "nameMinLength": "Name must be at least 2 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "subjectRequired": "Subject is required",
+      "subjectMinLength": "Subject must be at least 3 characters",
+      "messageRequired": "Message is required",
+      "messageMinLength": "Message must be at least 10 characters"
+    },
+    "errors": {
+      "submitError": "An error occurred while sending the message, please try again or contact",
+      "contactEmail": "contact email"
+    }
   }
 }

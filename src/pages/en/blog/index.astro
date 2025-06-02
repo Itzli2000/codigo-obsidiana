@@ -4,10 +4,11 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
+import type { Lang } from "../../../types/languaje";
 
 const posts = await getCollection("blogEn");
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 function formatDate(date: Date | string): string {

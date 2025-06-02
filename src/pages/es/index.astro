@@ -5,8 +5,9 @@ import HeroSection from "../../components/home/HeroSection.astro";
 import FeaturedPostsSection from "../../components/home/FeaturedPostsSection.astro";
 import AboutPreviewSection from "../../components/home/AboutPreviewSection.astro";
 import ConnectSection from "../../components/home/ConnectSection.astro";
+import type { Lang } from "../../types/languaje";
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 // SEO metadata

@@ -1,12 +1,13 @@
 ---
 import { getLangFromUrl } from "../../i18n/utils";
+import type { Lang } from "../../types/languaje";
 
 interface Props {
   class?: string;
 }
 
 const { class: className = "" } = Astro.props;
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 
 // Get current path and calculate other language path
 const currentPath = Astro.url.pathname;
