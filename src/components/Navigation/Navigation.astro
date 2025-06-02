@@ -1,24 +1,30 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { Icon } from 'astro-icon/components';
-import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher.astro';
-import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher.astro';
+import { Icon } from "astro-icon/components";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher.astro";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.astro";
+import type { Lang } from "../../types/languaje";
 
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang as "en" | "es");
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
 
 // Define navigation links
 const navLinks = [
   {
     key: "about",
     path: `/${lang}/about`,
-    label: t("about.title")
+    label: t("about.title"),
   },
   {
     key: "blog",
-    path: `/${lang}/blog`, 
-    label: t("blog.title")
-  }
+    path: `/${lang}/blog`,
+    label: t("blog.title"),
+  },
+  {
+    key: "contact",
+    path: `/${lang}/contact`,
+    label: t("contact.title"),
+  },
 ];
 ---
 
@@ -27,28 +33,30 @@ const navLinks = [
     <a href={`/${lang}`} class="logo-link" aria-label="Home">
       <Icon name="logo" class="w-auto h-10 md:h-12 lg:h-[50px]" />
     </a>
-    
+
     <div class="nav-right">
       <ul class="nav-list" id="nav-menu">
-        {navLinks.map(link => (
-          <li>
-            <a 
-              href={link.path}
-              data-section={link.key}
-              class="nav-link text-sm md:text-base"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.path}
+                data-section={link.key}
+                class="nav-link text-sm md:text-base"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
 
       <ThemeSwitcher class="mr-2 md:mr-4" />
       <LanguageSwitcher />
-      
-      <button 
-        class="mobile-menu-button" 
-        aria-label="Toggle menu" 
+
+      <button
+        class="mobile-menu-button"
+        aria-label="Toggle menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -56,17 +64,19 @@ const navLinks = [
       </button>
 
       <ul class="nav-list mobile-only" id="mobile-menu">
-        {navLinks.map(link => (
-          <li>
-            <a 
-              href={link.path}
-              data-section={link.key}
-              class="nav-link text-lg md:text-xl"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+        {
+          navLinks.map((link) => (
+            <li>
+              <a
+                href={link.path}
+                data-section={link.key}
+                class="nav-link text-lg md:text-xl"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
@@ -175,7 +185,7 @@ const navLinks = [
 
   .hamburger::before,
   .hamburger::after {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     width: 24px;
@@ -243,21 +253,22 @@ const navLinks = [
 
 <script is:inline>
   // Handle mobile menu toggle
-  const mobileMenuButton = document.querySelector('.mobile-menu-button');
-  const mobileMenu = document.querySelector('.mobile-only');
-  const mobileMenuLinks = document.querySelectorAll('.mobile-only a');
+  const mobileMenuButton = document.querySelector(".mobile-menu-button");
+  const mobileMenu = document.querySelector(".mobile-only");
+  const mobileMenuLinks = document.querySelectorAll(".mobile-only a");
 
   function toggleMenu() {
-    const isExpanded = mobileMenuButton?.getAttribute('aria-expanded') === 'true';
-    mobileMenuButton?.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu?.setAttribute('aria-hidden', isExpanded.toString());
+    const isExpanded =
+      mobileMenuButton?.getAttribute("aria-expanded") === "true";
+    mobileMenuButton?.setAttribute("aria-expanded", (!isExpanded).toString());
+    mobileMenu?.setAttribute("aria-hidden", isExpanded.toString());
   }
 
-  mobileMenuButton?.addEventListener('click', toggleMenu);
+  mobileMenuButton?.addEventListener("click", toggleMenu);
 
   // Close menu when a link is clicked
-  mobileMenuLinks.forEach(link => {
-    link.addEventListener('click', () => {
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
       if (window.innerWidth <= 768) {
         toggleMenu();
       }
@@ -265,12 +276,16 @@ const navLinks = [
   });
 
   // Close menu when clicking outside
-  document.addEventListener('click', (event) => {
-    const isClickInside = mobileMenu?.contains(event.target) || 
-                         mobileMenuButton?.contains(event.target);
-    
-    if (!isClickInside && window.innerWidth <= 768 && 
-        mobileMenuButton?.getAttribute('aria-expanded') === 'true') {
+  document.addEventListener("click", (event) => {
+    const isClickInside =
+      mobileMenu?.contains(event.target) ||
+      mobileMenuButton?.contains(event.target);
+
+    if (
+      !isClickInside &&
+      window.innerWidth <= 768 &&
+      mobileMenuButton?.getAttribute("aria-expanded") === "true"
+    ) {
       toggleMenu();
     }
   });
@@ -278,29 +293,30 @@ const navLinks = [
   // Handle active navigation links
   function updateActiveLinks() {
     const path = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-      const section = link.getAttribute('data-section');
-      
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    navLinks.forEach((link) => {
+      const section = link.getAttribute("data-section");
+
       // Check if current path contains the section name
-      if (section && path.includes(`/${section}`) || 
-          (section === 'about' && path.endsWith('/about')) || 
-          (section === 'blog' && path.endsWith('/blog'))) {
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
+      if (
+        (section && path.includes(`/${section}`)) ||
+        (section === "about" && path.endsWith("/about")) ||
+        (section === "blog" && path.endsWith("/blog"))
+      ) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
       } else {
-        link.classList.remove('active');
-        link.removeAttribute('aria-current');
+        link.classList.remove("active");
+        link.removeAttribute("aria-current");
       }
     });
   }
-  
+
   // Run on page load
   updateActiveLinks();
-  
-  // Update when the page changes (for SPA navigation)
-  document.addEventListener('astro:page-load', updateActiveLinks);
-  document.addEventListener('DOMContentLoaded', updateActiveLinks);
-</script>
 
+  // Update when the page changes (for SPA navigation)
+  document.addEventListener("astro:page-load", updateActiveLinks);
+  document.addEventListener("DOMContentLoaded", updateActiveLinks);
+</script>
