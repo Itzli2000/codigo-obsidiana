@@ -7,6 +7,7 @@ const ContactForm = ({
   secCurrentAnimation,
   currentAnimation,
   className = "",
+  translations,
 }: ContactFormProps) => {
 
     const {
@@ -20,7 +21,7 @@ const ContactForm = ({
         handleSubmit,
         register,
         errors,
-      } = useContact({ accessKey, secCurrentAnimation, currentAnimation });
+      } = useContact({ accessKey, secCurrentAnimation, currentAnimation, translations });
 
   const resetButton = () => (
     <button
@@ -30,7 +31,7 @@ const ContactForm = ({
       }`}
       type="button"
     >
-      Reiniciar formulario
+      {translations.form.reset}
     </button>
   );
 
@@ -55,10 +56,10 @@ const ContactForm = ({
             </svg>
           </div>
           <h3 className="text-xl font-bold text-success mb-2">
-            ¡Mensaje enviado!
+            {translations.form.success}
           </h3>
           <p className="text-base-content/70 mb-6">
-            Tu mensaje ha sido enviado exitosamente. Te contactaré pronto.
+            {translations.form.successMessage}
           </p>
           {resetButton()}
         </div>
@@ -69,7 +70,7 @@ const ContactForm = ({
   return (
     <div className={`card bg-base-100 shadow-xl ${className}`}>
       <div className="card-body">
-        <h3 className="card-title text-2xl mb-6">Contacto</h3>
+        <h3 className="card-title text-2xl mb-6">{translations.form.title}</h3>
 
         {submitError && (
           <div className="flex flex-col items-end justify-start">
@@ -88,8 +89,7 @@ const ContactForm = ({
                 />
               </svg>
               <span>
-                Ocurrió un error al enviar el mensaje, por favor intenta de
-                nuevo o contacta a{" "}
+                {translations.errors.submitError}{" "}
                 <a href={`mailto:${NETWORK.EMAIL}`} className="link">
                   {NETWORK.EMAIL}
                 </a>
@@ -108,12 +108,12 @@ const ContactForm = ({
           <div className="form-control">
             <label className="floating-label" htmlFor="contact-name">
               <span>
-                Nombre <span className="text-error">*</span>
+                {translations.form.name} <span className="text-error">*</span>
               </span>
               <input
                 id="contact-name"
                 type="text"
-                placeholder="Tu nombre completo"
+                placeholder={translations.form.name}
                 className={`input w-full ${errors.name ? "input-error" : ""}`}
                 {...register("name", validationRules.name)}
                 onChange={handleChange}
@@ -139,12 +139,12 @@ const ContactForm = ({
           <div className="form-control">
             <label className="floating-label" htmlFor="contact-email">
               <span>
-                Email <span className="text-error">*</span>
+                {translations.form.email} <span className="text-error">*</span>
               </span>
               <input
                 id="contact-email"
                 type="email"
-                placeholder="tu@email.com"
+                placeholder={translations.form.emailPlaceholder}
                 className={`input w-full ${errors.email ? "input-error" : ""}`}
                 {...register("email", validationRules.email)}
                 onChange={handleChange}
@@ -170,12 +170,12 @@ const ContactForm = ({
           <div className="form-control">
             <label className="floating-label" htmlFor="contact-subject">
               <span>
-                Asunto <span className="text-error">*</span>
+                {translations.form.subject} <span className="text-error">*</span>
               </span>
               <input
                 id="contact-subject"
                 type="text"
-                placeholder="¿De qué quieres hablar?"
+                placeholder={translations.form.subjectPlaceholder}
                 className={`input w-full ${
                   errors.subject ? "input-error" : ""
                 }`}
@@ -203,16 +203,16 @@ const ContactForm = ({
           <div className="form-control">
             <label className="floating-label" htmlFor="contact-message">
               <span>
-                Mensaje <span className="text-error">*</span>
+                {translations.form.message} <span className="text-error">*</span>
               </span>
               <textarea
                 id="contact-message"
                 className={`textarea w-full h-32 resize-y ${
                   errors.message ? "textarea-error" : ""
                 }`}
-                placeholder="Escribe tu mensaje aquí..."
+                placeholder={translations.form.messagePlaceholder}
                 {...register("message", validationRules.message)}
-                onFocus={handleChange}
+                onChange={handleChange}
                 disabled={isSubmitting}
                 aria-describedby={errors.message ? "message-error" : undefined}
                 aria-invalid={!!errors.message}
@@ -237,7 +237,7 @@ const ContactForm = ({
               Object.keys(errors).length > 0 ? "alert-error" : "alert-info"
             }`}
           >
-            <span>Todos los campos son obligatorios</span>
+            <span>{translations.form.required}</span>
           </div>
 
           {/* Submit Button */}
@@ -254,7 +254,7 @@ const ContactForm = ({
                   aria-hidden="true"
                 />
               )}
-              {isSubmitting ? "Enviando..." : "Enviar mensaje"}
+              {isSubmitting ? translations.form.sending : translations.form.send}
             </button>
           </div>
         </form>

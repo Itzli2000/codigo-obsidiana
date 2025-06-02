@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { ContactFormData, ContactFormProps } from "../types";
 
-const useContact = ({ accessKey, secCurrentAnimation, currentAnimation }: ContactFormProps) => {
+const useContact = ({ accessKey, secCurrentAnimation, currentAnimation, translations }: ContactFormProps) => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [submitError, setSubmitError] = useState<string | null>(null);
@@ -53,14 +53,14 @@ const useContact = ({ accessKey, secCurrentAnimation, currentAnimation }: Contac
           secCurrentAnimation("Cheer");
         } else {
           secCurrentAnimation("Sad");
-          throw new Error(result.message || "Error al enviar el formulario");
+          throw new Error(result.message || translations?.errors?.submitError || "Error al enviar el formulario");
         }
       } catch (error) {
         console.error("Form submission error:", error);
         setSubmitError(
           error instanceof Error
             ? error.message
-            : "Error al enviar el formulario. Por favor, intenta de nuevo."
+            : translations?.errors?.submitError || "Error al enviar el formulario. Por favor, intenta de nuevo."
         );
       } finally {
         setIsSubmitting(false);
@@ -76,53 +76,53 @@ const useContact = ({ accessKey, secCurrentAnimation, currentAnimation }: Contac
   
     const validationRules = {
       name: {
-        required: "El nombre es requerido",
+        required: translations?.validation?.nameRequired || "El nombre es requerido",
         minLength: {
           value: 2,
-          message: "El nombre debe tener al menos 2 caracteres",
+          message: translations?.validation?.nameMinLength || "El nombre debe tener al menos 2 caracteres",
         },
         validate: (value: string) => {
           if (!value.trim()) {
-            return "El nombre es requerido";
+            return translations?.validation?.nameRequired || "El nombre es requerido";
           }
           return true;
         },
       },
       email: {
-        required: "El email es requerido",
+        required: translations?.validation?.emailRequired || "El email es requerido",
         pattern: {
           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-          message: "Por favor ingresa un email válido",
+          message: translations?.validation?.emailInvalid || "Por favor ingresa un email válido",
         },
         validate: (value: string) => {
           if (!value.trim()) {
-            return "El email es requerido";
+            return translations?.validation?.emailRequired || "El email es requerido";
           }
           return true;
         },
       },
       subject: {
-        required: "El asunto es requerido",
+        required: translations?.validation?.subjectRequired || "El asunto es requerido",
         minLength: {
           value: 3,
-          message: "El asunto debe tener al menos 3 caracteres",
+          message: translations?.validation?.subjectMinLength || "El asunto debe tener al menos 3 caracteres",
         },
         validate: (value: string) => {
           if (!value.trim()) {
-            return "El asunto es requerido";
+            return translations?.validation?.subjectRequired || "El asunto es requerido";
           }
           return true;
         },
       },
       message: {
-        required: "El mensaje es requerido",
+        required: translations?.validation?.messageRequired || "El mensaje es requerido",
         minLength: {
           value: 10,
-          message: "El mensaje debe tener al menos 10 caracteres",
+          message: translations?.validation?.messageMinLength || "El mensaje debe tener al menos 10 caracteres",
         },
         validate: (value: string) => {
           if (!value.trim()) {
-            return "El mensaje es requerido";
+            return translations?.validation?.messageRequired || "El mensaje es requerido";
           }
           return true;
         },
