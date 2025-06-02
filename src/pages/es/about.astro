@@ -1,13 +1,13 @@
 ---
-import EducationCard from "../../components/about/EducationCard.astro";
 import ExperienceCard from "../../components/about/ExperienceCard.astro";
 import ProfileCard from "../../components/about/ProfileCard.astro";
 import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Projects from "../../components/about/Projects.astro";
+import type { Lang } from "../../types/languaje";
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 const sections = [
@@ -54,15 +54,6 @@ const description =
 
         <section id="projects" class="group/section">
           <Projects />
-        </section>
-
-        <section id="education" class="group/section">
-          <EducationCard
-            title={t("about.education.title")}
-            degree={t("about.education.degree")}
-            period={t("about.education.period")}
-            description={t("about.education.description")}
-          />
         </section>
       </div>
     </div>

@@ -1,0 +1,101 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import ContactCanvas from "./ContactCanvas";
+import type { Lang } from "../../types/languaje";
+
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
+
+// Prepare translations for React component
+const translations = {
+  form: {
+    title: t("contact.form.title"),
+    name: t("contact.form.name"),
+    email: t("contact.form.email"),
+    emailPlaceholder: t("contact.form.emailPlaceholder"),
+    subjectPlaceholder: t("contact.form.subjectPlaceholder"),
+    subject: t("contact.form.subject"),
+    message: t("contact.form.message"),
+    messagePlaceholder: t("contact.form.messagePlaceholder"),
+    send: t("contact.form.send"),
+    sending: t("contact.form.sending"),
+    success: t("contact.form.success"),
+    successMessage: t("contact.form.successMessage"),
+    reset: t("contact.form.reset"),
+    required: t("contact.form.required"),
+    avatarText: t("contact.form.avatarText"),
+  },
+  validation: {
+    nameRequired: t("contact.validation.nameRequired"),
+    nameMinLength: t("contact.validation.nameMinLength"),
+    emailRequired: t("contact.validation.emailRequired"),
+    emailInvalid: t("contact.validation.emailInvalid"),
+    subjectRequired: t("contact.validation.subjectRequired"),
+    subjectMinLength: t("contact.validation.subjectMinLength"),
+    messageRequired: t("contact.validation.messageRequired"),
+    messageMinLength: t("contact.validation.messageMinLength"),
+  },
+  errors: {
+    submitError: t("contact.errors.submitError"),
+    contactEmail: t("contact.errors.contactEmail"),
+  },
+};
+---
+
+<section class="py-8 md:py-12">
+  <div>
+    <div class="flex-col w-full">
+      {/* Contact Form Section */}
+      <div class="flex-1 w-full">
+        <div class="text-center lg:text-left mb-8">
+          <h1 class="text-5xl font-bold text-primary">{t("contact.title")}</h1>
+          <p class="py-6 text-xl text-base-content/80">
+            {t("contact.description")}
+          </p>
+
+          {/* Feature badges */}
+          <div
+            class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6"
+          >
+            <div class="badge badge-secondary badge-lg gap-2">
+              <Icon name="mdi:thunder-outline" class="w-4 h-4" />
+              {t("contact.form.fastResponse")}
+            </div>
+            <div class="badge badge-accent badge-lg gap-2">
+              <Icon name="mdi:shield-outline" class="w-4 h-4" />
+              {t("contact.form.secure")}
+            </div>
+            <div class="badge badge-info badge-lg gap-2">
+              <Icon name="mdi:email-outline" class="w-4 h-4" />
+              {t("contact.form.noSpam")}
+            </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div class="stats shadow mb-8 w-full">
+          <div class="stat">
+            <div class="stat-figure text-primary">
+              <Icon name="mdi:clock-outline" class="w-8 h-8" />
+            </div>
+            <div class="stat-title">{t("contact.form.responseTime")}</div>
+            <div class="stat-value text-primary">24h</div>
+            <div class="stat-desc">{t("contact.form.maximum")}</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-figure text-secondary">
+              <Icon name="mdi:email-outline" class="w-8 h-8" />
+            </div>
+            <div class="stat-title">{t("contact.form.messages")}</div>
+            <div class="stat-value text-secondary">100%</div>
+            <div class="stat-desc">{t("contact.form.read")}</div>
+          </div>
+        </div>
+      </div>
+
+      <ContactCanvas client:load translations={translations} />
+    </div>
+  </div>
+</section>

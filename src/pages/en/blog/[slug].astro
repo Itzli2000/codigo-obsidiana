@@ -4,6 +4,7 @@ import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
+import type { Lang } from "../../../types/languaje";
 
 interface Props {
   params: {
@@ -18,7 +19,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 
 const { slug } = Astro.params;
 

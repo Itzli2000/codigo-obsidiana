@@ -1,3 +1,26 @@
+### 2.4.0 (2025-06-02)
+
+##### Chores
+
+* **Education:**  remove EducationCard component and its references (9ed5f49f)
+
+##### New Features
+
+* **Contact:**
+  *  enhance contact form with translations and new section (8271a48f)
+  *  implement contact form with 3D avatar interaction (52fa4c2a)
+
+##### Bug Fixes
+
+* **blog:**  update repository links for design tokens (89c87055)
+
+##### Refactors
+
+* **Navigation:**
+  *  improve type safety and code consistency (113c3abf)
+  *  enhance section navigation logic and smooth scrolling (c5d83365)
+* **i18n:**  replace hardcoded language types with Lang type (ffdfc163)
+
 ### 2.3.0 (2025-06-01)
 
 ##### Chores
