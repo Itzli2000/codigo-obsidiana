@@ -5,8 +5,9 @@ import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Projects from "../../components/about/Projects.astro";
+import type { Lang } from "../../types/languaje";
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 // SEO metadata

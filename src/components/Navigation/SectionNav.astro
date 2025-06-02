@@ -9,7 +9,7 @@ interface Props {
 
 const { orientation = "horizontal", className = "" } = Astro.props;
 
-const lang = getLangFromUrl(Astro.url) as "en" | "es";
+const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 const menuClass =

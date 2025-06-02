@@ -2,6 +2,7 @@
 import ContactSection from "../../components/contact/ContactSection.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
+import type { Lang } from "../../types/languaje";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
