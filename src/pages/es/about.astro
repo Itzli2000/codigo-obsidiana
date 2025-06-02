@@ -1,5 +1,4 @@
 ---
-import EducationCard from "../../components/about/EducationCard.astro";
 import ExperienceCard from "../../components/about/ExperienceCard.astro";
 import ProfileCard from "../../components/about/ProfileCard.astro";
 import SummaryCard from "../../components/about/SummaryCard.astro";
@@ -54,15 +53,6 @@ const description =
 
         <section id="projects" class="group/section">
           <Projects />
-        </section>
-
-        <section id="education" class="group/section">
-          <EducationCard
-            title={t("about.education.title")}
-            degree={t("about.education.degree")}
-            period={t("about.education.period")}
-            description={t("about.education.description")}
-          />
         </section>
       </div>
     </div>
