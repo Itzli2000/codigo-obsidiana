@@ -45,17 +45,17 @@ const menuClass =
     private sectionLinks: NodeListOf<Element>;
     private sections: NodeListOf<Element>;
     private currentSection: string | null = null;
+    private isScrolling = false;
 
     constructor() {
       this.sectionLinks = document.querySelectorAll(".section-link");
       this.sections = document.querySelectorAll("section[id]");
 
-      // Configure observer with more balanced thresholds
       this.observer = new IntersectionObserver(
         this.handleIntersection.bind(this),
         {
-          rootMargin: "-10% 0px -40% 0px",
-          threshold: [0, 0.25, 0.5, 0.75, 1],
+          rootMargin: "-10% 0px -10% 0px",
+          threshold: [0, 0.1, 0.5, 1.0],
         }
       );
 
@@ -63,48 +63,70 @@ const menuClass =
     }
 
     private init(): void {
-      // Observe all sections
-      this.sections.forEach((section) => this.observer.observe(section));
+      setTimeout(() => {
+        this.sections.forEach((section) => {
+          console.log(`Observing section: ${section.getAttribute("id")}`);
+          this.observer.observe(section);
+        });
 
-      // Set up smooth scrolling
-      this.sectionLinks.forEach((link) => {
-        link.addEventListener("click", this.handleClick.bind(this));
-      });
+        this.sectionLinks.forEach((link) => {
+          link.addEventListener("click", this.handleClick.bind(this));
+        });
 
-      // Initial check for hash
-      this.checkInitialHash();
+        this.checkInitialHash();
+      }, 100);
     }
 
     private handleIntersection(entries: IntersectionObserverEntry[]): void {
-      // Sort entries by their intersection ratio
+      if (this.isScrolling) return;
+
       const visibleSections = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        .filter((entry) => entry.isIntersecting && entry.intersectionRatio > 0)
+        .sort((a, b) => {
+          if (b.intersectionRatio !== a.intersectionRatio) {
+            return b.intersectionRatio - a.intersectionRatio;
+          }
+          return a.boundingClientRect.top - b.boundingClientRect.top;
+        });
 
-      if (visibleSections.length === 0) return;
+      console.log('Visible sections:', visibleSections.map(entry => 
+        `${entry.target.id}: ${entry.intersectionRatio.toFixed(2)}`
+      ));
 
-      // Get the most visible section
-      const mostVisible = visibleSections[0];
-      const sectionId = mostVisible.target.getAttribute("id");
+      if (visibleSections.length > 0) {
+        const mostVisible = visibleSections[0];
+        const sectionId = mostVisible.target.id;
 
-      if (sectionId && this.currentSection !== sectionId) {
-        this.currentSection = sectionId;
-        this.updateActiveLink(sectionId);
+        if (sectionId && this.currentSection !== sectionId) {
+          console.log(`Activating section: ${sectionId}`);
+          this.currentSection = sectionId;
+          this.updateActiveLink(sectionId);
+          this.updateURL(sectionId);
+        }
       }
     }
 
     private updateActiveLink(sectionId: string): void {
-      // Remove active state from all links
       this.sectionLinks.forEach((link) => {
         link.classList.remove("active");
+        link.setAttribute("aria-current", "false");
       });
 
-      // Add active state to current section link
       const activeLink = document.querySelector(
         `.section-link[data-section="${sectionId}"]`
       );
       if (activeLink) {
         activeLink.classList.add("active");
+        activeLink.setAttribute("aria-current", "true");
+        console.log(`Active link updated to: ${sectionId}`);
+      } else {
+        console.warn(`Could not find link for section: ${sectionId}`);
+      }
+    }
+
+    private updateURL(sectionId: string): void {
+      if (window.location.hash !== `#${sectionId}`) {
+        history.replaceState(null, "", `#${sectionId}`);
       }
     }
 
@@ -118,14 +140,19 @@ const menuClass =
       const targetSection = document.getElementById(targetId);
       if (!targetSection) return;
 
-      // Update URL hash without scrolling
-      history.pushState(null, "", `#${targetId}`);
+      this.isScrolling = true;
 
-      // Smooth scroll to target
+      this.updateActiveLink(targetId);
+      this.updateURL(targetId);
+
       targetSection.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+
+      setTimeout(() => {
+        this.isScrolling = false;
+      }, 800);
     }
 
     private checkInitialHash(): void {
@@ -133,17 +160,27 @@ const menuClass =
       if (hash) {
         const section = document.getElementById(hash);
         if (section) {
-          section.scrollIntoView({ block: "start" });
-          this.updateActiveLink(hash);
+          setTimeout(() => {
+            section.scrollIntoView({ block: "start" });
+            this.updateActiveLink(hash);
+          }, 200);
+        }
+      } else {
+        const firstSection = this.sections[0];
+        if (firstSection && firstSection.id) {
+          this.updateActiveLink(firstSection.id);
         }
       }
     }
   }
 
-  // Initialize the section observer when the DOM is ready
-  document.addEventListener("DOMContentLoaded", () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      new SectionObserver();
+    });
+  } else {
     new SectionObserver();
-  });
+  }
 </script>
 
 <style>
