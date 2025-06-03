@@ -79,7 +79,7 @@
   },
   "contact": {
     "title": "Let's Talk",
-    "description": "I'm always looking for new opportunities and collaborations. Feel free to reach out to me via email or through my social media profiles.",
+    "description": "I'm passionate about connecting with fellow developers and sharing experiences. Whether you want to discuss frontend architecture, exchange insights, or explore collaborative ideas, I'd love to hear from you.",
     "form": {
       "title": "Contact Form",
       "name": "Name",
