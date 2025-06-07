@@ -1,3 +1,9 @@
+### 2.6.0 (2025-06-07)
+
+##### Documentation Changes
+
+*  update README to include DeepWiki badge (1f0b454e)
+
 ### 2.5.0 (2025-06-07)
 
 ##### New Features
