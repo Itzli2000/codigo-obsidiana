@@ -1,3 +1,17 @@
+### 2.5.0 (2025-06-07)
+
+##### New Features
+
+* **blog:**  add design tokens evolution article in English and Spanish (ee8b9600)
+
+##### Bug Fixes
+
+* **blog:**  update image paths for design tokens evolution article (6f2c1f61)
+
+##### Refactors
+
+* **i18n:**  update contact section descriptions for clarity (7362645d)
+
 ### 2.4.0 (2025-06-02)
 
 ##### Chores
