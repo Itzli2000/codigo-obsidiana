@@ -1,5 +1,7 @@
 # Código Obsidiana
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Itzli2000/codigo-obsidiana)
+
 A bilingual personal website and technical blog built with Astro, Tailwind CSS, and DaisyUI.
 
 ![Código Obsidiana](public/assets/logo.svg)
