@@ -1,0 +1,94 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import type { Lang } from "../../types/languaje";
+import { CDN, TYPE } from "../../constants/cdn";
+import { Icon } from "astro-icon/components";
+
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
+
+function formatDate(date: Date | string): string {
+  const dateObj = new Date(date);
+  return dateObj.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+const projects = await getCollection(
+  lang === "en" ? "projectsEn" : "projectsEs"
+);
+---
+
+<MainLayout
+  lang="es"
+  title={t("project.meta.title")}
+  description={t("project.meta.description")}
+>
+  <section class="hero-section mb-16">
+    <h1 class="text-5xl font-bold font-serif mb-4 text-center md:text-left">
+      {t("project.title")}
+    </h1>
+    <p
+      class="text-xl text-base-content/70 max-w-2xl mb-8 text-center md:text-left"
+    >
+      {t("project.subtitle")}
+    </p>
+  </section>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+    {
+      projects.map((project) => (
+        <a href={`/${lang}/projects/${project.id}`} class="card-link group">
+          <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
+            {project.data.image && (
+              <figure class="h-48 overflow-hidden">
+                <img
+                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
+                  alt={project.data.title}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </figure>
+            )}
+
+            <div class="card-body">
+              <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
+                <span class="flex items-center gap-1">
+                  <Icon name="mdi:calendar" class="w-4 h-4" />
+                  {formatDate(project.data.publishDate)}
+                </span>
+              </div>
+
+              <div class="flex flex-wrap items-center gap-2 mb-2">
+                <Icon name="mdi:code-json" class="w-4 h-4 text-base-content/60" />
+                <span class="text-xs text-base-content/60">{t("project.technologies")}</span>
+                {project.data.technologies.slice(0, 5).map((technology: string) => (
+                  <span class="badge badge-outline badge-xs badge-soft">{technology}</span>
+                ))}
+              </div>
+
+              <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                {project.data.title}
+              </h2>
+
+              <p class="text-base-content/80">{project.data.description}</p>
+
+              <div class="card-actions justify-end mt-4">
+                <Icon name="mdi:tag" class="w-4 h-4 text-base-content/60" />
+                <span class="text-xs text-base-content/60">{t("project.tags")}</span>
+                {project.data.tags &&
+                  project.data.tags
+                    .map((tag: string) => (
+                      <div class="badge badge-outline badge-xs">{tag}</div>
+                    ))}
+              </div>
+            </div>
+          </article>
+        </a>
+      ))
+    }
+  </div>
+</MainLayout>
