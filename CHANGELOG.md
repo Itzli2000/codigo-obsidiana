@@ -1,3 +1,13 @@
+### 2.7.0 (2025-06-15)
+
+##### New Features
+
+* **projects:**  add projects page and update navigation (3a238539)
+
+##### Refactors
+
+* **Project:**  update project display styles and improve navigation (d12e7154)
+
 ### 2.6.0 (2025-06-07)
 
 ##### Documentation Changes

@@ -19,7 +19,7 @@ const projects = await getCollection(
   <div class="flex flex-col gap-6 md:gap-8">
     {
       projects.map((project) => (
-        <a href={`/${lang}/projects/${project.id}`}>
+        <a href={`/${lang}/projects/${project.id}?from=about`}>
           <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex-col md:card-side">
             {project.data.image ? (
               <figure class="w-full md:w-2/3 md:max-w-xs">
