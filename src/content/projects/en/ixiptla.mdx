@@ -110,3 +110,36 @@ const replicaSchema = z.object({
   slug: z.string(),
 });
 ```
+
+This approach enforces content consistency while providing flexibility for optional attributes.
+
+### Performance Optimizations
+To ensure optimal performance while maintaining visual quality:
+
+1. Implemented responsive image loading with proper dimensions and WebP format
+2. Used lazy loading for off-screen content
+3. Optimized 3D model loading with suspense and fallbacks
+4. Leveraged Astro's partial hydration for minimal JavaScript
+
+## Results
+
+- **Enhanced User Experience**: Created an immersive platform with interactive 3D models that allows users to explore archaeological replicas from all angles.
+
+- **Performance Metrics**: Achieved excellent performance scores with load times under 3 seconds and Largest Contentful Paint under 2.5 seconds, even with complex 3D content.
+
+- **Accessibility & Internationalization**: Delivered a fully bilingual experience with comprehensive accessibility features, making archaeological content available to a broader audience.
+
+- **Maintainable Architecture**: Established a flexible yet robust content schema and component architecture that facilitates seamless addition of new replicas and content updates.
+
+- **Responsive Design**: Ensured a consistent experience across all devices, from mobile to desktop, with thoughtful responsive design implementations.
+
+## Visuals
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
+
+## Links
+- <a href="https://ixiptla.com/" target="_blank">
+    Live Demo
+  </a>
+- <a href="https://github.com/Itzli2000/ixiptla" target="_blank">
+    Repository
+  </a>
