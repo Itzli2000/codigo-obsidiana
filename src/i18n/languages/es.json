@@ -16,6 +16,16 @@
     "title": "Blog",
     "subtitle": "Reflexiones, ideas y exploraciones sobre desarrollo frontend y más allá."
   },
+  "project": {
+    "title": "Proyectos",
+    "subtitle": "Una colección de mis proyectos y contribuciones.",
+    "technologies": "Tecnologías:",
+    "tags": "Etiquetas:",
+    "meta": {
+      "title": "Proyectos | Ariel Itzli Molina Sanchez | Código Obsidiana",
+      "description": "Una colección de mis proyectos y contribuciones."
+    }
+  },
   "home": {
     "meta": {
       "title": "Código Obsidiana - Ariel Itzli Molina Sanchez",

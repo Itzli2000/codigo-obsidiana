@@ -29,7 +29,7 @@ const { Content } = await render(project);
   tags={project.data.tags}
   image={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
 >
-  <a href="/es/about#projects" class="btn btn-outline btn-info btn-sm mb-5">
+  <a href="/es/projects" class="btn btn-outline btn-info btn-sm mb-5" id="back-btn">
     ← Volver a Proyectos
   </a>
 
@@ -37,3 +37,19 @@ const { Content } = await render(project);
     <Content />
   </Prose>
 </MainLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const backBtn = document.getElementById('back-btn') as HTMLAnchorElement;
+    
+    if (backBtn) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const fromParam = urlParams.get('from');
+      
+      if (fromParam === 'about') {        
+        backBtn.href = '/es/about#projects';
+        backBtn.textContent = '← Volver a Sobre mí';
+      }
+    }
+  });
+</script>
