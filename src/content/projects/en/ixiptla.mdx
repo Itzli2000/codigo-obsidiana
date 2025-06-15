@@ -1,7 +1,7 @@
 ---
-title: "Ixiptla - Archaeological Artifacts Showcase"
+title: "Ixiptla - Archaeological Replicas Showcase"
 description: "A bilingual interactive platform featuring 3D models of archaeological replicas"
-publishDate: 2023-10-15
+publishDate: 2025-06-14
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
 tags: ["Frontend", "3D", "Interactive", "Archaeology", "Replicas", "Platform"]
 role: "Frontend Developer"
@@ -13,12 +13,12 @@ image: "ixiptla-dIlNxZYjPQKVvrAs5GNTI5YRsLjPL0.webp"
 
 import { CDN, TYPE } from "../../../constants/cdn";
 
-# Ixiptla - Archaeological Artifacts Showcase
+# Ixiptla - Archaeological Replicas Showcase
 
 <img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Description
-Ixiptla is a modern web application that presents a curated collection of meticulously crafted archaeological reproductions. Built with Astro.js and React, this platform combines performance with stunning visual presentation to bring ancient artifacts to life in the digital realm. The project features interactive 3D models using Three.js, fully responsive design, and comprehensive internationalization support in English and Spanish.
+Ixiptla is a modern web application that presents a curated collection of meticulously crafted archaeological reproductions. Built with Astro.js and React, this platform combines performance with stunning visual presentation to bring ancient replicas to life in the digital realm. The project features interactive 3D models using Three.js, fully responsive design, and comprehensive internationalization support in English and Spanish.
 
 ## Challenges
 
@@ -28,9 +28,9 @@ Ixiptla is a modern web application that presents a curated collection of meticu
   
 - **Performance Optimization**: Balancing high-quality visual content and 3D interactivity with fast load times and responsive performance across devices.
   
-- **Content Organization Architecture**: Designing a flexible but rigorous schema for artifact data that accommodates diverse archaeological items with varying attributes and metadata requirements.
+- **Content Organization Architecture**: Designing a flexible but rigorous schema for replica data that accommodates diverse archaeological items with varying attributes and metadata requirements.
   
-- **Advanced UI Interactions**: Implementing sophisticated UI features like advanced filtering, sorting, and visualization options for the artifact collection.
+- **Advanced UI Interactions**: Implementing sophisticated UI features like advanced filtering, sorting, and visualization options for the replica collection.
 
 ## Solutions
 
@@ -91,10 +91,10 @@ export function useTranslations(lang: "en" | "es") {
 ```
 
 ### Content Schema and Organization
-I implemented a strongly typed content schema using Zod for validation, ensuring data integrity across all artifacts:
+I implemented a strongly typed content schema using Zod for validation, ensuring data integrity across all replicas:
 
 ```typescript
-const artifactSchema = z.object({
+const replicaSchema = z.object({
   id: z.string(),
   title: z.string(),
   culture: z.string(),
@@ -110,36 +110,3 @@ const artifactSchema = z.object({
   slug: z.string(),
 });
 ```
-
-This approach enforces content consistency while providing flexibility for optional attributes.
-
-### Performance Optimizations
-To ensure optimal performance while maintaining visual quality:
-
-1. Implemented responsive image loading with proper dimensions and WebP format
-2. Used lazy loading for off-screen content
-3. Optimized 3D model loading with suspense and fallbacks
-4. Leveraged Astro's partial hydration for minimal JavaScript
-
-## Results
-
-- **Enhanced User Experience**: Created an immersive platform with interactive 3D models that allows users to explore archaeological artifacts from every angle.
-
-- **Performance Metrics**: Achieved excellent performance scores with load times under 3 seconds and a Largest Contentful Paint under 2.5 seconds, even with complex 3D content.
-
-- **Accessibility and Internationalization**: Delivered a fully bilingual experience with comprehensive accessibility features, making archaeological content available to a wider audience.
-
-- **Maintainable Architecture**: Established a flexible yet robust content schema and component architecture that supports easy addition of new artifacts and seamless content updates.
-
-- **Responsive Design**: Ensured a consistent experience across all devices from mobile to desktop with thoughtful responsive design implementations.
-
-## Visuals
-<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
-
-## Links
-- <a href="https://ixiptla.com/" target="_blank">
-    Live Demo
-  </a>
-- <a href="https://github.com/Itzli2000/ixiptla" target="_blank">
-    Repository
-  </a>
