@@ -1,7 +1,7 @@
 ---
-title: "Ixiptla - Exposición de Artefactos Arqueológicos"
+title: "Ixiptla - Exposición de Réplicas Arqueológicas"
 description: "Plataforma interactiva bilingüe con modelos 3D de réplicas arqueológicas"
-publishDate: 2023-10-15
+publishDate: 2025-06-14
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
 tags: ["Frontend", "3D", "Interactive", "Archaeology", "Replicas", "Platform"]
 role: "Desarrollador Frontend"
@@ -13,12 +13,12 @@ image: "ixiptla-dIlNxZYjPQKVvrAs5GNTI5YRsLjPL0.webp"
 
 import { CDN, TYPE } from "../../../constants/cdn";
 
-# Ixiptla - Exposición de Artefactos Arqueológicos
+# Ixiptla - Exposición de Réplicas Arqueológicas
 
 <img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Descripción
-Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a artefactos antiguos en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.
+Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a réplicas antiguas en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.
 
 ## Desafíos
 
@@ -28,9 +28,9 @@ Ixiptla es una aplicación web moderna que presenta una colección curada de rep
   
 - **Optimización de Rendimiento**: Equilibrar contenido visual de alta calidad e interactividad 3D con tiempos de carga rápidos y rendimiento responsivo en todos los dispositivos.
   
-- **Arquitectura de Organización de Contenido**: Diseñar un esquema flexible pero riguroso para datos de artefactos que acomode diversos elementos arqueológicos con atributos y requisitos de metadatos variables.
+- **Arquitectura de Organización de Contenido**: Diseñar un esquema flexible pero riguroso para datos de réplicas que acomode diversos elementos arqueológicos con atributos y requisitos de metadatos variables.
   
-- **Interacciones Avanzadas de UI**: Implementar características sofisticadas de UI como filtrado avanzado, ordenación y opciones de visualización para la colección de artefactos.
+- **Interacciones Avanzadas de UI**: Implementar características sofisticadas de UI como filtrado avanzado, ordenación y opciones de visualización para la colección de réplicas.
 
 ## Soluciones
 
@@ -91,10 +91,10 @@ export function useTranslations(lang: "en" | "es") {
 ```
 
 ### Esquema y Organización de Contenido
-Implementé un esquema de contenido fuertemente tipado utilizando Zod para validación, asegurando la integridad de datos en todos los artefactos:
+Implementé un esquema de contenido fuertemente tipado utilizando Zod para validación, asegurando la integridad de datos en todas las réplicas:
 
 ```typescript
-const artifactSchema = z.object({
+const replicaSchema = z.object({
   id: z.string(),
   title: z.string(),
   culture: z.string(),
@@ -123,13 +123,13 @@ Para asegurar un rendimiento óptimo manteniendo la calidad visual:
 
 ## Resultados
 
-- **Experiencia de Usuario Mejorada**: Creé una plataforma inmersiva con modelos 3D interactivos que permite a los usuarios explorar artefactos arqueológicos desde todos los ángulos.
+- **Experiencia de Usuario Mejorada**: Creé una plataforma inmersiva con modelos 3D interactivos que permite a los usuarios explorar réplicas arqueológicas desde todos los ángulos.
 
 - **Métricas de Rendimiento**: Logré excelentes puntuaciones de rendimiento con tiempos de carga por debajo de 3 segundos y un Largest Contentful Paint por debajo de 2.5 segundos, incluso con contenido 3D complejo.
 
 - **Accesibilidad e Internacionalización**: Entregué una experiencia completamente bilingüe con características de accesibilidad integrales, haciendo que el contenido arqueológico esté disponible para una audiencia más amplia.
 
-- **Arquitectura Mantenible**: Establecí un esquema de contenido y una arquitectura de componentes flexible pero robusta que facilita la adición de nuevos artefactos y actualizaciones de contenido sin problemas.
+- **Arquitectura Mantenible**: Establecí un esquema de contenido y una arquitectura de componentes flexible pero robusta que facilita la adición de nuevas réplicas y actualizaciones de contenido sin problemas.
 
 - **Diseño Responsivo**: Aseguré una experiencia consistente en todos los dispositivos, desde móviles hasta escritorio, con implementaciones de diseño responsivo bien pensadas.
 
