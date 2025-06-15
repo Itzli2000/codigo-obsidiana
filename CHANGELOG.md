@@ -1,3 +1,9 @@
+### 2.8.0 (2025-06-15)
+
+##### New Features
+
+* **ImageGallery:**  add image gallery component for ixiptla project (99a59d4b)
+
 #### 2.7.1 (2025-06-15)
 
 ##### New Features
