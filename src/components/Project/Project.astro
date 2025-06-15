@@ -63,10 +63,10 @@ const projects = await getCollection(
               </div>
 
               <div class="flex flex-wrap items-center gap-2 mb-2">
-                <Icon name="mdi:code-json" class="w-4 h-4 text-base-content/60" />
-                <span class="text-xs text-base-content/60">{t("project.technologies")}</span>
+                <Icon name="mdi:code-json" class="w-4 h-4 text-success" />
+                <span class="text-xs text-success">{t("project.technologies")}</span>
                 {project.data.technologies.slice(0, 5).map((technology: string) => (
-                  <span class="badge badge-outline badge-xs badge-soft">{technology}</span>
+                  <span class="badge badge-xs badge-dash badge-success">{technology}</span>
                 ))}
               </div>
 
@@ -77,12 +77,12 @@ const projects = await getCollection(
               <p class="text-base-content/80">{project.data.description}</p>
 
               <div class="card-actions justify-end mt-4">
-                <Icon name="mdi:tag" class="w-4 h-4 text-base-content/60" />
-                <span class="text-xs text-base-content/60">{t("project.tags")}</span>
+                <Icon name="mdi:tag" class="w-4 h-4 text-primary/60" />
+                <span class="text-xs text-primary/60">{t("project.tags")}</span>
                 {project.data.tags &&
                   project.data.tags
                     .map((tag: string) => (
-                      <div class="badge badge-outline badge-xs">{tag}</div>
+                      <div class="badge badge-outline badge-primary badge-xs">{tag}</div>
                     ))}
               </div>
             </div>
