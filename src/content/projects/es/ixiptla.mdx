@@ -8,14 +8,29 @@ role: "Desarrollador Frontend"
 company: "Proyecto Personal"
 status: "Completado"
 lang: "es"
-image: "ixiptla-dIlNxZYjPQKVvrAs5GNTI5YRsLjPL0.webp"
+image: "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp"
 ---
 
 import { CDN, TYPE } from "../../../constants/cdn";
+import ImageGallery from "../../../components/ImageGallery.astro";
+
+export const images = [
+  "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp",
+  "desktop2-1bvwUSw93OmoJCPx9RlQ27q2Sm5cxE.webp",
+  "desktop3-NIt1MImgf25QYXPXYDcLclv4FLvjuX.webp",
+  "desktop4-Ivg90tEQgkLryTuBi5oF9e1Bd35p5r.webp",
+  "desktop5-hco3ttsBCQss6I3IP4ROrSj8PZMhos.webp",
+  "desktop6-L3OC6fFv4T8todZUIB2topeJKixD5Q.webp",
+  "mobile1-up7KVDKaK0nI4Ueg5f1bFyuCiZm8bO.webp",
+  "mobile2-ffGoC05t5LlepJlGrj6h4pjqgVkG0J.webp",
+  "mobile3-BlTQnhBQAkH3Qwsq2a4q8jJzI9iolf.webp",
+  "mobile4-vytPmaOog7ut7K5zjr1YhI6hb4kZUX.webp",
+  "mobile5-wxiPHEBhefVNCNCmooYiqThswAAk6n.webp",
+];
 
 # Ixiptla - Exposición de Réplicas Arqueológicas
 
-<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
+<img src={`${CDN.IMAGES}${TYPE.PROJECT}ixiptla/${frontmatter.image}`} alt={frontmatter.title} />
 
 ## Descripción
 Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a réplicas antiguas en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.
@@ -134,7 +149,12 @@ Para asegurar un rendimiento óptimo manteniendo la calidad visual:
 - **Diseño Responsivo**: Aseguré una experiencia consistente en todos los dispositivos, desde móviles hasta escritorio, con implementaciones de diseño responsivo bien pensadas.
 
 ## Visuales
-<img src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.image}`} alt={frontmatter.title} />
+
+<ImageGallery 
+  images={images} 
+  projectId="ixiptla" 
+  title={frontmatter.title} 
+/>
 
 ## Enlaces
 - <a href="https://ixiptla.com/" target="_blank">
