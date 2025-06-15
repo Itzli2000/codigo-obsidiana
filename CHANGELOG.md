@@ -1,3 +1,9 @@
+#### 2.8.1 (2025-06-15)
+
+##### Bug Fixes
+
+* **Project:**  improve project image handling and layout consistency (65e23d35)
+
 ### 2.8.0 (2025-06-15)
 
 ##### New Features
