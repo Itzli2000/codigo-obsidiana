@@ -1,3 +1,13 @@
+#### 2.7.1 (2025-06-15)
+
+##### New Features
+
+* **projects:**  enhance ixiptla project details with performance optimizations and accessibility features (e689070b)
+
+##### Refactors
+
+* **projects:**  update project titles, descriptions, and publish dates (e6250b14)
+
 ### 2.7.0 (2025-06-15)
 
 ##### New Features
