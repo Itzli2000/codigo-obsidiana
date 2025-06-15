@@ -24,7 +24,7 @@ const projects = await getCollection(
 ---
 
 <MainLayout
-  lang="es"
+  lang={lang}
   title={t("project.meta.title")}
   description={t("project.meta.description")}
 >
@@ -47,7 +47,7 @@ const projects = await getCollection(
             {project.data.image && (
               <figure class="h-48 overflow-hidden">
                 <img
-                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
+                  src={`${CDN.IMAGES}${TYPE.PROJECT}${!project.data.title.toLowerCase().includes("ixiptla") ? project.data.image : `ixiptla/${project.data.image}`}`}
                   alt={project.data.title}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
@@ -64,10 +64,16 @@ const projects = await getCollection(
 
               <div class="flex flex-wrap items-center gap-2 mb-2">
                 <Icon name="mdi:code-json" class="w-4 h-4 text-success" />
-                <span class="text-xs text-success">{t("project.technologies")}</span>
-                {project.data.technologies.slice(0, 5).map((technology: string) => (
-                  <span class="badge badge-xs badge-dash badge-success">{technology}</span>
-                ))}
+                <span class="text-xs text-success">
+                  {t("project.technologies")}
+                </span>
+                {project.data.technologies
+                  .slice(0, 5)
+                  .map((technology: string) => (
+                    <span class="badge badge-xs badge-dash badge-success">
+                      {technology}
+                    </span>
+                  ))}
               </div>
 
               <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
@@ -80,10 +86,11 @@ const projects = await getCollection(
                 <Icon name="mdi:tag" class="w-4 h-4 text-primary/60" />
                 <span class="text-xs text-primary/60">{t("project.tags")}</span>
                 {project.data.tags &&
-                  project.data.tags
-                    .map((tag: string) => (
-                      <div class="badge badge-outline badge-primary badge-xs">{tag}</div>
-                    ))}
+                  project.data.tags.map((tag: string) => (
+                    <div class="badge badge-outline badge-primary badge-xs">
+                      {tag}
+                    </div>
+                  ))}
               </div>
             </div>
           </article>
