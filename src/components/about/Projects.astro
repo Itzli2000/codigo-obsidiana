@@ -24,7 +24,7 @@ const projects = await getCollection(
             {project.data.image ? (
               <figure class="w-full md:w-2/3 md:max-w-xs">
                 <img
-                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
+                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
                   alt={project.data.title}
                   class="h-full object-cover"
                 />

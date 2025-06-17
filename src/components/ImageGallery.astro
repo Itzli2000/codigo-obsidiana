@@ -16,7 +16,7 @@ const { images, projectId, title } = Astro.props;
     <div class="break-inside-avoid mb-4">
       <img
         class="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300 gallery-image"
-        src={`${CDN.IMAGES}${TYPE.PROJECT}${projectId}/${image}`}
+        src={`${CDN.IMAGES}${TYPE.PROJECT}${projectId}${image}`}
         alt={`${title} - View ${index + 1}`}
         loading="lazy"
         data-index={index}
@@ -133,7 +133,7 @@ const { images, projectId, title } = Astro.props;
     }
 
     updateModalImage() {
-      const imageSrc = `${CDN.IMAGES}${TYPE.PROJECT}${this.projectId}/${this.images[this.currentIndex]}`;
+      const imageSrc = `${CDN.IMAGES}${TYPE.PROJECT}${this.projectId}${this.images[this.currentIndex]}`;
       const imageAlt = `${this.title} - View ${this.currentIndex + 1}`;
       
       if (this.modalImage) {

@@ -5,6 +5,7 @@ import HeroSection from "../../components/home/HeroSection.astro";
 import FeaturedPostsSection from "../../components/home/FeaturedPostsSection.astro";
 import AboutPreviewSection from "../../components/home/AboutPreviewSection.astro";
 import ConnectSection from "../../components/home/ConnectSection.astro";
+import FeaturedProjectsSection from "../../components/home/FeaturedProjectsSection.astro";
 import type { Lang } from "../../types/languaje";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
@@ -21,10 +22,11 @@ const description = t('home.meta.description');
     description={description}
     type="website"
 >
-    <main class="flex flex-col gap-12 md:gap-16 lg:gap-24">
+    <main class="flex flex-col gap-12 md:gap-16 lg:gap-20">
         <HeroSection />
-        <FeaturedPostsSection />
         <AboutPreviewSection />
+        <FeaturedPostsSection />
+        <FeaturedProjectsSection />
         <ConnectSection />
     </main>
 </MainLayout>

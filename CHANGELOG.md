@@ -1,3 +1,10 @@
+### 2.9.0 (2025-06-17)
+
+##### New Features
+
+* **Home:**  add Featured Projects section and update translations (0d6aee28)
+* **Project:**  add imageProjectPrefix to enhance image handling (38746269)
+
 #### 2.8.1 (2025-06-15)
 
 ##### Bug Fixes
