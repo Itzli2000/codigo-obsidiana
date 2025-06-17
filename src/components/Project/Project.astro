@@ -47,7 +47,7 @@ const projects = await getCollection(
             {project.data.image && (
               <figure class="h-48 overflow-hidden">
                 <img
-                  src={`${CDN.IMAGES}${TYPE.PROJECT}${!project.data.title.toLowerCase().includes("ixiptla") ? project.data.image : `ixiptla/${project.data.image}`}`}
+                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
                   alt={project.data.title}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />

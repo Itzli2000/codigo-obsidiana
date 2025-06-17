@@ -9,6 +9,7 @@ role: "Frontend Developer"
 company: "Personal Project"
 status: "Completed"
 lang: "en"
+imageProjectPrefix: "ixiptla/"
 image: "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp"
 ---
 
@@ -32,7 +33,7 @@ export const images = [
 # Ixiptla - Archaeological Replicas Showcase
 
 <img
-  src={`${CDN.IMAGES}${TYPE.PROJECT}ixiptla/${frontmatter.image}`}
+  src={`${CDN.IMAGES}${TYPE.PROJECT}${frontmatter.imageProjectPrefix}${frontmatter.image}`}
   alt={frontmatter.title}
 />
 
@@ -159,7 +160,7 @@ To ensure optimal performance while maintaining visual quality:
 
 <ImageGallery 
   images={images} 
-  projectId="ixiptla" 
+  projectId={frontmatter.imageProjectPrefix} 
   title={frontmatter.title} 
 />
 
