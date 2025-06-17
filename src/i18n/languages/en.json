@@ -42,6 +42,11 @@
       "read_more": "Read more",
       "view_all": "View all posts"
     },
+    "featured_projects": {
+      "title": "Featured Projects",
+      "view_project": "View project",
+      "view_all": "View all projects"
+    },
     "about_preview": {
       "title": "About Me",
       "content": [

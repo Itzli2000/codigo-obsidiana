@@ -1,0 +1,75 @@
+---
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "../../i18n/utils";
+import { CDN, TYPE } from "../../constants/cdn";
+import type { Lang } from "../../types/languaje";
+
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
+
+const projects = await getCollection(lang === "en" ? "projectsEn" : "projectsEs");
+const featuredProjects = projects.slice(0, 3);
+
+---
+<section class="py-8 md:py-12">
+  <h2
+    class="font-serif text-2xl md:text-3xl font-bold mb-8 border-b border-base-300 pb-4"
+  >
+    {t("home.featured_projects.title")}
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      featuredProjects.map((project) => (
+        <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <figure class="h-48 bg-base-300 overflow-hidden">
+            {project.data.image ? (
+              <img
+                src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
+                alt={project.data.title}
+                class="w-full h-full object-cover"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-base-content/20">
+                <Icon name="mdi:folder-outline" class="w-16 h-16" />
+              </div>
+            )}
+          </figure>
+          <div class="card-body">
+            <h3 class="card-title font-serif">{project.data.title}</h3>
+            <p class="text-base-content/80">{project.data.description}</p>
+            
+            {/* Technologies badges */}
+            <div class="flex flex-wrap gap-1 mt-2">
+              {project.data.technologies.slice(0, 3).map((tech) => (
+                <span class="badge badge-sm badge-outline">{tech}</span>
+              ))}
+              {project.data.technologies.length > 3 && (
+                <span class="badge badge-sm badge-ghost">
+                  +{project.data.technologies.length - 3}
+                </span>
+              )}
+            </div>
+
+            <div class="card-actions justify-end mt-4">
+              <a
+                href={`/${lang}/projects/${project.id}`}
+                class="btn btn-sm btn-primary"
+              >
+                {t("home.featured_projects.view_project")}
+              </a>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="flex justify-center mt-8">
+    <a href={`/${lang}/projects`} class="btn btn-outline">
+      {t("home.featured_projects.view_all")}
+      <Icon name="mdi:arrow-right" class="w-5 h-5" />
+    </a>
+  </div>
+</section> 
