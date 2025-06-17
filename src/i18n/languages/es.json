@@ -42,6 +42,11 @@
       "read_more": "Leer más",
       "view_all": "Ver todas las publicaciones"
     },
+    "featured_projects": {
+      "title": "Proyectos destacados",
+      "view_project": "Ver proyecto",
+      "view_all": "Ver todos los proyectos"
+    },
     "about_preview": {
       "title": "Sobre mí",
       "content": [
