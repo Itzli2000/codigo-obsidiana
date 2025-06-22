@@ -9,7 +9,10 @@ const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs");
-const featuredPosts = posts.slice(0, 3);
+const sortedPosts = posts.sort((a, b) => 
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+const featuredPosts = sortedPosts.slice(0, 3);
 ---
 
 <section class="py-8 md:py-12">
