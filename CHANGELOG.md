@@ -1,3 +1,13 @@
+### 2.10.0 (2025-06-22)
+
+##### New Features
+
+* **Blog:**  add proof-of-concept for framework-agnostic theme system (a68529f7)
+
+##### Refactors
+
+* **Blog:**  sort posts by publish date for featured and blog sections (8dd96a8e)
+
 ### 2.9.0 (2025-06-17)
 
 ##### New Features
