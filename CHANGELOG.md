@@ -1,3 +1,13 @@
+### 2.11.0 (2025-07-19)
+
+##### Documentation Changes
+
+*  add CLAUDE.md for development guidance (4b03b71e)
+
+##### New Features
+
+* **Projects:**  add showInAbout field to project schema and update project visibility (e8412eca)
+
 ### 2.10.0 (2025-06-22)
 
 ##### New Features
