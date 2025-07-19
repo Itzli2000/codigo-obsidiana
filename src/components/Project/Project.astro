@@ -41,61 +41,67 @@ const projects = await getCollection(
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
     {
-      projects.map((project) => (
-        <a href={`/${lang}/projects/${project.id}`} class="card-link group">
-          <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
-            {project.data.image && (
-              <figure class="h-48 overflow-hidden">
-                <img
-                  src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
-                  alt={project.data.title}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </figure>
-            )}
+      projects
+        .sort(
+          (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+        )
+        .map((project) => (
+          <a href={`/${lang}/projects/${project.id}`} class="card-link group">
+            <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
+              {project.data.image && (
+                <figure class="h-48 overflow-hidden">
+                  <img
+                    src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
+                    alt={project.data.title}
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </figure>
+              )}
 
-            <div class="card-body">
-              <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
-                <span class="flex items-center gap-1">
-                  <Icon name="mdi:calendar" class="w-4 h-4" />
-                  {formatDate(project.data.publishDate)}
-                </span>
+              <div class="card-body">
+                <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
+                  <span class="flex items-center gap-1">
+                    <Icon name="mdi:calendar" class="w-4 h-4" />
+                    {formatDate(project.data.publishDate)}
+                  </span>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 mb-2">
+                  <Icon name="mdi:code-json" class="w-4 h-4 text-success" />
+                  <span class="text-xs text-success">
+                    {t("project.technologies")}
+                  </span>
+                  {project.data.technologies
+                    .slice(0, 5)
+                    .map((technology: string) => (
+                      <span class="badge badge-xs badge-dash badge-success">
+                        {technology}
+                      </span>
+                    ))}
+                </div>
+
+                <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                  {project.data.title}
+                </h2>
+
+                <p class="text-base-content/80">{project.data.description}</p>
+
+                <div class="card-actions justify-end mt-4">
+                  <Icon name="mdi:tag" class="w-4 h-4 text-primary/60" />
+                  <span class="text-xs text-primary/60">
+                    {t("project.tags")}
+                  </span>
+                  {project.data.tags &&
+                    project.data.tags.map((tag: string) => (
+                      <div class="badge badge-outline badge-primary badge-xs">
+                        {tag}
+                      </div>
+                    ))}
+                </div>
               </div>
-
-              <div class="flex flex-wrap items-center gap-2 mb-2">
-                <Icon name="mdi:code-json" class="w-4 h-4 text-success" />
-                <span class="text-xs text-success">
-                  {t("project.technologies")}
-                </span>
-                {project.data.technologies
-                  .slice(0, 5)
-                  .map((technology: string) => (
-                    <span class="badge badge-xs badge-dash badge-success">
-                      {technology}
-                    </span>
-                  ))}
-              </div>
-
-              <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                {project.data.title}
-              </h2>
-
-              <p class="text-base-content/80">{project.data.description}</p>
-
-              <div class="card-actions justify-end mt-4">
-                <Icon name="mdi:tag" class="w-4 h-4 text-primary/60" />
-                <span class="text-xs text-primary/60">{t("project.tags")}</span>
-                {project.data.tags &&
-                  project.data.tags.map((tag: string) => (
-                    <div class="badge badge-outline badge-primary badge-xs">
-                      {tag}
-                    </div>
-                  ))}
-              </div>
-            </div>
-          </article>
-        </a>
-      ))
+            </article>
+          </a>
+        ))
     }
   </div>
 </MainLayout>

@@ -1,3 +1,9 @@
+### 2.12.0 (2025-07-19)
+
+##### Refactors
+
+* **Projects:**  sort projects by publish date for improved display (061b5bd1)
+
 ### 2.11.0 (2025-07-19)
 
 ##### Documentation Changes
