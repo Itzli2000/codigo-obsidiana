@@ -42,68 +42,68 @@ const menuClass =
 
 <script>
   class SectionObserver {
-    private observer: IntersectionObserver;
     private sectionLinks: NodeListOf<Element>;
     private sections: NodeListOf<Element>;
     private currentSection: string | null = null;
     private isScrolling = false;
+    private throttleTimeout: number | null = null;
 
     constructor() {
       this.sectionLinks = document.querySelectorAll(".section-link");
       this.sections = document.querySelectorAll("section[id]");
-
-      this.observer = new IntersectionObserver(
-        this.handleIntersection.bind(this),
-        {
-          rootMargin: "-10% 0px -10% 0px",
-          threshold: [0, 0.1, 0.5, 1.0],
-        }
-      );
-
       this.init();
     }
 
     private init(): void {
       setTimeout(() => {
-        this.sections.forEach((section) => {
-          console.log(`Observing section: ${section.getAttribute("id")}`);
-          this.observer.observe(section);
-        });
-
         this.sectionLinks.forEach((link) => {
           link.addEventListener("click", this.handleClick.bind(this));
         });
 
+        window.addEventListener("scroll", this.handleScroll.bind(this));
         this.checkInitialHash();
+        this.updateActiveSection();
       }, 100);
     }
 
-    private handleIntersection(entries: IntersectionObserverEntry[]): void {
+    private handleScroll(): void {
       if (this.isScrolling) return;
 
-      const visibleSections = entries
-        .filter((entry) => entry.isIntersecting && entry.intersectionRatio > 0)
-        .sort((a, b) => {
-          if (b.intersectionRatio !== a.intersectionRatio) {
-            return b.intersectionRatio - a.intersectionRatio;
-          }
-          return a.boundingClientRect.top - b.boundingClientRect.top;
-        });
+      if (this.throttleTimeout) {
+        clearTimeout(this.throttleTimeout);
+      }
 
-      console.log('Visible sections:', visibleSections.map(entry => 
-        `${entry.target.id}: ${entry.intersectionRatio.toFixed(2)}`
-      ));
+      this.throttleTimeout = window.setTimeout(() => {
+        this.updateActiveSection();
+      }, 100);
+    }
 
-      if (visibleSections.length > 0) {
-        const mostVisible = visibleSections[0];
-        const sectionId = mostVisible.target.id;
+    private updateActiveSection(): void {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.3;
+      let activeSection: string | null = null;
 
-        if (sectionId && this.currentSection !== sectionId) {
-          console.log(`Activating section: ${sectionId}`);
-          this.currentSection = sectionId;
-          this.updateActiveLink(sectionId);
-          this.updateURL(sectionId);
+      for (let i = 0; i < this.sections.length; i++) {
+        const section = this.sections[i] as HTMLElement;
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition <= sectionBottom) {
+          activeSection = section.id;
+          break;
         }
+      }
+
+      if (!activeSection && this.sections.length > 0) {
+        const firstSection = this.sections[0] as HTMLElement;
+        if (scrollPosition < firstSection.offsetTop) {
+          activeSection = firstSection.id;
+        }
+      }
+
+      if (activeSection && this.currentSection !== activeSection) {
+        this.currentSection = activeSection;
+        this.updateActiveLink(activeSection);
+        this.updateURL(activeSection);
       }
     }
 
