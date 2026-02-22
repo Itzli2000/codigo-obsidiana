@@ -4,12 +4,12 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs");
+const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs", (entry) => !entry.data.draft);
 const sortedPosts = posts.sort((a, b) => 
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );

@@ -2,28 +2,30 @@
 import { getCollection, getEntry, render } from "astro:content";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
-import { getLangFromUrl } from "../../../i18n/utils";
+import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import type { Lang } from "../../../types/languaje";
-
-interface Props {
-  params: {
-    slug: string;
-  };
-}
+import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blogEn");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-  }));
+  const enPosts = await getCollection("blogEn");
+  const esPosts = await getCollection("blogEs");
+
+  const allSlugs = new Set([
+    ...enPosts.map((p) => p.id),
+    ...esPosts.map((p) => p.id),
+  ]);
+
+  return [...allSlugs].flatMap((slug) => [
+    { params: { lang: "en", slug } },
+    { params: { lang: "es", slug } },
+  ]);
 }
 
 const lang = getLangFromUrl(Astro.url) as Lang;
-
+const t = useTranslations(lang);
 const { slug } = Astro.params;
 
-const post = await getEntry("blogEn", slug as string);
+const post = await getEntry(getCollectionName("blog", lang), slug as string);
 
 if (!post) {
   return Astro.redirect("/404");
@@ -56,7 +58,7 @@ const { Content } = await render(post);
     }
   })} />
   <a href={`/${lang}/blog`} class="btn btn-outline btn-sm mb-5">
-    ← Back to Blog
+    {lang === "es" ? "← Volver al blog" : "← Back to Blog"}
   </a>
   <Prose>
     <Content />

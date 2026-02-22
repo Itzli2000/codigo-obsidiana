@@ -3,8 +3,8 @@ import en from "./languages/en.json";
 import experiencesEn from "./languages/experiences/en.json";
 import experiencesEs from "./languages/experiences/es.json";
 
-const defaultLang = "es";
-const supportedLangs = ["en", "es"];
+export const defaultLang = "es";
+export const supportedLangs = ["en", "es"];
 
 export function getLangFromUrl(url: URL) {
   const [, lang] = url.pathname.split("/");
@@ -37,4 +37,15 @@ export function detectBrowserLanguage(): string {
 export function redirectToLanguagePath(path: string, lang: string): string {
   const pathWithoutLang = path.replace(/^\/(en|es)/, "");
   return `/${lang}${pathWithoutLang}`;
+}
+
+const collectionMap = {
+  blog: { en: "blogEn", es: "blogEs" },
+  projects: { en: "projectsEn", es: "projectsEs" },
+} as const;
+
+export type CollectionType = keyof typeof collectionMap;
+
+export function getCollectionName<T extends CollectionType>(type: T, lang: "en" | "es"): (typeof collectionMap)[T]["en"] | (typeof collectionMap)[T]["es"] {
+  return collectionMap[type][lang];
 }

@@ -27,4 +27,12 @@ export default defineConfig({
   image: {
     domains: ["vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com"],
   },
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
+    },
+  },
 });

@@ -5,12 +5,15 @@ import SummaryCard from "../../components/about/SummaryCard.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import MainLayout from "../../layouts/MainLayout.astro";
 import Projects from "../../components/about/Projects.astro";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "es" } }];
+}
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-// SEO metadata
 const title = "Ariel Itzli Molina Sanchez | Código Obsidiana";
 const description =
   "Frontend Tech Lead & Architect with 8+ years of experience building modular and scalable UI systems, specializing in frontend architecture and design systems.";
@@ -49,19 +52,16 @@ const description =
         <section id="projects" class="group/section">
           <Projects />
         </section>
-
       </div>
     </div>
   </div>
 </MainLayout>
 
 <style>
-  /* Smooth scrolling between sections */
   html {
     scroll-behavior: smooth;
   }
 
-  /* Ensure sections have enough padding for scrolling */
   section {
     scroll-margin-top: 2rem;
   }

@@ -5,11 +5,13 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   publishDate: z.date(),
+  updated: z.date().optional(),
   lang: z.enum(["en", "es"]),
   tags: z.array(z.string()),
   author: z.string(),
   readingTime: z.number(),
   image: z.string(),
+  draft: z.boolean().default(false),
 });
 
 const projectSchema = z.object({
