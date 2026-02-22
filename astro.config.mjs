@@ -21,4 +21,18 @@ export default defineConfig({
   output: "static",
   trailingSlash: "never",
   site: "https://www.codigo-obsidiana.dev",
+  prefetch: {
+    prefetchAll: true,
+  },
+  image: {
+    domains: ["vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com"],
+  },
+  i18n: {
+    defaultLocale: "es",
+    locales: ["es", "en"],
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true,
+    },
+  },
 });

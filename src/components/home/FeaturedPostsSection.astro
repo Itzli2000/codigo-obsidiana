@@ -1,14 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs");
+const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs", (entry) => !entry.data.draft);
 const sortedPosts = posts.sort((a, b) => 
   new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
 );
@@ -28,10 +29,13 @@ const featuredPosts = sortedPosts.slice(0, 3);
         <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
           <figure class="h-48 bg-base-300 overflow-hidden">
             {post.data.image ? (
-              <img
+              <Image
                 src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
                 alt={post.data.title}
+                width={400}
+                height={192}
                 class="w-full h-full object-cover"
+                loading="lazy"
               />
             ) : (
               <div class="w-full h-full flex items-center justify-center text-base-content/20">

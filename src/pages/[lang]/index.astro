@@ -6,27 +6,25 @@ import FeaturedPostsSection from "../../components/home/FeaturedPostsSection.ast
 import AboutPreviewSection from "../../components/home/AboutPreviewSection.astro";
 import ConnectSection from "../../components/home/ConnectSection.astro";
 import FeaturedProjectsSection from "../../components/home/FeaturedProjectsSection.astro";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "es" } }];
+}
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-// SEO metadata
-const title = t('home.meta.title');
-const description = t('home.meta.description');
+const title = t("home.meta.title");
+const description = t("home.meta.description");
 ---
 
-<MainLayout 
-    lang={lang} 
-    title={title} 
-    description={description}
-    type="website"
->
-    <main class="flex flex-col gap-12 md:gap-16 lg:gap-20">
-        <HeroSection />
-        <AboutPreviewSection />
-        <FeaturedPostsSection />
-        <FeaturedProjectsSection />
-        <ConnectSection />
-    </main>
+<MainLayout lang={lang} title={title} description={description} type="website">
+  <main class="flex flex-col gap-12 md:gap-16 lg:gap-20">
+    <HeroSection />
+    <AboutPreviewSection />
+    <FeaturedPostsSection />
+    <FeaturedProjectsSection />
+    <ConnectSection />
+  </main>
 </MainLayout>

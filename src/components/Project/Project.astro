@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
 import { CDN, TYPE } from "../../constants/cdn";
 import { Icon } from "astro-icon/components";
 
@@ -50,10 +51,13 @@ const projects = await getCollection(
             <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
               {project.data.image && (
                 <figure class="h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
                     alt={project.data.title}
+                    width={400}
+                    height={192}
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
                 </figure>
               )}

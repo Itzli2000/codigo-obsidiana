@@ -1,0 +1,9 @@
+---
+import Project from "../../../components/Project/Project.astro";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "es" } }];
+}
+---
+
+<Project />

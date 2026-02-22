@@ -1,0 +1,25 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import type { Lang } from "../types/language";
+
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
+---
+
+<MainLayout lang={lang} title="404 - Código Obsidiana">
+  <div class="min-h-[60vh] flex flex-col items-center justify-center text-center">
+    <h1 class="text-8xl font-bold text-primary mb-4">404</h1>
+    <p class="text-2xl mb-2">
+      {lang === "es" ? "Página no encontrada" : "Page not found"}
+    </p>
+    <p class="text-base-content/60 mb-8 max-w-md">
+      {lang === "es"
+        ? "Lo sentimos, la página que buscas no existe o ha sido movida."
+        : "Sorry, the page you're looking for doesn't exist or has been moved."}
+    </p>
+    <a href={`/${lang}`} class="btn btn-primary">
+      {lang === "es" ? "Volver al inicio" : "Back to home"}
+    </a>
+  </div>
+</MainLayout>

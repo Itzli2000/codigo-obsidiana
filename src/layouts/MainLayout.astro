@@ -37,11 +37,14 @@ const siteUrl = Astro.url.origin;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
-    {
-      tags?.map((tag) => (
-        <meta name="keywords" content={tag} />
-      ))
-    }
+    {tags && tags.length > 0 && (
+      <meta name="keywords" content={tags.join(", ")} />
+    )}
+
+    <!-- Hreflang alternates for bilingual SEO -->
+    <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), siteUrl).href} />
+    <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), siteUrl).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), siteUrl).href} />
 
     <!-- Primary Meta Tags -->
     <title>{siteTitle}</title>

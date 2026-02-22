@@ -1,22 +1,26 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import type { Lang } from "../../../types/languaje";
+import type { Lang } from "../../../types/language";
 
-const allPosts = await getCollection("blogEs");
-const posts = allPosts.sort((a, b) => 
-  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
-);
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "es" } }];
+}
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
+const allPosts = await getCollection(getCollectionName("blog", lang), (entry) => !entry.data.draft);
+const posts = allPosts.sort((a, b) =>
+  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
+);
+
 function formatDate(date: Date | string): string {
   const dateObj = new Date(date);
-  // Adjust for timezone offset to ensure consistent display
   const utcDate = new Date(
     dateObj.getUTCFullYear(),
     dateObj.getUTCMonth(),
@@ -29,9 +33,16 @@ function formatDate(date: Date | string): string {
     day: "numeric",
   });
 }
+
+const title = t("blog.meta.title") !== "blog.meta.title"
+  ? t("blog.meta.title")
+  : "Blog | Ariel Itzli Molina Sanchez | Código Obsidiana";
+const description = t("blog.meta.description") !== "blog.meta.description"
+  ? t("blog.meta.description")
+  : "Blog of Ariel Molina";
 ---
 
-<MainLayout lang="es" title="Blog | Ariel Itzli Molina Sanchez | Código Obsidiana" description="Blog de Ariel Molina">
+<MainLayout lang={lang} title={title} description={description}>
   <section class="hero-section mb-16">
     <h1 class="text-5xl font-bold font-serif mb-4 text-center md:text-left">
       {t("blog.title")}
@@ -39,10 +50,7 @@ function formatDate(date: Date | string): string {
     <p
       class="text-xl text-base-content/70 max-w-2xl mb-8 text-center md:text-left"
     >
-      {
-        t("blog.subtitle") ||
-          "Thoughts, ideas, and explorations on frontend development and beyond."
-      }
+      {t("blog.subtitle")}
     </p>
   </section>
 
@@ -53,10 +61,13 @@ function formatDate(date: Date | string): string {
           <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
             {post.data.image && (
               <figure class="h-48 overflow-hidden">
-                <img
+                <Image
                   src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
                   alt={post.data.title}
+                  width={400}
+                  height={192}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
                 />
               </figure>
             )}
@@ -71,7 +82,7 @@ function formatDate(date: Date | string): string {
                 {post.data.readingTime && (
                   <span class="flex items-center gap-1">
                     <Icon name="mdi:clock" class="w-4 h-4" />
-                    {post.data.readingTime} min read
+                    {post.data.readingTime} min
                   </span>
                 )}
               </div>
@@ -104,8 +115,12 @@ function formatDate(date: Date | string): string {
           name="mdi:empty"
           class="w-16 h-16 mx-auto mb-4 text-base-content/30"
         />
-        <h2 class="text-2xl font-bold mb-2">No posts yet</h2>
-        <p class="text-base-content/70">Check back soon for new content!</p>
+        <h2 class="text-2xl font-bold mb-2">
+          {lang === "es" ? "Sin publicaciones aún" : "No posts yet"}
+        </h2>
+        <p class="text-base-content/70">
+          {lang === "es" ? "Vuelve pronto para nuevo contenido." : "Check back soon for new content!"}
+        </p>
       </div>
     )
   }

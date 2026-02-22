@@ -14,9 +14,9 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/react": "^4.3.0",
-    "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/mdx": "4.3.13",
+    "@astrojs/react": "4.4.2",
+    "@astrojs/sitemap": "3.7.0",
     "@codigo-obsidiana/design-tokens": "^0.0.8",
     "@react-three/drei": "^10.0.8",
     "@react-three/fiber": "^9.1.2",
@@ -24,7 +24,7 @@
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@types/three": "^0.176.0",
-    "astro": "5.8.0",
+    "astro": "5.17.3",
     "astro-icon": "^1.1.5",
     "daisyui": "^5.0.35",
     "react": "^19.1.0",
