@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import { CDN, TYPE } from "../constants/cdn";
 
 interface Props {
@@ -14,10 +15,12 @@ const { images, projectId, title } = Astro.props;
 <div class="columns-1 md:columns-2 lg:columns-3 gap-4">
   {images.map((image, index) => (
     <div class="break-inside-avoid mb-4">
-      <img
+      <Image
         class="w-full rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300 gallery-image"
         src={`${CDN.IMAGES}${TYPE.PROJECT}${projectId}${image}`}
         alt={`${title} - View ${index + 1}`}
+        width={600}
+        height={400}
         loading="lazy"
         data-index={index}
       />

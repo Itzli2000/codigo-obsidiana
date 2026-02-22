@@ -24,4 +24,7 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
+  image: {
+    domains: ["vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com"],
+  },
 });
