@@ -90,13 +90,21 @@
   --theme-transition-timing: ease-in-out;
 }
 
-/* Theme transition styles */
-:root {
-  * {
-    transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
-                border-color var(--theme-transition-duration) var(--theme-transition-timing),
-                box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
-  }
+/* Theme transition styles - scoped to theme-affected elements */
+body,
+.navbar,
+.card,
+.btn,
+.badge,
+.stat,
+.footer,
+section,
+nav,
+header,
+[data-theme] {
+  transition: background-color var(--theme-transition-duration) var(--theme-transition-timing),
+              border-color var(--theme-transition-duration) var(--theme-transition-timing),
+              box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
 }
 
 /* Base typography styles */

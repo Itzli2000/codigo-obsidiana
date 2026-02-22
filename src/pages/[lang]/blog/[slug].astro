@@ -1,0 +1,66 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Prose from "../../../components/prose/Prose.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
+import { CDN, TYPE } from "../../../constants/cdn";
+import type { Lang } from "../../../types/language";
+
+export async function getStaticPaths() {
+  const enPosts = await getCollection("blogEn");
+  const esPosts = await getCollection("blogEs");
+
+  const allSlugs = new Set([
+    ...enPosts.map((p) => p.id),
+    ...esPosts.map((p) => p.id),
+  ]);
+
+  return [...allSlugs].flatMap((slug) => [
+    { params: { lang: "en", slug } },
+    { params: { lang: "es", slug } },
+  ]);
+}
+
+const lang = getLangFromUrl(Astro.url) as Lang;
+const t = useTranslations(lang);
+const { slug } = Astro.params;
+
+const post = await getEntry(getCollectionName("blog", lang), slug as string);
+
+if (!post) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(post);
+---
+
+<MainLayout
+  lang={lang}
+  title={post.data.title}
+  description={post.data.description}
+  tags={post.data.tags}
+  image={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
+  type="article"
+>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "author": { "@type": "Person", "name": post.data.author },
+    "datePublished": post.data.publishDate.toISOString(),
+    "image": `${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`,
+    "inLanguage": lang,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Código Obsidiana",
+      "url": "https://www.codigo-obsidiana.dev"
+    }
+  })} />
+  <a href={`/${lang}/blog`} class="btn btn-outline btn-sm mb-5">
+    {lang === "es" ? "← Volver al blog" : "← Back to Blog"}
+  </a>
+  <Prose>
+    <Content />
+  </Prose>
+</MainLayout>

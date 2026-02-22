@@ -3,7 +3,7 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { Icon } from "astro-icon/components";
 import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher.astro";
 import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher.astro";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);

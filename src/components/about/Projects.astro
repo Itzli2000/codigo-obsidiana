@@ -1,10 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { CDN, TYPE } from "../../constants/cdn";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import SectionTitle from "./SectionTitle.astro";
-import type { Lang } from "../../types/languaje";
+import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
@@ -28,10 +29,13 @@ const projects = await getCollection(
             <div class="card bg-base-100 shadow-sm hover:shadow-md transition-shadow duration-300 flex-col">
               {project.data.image ? (
                 <figure class="w-full">
-                  <img
+                  <Image
                     src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
                     alt={project.data.title}
+                    width={384}
+                    height={216}
                     class="h-full w-full object-cover"
+                    loading="lazy"
                   />
                 </figure>
               ) : (
