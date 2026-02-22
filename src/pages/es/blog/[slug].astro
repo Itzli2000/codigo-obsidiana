@@ -38,7 +38,23 @@ const { Content } = await render(post);
   description={post.data.description}
   tags={post.data.tags}
   image={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
+  type="article"
 >
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "author": { "@type": "Person", "name": post.data.author },
+    "datePublished": post.data.publishDate.toISOString(),
+    "image": `${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`,
+    "inLanguage": lang,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Código Obsidiana",
+      "url": "https://www.codigo-obsidiana.dev"
+    }
+  })} />
   <a href={`/${lang}/blog`} class="btn btn-outline btn-sm mb-5">
     ← Volver al blog
   </a>
