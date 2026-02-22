@@ -1,3 +1,26 @@
+### 2.13.0 (2026-02-22)
+
+##### Build System / Dependencies
+
+* **deps:**  update Astro and related dependencies (c41fc7a0)
+
+##### Chores
+
+* **assets:**  update open graph image (62929d02)
+
+##### New Features
+
+*  add 404 page, implement hreflang, and add article schema to blog posts (8d45e253)
+
+##### Performance Improvements
+
+*  improve site performance with scoped CSS transitions, prefetching, and lazy hydration for canvas components (09f1550a)
+
+##### Refactors
+
+* **i18n:**  consolidate language-specific routes and content fetching into dynamic paths. (21e4ee90)
+* **image:**  migrate image tags to Astro Image component and configure image domains (f066c3e9)
+
 ### 2.12.0 (2025-07-19)
 
 ##### Refactors
