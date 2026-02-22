@@ -21,4 +21,7 @@ export default defineConfig({
   output: "static",
   trailingSlash: "never",
   site: "https://www.codigo-obsidiana.dev",
+  prefetch: {
+    prefetchAll: true,
+  },
 });
