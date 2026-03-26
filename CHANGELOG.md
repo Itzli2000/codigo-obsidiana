@@ -1,3 +1,20 @@
+# Changelog
+
+## [3.0.0] - 2026-03-26
+
+### Bug Fixes
+
+- **redirect**: replace JS-only redirect with meta refresh and hreflang SEO tags (5e21f1b)
+- **cms**: retry Strapi requests on 5xx errors during build (39ed0de)
+
+### Chores
+
+- **cms**: remove deprecated local MDX content and content.config (d612d63)
+
+### Features
+
+- **cms**: migrate content to Strapi headless CMS (024323e)
+
 ### 2.13.0 (2026-02-22)
 
 ##### Build System / Dependencies
