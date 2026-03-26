@@ -1,19 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
+import { fetchBlogPosts } from "../../lib/strapi";
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const posts = await getCollection(lang === "en" ? "blogEn" : "blogEs", (entry) => !entry.data.draft);
-const sortedPosts = posts.sort((a, b) => 
-  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
-);
-const featuredPosts = sortedPosts.slice(0, 3);
+const featuredPosts = (await fetchBlogPosts(lang, { excludeDrafts: true })).slice(0, 3);
 ---
 
 <section class="py-8 md:py-12">
@@ -28,10 +24,10 @@ const featuredPosts = sortedPosts.slice(0, 3);
       featuredPosts.map((post) => (
         <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
           <figure class="h-48 bg-base-300 overflow-hidden">
-            {post.data.image ? (
+            {post.image ? (
               <Image
-                src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
-                alt={post.data.title}
+                src={`${CDN.IMAGES}${TYPE.BLOG}${post.image}`}
+                alt={post.title}
                 width={400}
                 height={192}
                 class="w-full h-full object-cover"
@@ -44,11 +40,11 @@ const featuredPosts = sortedPosts.slice(0, 3);
             )}
           </figure>
           <div class="card-body">
-            <h3 class="card-title font-serif">{post.data.title}</h3>
-            <p class="text-base-content/80">{post.data.description}</p>
+            <h3 class="card-title font-serif">{post.title}</h3>
+            <p class="text-base-content/80">{post.description}</p>
             <div class="card-actions justify-end mt-4">
               <a
-                href={`/${lang}/blog/${post.id}`}
+                href={`/${lang}/blog/${post.slug}`}
                 class="btn btn-sm btn-primary"
               >
                 {t("home.featured.read_more")}

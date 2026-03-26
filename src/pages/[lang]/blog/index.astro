@@ -1,10 +1,10 @@
 ---
-import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { Icon } from "astro-icon/components";
-import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
+import { fetchBlogPosts } from "../../../lib/strapi";
 import type { Lang } from "../../../types/language";
 
 export function getStaticPaths() {
@@ -14,12 +14,9 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const allPosts = await getCollection(getCollectionName("blog", lang), (entry) => !entry.data.draft);
-const posts = allPosts.sort((a, b) =>
-  new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime()
-);
+const posts = await fetchBlogPosts(lang, { excludeDrafts: true });
 
-function formatDate(date: Date | string): string {
+function formatDate(date: string): string {
   const dateObj = new Date(date);
   const utcDate = new Date(
     dateObj.getUTCFullYear(),
@@ -57,13 +54,13 @@ const description = t("blog.meta.description") !== "blog.meta.description"
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
     {
       posts.map((post) => (
-        <a href={`/${lang}/blog/${post.id}`} class="card-link group">
+        <a href={`/${lang}/blog/${post.slug}`} class="card-link group">
           <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
-            {post.data.image && (
+            {post.image && (
               <figure class="h-48 overflow-hidden">
                 <Image
-                  src={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
-                  alt={post.data.title}
+                  src={`${CDN.IMAGES}${TYPE.BLOG}${post.image}`}
+                  alt={post.title}
                   width={400}
                   height={192}
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -76,26 +73,26 @@ const description = t("blog.meta.description") !== "blog.meta.description"
               <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
                 <span class="flex items-center gap-1">
                   <Icon name="mdi:calendar" class="w-4 h-4" />
-                  {formatDate(post.data.publishDate)}
+                  {formatDate(post.publishDate)}
                 </span>
 
-                {post.data.readingTime && (
+                {post.readingTime && (
                   <span class="flex items-center gap-1">
                     <Icon name="mdi:clock" class="w-4 h-4" />
-                    {post.data.readingTime} min
+                    {post.readingTime} min
                   </span>
                 )}
               </div>
 
               <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                {post.data.title}
+                {post.title}
               </h2>
 
-              <p class="text-base-content/80">{post.data.description}</p>
+              <p class="text-base-content/80">{post.description}</p>
 
               <div class="card-actions justify-end mt-4">
-                {post.data.tags &&
-                  post.data.tags
+                {post.tags &&
+                  post.tags
                     .slice(0, 2)
                     .map((tag: string) => (
                       <div class="badge badge-outline">{tag}</div>

@@ -1,21 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
+import { fetchProjects } from "../../lib/strapi";
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const projects = await getCollection(
-  lang === "en" ? "projectsEn" : "projectsEs"
-);
-const featuredProjects = projects
-  .filter((project) => project.data.showInAbout)
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
+const featuredProjects = (await fetchProjects(lang, { showInAboutOnly: true })).slice(0, 3);
 ---
 
 <section class="py-8 md:py-12">
@@ -30,10 +24,10 @@ const featuredProjects = projects
       featuredProjects.map((project) => (
         <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
           <figure class="h-48 bg-base-300 overflow-hidden">
-            {project.data.image ? (
+            {project.image ? (
               <Image
-                src={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.imageProjectPrefix}${project.data.image}`}
-                alt={project.data.title}
+                src={`${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`}
+                alt={project.title}
                 width={400}
                 height={192}
                 class="w-full h-full object-cover"
@@ -46,24 +40,24 @@ const featuredProjects = projects
             )}
           </figure>
           <div class="card-body">
-            <h3 class="card-title font-serif">{project.data.title}</h3>
-            <p class="text-base-content/80">{project.data.description}</p>
+            <h3 class="card-title font-serif">{project.title}</h3>
+            <p class="text-base-content/80">{project.description}</p>
 
             {/* Technologies badges */}
             <div class="flex flex-wrap gap-1 mt-2">
-              {project.data.technologies.slice(0, 3).map((tech) => (
+              {project.technologies.slice(0, 3).map((tech) => (
                 <span class="badge badge-sm badge-outline">{tech}</span>
               ))}
-              {project.data.technologies.length > 3 && (
+              {project.technologies.length > 3 && (
                 <span class="badge badge-sm badge-ghost">
-                  +{project.data.technologies.length - 3}
+                  +{project.technologies.length - 3}
                 </span>
               )}
             </div>
 
             <div class="card-actions justify-end mt-4">
               <a
-                href={`/${lang}/projects/${project.id}`}
+                href={`/${lang}/projects/${project.slug}`}
                 class="btn btn-sm btn-primary"
               >
                 {t("home.featured_projects.view_project")}
