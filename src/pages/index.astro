@@ -1,62 +1,34 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="dark" />
-    <title>Redirecting...</title>
-    <script>
-      function detectBrowserLanguage() {
-        const supportedLangs = ["en", "es"];
-        const browserLang = navigator.language?.split('-')[0];
-        const defaultLang = "es";
-        return supportedLangs.includes(browserLang || '') ? browserLang : defaultLang;
-      }
+---
+const siteUrl = Astro.site?.toString() || "";
+---
 
-      const lang = detectBrowserLanguage();
-      window.location.href = `/${lang}`;
-    </script>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ariel Molina - Software Engineer</title>
+    <meta name="description" content="Software engineer specializing in frontend development, design systems, and interactive web experiences." />
+
+    <meta http-equiv="refresh" content="0;url=/es" />
+    <link rel="canonical" href={`${siteUrl}es`} />
+
+    <link rel="alternate" hreflang="es" href={`${siteUrl}es`} />
+    <link rel="alternate" hreflang="en" href={`${siteUrl}en`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}es`} />
   </head>
   <body>
-    <div class="loading">
-      <div class="spinner"></div>
-      <p>Redirecting to your preferred language...</p>
-    </div>
+    <noscript>
+      <p>Redirigiendo... / Redirecting...</p>
+      <p><a href="/es">Ir al sitio en Español</a> | <a href="/en">Go to English site</a></p>
+    </noscript>
+    <script is:inline>
+      (function() {
+        var supportedLangs = ["en", "es"];
+        var browserLang = (navigator.language || "").split("-")[0];
+        var lang = supportedLangs.indexOf(browserLang) !== -1 ? browserLang : "es";
+        window.location.replace("/" + lang);
+      })();
+    </script>
   </body>
 </html>
-
-<style>
-  :root {
-    color-scheme: dark;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--color-base-100);
-    color: var(--color-base-content);
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  }
-
-  .loading {
-    text-align: center;
-  }
-
-  .spinner {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto 1rem;
-    border: 3px solid var(--color-base-200);
-    border-top-color: var(--color-accent);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-</style>
