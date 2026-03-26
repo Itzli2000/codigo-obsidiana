@@ -60,11 +60,15 @@ function getToken(): string {
   return token;
 }
 
-async function strapiGet<T>(path: string): Promise<T> {
+async function strapiGet<T>(path: string, attempt = 1): Promise<T> {
   const res = await fetch(`${getStrapiURL()}/api${path}`, {
     headers: { Authorization: `Bearer ${getToken()}` },
   });
   if (!res.ok) {
+    if (res.status >= 500 && attempt < 4) {
+      await new Promise((r) => setTimeout(r, attempt * 2000));
+      return strapiGet<T>(path, attempt + 1);
+    }
     throw new Error(`Strapi GET ${path} → ${res.status} ${res.statusText}`);
   }
   return res.json() as Promise<T>;
