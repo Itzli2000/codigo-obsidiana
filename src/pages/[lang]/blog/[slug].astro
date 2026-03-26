@@ -1,18 +1,21 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
+import { marked } from "marked";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
-import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
+import { fetchBlogPosts, fetchBlogPost } from "../../../lib/strapi";
 import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
-  const enPosts = await getCollection("blogEn");
-  const esPosts = await getCollection("blogEs");
+  const [enPosts, esPosts] = await Promise.all([
+    fetchBlogPosts("en"),
+    fetchBlogPosts("es"),
+  ]);
 
   const allSlugs = new Set([
-    ...enPosts.map((p) => p.id),
-    ...esPosts.map((p) => p.id),
+    ...enPosts.map((p) => p.slug),
+    ...esPosts.map((p) => p.slug),
   ]);
 
   return [...allSlugs].flatMap((slug) => [
@@ -25,31 +28,31 @@ const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 const { slug } = Astro.params;
 
-const post = await getEntry(getCollectionName("blog", lang), slug as string);
+const post = await fetchBlogPost(lang, slug as string);
 
 if (!post) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await render(post);
+const htmlBody = await marked(post.body);
 ---
 
 <MainLayout
   lang={lang}
-  title={post.data.title}
-  description={post.data.description}
-  tags={post.data.tags}
-  image={`${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`}
+  title={post.title}
+  description={post.description}
+  tags={post.tags}
+  image={`${CDN.IMAGES}${TYPE.BLOG}${post.image}`}
   type="article"
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": post.data.title,
-    "description": post.data.description,
-    "author": { "@type": "Person", "name": post.data.author },
-    "datePublished": post.data.publishDate.toISOString(),
-    "image": `${CDN.IMAGES}${TYPE.BLOG}${post.data.image}`,
+    "headline": post.title,
+    "description": post.description,
+    "author": { "@type": "Person", "name": post.author },
+    "datePublished": post.publishDate,
+    "image": `${CDN.IMAGES}${TYPE.BLOG}${post.image}`,
     "inLanguage": lang,
     "publisher": {
       "@type": "Organization",
@@ -61,6 +64,6 @@ const { Content } = await render(post);
     {lang === "es" ? "← Volver al blog" : "← Back to Blog"}
   </a>
   <Prose>
-    <Content />
+    <Fragment set:html={htmlBody} />
   </Prose>
 </MainLayout>

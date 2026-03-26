@@ -1,18 +1,21 @@
 ---
-import { getCollection, getEntry, render } from "astro:content";
+import { marked } from "marked";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import Prose from "../../../components/prose/Prose.astro";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { getLangFromUrl, useTranslations, getCollectionName } from "../../../i18n/utils";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { fetchProjects, fetchProject } from "../../../lib/strapi";
 import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
-  const enProjects = await getCollection("projectsEn");
-  const esProjects = await getCollection("projectsEs");
+  const [enProjects, esProjects] = await Promise.all([
+    fetchProjects("en"),
+    fetchProjects("es"),
+  ]);
 
   const allSlugs = new Set([
-    ...enProjects.map((p) => p.id),
-    ...esProjects.map((p) => p.id),
+    ...enProjects.map((p) => p.slug),
+    ...esProjects.map((p) => p.slug),
   ]);
 
   return [...allSlugs].flatMap((slug) => [
@@ -25,13 +28,13 @@ const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 const { slug } = Astro.params;
 
-const project = await getEntry(getCollectionName("projects", lang), slug as string);
+const project = await fetchProject(lang, slug as string);
 
 if (!project) {
   return Astro.redirect("/404");
 }
 
-const { Content } = await render(project);
+const htmlBody = await marked(project.body);
 
 const backToProjects = lang === "es" ? "← Volver a Proyectos" : "← Back to Projects";
 const backToAbout = lang === "es" ? "← Volver a Sobre mí" : "← Back to About";
@@ -39,17 +42,17 @@ const backToAbout = lang === "es" ? "← Volver a Sobre mí" : "← Back to Abou
 
 <MainLayout
   lang={lang}
-  title={project.data.title}
-  description={project.data.description}
-  tags={project.data.tags}
-  image={`${CDN.IMAGES}${TYPE.PROJECT}${project.data.image}`}
+  title={project.title}
+  description={project.description}
+  tags={project.tags}
+  image={`${CDN.IMAGES}${TYPE.PROJECT}${project.image}`}
 >
   <a href={`/${lang}/projects`} class="btn btn-outline btn-info btn-sm mb-5" id="back-btn">
     {backToProjects}
   </a>
 
   <Prose>
-    <Content />
+    <Fragment set:html={htmlBody} />
   </Prose>
 </MainLayout>
 

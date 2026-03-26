@@ -27,6 +27,7 @@
     "astro": "5.17.3",
     "astro-icon": "^1.1.5",
     "daisyui": "^5.0.35",
+    "marked": "^17.0.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.56.4",
@@ -34,12 +35,15 @@
     "three": "^0.176.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.8",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/typography": "^0.5.16",
     "@types/generate-changelog": "^1.8.3",
+    "@types/marked": "^6.0.0",
     "@types/shelljs": "^0.8.16",
     "generate-changelog": "^1.8.0",
     "husky": "^9.1.7",
-    "shelljs": "^0.10.0"
+    "shelljs": "^0.10.0",
+    "typescript": "^6.0.2"
   }
 }
