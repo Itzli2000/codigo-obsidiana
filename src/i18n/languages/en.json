@@ -67,15 +67,15 @@
   },
   "about": {
     "title": "About Me",
-    "role": "Frontend Tech Lead & Architect",
+    "role": "Staff Frontend Engineer",
     "tagline": "Crafting scalable digital platforms with the resilience of obsidian and the precision of code.",
-    "description": "I help teams ship faster by designing frontend infrastructures that are modular, maintainable, and built for scale.",
+    "description": "I lead frontend squads and architect micro-frontend platforms that scale — currently powering $100M+ USD in monthly transaction volume at EFEX.",
     "summary": {
       "title": "Professional Journey",
       "content": [
-        "I'm a Frontend Tech Lead and Architect with over 8 years of experience building modular and scalable UI systems. My work focuses on frontend architecture, design systems, and developer experience (DX).",
-        "At EFEX, I lead the frontend infrastructure, where I architect microfrontend-based platforms using Nx, React, and internal tools I've developed for release automation, quality control, and design token management.",
-        "My passion is crafting consistent, reusable experiences through thoughtful code, clear structure, and strategic componentization."
+        "I'm a Staff Frontend Engineer with 9+ years of experience building modular, scalable UI platforms for fintech and enterprise environments. My work spans frontend architecture, design systems, and developer experience (DX).",
+        "At EFEX, I lead the Frontend Squad and own the technical transformation from monolithic to micro-frontend architecture using Webpack Module Federation and Nx — growing the platform from $25M to $100M+ USD in monthly transaction volume and reducing time-to-market by 70%. I design multi-package design systems (MUI + Style Dictionary) and build CI/CD automation tooling.",
+        "My passion is building autonomous systems that empower teams — not just writing good code."
       ]
     },
     "projects": {
@@ -86,9 +86,9 @@
     },
     "education": {
       "title": "Education",
-      "degree": "Computer Science",
-      "period": "2010 — 2014",
-      "description": "Focused on software engineering, web architecture, and UI development."
+      "degree": "Computer Systems Engineer",
+      "period": "2022 — 2025",
+      "description": "Universidad Latinoamericana (ULA), Mexico City. Also completed Computer Systems Engineering coursework at Escuela Superior de Cómputo (ESCOM – IPN)."
     }
   },
   "contact": {

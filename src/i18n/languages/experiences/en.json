@@ -1,110 +1,126 @@
 {
   "experiences": [
     {
-      "role": "Frontend Tech Lead",
+      "role": "Staff Frontend Engineer",
       "company": "EFEX",
-      "period": "2025 — Present",
-      "description": "Lead frontend architecture, design systems, and developer tooling at EFEX. Focused on scalability, code reuse, and engineering best practices.",
+      "period": "Jan 2026 — Present",
+      "description": "Lead the Frontend Squad and own the technical transformation from monolithic to micro-frontend architecture, supporting $100M+ USD in monthly transaction volume.",
+      "technologies": ["React", "TypeScript", "Webpack Module Federation", "Nx", "Material UI", "Style Dictionary", "Zustand", "GitHub Actions"],
+      "achievements": [
+        "Architected and led migration to micro-frontends using Webpack Module Federation and Nx, reducing time-to-market by 70%",
+        "Designed and implemented EFEX's multi-package Design System powered by MUI and Style Dictionary, establishing design tokens and component libraries across platforms",
+        "Built Mock Service infrastructure that decouples frontend demos from backend dependencies, eliminating demo instability for sales presentations",
+        "Established technical roadmap to scale frontend team from 3 to 8+ engineers, including hiring strategy, onboarding systems, and architectural guidelines",
+        "Defined coding standards, architectural patterns (adapter/repository), and review protocols adopted across all frontend projects",
+        "Created CI/CD automation tools using custom CLIs and GitHub Actions for production releases, branching, semantic versioning, and changelog generation"
+      ]
+    },
+    {
+      "role": "Frontend Tech Lead & Architect",
+      "company": "EFEX",
+      "period": "Jan 2025 — Dec 2025",
+      "description": "Architected the microfrontend-based platform and led frontend infrastructure, design systems, and developer tooling at EFEX.",
       "technologies": ["React", "TypeScript", "Nx", "Module Federation", "Material UI", "Storybook", "Zustand", "Vite"],
       "achievements": [
         "Architected and standardized the entire frontend infrastructure using Nx and Module Federation",
         "Built internal libraries for design tokens, theming, components, HTTP handling, and error management",
         "Developed an internal CLI to automate changelogs, QA, releases, and branching workflows",
-        "Led cross-team architecture decisions, documentation efforts, and code reviews"
+        "Led cross-team architecture decisions, documentation efforts, and code reviews",
+        "Introduced Storybook, Vitest, and GitHub Actions for improved testing and DX"
       ]
     },
     {
-      "role": "Senior Frontend Engineer",
+      "role": "Senior Frontend Developer",
       "company": "EFEX",
-      "period": "2023 — 2025",
+      "period": "Jan 2023 — Dec 2024",
       "description": "Developed and maintained scalable interfaces and internal tooling across EFEX platforms. Focused on UI quality, reusable code, and developer efficiency.",
       "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
       "achievements": [
         "Helped build EFEX's shared component library from scratch",
-        "Collaborated with cross-functional teams to deliver robust and accessible user experiences",
+        "Contributed to the redesign and optimization of major application flows including payments, onboarding, and user management",
+        "Implemented role-based access controls and views for user management",
         "Laid the groundwork for internal tools that evolved into company-wide CLI solutions"
       ]
     },
     {
       "role": "Senior Frontend Engineer",
-      "company": "Branch",
-      "period": "2022 — 2024",
+      "company": "Branch.io",
+      "period": "Nov 2022 — Sep 2024",
       "description": "Contributed to two frontend verticals (Advertiser Dashboard and Customer Platform) under a shared architecture. Focused on modularity, scalability, and UX consistency.",
       "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
       "achievements": [
-        "Built a visual analytics dashboard with complex data visualizations",
+        "Built a visual analytics dashboard with complex data visualizations for advertisers",
         "Developed role-based management views and improved onboarding experiences",
         "Delivered reusable components and frontend utilities across teams",
-        "Aligned technical priorities with product and business needs"
+        "Acted as liaison between product and engineering groups to align technical priorities with business needs"
       ]
     },
     {
-      "role": "Frontend Lead",
-      "company": "Globant (American Century Investments)",
-      "period": "2021 — 2022",
+      "role": "Tech Lead / Senior Frontend Developer",
+      "company": "Globant — American Century Investments",
+      "period": "Feb 2022 — Nov 2022",
       "description": "Led frontend development for enterprise-grade financial applications, building from scratch and supporting cross-team design system adoption.",
       "technologies": ["React", "JavaScript", "Redux", "Material UI", "SASS", "Next.js"],
       "achievements": [
-        "Built a product from scratch with REST API integration and dynamic views",
-        "Designed and maintained a company-wide design system",
-        "Created a marketplace platform with role-based search and filters",
-        "Supported other teams in adoption of the design system"
-      ]
-    },
-    {
-      "role": "Chief UX Officer / Frontend Developer",
-      "company": "Minds With Purpose Ltd",
-      "period": "2019 — 2022",
-      "description": "Led UX and frontend implementation for educational and social impact platforms, with a focus on accessibility, inclusive design, and performance.",
-      "technologies": ["React", "SASS", "BEM", "Stripe", "OpenTok"],
-      "achievements": [
-        "Built responsive SPAs with complex onboarding and search filters",
-        "Integrated real-time video chat and Stripe payments",
-        "Designed admin panels and control dashboards",
-        "Improved UX through usability audits and enhancements"
+        "Developed and implemented a complete product from scratch, integrating backend via REST API",
+        "Created a marketplace to unify products, services, and documents with role-based search and filter capabilities",
+        "Developed and managed the design system project, supporting customer and development teams",
+        "Built a project to centralize cross-departmental information, improving accessibility for team members"
       ]
     },
     {
       "role": "Frontend Developer",
-      "company": "RAO File Viewer",
-      "period": "2020 — 2021",
-      "description": "Built a secure file viewer application with advanced editing and encryption features.",
-      "technologies": ["Angular", "TypeScript", "SASS", "RxJS", "cryptoJS"],
+      "company": "Globant — American Century Investments",
+      "period": "Mar 2020 — Feb 2022",
+      "description": "Developed a full product from scratch with encryption and sensitive data handling for financial enterprise clients.",
+      "technologies": ["Angular", "TypeScript", "SASS", "RxJS", "CryptoJS"],
       "achievements": [
-        "Implemented encrypted login and file decryption workflows",
-        "Enabled in-view editing with zoom, rotation, and scaling",
-        "Developed a custom calendar interface for file filtering"
+        "Developed a complete product from scratch with encryption/decryption of sensitive data using CryptoJS",
+        "Built application with encrypted login, in-view file edition (rotate, scale, zoom), and calendar functionality",
+        "Provided support for pages built with Next.js"
       ]
     },
     {
-      "role": "Frontend Lead",
-      "company": "ATOMS Ecommerce",
-      "period": "2019 — 2020",
+      "role": "Chief User Experience Officer",
+      "company": "Minds With Purpose Ltd",
+      "period": "Mar 2021 — Aug 2022",
+      "description": "Led UX strategy and frontend architecture decisions for the platform, overseeing the complete user experience from onboarding to service delivery.",
+      "technologies": ["React", "SASS", "BEM", "Stripe"],
+      "achievements": [
+        "Led UX strategy and made corrections and recommendations to improve UX flow across the entire product",
+        "Created an alternate control panel for administrators",
+        "Managed payment processes using Stripe"
+      ]
+    },
+    {
+      "role": "Web Frontend Developer",
+      "company": "Minds With Purpose Ltd",
+      "period": "Sep 2019 — Mar 2021",
+      "description": "Developed an application from scratch for expert-client interactions, with complex onboarding flows, search, and real-time video communication.",
+      "technologies": ["React", "SASS", "BEM", "Stripe", "OpenTok"],
+      "achievements": [
+        "Built responsive SPAs with complex onboarding flows for multiple user types",
+        "Implemented complex search filters and managed service requests, acceptances, rejections, and reschedules",
+        "Integrated real-time video chat functionality using OpenTok with date/time controls"
+      ]
+    },
+    {
+      "role": "Tech Lead / Senior Front End Developer",
+      "company": "Atoms eCommerce",
+      "period": "May 2019 — Mar 2020",
       "description": "Led frontend efforts for multiple e-commerce stores, implementing scalable workflows and project templates.",
       "technologies": ["React", "Liquid", "SASS", "Bootstrap", "VTEX", "Shopify"],
       "achievements": [
-        "Created Git-based standards for team collaboration and repo management",
-        "Built custom storefronts tailored to client needs",
-        "Fixed critical bugs and enhanced store performance"
+        "Established standards for project templating and Git workflows including commit structure and naming conventions",
+        "Led development of Shopify projects from scratch, tailoring each store to client-specific requirements",
+        "Fixed and developed missing functionalities in VTEX-based stores"
       ]
     },
     {
-      "role": "Frontend Developer",
-      "company": "ZERMAT USA",
-      "period": "2018 — 2020",
-      "description": "Supported the migration and feature development of internal platforms for sellers.",
-      "technologies": ["React", "AngularJS"],
-      "achievements": [
-        "Migrated legacy systems from AngularJS to React",
-        "Built internal microsites for business operations",
-        "Improved performance and usability of seller platforms"
-      ]
-    },
-    {
-      "role": "Frontend Lead / Developer",
+      "role": "Development Manager & Frontend Developer",
       "company": "Digimundo Technologies",
-      "period": "2016 — 2018",
-      "description": "Delivered custom enterprise web solutions based on client requirements, transitioning from developer to team lead.",
+      "period": "Nov 2016 — Feb 2018",
+      "description": "Early career role managing development workflows and building client-facing web projects.",
       "technologies": ["HTML", "CSS", "JavaScript"],
       "achievements": [
         "Led project planning and client communication for new software initiatives",
