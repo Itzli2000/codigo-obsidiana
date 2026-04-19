@@ -1,0 +1,164 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.props;
+
+const stackEs = [
+  {
+    category: "Arquitectura",
+    items: ["Micro Frontends", "Module Federation", "Nx Monorepo", "Turborepo"],
+  },
+  {
+    category: "Frontend",
+    items: ["React 19", "TypeScript", "Next", "Astro", "Vite"],
+  },
+  {
+    category: "Design System",
+    items: ["MUI", "Style Dictionary", "Tokens", "Storybook", "Figma"],
+  },
+  {
+    category: "DX / Tooling",
+    items: ["GitHub Actions", "Conventional Commits", "Changesets", "Playwright"],
+  },
+];
+
+const stackEn = [
+  {
+    category: "Architecture",
+    items: ["Micro Frontends", "Module Federation", "Nx Monorepo", "Turborepo"],
+  },
+  {
+    category: "Frontend",
+    items: ["React 19", "TypeScript", "Next", "Astro", "Vite"],
+  },
+  {
+    category: "Design System",
+    items: ["MUI", "Style Dictionary", "Tokens", "Storybook", "Figma"],
+  },
+  {
+    category: "DX / Tooling",
+    items: ["GitHub Actions", "Conventional Commits", "Changesets", "Playwright"],
+  },
+];
+
+const stack = lang === "es" ? stackEs : stackEn;
+---
+
+<section class="stack-section">
+  <div class="stack-inner">
+    <div class="stack-header">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        {lang === "es" ? "03 · Stack" : "03 · Stack"}
+      </div>
+      <h2 class="stack-title">
+        {lang === "es"
+          ? <>{`Herramientas de `}<em>{`trabajo`}</em></>
+          : <>{`Tools of the `}<em>{`trade`}</em></>}
+      </h2>
+    </div>
+
+    <div class="stack-grid">
+      {stack.map((col) => (
+        <div class="stack-cell">
+          <div class="stack-category">{col.category}</div>
+          <div class="stack-items">
+            {col.items.map((item, i) => (
+              <>
+                <span class="stack-item">{item}</span>
+                {i < col.items.length - 1 && (
+                  <span class="stack-sep">·</span>
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stack-section {
+    padding: 100px 48px;
+  }
+
+  .stack-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stack-header {
+    margin-bottom: 60px;
+  }
+
+  .stack-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-base-content);
+  }
+
+  .stack-title em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* 2×2 grid with 2px gap (border trick) */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--color-base-300);
+  }
+
+  .stack-cell {
+    background: var(--color-base-100);
+    padding: 32px;
+  }
+
+  .stack-category {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .stack-items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0;
+  }
+
+  .stack-item {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--color-base-content);
+    opacity: 0.85;
+  }
+
+  .stack-sep {
+    color: var(--color-base-content);
+    opacity: 0.3;
+    margin: 0 8px;
+    font-family: var(--font-body);
+    font-style: normal;
+  }
+
+  @media (max-width: 700px) {
+    .stack-section {
+      padding: 60px 24px;
+    }
+
+    .stack-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

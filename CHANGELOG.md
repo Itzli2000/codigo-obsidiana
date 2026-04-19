@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.1.0] - 2026-04-07
+
+### Features
+
+- **about**: update profile to Staff Frontend Engineer with latest CV data (644b6e1)
+- **cms**: migrate content to Strapi headless CMS (024323e)
+
+### Chores
+
+- **release**: codigo-obsidiana@3.0.0 (9b11c91)
+- **cms**: remove deprecated local MDX content and content.config (d612d63)
+
+### Bug Fixes
+
+- **redirect**: replace JS-only redirect with meta refresh and hreflang SEO tags (5e21f1b)
+- **cms**: retry Strapi requests on 5xx errors during build (39ed0de)
+
+
 ## [3.0.0] - 2026-03-26
 
 ### Bug Fixes

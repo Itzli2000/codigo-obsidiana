@@ -1,79 +1,248 @@
 ---
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { CDN, TYPE } from "../../constants/cdn";
 import { fetchProjects } from "../../lib/strapi";
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const featuredProjects = (await fetchProjects(lang, { showInAboutOnly: true })).slice(0, 3);
+const allProjects = await fetchProjects(lang, { showInAboutOnly: true });
+const featuredProjects = allProjects.slice(0, 4);
+
+function formatYear(date: string): string {
+  return new Date(date).getFullYear().toString();
+}
 ---
 
-<section class="py-8 md:py-12">
-  <h2
-    class="font-serif text-2xl md:text-3xl font-bold mb-8 border-b border-base-300 pb-4"
-  >
-    {t("home.featured_projects.title")}
-  </h2>
+<section class="projects-section">
+  <div class="projects-inner">
+    <!-- Header -->
+    <div class="projects-header">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        {lang === 'es' ? 'Trabajo selecto' : 'Selected work'}
+      </div>
+      <h2 class="projects-title">
+        {lang === 'es'
+          ? <>{`Proyectos `}<em>{`destacados`}</em></>
+          : <>{`Featured `}<em>{`projects`}</em></>}
+      </h2>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {
-      featuredProjects.map((project) => (
-        <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-          <figure class="h-48 bg-base-300 overflow-hidden">
-            {project.image ? (
-              <Image
-                src={`${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`}
-                alt={project.title}
-                width={400}
-                height={192}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div class="w-full h-full flex items-center justify-center text-base-content/20">
-                <Icon name="mdi:folder-outline" class="w-16 h-16" />
-              </div>
+    <!-- Grid -->
+    {featuredProjects.length > 0 ? (
+      <div class="projects-grid">
+        {featuredProjects.map((project, i) => (
+          <a href={`/${lang}/projects/${project.slug}`} class="project-card">
+            <div class="project-card-top">
+              <span class="project-counter">
+                {String(i + 1).padStart(2, '0')} / {String(featuredProjects.length).padStart(2, '0')}
+              </span>
+              <span class="project-year">
+                {project.publishDate ? formatYear(project.publishDate) : '—'}
+              </span>
+            </div>
+            {project.technologies && project.technologies[0] && (
+              <div class="project-kind">{project.technologies[0]}</div>
             )}
-          </figure>
-          <div class="card-body">
-            <h3 class="card-title font-serif">{project.title}</h3>
-            <p class="text-base-content/80">{project.description}</p>
-
-            {/* Technologies badges */}
-            <div class="flex flex-wrap gap-1 mt-2">
-              {project.technologies.slice(0, 3).map((tech) => (
-                <span class="badge badge-sm badge-outline">{tech}</span>
-              ))}
-              {project.technologies.length > 3 && (
-                <span class="badge badge-sm badge-ghost">
-                  +{project.technologies.length - 3}
-                </span>
-              )}
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-desc">{project.description}</p>
+            <div class="project-footer">
+              <div class="project-tech">
+                {project.technologies.slice(0, 3).map((tech: string) => (
+                  <span class="tech-badge">{tech}</span>
+                ))}
+              </div>
+              <span class="project-cta">
+                {lang === 'es' ? 'Ver caso →' : 'View case →'}
+              </span>
             </div>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p style="opacity: 0.4; font-family: var(--font-mono); font-size: 13px; padding: 40px 0;">
+        {lang === 'es' ? 'Próximamente...' : 'Coming soon...'}
+      </p>
+    )}
 
-            <div class="card-actions justify-end mt-4">
-              <a
-                href={`/${lang}/projects/${project.slug}`}
-                class="btn btn-sm btn-primary"
-              >
-                {t("home.featured_projects.view_project")}
-              </a>
-            </div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
-
-  <div class="flex justify-center mt-8">
-    <a href={`/${lang}/projects`} class="btn btn-outline">
-      {t("home.featured_projects.view_all")}
-      <Icon name="mdi:arrow-right" class="w-5 h-5" />
-    </a>
+    <!-- View all -->
+    <div class="projects-cta-row">
+      <a href={`/${lang}/projects`} class="btn-editorial-ghost-sm">
+        {lang === 'es' ? 'Ver todos los proyectos →' : 'View all projects →'}
+      </a>
+    </div>
   </div>
 </section>
 
+<style>
+  .projects-section {
+    padding: 100px 48px;
+    background: var(--color-base-200);
+  }
+
+  .projects-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    margin-bottom: 60px;
+  }
+
+  .projects-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-base-content);
+  }
+
+  .projects-title em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* 2-col grid with 2px gap (border trick) */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--color-base-300);
+    margin-bottom: 40px;
+  }
+
+  .project-card {
+    background: var(--color-base-200);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 300px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    background: var(--color-base-100);
+  }
+
+  .project-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .project-counter {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-accent);
+    letter-spacing: 0.1em;
+  }
+
+  .project-year {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.35;
+    letter-spacing: 0.08em;
+  }
+
+  .project-kind {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-base-content);
+    line-height: 1.05;
+  }
+
+  .project-desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-base-content);
+    opacity: 0.65;
+    margin: 0;
+    flex: 1;
+  }
+
+  .project-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-base-300);
+    margin-top: auto;
+  }
+
+  .project-tech {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tech-badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 999px;
+    color: var(--color-base-content);
+    opacity: 0.6;
+  }
+
+  .project-cta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-base-content);
+    opacity: 0.5;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .projects-cta-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-editorial-ghost-sm {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 10px 20px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 4px;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: all 0.15s;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-editorial-ghost-sm:hover {
+    opacity: 1;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 700px) {
+    .projects-section {
+      padding: 60px 24px;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

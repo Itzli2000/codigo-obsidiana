@@ -2,6 +2,8 @@
 import { useTranslations } from "../i18n/utils";
 import '../styles/global.css';
 import Navigation from '../components/Navigation/Navigation.astro';
+import { NETWORK } from '../constants/network';
+import pkg from '../../package.json';
 
 interface Props {
   title?: string;
@@ -13,11 +15,11 @@ interface Props {
   tags?: string[];
 }
 
-const { 
-  title = "Código Obsidiana", 
-  lang, 
-  description, 
-  image = "/assets/og-image.jpg", 
+const {
+  title = "Código Obsidiana",
+  lang,
+  description,
+  image = "/assets/og-image.jpg",
   canonical = Astro.url.href,
   type = "website",
   tags
@@ -27,6 +29,19 @@ const t = useTranslations(lang as "en" | "es");
 const siteDescription = description || t("meta.description");
 const siteTitle = title || t("title");
 const siteUrl = Astro.url.origin;
+
+const year = new Date().getFullYear();
+
+const exploreLinks = [
+  { label: lang === 'es' ? 'Sobre mí' : 'About', href: `/${lang}/about` },
+  { label: lang === 'es' ? 'Blog' : 'Blog', href: `/${lang}/blog` },
+  { label: lang === 'es' ? 'Proyectos' : 'Projects', href: `/${lang}/projects` },
+  { label: lang === 'es' ? 'Contacto' : 'Contact', href: `/${lang}/contact` },
+];
+
+const topicsEs = ['Micro frontends', 'Design systems', 'Developer experience', 'Arquitectura'];
+const topicsEn = ['Micro frontends', 'Design systems', 'Developer experience', 'Architecture'];
+const topics = lang === 'es' ? topicsEs : topicsEn;
 ---
 
 <!DOCTYPE html>
@@ -35,25 +50,21 @@ const siteUrl = Astro.url.origin;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     {tags && tags.length > 0 && (
       <meta name="keywords" content={tags.join(", ")} />
     )}
 
-    <!-- Hreflang alternates for bilingual SEO -->
     <link rel="alternate" hreflang="en" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/en'), siteUrl).href} />
     <link rel="alternate" hreflang="es" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), siteUrl).href} />
     <link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(/^\/(en|es)/, '/es'), siteUrl).href} />
 
-    <!-- Primary Meta Tags -->
     <title>{siteTitle}</title>
     <meta name="title" content={siteTitle} />
     <meta name="description" content={siteDescription} />
     <link rel="canonical" href={canonical} />
 
-    
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content={type} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:title" content={siteTitle} />
@@ -61,23 +72,70 @@ const siteUrl = Astro.url.origin;
     <meta property="og:image" content={new URL(image, siteUrl).href} />
     <meta property="og:locale" content={lang === "en" ? "en_US" : "es_ES"} />
     <meta property="og:site_name" content="Código Obsidiana" />
-    
-    <!-- Twitter -->
+
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url.href} />
     <meta property="twitter:title" content={siteTitle} />
     <meta property="twitter:description" content={siteDescription} />
     <meta property="twitter:image" content={new URL(image, siteUrl).href} />
   </head>
-  <body class="min-h-screen text-base-content bg-base-200">
+  <body class="min-h-screen text-base-content bg-base-100">
     <header>
       <Navigation lang={lang} />
     </header>
-    <main class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 md:px-12 md:py-12 lg:px-24">
+    <main class="min-h-screen">
       <slot />
     </main>
-    <footer class="text-center py-8">
-      <p>&copy; {new Date().getFullYear()} - {t("footer.rights")}</p>
+
+    <!-- Editorial 4-column footer -->
+    <footer class="site-footer border-t border-base-300">
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="brand-name">Código Obsidiana</div>
+          <p class="brand-tagline">
+            {lang === 'es'
+              ? 'Notas, proyectos y arquitectura frontend por Ariel Molina. Construido con Astro, escrito con intención.'
+              : 'Notes, projects and frontend architecture by Ariel Molina. Built with Astro, written with intention.'}
+          </p>
+          <div class="footer-meta">v{pkg.version} · {year}</div>
+        </div>
+
+        <!-- Explore -->
+        <div>
+          <h5 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h5>
+          <ul class="footer-list">
+            {exploreLinks.map(link => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Topics -->
+        <div>
+          <h5 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h5>
+          <ul class="footer-list">
+            {topics.map(topic => (
+              <li><a href={`/${lang}/blog`}>{topic}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <h5 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h5>
+          <ul class="footer-list">
+            <li><a href={NETWORK.GITHUB} target="_blank" rel="noopener">GitHub ↗</a></li>
+            <li><a href={NETWORK.LINKEDIN} target="_blank" rel="noopener">LinkedIn ↗</a></li>
+            <li><a href={`/${lang}/blog`}>RSS ↗</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bar border-t border-base-300">
+        <span>© {year} Ariel Itzli Molina Sánchez</span>
+        <span>{lang === 'es' ? 'Hecho en CDMX · 19.4326°N 99.1332°W' : 'Made in CDMX · 19.4326°N 99.1332°W'}</span>
+      </div>
     </footer>
   </body>
 </html>
@@ -86,5 +144,109 @@ const siteUrl = Astro.url.origin;
   body {
     margin: 0;
     min-height: 100vh;
+  }
+
+  /* Footer layout */
+  .site-footer {
+    background: var(--color-base-100);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 60px 48px 40px;
+    font-size: 13px;
+    color: var(--color-base-content);
+    opacity: 0.8;
+    max-width: 1296px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      padding: 40px 24px 32px;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 540px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-brand .brand-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--color-base-content);
+    opacity: 1;
+  }
+
+  .footer-brand .brand-tagline {
+    margin: 0 0 16px;
+    max-width: 320px;
+    line-height: 1.6;
+    color: var(--color-base-content);
+    opacity: 0.7;
+  }
+
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    opacity: 0.4;
+  }
+
+  .footer-heading {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    margin: 0 0 14px;
+  }
+
+  .footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 8px;
+  }
+
+  .footer-list a {
+    color: inherit;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.15s, color 0.15s;
+  }
+
+  .footer-list a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .footer-bar {
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    opacity: 0.4;
+    max-width: 1296px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 540px) {
+    .footer-bar {
+      padding: 14px 24px;
+      flex-direction: column;
+      gap: 4px;
+    }
   }
 </style>
