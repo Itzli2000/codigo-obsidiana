@@ -1,0 +1,93 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "es" } = Astro.props;
+---
+
+<section class="edu-section">
+  <div class="edu-inner">
+    <div class="edu-label">
+      <div class="eyebrow">
+        {lang === "es" ? "04 · Educación" : "04 · Education"}
+      </div>
+    </div>
+
+    <div class="edu-content">
+      <h3 class="edu-degree">
+        {lang === "es"
+          ? "Ingeniería en Sistemas Computacionales"
+          : "Computer Systems Engineering"}
+      </h3>
+      <div class="edu-meta">
+        {lang === "es"
+          ? "2022 — 2025 · Universidad Latinoamericana (ULA), CDMX"
+          : "2022 — 2025 · Universidad Latinoamericana (ULA), CDMX"}
+      </div>
+      <p class="edu-desc">
+        {lang === "es"
+          ? "También cursé Ingeniería en Sistemas Computacionales en la Escuela Superior de Cómputo (ESCOM — IPN)."
+          : "Also studied Computer Systems Engineering at Escuela Superior de Cómputo (ESCOM — IPN)."}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .edu-section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--color-base-300);
+  }
+
+  .edu-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .edu-label {
+    padding-top: 4px;
+  }
+
+  .edu-degree {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+    color: var(--color-base-content);
+  }
+
+  .edu-meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .edu-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    margin: 0;
+    max-width: 580px;
+  }
+
+  @media (max-width: 900px) {
+    .edu-section {
+      padding: 60px 24px;
+    }
+
+    .edu-inner {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>

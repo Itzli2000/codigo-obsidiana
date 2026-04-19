@@ -1,65 +1,257 @@
 ---
-import { Icon } from "astro-icon/components";
-import SectionNav from "../Navigation/SectionNav.astro";
 import { NETWORK } from "../../constants/network";
 
 interface Props {
   role: string;
   tagline: string;
   description: string;
+  lang?: string;
 }
 
-const { role, tagline, description } = Astro.props;
+const { role, tagline, description, lang = "es" } = Astro.props;
 ---
 
-<div class="space-y-4 md:space-y-6 lg:space-y-7">
-  <h1
-    class="text-base-content/80 font-bold text-2xl md:text-3xl lg:text-4xl"
-  >
-    Ariel Itzli Molina Sánchez
-  </h1>
-  <p
-    class="text-xl md:text-2xl font-bold text-base-content sr-only"
-  >
-    {role}
-  </p>
-  <h2
-    class="text-base md:text-lg lg:text-xl text-base-content/80 leading-relaxed"
-  >
-    {tagline}
-  </h2>
-  <p class="leading-relaxed text-sm md:text-base">
-    {description}
-  </p>
+<section class="profile-hero">
+  <div class="profile-inner">
+    <!-- Left: copy -->
+    <div class="profile-copy">
+      <div class="eyebrow" style="margin-bottom: 24px;">
+        {lang === "es" ? "Sobre mí" : "About me"}
+      </div>
 
-  <div class="pb-4 pt-1 hidden lg:block">
-    <SectionNav orientation="vertical" className="w-full" />
-  </div>
+      <h1 class="profile-name">
+        Ariel Itzli
+        <em class="name-accent">Molina</em>
+        Sánchez
+      </h1>
 
-  <div class="flex flex-wrap justify-center lg:justify-start gap-3 md:gap-4">
-    <a
-      href={NETWORK.GITHUB}
-      target="_blank"
-      class="btn btn-ghost btn-circle btn-sm md:btn-md"
-      aria-label="GitHub Profile"
-    >
-      <Icon name="mdi:github" class="h-[80%] w-auto" />
-    </a>
-    <a
-      href={NETWORK.LINKEDIN}
-      target="_blank"
-      class="btn btn-ghost btn-circle btn-sm md:btn-md"
-      aria-label="LinkedIn Profile"
-    >
-      <Icon name="mdi:linkedin" class="h-[80%] w-auto" />
-    </a>
-    <a
-      href={NETWORK.RESUME}
-      target="_blank"
-      class="btn btn-ghost btn-circle btn-sm md:btn-md"
-      aria-label="Download Resume"
-    >
-      <Icon name="mdi:file-pdf" class="h-[80%] w-auto" />
-    </a>
+      <p class="profile-tagline">{tagline}</p>
+      <p class="profile-desc">{description}</p>
+
+      <div class="profile-ctas">
+        <a href={NETWORK.RESUME} target="_blank" rel="noopener" class="profile-btn-primary">
+          {lang === "es" ? "Descargar CV" : "Download CV"}
+          <span>↓</span>
+        </a>
+        <a href={NETWORK.LINKEDIN} target="_blank" rel="noopener" class="profile-btn-ghost">
+          LinkedIn
+        </a>
+        <a href={NETWORK.GITHUB} target="_blank" rel="noopener" class="profile-btn-ghost">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: portrait -->
+    <div class="profile-portrait-wrap">
+      <div class="portrait-card">
+        <svg class="portrait-svg" viewBox="0 0 340 425" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="port-g" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="var(--color-base-200)" />
+              <stop offset="1" stop-color="var(--color-base-100)" />
+            </linearGradient>
+            <pattern id="port-s" width="3" height="3" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="3" stroke="var(--color-base-300)" stroke-width="0.6" />
+            </pattern>
+          </defs>
+          <rect width="340" height="425" fill="url(#port-g)" />
+          <rect width="340" height="425" fill="url(#port-s)" opacity="0.5" />
+          <g opacity="0.75">
+            <ellipse cx="170" cy="175" rx="68" ry="85" fill="var(--color-base-300)" />
+            <path d="M 70 425 Q 70 290 170 290 Q 270 290 270 425 Z" fill="var(--color-base-300)" />
+            <circle cx="170" cy="160" r="60" fill="var(--color-base-content)" opacity="0.12" />
+          </g>
+        </svg>
+        <div class="portrait-caption">
+          <div class="portrait-caption-label">Retrato · 2026</div>
+          <div class="portrait-caption-name">Ariel Molina</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<style>
+  .profile-hero {
+    padding: 100px 48px 60px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .profile-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .profile-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6vw, 80px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0 0 24px;
+    color: var(--color-base-content);
+    text-wrap: pretty;
+  }
+
+  .name-accent {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-accent);
+  }
+
+  .profile-tagline {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-base-content);
+    opacity: 0.8;
+    max-width: 560px;
+    margin: 0 0 20px;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+
+  .profile-desc {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-base-content);
+    opacity: 0.65;
+    max-width: 560px;
+    margin: 0 0 32px;
+  }
+
+  .profile-ctas {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .profile-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    background: var(--color-accent);
+    color: var(--color-base-100);
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+  }
+
+  .profile-btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .profile-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    color: var(--color-base-content);
+    border: 1px solid var(--color-base-300);
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+  }
+
+  .profile-btn-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Portrait */
+  .profile-portrait-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .portrait-card {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 340 / 425;
+    background: var(--color-base-200);
+    border: 1px solid var(--color-base-300);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .portrait-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .portrait-caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent, oklch(10% 0.014 261 / 0.88));
+    z-index: 2;
+  }
+
+  [data-theme="obsidiana-light"] .portrait-caption {
+    background: linear-gradient(180deg, transparent, oklch(98% 0.014 261 / 0.88));
+  }
+
+  .portrait-caption-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 4px;
+    color: var(--color-base-content);
+  }
+
+  .portrait-caption-name {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-base-content);
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 900px) {
+    .profile-hero {
+      padding: 60px 24px 40px;
+    }
+
+    .profile-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .profile-portrait-wrap {
+      order: -1;
+      justify-content: center;
+    }
+
+    .portrait-card {
+      max-width: 220px;
+    }
+  }
+</style>
