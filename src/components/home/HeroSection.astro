@@ -19,74 +19,41 @@ const stats = lang === 'es'
 ---
 
 <section class="hero-editorial">
-  <!-- Background watermark -->
   <div class="hero-watermark" aria-hidden="true">obsidiana</div>
 
   <div class="hero-inner">
-    <!-- Left: copy -->
-    <div class="hero-copy">
-      <div class="eyebrow" style="margin-bottom: 24px;">
-        {lang === 'es' ? 'Staff Frontend Engineer · CDMX' : 'Staff Frontend Engineer · CDMX'}
-      </div>
-
-      <h1 class="hero-heading">
-        {lang === 'es'
-          ? <>Construyo <em class="accent-em">plataformas</em><br />que escalan con la<br />precisión del <em>código</em>.</>
-          : <>I build <em class="accent-em">platforms</em><br />that scale with the<br />precision of <em>code</em>.</>}
-      </h1>
-
-      <p class="hero-subtitle">
-        {lang === 'es'
-          ? <>Arquitecto frontend con 9+ años construyendo infraestructuras modulares, sistemas de diseño y herramientas internas. Actualmente en EFEX, liderando la plataforma de micro frontends que procesa <span class="hero-highlight">$100M USD mensuales</span>.</>
-          : <>Frontend architect with 9+ years building modular infrastructure, design systems and internal tooling. Currently at EFEX, leading the micro frontends platform processing <span class="hero-highlight">$100M USD monthly</span>.</>}
-      </p>
-
-      <div class="hero-ctas">
-        <a href={`/${lang}/about`} class="btn-editorial btn-editorial-primary">
-          {lang === 'es' ? 'Conóceme' : 'About me'} <span>→</span>
-        </a>
-        <a href={`/${lang}/blog`} class="btn-editorial btn-editorial-ghost">
-          {lang === 'es' ? 'Leer el blog' : 'Read the blog'}
-        </a>
-      </div>
-
-      <!-- Stats row -->
-      <div class="hero-stats">
-        {stats.map(([n, a, b]) => (
-          <div class="stat-item">
-            <div class="stat-number">{n}</div>
-            <div class="stat-label">{a}<br />{b}</div>
-          </div>
-        ))}
-      </div>
+    <div class="eyebrow" style="margin-bottom: 24px;">
+      {lang === 'es' ? 'Staff Frontend Engineer · CDMX' : 'Staff Frontend Engineer · CDMX'}
     </div>
 
-    <!-- Right: Portrait -->
-    <div class="hero-avatar-wrap">
-      <div class="avatar-card">
-        <svg class="avatar-placeholder" viewBox="0 0 320 368" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs>
-            <linearGradient id="avatar-g" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="var(--color-base-200)" />
-              <stop offset="1" stop-color="var(--color-base-100)" />
-            </linearGradient>
-            <pattern id="avatar-stripe" width="3" height="3" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="0" y2="3" stroke="var(--color-base-300)" stroke-width="0.6" />
-            </pattern>
-          </defs>
-          <rect width="320" height="368" fill="url(#avatar-g)" />
-          <rect width="320" height="368" fill="url(#avatar-stripe)" opacity="0.5" />
-          <g opacity="0.7">
-            <ellipse cx="160" cy="155" rx="62" ry="78" fill="var(--color-base-300)" />
-            <path d="M 70 368 Q 70 250 160 250 Q 250 250 250 368 Z" fill="var(--color-base-300)" />
-            <circle cx="160" cy="140" r="55" fill="var(--color-base-content)" opacity="0.15" />
-          </g>
-        </svg>
-        <div class="avatar-caption">
-          <div class="avatar-caption-label">Retrato — 2026</div>
-          <div class="avatar-caption-name">Ariel Molina</div>
+    <h1 class="hero-heading">
+      {lang === 'es'
+        ? <>Construyo <em class="accent-em">plataformas</em><br />que escalan con la<br />precisión del <em>código</em>.</>
+        : <>I build <em class="accent-em">platforms</em><br />that scale with the<br />precision of <em>code</em>.</>}
+    </h1>
+
+    <p class="hero-subtitle">
+      {lang === 'es'
+        ? <>Arquitecto frontend con 9+ años construyendo infraestructuras modulares, sistemas de diseño y herramientas internas. Actualmente en EFEX, liderando la plataforma de micro frontends que procesa <span class="hero-highlight">$100M USD mensuales</span>.</>
+        : <>Frontend architect with 9+ years building modular infrastructure, design systems and internal tooling. Currently at EFEX, leading the micro frontends platform processing <span class="hero-highlight">$100M USD monthly</span>.</>}
+    </p>
+
+    <div class="hero-ctas">
+      <a href={`/${lang}/about`} class="btn-editorial btn-editorial-primary">
+        {lang === 'es' ? 'Conóceme' : 'About me'} <span>→</span>
+      </a>
+      <a href={`/${lang}/blog`} class="btn-editorial btn-editorial-ghost">
+        {lang === 'es' ? 'Leer el blog' : 'Read the blog'}
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      {stats.map(([n, a, b]) => (
+        <div class="stat-item">
+          <div class="stat-number">{n}</div>
+          <div class="stat-label">{a}<br />{b}</div>
         </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
@@ -115,17 +82,10 @@ const stats = lang === 'es'
   }
 
   .hero-inner {
-    max-width: 1200px;
+    max-width: 860px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .hero-copy {
     display: flex;
     flex-direction: column;
   }
@@ -133,8 +93,8 @@ const stats = lang === 'es'
   .hero-heading {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(48px, 6.5vw, 92px);
-    line-height: 0.98;
+    font-size: clamp(52px, 7.5vw, 104px);
+    line-height: 0.96;
     letter-spacing: -0.03em;
     margin: 0 0 28px;
     color: var(--color-base-content);
@@ -154,10 +114,10 @@ const stats = lang === 'es'
 
   .hero-subtitle {
     font-size: 18px;
-    line-height: 1.55;
+    line-height: 1.6;
     color: var(--color-base-content);
     opacity: 0.7;
-    max-width: 540px;
+    max-width: 600px;
     margin: 0 0 36px;
     text-wrap: pretty;
   }
@@ -221,8 +181,6 @@ const stats = lang === 'es'
     max-width: 480px;
   }
 
-  .stat-item {}
-
   .stat-number {
     font-family: var(--font-display);
     font-size: 34px;
@@ -243,102 +201,8 @@ const stats = lang === 'es'
     line-height: 1.4;
   }
 
-  /* Avatar */
-  .hero-avatar-wrap {
-    display: flex;
-    justify-content: center;
-    position: relative;
-  }
-
-  .fig-label {
-    position: absolute;
-    left: -10px;
-    top: -10px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.35;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    z-index: 2;
-  }
-
-  .avatar-card {
-    position: relative;
-    width: 100%;
-    max-width: 340px;
-    aspect-ratio: 320 / 368;
-    background: var(--color-base-200);
-    border: 1px solid var(--color-base-300);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .avatar-placeholder {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .avatar-canvas-wrap {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .avatar-caption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 20px;
-    background: linear-gradient(180deg, transparent, oklch(10% 0.014 261 / 0.88));
-    color: var(--color-base-content);
-    z-index: 2;
-  }
-
-  [data-theme="obsidiana-light"] .avatar-caption {
-    background: linear-gradient(180deg, transparent, oklch(98% 0.014 261 / 0.88));
-  }
-
-  .avatar-caption-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.55;
-    margin-bottom: 4px;
-  }
-
-  .avatar-caption-name {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--color-base-content);
-  }
-
-  /* Responsive */
   @media (max-width: 900px) {
-    .hero-editorial {
-      padding: 80px 24px 60px;
-    }
-
-    .hero-inner {
-      grid-template-columns: 1fr;
-      gap: 48px;
-    }
-
-    .hero-avatar-wrap {
-      order: -1;
-    }
-
-    .avatar-card {
-      max-width: 260px;
-    }
-
+    .hero-editorial { padding: 80px 24px 60px; }
     .hero-watermark {
       font-size: clamp(120px, 40vw, 260px);
       top: 20px;
@@ -347,13 +211,7 @@ const stats = lang === 'es'
   }
 
   @media (max-width: 540px) {
-    .hero-editorial {
-      padding: 60px 20px 48px;
-    }
-
-    .hero-stats {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
+    .hero-editorial { padding: 60px 20px 48px; }
+    .hero-stats { gap: 16px; }
   }
 </style>
