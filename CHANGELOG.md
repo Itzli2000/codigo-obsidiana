@@ -1,5 +1,27 @@
 # Changelog
 
+## [3.2.0] - 2026-04-19
+
+### Features
+
+- **strapi**: add error handling to fetchBlogPosts and fetchProjects functions (445bbb0)
+- **hero**: adjust hero stats layout and increase max-width (faf188e)
+- **about**: remove portrait placeholder from ProfileCard (19a4e57)
+- **home**: remove portrait placeholder, single-column hero layout (b6ce4d2)
+- **ux**: remove 3D avatar and FIG diagrams (5bc702e)
+- **contact**: editorial redesign — hero, form, avatar layout (0c8e705)
+- **projects**: editorial redesign — listing and project detail (205a6a3)
+- **blog**: editorial redesign — listing and post detail (d6f29e5)
+- **about**: editorial redesign — sequential full-width sections (eaafce3)
+- **home**: editorial redesign — hero, sections, avatar fix (e9d07c6)
+- **design**: adopt editorial design system — Fraunces + JetBrains Mono (f76a112)
+
+### Chores
+
+- remove orphaned components (7cf1421)
+- remove 3D avatar components and Three.js dependencies (366daf0)
+
+
 ## [3.1.0] - 2026-04-07
 
 ### Features
