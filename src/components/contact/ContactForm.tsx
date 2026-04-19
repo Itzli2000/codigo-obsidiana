@@ -4,8 +4,6 @@ import type { ContactFormProps } from "./types";
 
 const ContactForm = ({
   accessKey,
-  secCurrentAnimation,
-  currentAnimation,
   className = "",
   translations,
   lang = "es",
@@ -17,11 +15,10 @@ const ContactForm = ({
     validationRules,
     onSubmit,
     resetForm,
-    handleChange,
     handleSubmit,
     register,
     errors,
-  } = useContact({ accessKey, secCurrentAnimation, currentAnimation, translations });
+  } = useContact({ accessKey, translations });
 
   if (isSubmitted) {
     return (
@@ -92,7 +89,7 @@ const ContactForm = ({
             placeholder={translations.form.name}
             className={`cf-input ${errors.name ? "cf-input-error" : ""}`}
             {...register("name", validationRules.name)}
-            onChange={handleChange}
+
             disabled={isSubmitting}
             aria-invalid={!!errors.name}
           />
@@ -112,7 +109,7 @@ const ContactForm = ({
             placeholder={translations.form.emailPlaceholder}
             className={`cf-input ${errors.email ? "cf-input-error" : ""}`}
             {...register("email", validationRules.email)}
-            onChange={handleChange}
+
             disabled={isSubmitting}
             aria-invalid={!!errors.email}
           />
@@ -132,7 +129,7 @@ const ContactForm = ({
             placeholder={translations.form.subjectPlaceholder}
             className={`cf-input ${errors.subject ? "cf-input-error" : ""}`}
             {...register("subject", validationRules.subject)}
-            onChange={handleChange}
+
             disabled={isSubmitting}
             aria-invalid={!!errors.subject}
           />
@@ -151,7 +148,7 @@ const ContactForm = ({
             className={`cf-textarea ${errors.message ? "cf-input-error" : ""}`}
             placeholder={translations.form.messagePlaceholder}
             {...register("message", validationRules.message)}
-            onChange={handleChange}
+
             disabled={isSubmitting}
             aria-invalid={!!errors.message}
           />

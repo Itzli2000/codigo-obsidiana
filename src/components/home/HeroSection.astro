@@ -1,5 +1,4 @@
 ---
-import AvatarCanvas from '../react/AvatarCanvas';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { Lang } from "../../types/language";
 
@@ -62,11 +61,9 @@ const stats = lang === 'es'
       </div>
     </div>
 
-    <!-- Right: Avatar -->
+    <!-- Right: Portrait -->
     <div class="hero-avatar-wrap">
-      <div class="fig-label" aria-hidden="true">fig. 01</div>
       <div class="avatar-card">
-        <!-- SVG placeholder shown behind the canvas -->
         <svg class="avatar-placeholder" viewBox="0 0 320 368" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
             <linearGradient id="avatar-g" x1="0" y1="0" x2="0" y2="1">
@@ -85,9 +82,6 @@ const stats = lang === 'es'
             <circle cx="160" cy="140" r="55" fill="var(--color-base-content)" opacity="0.15" />
           </g>
         </svg>
-        <div class="avatar-canvas-wrap">
-          <AvatarCanvas client:load />
-        </div>
         <div class="avatar-caption">
           <div class="avatar-caption-label">Retrato — 2026</div>
           <div class="avatar-caption-name">Ariel Molina</div>
