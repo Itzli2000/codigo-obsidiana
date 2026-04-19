@@ -8,46 +8,81 @@ const ACCESS_KEY = "b3bdb4ab-ae30-464e-a0e9-6327c904bbc0";
 
 interface ContactCanvasProps {
   translations: ContactFormProps["translations"];
+  lang?: string;
 }
 
-export default function ContactCanvas({ translations }: ContactCanvasProps) {
+export default function ContactCanvas({ translations, lang = "es" }: ContactCanvasProps) {
   const [currentAnimation, setCurrentAnimation] = useState<
     "Idle" | "Look" | "Cheer" | "Sad"
   >("Idle");
 
   return (
-    <div className="flex flex-col-reverse lg:flex-row gap-5">
-      <div className="flex-1 w-full lg:w-1/2 lg:pr-8">
-        {/* Contact Form */}
+    <div className="contact-layout">
+      {/* Form */}
+      <div className="contact-form-col">
         <ContactForm
           accessKey={ACCESS_KEY}
           currentAnimation={currentAnimation}
           secCurrentAnimation={setCurrentAnimation}
-          className="w-full"
+          className=""
           translations={translations}
+          lang={lang}
         />
       </div>
 
-      {/* Avatar Canvas Section */}
-      <div className="flex-1 w-full lg:w-1/2">
-        <div className="card bg-base-100 shadow-2xl h-96 lg:h-[600px]">
-          <div className="card-body p-0 overflow-hidden rounded-2xl">
-            <div className="flex justify-center h-full relative">
-              <Canvas
-                camera={{ position: [0, 0, 5], fov: 50 }}
-                className="w-full h-full"
-              >
-                <Suspense fallback={null}>
-                  <Avatar3D currentAnimation={currentAnimation} />
-                </Suspense>
-              </Canvas>
-            </div>
-          </div>
-          <span className="ml-5 mb-2 text-primary block text-xs">
-            {translations?.form?.avatarText || "* El avatar reaccionará a tus acciones mientras escribes tu mensaje."}
-          </span>
+      {/* Avatar */}
+      <div className="contact-avatar-col">
+        <div className="contact-avatar-frame">
+          <Canvas
+            camera={{ position: [0, 0, 5], fov: 50 }}
+            style={{ width: "100%", height: "100%" }}
+          >
+            <Suspense fallback={null}>
+              <Avatar3D currentAnimation={currentAnimation} />
+            </Suspense>
+          </Canvas>
         </div>
+        <p className="contact-avatar-note">
+          {translations?.form?.avatarText}
+        </p>
       </div>
+
+      <style>{`
+        .contact-layout {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: start;
+        }
+        .contact-form-col {}
+        .contact-avatar-col {}
+        .contact-avatar-frame {
+          width: 100%;
+          height: 560px;
+          background: var(--color-base-200);
+          border: 1px solid var(--color-base-300);
+        }
+        .contact-avatar-note {
+          font-family: var(--font-mono, monospace);
+          font-size: 11px;
+          color: var(--color-base-content);
+          opacity: 0.4;
+          margin: 12px 0 0;
+          letter-spacing: 0.06em;
+        }
+        @media (max-width: 900px) {
+          .contact-layout {
+            grid-template-columns: 1fr;
+            gap: 48px;
+          }
+          .contact-avatar-col {
+            order: -1;
+          }
+          .contact-avatar-frame {
+            height: 360px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

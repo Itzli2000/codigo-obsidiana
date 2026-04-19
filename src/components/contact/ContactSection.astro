@@ -1,5 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import ContactCanvas from "./ContactCanvas";
 import type { Lang } from "../../types/language";
@@ -7,7 +6,6 @@ import type { Lang } from "../../types/language";
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-// Prepare translations for React component
 const translations = {
   form: {
     title: t("contact.form.title"),
@@ -43,59 +41,105 @@ const translations = {
 };
 ---
 
-<section class="py-8 md:py-12">
-  <div>
-    <div class="flex-col w-full">
-      {/* Contact Form Section */}
-      <div class="flex-1 w-full">
-        <div class="text-center lg:text-left mb-8">
-          <h1 class="text-5xl font-bold text-primary">{t("contact.title")}</h1>
-          <p class="py-6 text-xl text-base-content/80">
-            {t("contact.description")}
-          </p>
-
-          {/* Feature badges */}
-          <div
-            class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6"
-          >
-            <div class="badge badge-secondary badge-lg gap-2">
-              <Icon name="mdi:thunder-outline" class="w-4 h-4" />
-              {t("contact.form.fastResponse")}
-            </div>
-            <div class="badge badge-accent badge-lg gap-2">
-              <Icon name="mdi:shield-outline" class="w-4 h-4" />
-              {t("contact.form.secure")}
-            </div>
-            <div class="badge badge-info badge-lg gap-2">
-              <Icon name="mdi:email-outline" class="w-4 h-4" />
-              {t("contact.form.noSpam")}
-            </div>
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div class="stats shadow mb-8 w-full">
-          <div class="stat">
-            <div class="stat-figure text-primary">
-              <Icon name="mdi:clock-outline" class="w-8 h-8" />
-            </div>
-            <div class="stat-title">{t("contact.form.responseTime")}</div>
-            <div class="stat-value text-primary">24h</div>
-            <div class="stat-desc">{t("contact.form.maximum")}</div>
-          </div>
-
-          <div class="stat">
-            <div class="stat-figure text-secondary">
-              <Icon name="mdi:email-outline" class="w-8 h-8" />
-            </div>
-            <div class="stat-title">{t("contact.form.messages")}</div>
-            <div class="stat-value text-secondary">100%</div>
-            <div class="stat-desc">{t("contact.form.read")}</div>
-          </div>
-        </div>
-      </div>
-
-      <ContactCanvas client:visible translations={translations} />
+<!-- HERO -->
+<section class="ct-hero">
+  <div class="ct-watermark" aria-hidden="true">
+    {lang === "es" ? "hola" : "hello"}
+  </div>
+  <div class="ct-hero-inner">
+    <div class="eyebrow" style="margin-bottom: 24px;">
+      {lang === "es" ? "Contacto" : "Contact"}
     </div>
+    <h1 class="ct-title">
+      {lang === "es"
+        ? <>{`Hablemos de `}<em class="ct-em">{`algo`}</em></>
+        : <>{`Let's talk about `}<em class="ct-em">{`something`}</em></>}
+    </h1>
+    <p class="ct-subtitle">
+      {t("contact.description")}
+    </p>
   </div>
 </section>
+
+<!-- FORM + AVATAR -->
+<section class="ct-body">
+  <div class="ct-body-inner">
+    <ContactCanvas client:visible translations={translations} lang={lang} />
+  </div>
+</section>
+
+<style>
+  .ct-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 48px 60px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .ct-watermark {
+    position: absolute;
+    right: -20px;
+    top: 20px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(160px, 24vw, 380px);
+    font-weight: 300;
+    color: var(--color-base-200);
+    line-height: 0.85;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .ct-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .ct-title {
+    font-family: var(--font-display);
+    font-size: clamp(44px, 6.5vw, 86px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    margin: 0 0 24px;
+    color: var(--color-base-content);
+    max-width: 800px;
+  }
+
+  .ct-em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 300;
+  }
+
+  .ct-subtitle {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .ct-body {
+    padding: 80px 48px 100px;
+  }
+
+  .ct-body-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .ct-hero,
+    .ct-body {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .ct-watermark {
+      font-size: clamp(100px, 28vw, 200px);
+    }
+  }
+</style>
