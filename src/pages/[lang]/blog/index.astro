@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
-import { Icon } from "astro-icon/components";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
 import { fetchBlogPosts } from "../../../lib/strapi";
@@ -15,110 +14,582 @@ const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
 const posts = await fetchBlogPosts(lang, { excludeDrafts: true });
+const featured = posts[0];
+const rest = posts.slice(1);
 
 function formatDate(date: string): string {
-  const dateObj = new Date(date);
-  const utcDate = new Date(
-    dateObj.getUTCFullYear(),
-    dateObj.getUTCMonth(),
-    dateObj.getUTCDate()
-  );
-
-  return utcDate.toLocaleDateString(lang === "en" ? "en-US" : "es-ES", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
+  const d = new Date(date);
+  const utc = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  const y = utc.getFullYear();
+  const m = String(utc.getMonth() + 1).padStart(2, "0");
+  const day = String(utc.getDate()).padStart(2, "0");
+  return `${y} · ${m} · ${day}`;
 }
 
-const title = t("blog.meta.title") !== "blog.meta.title"
-  ? t("blog.meta.title")
-  : "Blog | Ariel Itzli Molina Sanchez | Código Obsidiana";
-const description = t("blog.meta.description") !== "blog.meta.description"
-  ? t("blog.meta.description")
-  : "Blog of Ariel Molina";
+// Collect all unique tags
+const allTags = Array.from(
+  new Set(posts.flatMap((p) => p.tags ?? []))
+).slice(0, 6);
+
+const title =
+  t("blog.meta.title") !== "blog.meta.title"
+    ? t("blog.meta.title")
+    : "Blog | Ariel Itzli Molina Sanchez | Código Obsidiana";
+const description =
+  t("blog.meta.description") !== "blog.meta.description"
+    ? t("blog.meta.description")
+    : "Blog de Ariel Molina";
 ---
 
 <MainLayout lang={lang} title={title} description={description}>
-  <section class="hero-section mb-16">
-    <h1 class="text-5xl font-bold font-serif mb-4 text-center md:text-left">
-      {t("blog.title")}
-    </h1>
-    <p
-      class="text-xl text-base-content/70 max-w-2xl mb-8 text-center md:text-left"
-    >
-      {t("blog.subtitle")}
-    </p>
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-watermark" aria-hidden="true">
+      {lang === "es" ? "blog" : "blog"}
+    </div>
+    <div class="blog-hero-inner">
+      <div class="eyebrow" style="margin-bottom: 24px;">
+        Blog · {posts.length} {lang === "es" ? "notas" : "notes"}
+      </div>
+      <h1 class="blog-hero-title">
+        {lang === "es"
+          ? <>{`Reflexiones, ideas y `}<em class="blog-hero-em">{`exploraciones`}</em></>
+          : <>{`Reflections, ideas and `}<em class="blog-hero-em">{`explorations`}</em></>}
+      </h1>
+      <p class="blog-hero-subtitle">
+        {lang === "es"
+          ? "Sobre desarrollo frontend, arquitectura de plataformas, sistemas de diseño — y las cosas que aprendo en el camino."
+          : "About frontend development, platform architecture, design systems — and things I learn along the way."}
+      </p>
+    </div>
   </section>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-    {
-      posts.map((post) => (
-        <a href={`/${lang}/blog/${post.slug}`} class="card-link group">
-          <article class="card bg-base-100 shadow-sm hover:shadow-md transition-all duration-300 h-full overflow-hidden border border-base-300/50">
-            {post.image && (
-              <figure class="h-48 overflow-hidden">
-                <Image
-                  src={`${CDN.IMAGES}${TYPE.BLOG}${post.image}`}
-                  alt={post.title}
-                  width={400}
-                  height={192}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </figure>
-            )}
-
-            <div class="card-body">
-              <div class="flex items-center justify-between gap-2 text-sm text-base-content/60 mb-2">
-                <span class="flex items-center gap-1">
-                  <Icon name="mdi:calendar" class="w-4 h-4" />
-                  {formatDate(post.publishDate)}
-                </span>
-
-                {post.readingTime && (
-                  <span class="flex items-center gap-1">
-                    <Icon name="mdi:clock" class="w-4 h-4" />
-                    {post.readingTime} min
-                  </span>
-                )}
-              </div>
-
-              <h2 class="card-title text-xl font-bold group-hover:text-primary transition-colors duration-300">
-                {post.title}
-              </h2>
-
-              <p class="text-base-content/80">{post.description}</p>
-
-              <div class="card-actions justify-end mt-4">
-                {post.tags &&
-                  post.tags
-                    .slice(0, 2)
-                    .map((tag: string) => (
-                      <div class="badge badge-outline">{tag}</div>
-                    ))}
-              </div>
+  <!-- FEATURED POST -->
+  {featured && (
+    <section class="blog-featured">
+      <div class="blog-featured-inner">
+        <div class="eyebrow" style="margin-bottom: 24px;">
+          {lang === "es" ? "Destacado" : "Featured"}
+        </div>
+        <a href={`/${lang}/blog/${featured.slug}`} class="featured-link">
+          <div class="featured-content">
+            <div class="featured-meta">
+              {featured.publishDate && (
+                <span>{formatDate(featured.publishDate)}</span>
+              )}
+              {featured.tags?.[0] && (
+                <>
+                  <span>·</span>
+                  <span class="featured-tag">{featured.tags[0]}</span>
+                </>
+              )}
+              {featured.readingTime && (
+                <>
+                  <span>·</span>
+                  <span>{featured.readingTime} min</span>
+                </>
+              )}
             </div>
-          </article>
+            <h2 class="featured-title">{featured.title}</h2>
+            <p class="featured-desc">{featured.description}</p>
+            <span class="featured-cta">
+              {lang === "es" ? "Leer la nota →" : "Read the post →"}
+            </span>
+          </div>
+          <div class="featured-image">
+            {featured.image ? (
+              <Image
+                src={`${CDN.IMAGES}${TYPE.BLOG}${featured.image}`}
+                alt={featured.title}
+                width={560}
+                height={420}
+                class="featured-img"
+                loading="eager"
+              />
+            ) : (
+              <svg viewBox="0 0 400 300" class="featured-placeholder" aria-hidden="true">
+                <defs>
+                  <pattern id="bf-dots" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <rect width="40" height="40" fill="var(--color-base-200)" />
+                    <circle cx="20" cy="20" r="2" fill="var(--color-base-300)" />
+                  </pattern>
+                </defs>
+                <rect width="400" height="300" fill="url(#bf-dots)" />
+                <g stroke="var(--color-accent)" stroke-width="1.5" fill="none" opacity="0.6">
+                  <rect x="170" y="130" width="60" height="40" fill="var(--color-accent)" fill-opacity="0.1" />
+                  <rect x="60" y="60" width="50" height="35" />
+                  <rect x="160" y="50" width="50" height="35" />
+                  <rect x="280" y="60" width="50" height="35" />
+                  <line x1="85" y1="95" x2="185" y2="130" />
+                  <line x1="185" y1="85" x2="200" y2="130" />
+                  <line x1="305" y1="95" x2="215" y2="130" />
+                </g>
+                <text x="12" y="288" font-family="monospace" font-size="10" fill="var(--color-base-content)" opacity="0.3" letter-spacing="2">
+                  FIG 01 · HOST + REMOTES
+                </text>
+              </svg>
+            )}
+          </div>
         </a>
-      ))
-    }
-  </div>
-
-  {
-    posts.length === 0 && (
-      <div class="text-center py-16">
-        <Icon
-          name="mdi:empty"
-          class="w-16 h-16 mx-auto mb-4 text-base-content/30"
-        />
-        <h2 class="text-2xl font-bold mb-2">
-          {lang === "es" ? "Sin publicaciones aún" : "No posts yet"}
-        </h2>
-        <p class="text-base-content/70">
-          {lang === "es" ? "Vuelve pronto para nuevo contenido." : "Check back soon for new content!"}
-        </p>
       </div>
-    )
-  }
+    </section>
+  )}
+
+  <!-- FILTER BAR -->
+  <section class="blog-filters">
+    <div class="blog-filters-inner">
+      <div class="blog-tags" id="blog-tags">
+        <button class="blog-tag active" data-tag="all">
+          {lang === "es" ? "Todos" : "All"}
+        </button>
+        {allTags.map((tag) => (
+          <button class="blog-tag" data-tag={tag}>{tag}</button>
+        ))}
+      </div>
+      <div class="blog-search">
+        <span class="search-icon">⌕</span>
+        <input
+          id="blog-search-input"
+          type="search"
+          placeholder={lang === "es" ? "Buscar notas…" : "Search notes…"}
+          class="blog-search-input"
+        />
+        <span class="search-kbd">⌘K</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL POSTS TABLE -->
+  <section class="blog-list">
+    <div class="blog-list-inner">
+      <div class="eyebrow" style="margin-bottom: 32px;">
+        {lang === "es" ? "Todas las notas" : "All posts"}
+      </div>
+
+      {posts.length === 0 && (
+        <p class="blog-empty">
+          {lang === "es" ? "Próximamente..." : "Coming soon..."}
+        </p>
+      )}
+
+      <div class="post-table" id="post-table">
+        {posts.map((post) => (
+          <a
+            href={`/${lang}/blog/${post.slug}`}
+            class="post-table-row"
+            data-title={post.title.toLowerCase()}
+            data-tags={JSON.stringify(post.tags ?? [])}
+          >
+            <span class="ptrow-date">
+              {post.publishDate ? formatDate(post.publishDate) : "—"}
+            </span>
+            <span class="ptrow-tag">
+              {post.tags?.[0] ?? ""}
+            </span>
+            <div class="ptrow-main">
+              <div class="ptrow-title">{post.title}</div>
+            </div>
+            <p class="ptrow-desc">{post.description}</p>
+            <span class="ptrow-read">
+              {post.readingTime ? `${post.readingTime} min ↗` : "↗"}
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
 </MainLayout>
+
+<!-- Client-side filter/search -->
+<script>
+  const tagsEl = document.getElementById("blog-tags");
+  const searchInput = document.getElementById("blog-search-input") as HTMLInputElement | null;
+  const table = document.getElementById("post-table");
+
+  if (!tagsEl || !searchInput || !table) throw new Error("Blog filter elements missing");
+
+  let activeTag = "all";
+  let searchQuery = "";
+
+  function filterRows() {
+    const rows = table!.querySelectorAll<HTMLElement>(".post-table-row");
+    rows.forEach((row) => {
+      const title = row.dataset.title ?? "";
+      const tags: string[] = JSON.parse(row.dataset.tags ?? "[]");
+      const matchesTag = activeTag === "all" || tags.some((t) => t === activeTag);
+      const matchesSearch = !searchQuery || title.includes(searchQuery.toLowerCase());
+      row.style.display = matchesTag && matchesSearch ? "" : "none";
+    });
+  }
+
+  tagsEl.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".blog-tag");
+    if (!btn) return;
+    activeTag = btn.dataset.tag ?? "all";
+    tagsEl.querySelectorAll(".blog-tag").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    filterRows();
+  });
+
+  searchInput.addEventListener("input", () => {
+    searchQuery = searchInput.value.trim();
+    filterRows();
+  });
+
+  // ⌘K focus shortcut
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      searchInput?.focus();
+    }
+  });
+</script>
+
+<style>
+  /* HERO */
+  .blog-hero {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 48px 60px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .blog-watermark {
+    position: absolute;
+    right: -30px;
+    top: 30px;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(160px, 24vw, 380px);
+    font-weight: 300;
+    color: var(--color-base-200);
+    line-height: 0.85;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .blog-hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .blog-hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 0.98;
+    margin: 0 0 24px;
+    color: var(--color-base-content);
+    max-width: 900px;
+    text-wrap: pretty;
+  }
+
+  .blog-hero-em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 300;
+  }
+
+  .blog-hero-subtitle {
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    max-width: 580px;
+    margin: 0;
+  }
+
+  /* FILTER BAR */
+  .blog-filters {
+    padding: 28px 48px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .blog-filters-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .blog-tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .blog-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--color-base-content);
+    opacity: 0.55;
+    border: 1px solid var(--color-base-300);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .blog-tag:hover {
+    opacity: 0.85;
+  }
+
+  .blog-tag.active {
+    background: var(--color-accent);
+    color: var(--color-base-100);
+    border-color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .blog-search {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 4px;
+    min-width: 260px;
+  }
+
+  .search-icon {
+    color: var(--color-base-content);
+    opacity: 0.35;
+    font-size: 16px;
+  }
+
+  .blog-search-input {
+    background: transparent;
+    border: none;
+    color: var(--color-base-content);
+    font-family: var(--font-mono);
+    font-size: 13px;
+    outline: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .blog-search-input::placeholder {
+    opacity: 0.35;
+  }
+
+  .search-kbd {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-base-content);
+    opacity: 0.3;
+    padding: 2px 6px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  /* FEATURED */
+  .blog-featured {
+    padding: 80px 48px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .blog-featured-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .featured-link {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .featured-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.45;
+    letter-spacing: 0.08em;
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .featured-tag {
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .featured-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.5vw, 60px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 20px;
+    color: var(--color-base-content);
+    text-wrap: balance;
+  }
+
+  .featured-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    margin: 0 0 28px;
+    max-width: 520px;
+  }
+
+  .featured-cta {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 4px;
+    color: var(--color-base-content);
+    transition: all 0.15s;
+    display: inline-block;
+  }
+
+  .featured-link:hover .featured-cta {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .featured-image {
+    aspect-ratio: 4 / 3;
+    background: var(--color-base-200);
+    border: 1px solid var(--color-base-300);
+    overflow: hidden;
+  }
+
+  .featured-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .featured-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* POST TABLE */
+  .blog-list {
+    padding: 80px 48px;
+  }
+
+  .blog-list-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .blog-empty {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    opacity: 0.4;
+    padding: 40px 0;
+  }
+
+  .post-table {
+    border-top: 1px solid var(--color-base-300);
+  }
+
+  .post-table-row {
+    display: grid;
+    grid-template-columns: 130px 150px 1fr 1fr auto;
+    gap: 28px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--color-base-300);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.15s, padding-left 0.15s, padding-right 0.15s;
+  }
+
+  .post-table-row:hover {
+    background: var(--color-base-200);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .ptrow-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.08em;
+  }
+
+  .ptrow-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .ptrow-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-base-content);
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .ptrow-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-base-content);
+    opacity: 0.55;
+    margin: 0;
+    max-width: 320px;
+  }
+
+  .ptrow-read {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .blog-hero, .blog-filters, .blog-featured, .blog-list {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .featured-link {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .post-table-row {
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+    }
+
+    .ptrow-date, .ptrow-tag, .ptrow-desc {
+      display: none;
+    }
+  }
+</style>
