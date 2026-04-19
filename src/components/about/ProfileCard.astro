@@ -42,33 +42,6 @@ const { role, tagline, description, lang = "es" } = Astro.props;
       </div>
     </div>
 
-    <!-- Right: portrait -->
-    <div class="profile-portrait-wrap">
-      <div class="portrait-card">
-        <svg class="portrait-svg" viewBox="0 0 340 425" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <defs>
-            <linearGradient id="port-g" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="var(--color-base-200)" />
-              <stop offset="1" stop-color="var(--color-base-100)" />
-            </linearGradient>
-            <pattern id="port-s" width="3" height="3" patternUnits="userSpaceOnUse">
-              <line x1="0" y1="0" x2="0" y2="3" stroke="var(--color-base-300)" stroke-width="0.6" />
-            </pattern>
-          </defs>
-          <rect width="340" height="425" fill="url(#port-g)" />
-          <rect width="340" height="425" fill="url(#port-s)" opacity="0.5" />
-          <g opacity="0.75">
-            <ellipse cx="170" cy="175" rx="68" ry="85" fill="var(--color-base-300)" />
-            <path d="M 70 425 Q 70 290 170 290 Q 270 290 270 425 Z" fill="var(--color-base-300)" />
-            <circle cx="170" cy="160" r="60" fill="var(--color-base-content)" opacity="0.12" />
-          </g>
-        </svg>
-        <div class="portrait-caption">
-          <div class="portrait-caption-label">Retrato · 2026</div>
-          <div class="portrait-caption-name">Ariel Molina</div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -79,12 +52,8 @@ const { role, tagline, description, lang = "es" } = Astro.props;
   }
 
   .profile-inner {
-    max-width: 1200px;
+    max-width: 860px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 80px;
-    align-items: start;
   }
 
   .profile-copy {
@@ -179,79 +148,7 @@ const { role, tagline, description, lang = "es" } = Astro.props;
     color: var(--color-accent);
   }
 
-  /* Portrait */
-  .profile-portrait-wrap {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .portrait-card {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    aspect-ratio: 340 / 425;
-    background: var(--color-base-200);
-    border: 1px solid var(--color-base-300);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .portrait-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-
-  .portrait-caption {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 20px;
-    background: linear-gradient(180deg, transparent, oklch(10% 0.014 261 / 0.88));
-    z-index: 2;
-  }
-
-  [data-theme="obsidiana-light"] .portrait-caption {
-    background: linear-gradient(180deg, transparent, oklch(98% 0.014 261 / 0.88));
-  }
-
-  .portrait-caption-label {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    opacity: 0.55;
-    margin-bottom: 4px;
-    color: var(--color-base-content);
-  }
-
-  .portrait-caption-name {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--color-base-content);
-    letter-spacing: -0.01em;
-  }
-
   @media (max-width: 900px) {
-    .profile-hero {
-      padding: 60px 24px 40px;
-    }
-
-    .profile-inner {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .profile-portrait-wrap {
-      order: -1;
-      justify-content: center;
-    }
-
-    .portrait-card {
-      max-width: 220px;
-    }
+    .profile-hero { padding: 60px 24px 40px; }
   }
 </style>
