@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 @import "@codigo-obsidiana/design-tokens/obsidiana/css";
 @plugin "@tailwindcss/typography";
@@ -84,6 +84,13 @@
   --noise: var(--design-effect-noise);
 }
 
+/* Font variables */
+:root {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
 /* Theme transition variables */
 :root {
   --theme-transition-duration: 0.3s;
@@ -120,16 +127,49 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Playfair Display", ui-serif, Georgia, serif;
+  font-family: var(--font-display);
   font-weight: 700;
   color: var(--color-base-content);
 }
 
 body {
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--color-base-100);
   color: var(--color-base-content);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
+/* Eyebrow label utility */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-base-content);
+  opacity: 0.55;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 1;
+}
 
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-base-100);
+}
+
+/* Post row hover (JS-driven, needs transition base) */
+.post-row {
+  transition: background 0.2s, padding-left 0.2s, padding-right 0.2s;
+}
 
