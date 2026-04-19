@@ -1,26 +1,104 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
+
+const nowTextEs = `Escribiendo una <em>serie de 4 partes</em> sobre orquestación de micro frontends con Module Federation y Nx, y afinando la v3 de nuestro design system interno.`;
+const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestration with Module Federation and Nx, and tuning the v3 of our internal design system.`;
 ---
 
-<section class="py-8 md:py-12 bg-base-100 rounded-xl p-8 shadow-lg">
-    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-6">
-        {t('home.about_preview.title')}
-    </h2>
-    
-    <div class="prose prose-lg max-w-none">
-        <p>{t('home.about_preview.content.0')}</p>
-        <p>{t('home.about_preview.content.1')}</p>
+<section class="now-section">
+  <div class="now-inner">
+    <div class="now-label">
+      <span class="eyebrow">{lang === 'es' ? 'Ahora' : 'Now'}</span>
     </div>
-    
-    <div class="mt-8">
-        <a href={`/${lang}/about`} class="btn btn-primary">
-            {t('home.about_preview.learn_more')}
-            <Icon name="mdi:arrow-right" class="w-5 h-5" />
+    <div class="now-content">
+      <p class="now-text" set:html={lang === 'es' ? nowTextEs : nowTextEn} />
+      <div class="now-meta">
+        <span>CDMX</span>
+        <span>·</span>
+        <span>☕</span>
+        <a href={`/${lang}/about`} class="now-link">
+          {lang === 'es' ? '/ahora →' : '/now →'}
         </a>
+      </div>
     </div>
-</section> 
+  </div>
+</section>
+
+<style>
+  .now-section {
+    border-top: 1px solid var(--color-base-300);
+    border-bottom: 1px solid var(--color-base-300);
+    padding: 60px 48px;
+  }
+
+  .now-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .now-label {
+    padding-top: 6px;
+  }
+
+  .now-content {}
+
+  .now-text {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.5vw, 28px);
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    color: var(--color-base-content);
+    opacity: 0.85;
+    max-width: 780px;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+
+  .now-text :global(em) {
+    font-style: italic;
+    color: var(--color-accent);
+    opacity: 1;
+  }
+
+  .now-meta {
+    display: flex;
+    gap: 16px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.08em;
+    align-items: center;
+  }
+
+  .now-link {
+    color: var(--color-accent);
+    opacity: 1;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .now-link:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 700px) {
+    .now-section {
+      padding: 40px 24px;
+    }
+
+    .now-inner {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>

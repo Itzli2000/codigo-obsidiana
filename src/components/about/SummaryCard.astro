@@ -1,33 +1,119 @@
 ---
-import SectionTitle from "./SectionTitle.astro";
-
 interface Props {
   title: string;
   summary: string[] | string;
+  lang?: string;
 }
 
-const { title, summary } = Astro.props;
+const { title, summary, lang = "es" } = Astro.props;
 const summaryArray = Array.isArray(summary) ? summary : [summary];
+
+const blockquoteEs = "Mi pasión es construir sistemas autónomos que empoderen a los equipos — no solo escribir buen código.";
+const blockquoteEn = "My passion is building autonomous systems that empower teams — not just writing good code.";
 ---
 
-<div class="space-y-4 md:space-y-6">
-  <SectionTitle title={title} />
-
-  <div
-    class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4"
-  >
-    <div
-      class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block"
-    >
+<section class="trajectory-section">
+  <div class="trajectory-inner">
+    <!-- Sticky sidebar -->
+    <div class="trajectory-sidebar">
+      <div class="eyebrow" style="margin-bottom: 12px;">
+        {lang === "es" ? "01 · Trayectoria" : "01 · Trajectory"}
+      </div>
+      <h2 class="trajectory-sidebar-heading">
+        {lang === "es" ? "Profesional" : "Professional"}
+      </h2>
     </div>
 
-    <div class="z-10 sm:col-span-8 space-y-4">
-      {summaryArray.map(paragraph => (
-        <p class="text-sm md:text-base leading-relaxed text-base-content/80">
+    <!-- Content -->
+    <div class="trajectory-content">
+      {summaryArray.map((paragraph, i) => (
+        <p class={i === 0 ? "trajectory-lead" : "trajectory-body"}>
           {paragraph}
         </p>
       ))}
+      <blockquote class="trajectory-quote">
+        "{lang === "es" ? blockquoteEs : blockquoteEn}"
+      </blockquote>
     </div>
   </div>
-</div>
+</section>
 
+<style>
+  .trajectory-section {
+    padding: 100px 48px;
+  }
+
+  .trajectory-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 80px;
+  }
+
+  .trajectory-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+  }
+
+  .trajectory-sidebar-heading {
+    font-family: var(--font-display);
+    font-size: 38px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-base-content);
+  }
+
+  .trajectory-content {
+    max-width: 680px;
+  }
+
+  .trajectory-lead {
+    font-family: var(--font-display);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--color-base-content);
+    opacity: 0.85;
+    margin: 0 0 18px;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+
+  .trajectory-body {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--color-base-content);
+    opacity: 0.65;
+    margin: 0 0 16px;
+  }
+
+  .trajectory-quote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 20px;
+    margin: 36px 0 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--color-base-content);
+    font-weight: 400;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 900px) {
+    .trajectory-section {
+      padding: 60px 24px;
+    }
+
+    .trajectory-inner {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .trajectory-sidebar {
+      position: static;
+    }
+  }
+</style>

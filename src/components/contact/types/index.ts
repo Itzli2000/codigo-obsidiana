@@ -8,8 +8,6 @@ export interface ContactFormData {
 export interface ContactFormProps {
   accessKey: string;
   className?: string;
-  secCurrentAnimation: (animation: "Idle" | "Look" | "Cheer" | "Sad") => void;
-  currentAnimation: "Idle" | "Look" | "Cheer" | "Sad";
   translations: {
     form: {
       title: string;
