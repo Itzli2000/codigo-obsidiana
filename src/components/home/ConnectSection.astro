@@ -1,36 +1,130 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { NETWORK } from '../../constants/network';
 import { getLangFromUrl, useTranslations } from '../../i18n/utils';
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
-
-// Prepare translations for client-side script
-const translations = {
-    copySuccess: t('home.connect.copy_success'),
-    copyError: t('home.connect.copy_error')
-};
 ---
 
-<section class="pb-8 md:pb-12">
-    <h2 class="font-serif text-2xl md:text-3xl font-bold mb-6">
-        {t('home.connect.title')}
-    </h2>
-    
-    <div class="flex flex-wrap gap-4">
-        <a href={NETWORK.GITHUB} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            <Icon name="mdi:github" class="w-5 h-5 mr-2" />
-            {t('home.connect.github')}
-        </a>
-        <a href={NETWORK.LINKEDIN} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-            <Icon name="mdi:linkedin" class="w-5 h-5 mr-2" />
-            {t('home.connect.linkedin')}
-        </a>
-        <a href={`${lang}/contact`} class="btn btn-outline">
-            <Icon name="mdi:email" class="w-5 h-5 mr-2" />
-            {t('home.connect.contact')}
-        </a>
+<section class="connect-section">
+  <div class="connect-inner">
+    <div class="eyebrow" style="margin-bottom: 24px; justify-content: center;">
+      {lang === 'es' ? 'Conectemos' : "Let's connect"}
     </div>
+    <h2 class="connect-heading">
+      {lang === 'es'
+        ? <>{`¿Estás construyendo algo `}<em class="connect-em">{`difícil`}</em>{`?`}</>
+        : <>{`Building something `}<em class="connect-em">{`hard`}</em>{`?`}</>}
+    </h2>
+    <p class="connect-desc">
+      {lang === 'es'
+        ? 'Hablemos de arquitectura frontend, platform engineering o DX. Respondo correos en menos de 48 horas.'
+        : 'Let\'s talk frontend architecture, platform engineering, or DX. I reply to emails within 48 hours.'}
+    </p>
+    <div class="connect-ctas">
+      <a href={`/${lang}/contact`} class="btn-editorial-primary">
+        {lang === 'es' ? 'Escríbeme' : 'Get in touch'} <span>→</span>
+      </a>
+      <a href={NETWORK.GITHUB} target="_blank" rel="noopener" class="btn-editorial-ghost">
+        GitHub
+      </a>
+      <a href={NETWORK.LINKEDIN} target="_blank" rel="noopener" class="btn-editorial-ghost">
+        LinkedIn
+      </a>
+    </div>
+  </div>
 </section>
+
+<style>
+  .connect-section {
+    padding: 120px 48px;
+    border-top: 1px solid var(--color-base-300);
+  }
+
+  .connect-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .connect-heading {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.5vw, 68px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+    color: var(--color-base-content);
+    text-wrap: balance;
+  }
+
+  .connect-em {
+    font-style: italic;
+    color: var(--color-accent);
+    font-weight: 300;
+  }
+
+  .connect-desc {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-base-content);
+    opacity: 0.65;
+    max-width: 560px;
+    margin: 0 auto 40px;
+  }
+
+  .connect-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-editorial-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    background: var(--color-accent);
+    color: var(--color-base-100);
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+  }
+
+  .btn-editorial-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-editorial-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    background: transparent;
+    color: var(--color-base-content);
+    border: 1px solid var(--color-base-300);
+    text-decoration: none;
+    font-family: var(--font-body);
+    transition: all 0.2s;
+  }
+
+  .btn-editorial-ghost:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 540px) {
+    .connect-section {
+      padding: 80px 24px;
+    }
+  }
+</style>

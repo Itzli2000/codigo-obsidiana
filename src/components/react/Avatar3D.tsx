@@ -1,6 +1,6 @@
 import { useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { useGraph } from "@react-three/fiber";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Object3D, Group } from "three";
 import { SkeletonUtils } from "three-stdlib";
 
@@ -23,14 +23,18 @@ export function AvatarModel(props: any) {
   const { nodes, materials } = useGraph(clone) as GLTFResult;
 
   const { animations: greetingAnimation } = useFBX("/assets/model/greeting.fbx");
-  greetingAnimation[0].name = "Greeting";
-  const { actions } = useAnimations(greetingAnimation, groupRef);
+  const clips = useMemo(() => {
+    if (!greetingAnimation?.[0]) return [];
+    const c = greetingAnimation[0].clone();
+    c.name = "Greeting";
+    return [c];
+  }, [greetingAnimation]);
+  const { actions } = useAnimations(clips, groupRef);
 
   useEffect(() => {
-    if (actions["Greeting"] && groupRef.current) {
-      actions["Greeting"]?.reset().play();
-    }
-  }, [actions, groupRef.current]);
+    if (!actions?.Greeting) return;
+    actions.Greeting.reset().fadeIn(0.3).play();
+  }, [actions]);
 
   return (
     <group {...props} ref={groupRef} dispose={null}>
@@ -90,6 +94,9 @@ export function AvatarModel(props: any) {
     </group>
   );
 }
+
+useGLTF.preload("/assets/model/avatar.glb");
+useFBX.preload("/assets/model/greeting.fbx");
 
 export default function Avatar3D() {
   return (

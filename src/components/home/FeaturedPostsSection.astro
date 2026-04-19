@@ -1,6 +1,4 @@
 ---
-import { Icon } from "astro-icon/components";
-import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
 import { fetchBlogPosts } from "../../lib/strapi";
@@ -9,57 +7,213 @@ import type { Lang } from "../../types/language";
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const featuredPosts = (await fetchBlogPosts(lang, { excludeDrafts: true })).slice(0, 3);
+const allPosts = await fetchBlogPosts(lang, { excludeDrafts: true });
+const featuredPosts = allPosts.slice(0, 3);
+
+function formatDate(date: string): string {
+  const d = new Date(date);
+  const utc = new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  const y = utc.getFullYear();
+  const m = String(utc.getMonth() + 1).padStart(2, '0');
+  const day = String(utc.getDate()).padStart(2, '0');
+  return `${y} · ${m} · ${day}`;
+}
 ---
 
-<section class="py-8 md:py-12">
-  <h2
-    class="font-serif text-2xl md:text-3xl font-bold mb-8 border-b border-base-300 pb-4"
-  >
-    {t("home.featured.title")}
-  </h2>
+<section class="writing-section">
+  <div class="writing-inner">
+    <!-- Header -->
+    <div class="writing-header">
+      <div>
+        <div class="eyebrow" style="margin-bottom: 12px;">{lang === 'es' ? 'Escribiendo' : 'Writing'}</div>
+        <h2 class="writing-title">
+          {lang === 'es'
+            ? <>{`Últimas `}<em>{`notas`}</em></>
+            : <>{`Latest `}<em>{`notes`}</em></>}
+        </h2>
+      </div>
+      <a href={`/${lang}/blog`} class="writing-view-all">
+        {lang === 'es' ? 'Ver todas →' : 'View all →'}
+      </a>
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {
-      featuredPosts.map((post) => (
-        <article class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-          <figure class="h-48 bg-base-300 overflow-hidden">
-            {post.image ? (
-              <Image
-                src={`${CDN.IMAGES}${TYPE.BLOG}${post.image}`}
-                alt={post.title}
-                width={400}
-                height={192}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div class="w-full h-full flex items-center justify-center text-base-content/20">
-                <Icon name="mdi:document" class="w-16 h-16" />
-              </div>
+    <!-- Post rows -->
+    <div class="writing-list">
+      {featuredPosts.length === 0 && (
+        <p style="padding: 40px 0; opacity: 0.4; font-family: var(--font-mono); font-size: 13px;">
+          {lang === 'es' ? 'Próximamente...' : 'Coming soon...'}
+        </p>
+      )}
+      {featuredPosts.map((post, i) => (
+        <a
+          href={`/${lang}/blog/${post.slug}`}
+          class="post-row writing-row"
+          data-post-row
+        >
+          <span class="row-num">{String(i + 1).padStart(2, '0')}</span>
+          <span class="row-date">{post.publishDate ? formatDate(post.publishDate) : '—'}</span>
+          <div class="row-title-wrap">
+            {post.tags && post.tags[0] && (
+              <div class="row-tag">{post.tags[0]}</div>
             )}
-          </figure>
-          <div class="card-body">
-            <h3 class="card-title font-serif">{post.title}</h3>
-            <p class="text-base-content/80">{post.description}</p>
-            <div class="card-actions justify-end mt-4">
-              <a
-                href={`/${lang}/blog/${post.slug}`}
-                class="btn btn-sm btn-primary"
-              >
-                {t("home.featured.read_more")}
-              </a>
-            </div>
+            <div class="row-title">{post.title}</div>
           </div>
-        </article>
-      ))
-    }
-  </div>
-
-  <div class="flex justify-center mt-8">
-    <a href={`/${lang}/blog`} class="btn btn-outline">
-      {t("home.featured.view_all")}
-      <Icon name="mdi:arrow-right" class="w-5 h-5" />
-    </a>
+          <p class="row-desc">{post.description}</p>
+          <span class="row-read">
+            {post.readingTime ? `${post.readingTime} min ↗` : '↗'}
+          </span>
+        </a>
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+  .writing-section {
+    padding: 100px 48px;
+  }
+
+  .writing-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .writing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+
+  .writing-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: var(--color-base-content);
+  }
+
+  .writing-title em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .writing-view-all {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-base-content);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.15s, color 0.15s;
+    white-space: nowrap;
+    padding-bottom: 4px;
+  }
+
+  .writing-view-all:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .writing-list {
+    border-top: 1px solid var(--color-base-300);
+  }
+
+  .writing-row {
+    display: grid;
+    grid-template-columns: 60px 120px 1fr 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--color-base-300);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  .writing-row:hover {
+    background: var(--color-base-200);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  .row-num {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-base-content);
+    opacity: 0.35;
+  }
+
+  .row-date {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.08em;
+  }
+
+  .row-title-wrap {}
+
+  .row-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--color-accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .row-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--color-base-content);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+
+  .row-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-base-content);
+    opacity: 0.6;
+    margin: 0;
+    max-width: 340px;
+  }
+
+  .row-read {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-base-content);
+    opacity: 0.4;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .writing-section {
+      padding: 60px 24px;
+    }
+
+    .writing-row {
+      grid-template-columns: 40px 1fr auto;
+      gap: 16px;
+    }
+
+    .row-date, .row-desc {
+      display: none;
+    }
+
+    .writing-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+</style>
