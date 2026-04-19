@@ -1,9 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import { marked } from "marked";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import Prose from "../../../components/prose/Prose.astro";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import { getLangFromUrl } from "../../../i18n/utils";
 import { fetchProjects, fetchProject } from "../../../lib/strapi";
 import type { Lang } from "../../../types/language";
 
@@ -25,7 +26,6 @@ export async function getStaticPaths() {
 }
 
 const lang = getLangFromUrl(Astro.url) as Lang;
-const t = useTranslations(lang);
 const { slug } = Astro.params;
 
 const project = await fetchProject(lang, slug as string);
@@ -36,8 +36,17 @@ if (!project) {
 
 const htmlBody = await marked(project.body);
 
-const backToProjects = lang === "es" ? "← Volver a Proyectos" : "← Back to Projects";
-const backToAbout = lang === "es" ? "← Volver a Sobre mí" : "← Back to About";
+function formatYear(date: string): string {
+  return new Date(date).getFullYear().toString();
+}
+
+const statusLabel: Record<string, Record<string, string>> = {
+  es: { production: "En producción", archived: "Archivado", "in-progress": "En progreso", "open-source": "Open source" },
+  en: { production: "In production", archived: "Archived", "in-progress": "In progress", "open-source": "Open source" },
+};
+const displayStatus = project.status
+  ? (statusLabel[lang]?.[project.status] ?? project.status)
+  : null;
 ---
 
 <MainLayout
@@ -45,29 +54,242 @@ const backToAbout = lang === "es" ? "← Volver a Sobre mí" : "← Back to Abou
   title={project.title}
   description={project.description}
   tags={project.tags}
-  image={`${CDN.IMAGES}${TYPE.PROJECT}${project.image}`}
+  image={`${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`}
 >
-  <a href={`/${lang}/projects`} class="btn btn-outline btn-info btn-sm mb-5" id="back-btn">
-    {backToProjects}
-  </a>
+  <!-- PROJECT HEADER -->
+  <header class="pd-header">
+    <div class="pd-header-inner">
+      <a href={`/${lang}/projects`} class="pd-back">
+        ← {lang === "es" ? "Proyectos" : "Projects"}
+      </a>
 
-  <Prose>
-    <Fragment set:html={htmlBody} />
-  </Prose>
+      <div class="pd-meta">
+        {project.tags?.[0] && (
+          <span class="pd-tag">{project.tags[0]}</span>
+        )}
+        {project.publishDate && (
+          <span class="pd-year">{formatYear(project.publishDate)}</span>
+        )}
+        {displayStatus && (
+          <span class="pd-status">{displayStatus}</span>
+        )}
+      </div>
+
+      <h1 class="pd-title">{project.title}</h1>
+      <p class="pd-desc">{project.description}</p>
+
+      <div class="pd-info">
+        {(project.role || project.company) && (
+          <div class="pd-role">
+            {project.role}
+            {project.company && <span class="pd-company"> · {project.company}</span>}
+          </div>
+        )}
+        {project.technologies?.length > 0 && (
+          <div class="pd-tech">
+            {project.technologies.map((tech) => (
+              <span class="pd-tech-badge">{tech}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <!-- COVER IMAGE -->
+  {project.image && (
+    <div class="pd-cover">
+      <div class="pd-cover-inner">
+        <Image
+          src={`${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`}
+          alt={project.title}
+          width={1200}
+          height={630}
+          class="pd-cover-img"
+          loading="eager"
+        />
+      </div>
+    </div>
+  )}
+
+  <!-- BODY -->
+  <div class="pd-body">
+    <div class="pd-body-inner">
+      <Prose>
+        <Fragment set:html={htmlBody} />
+      </Prose>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="pd-footer">
+    <div class="pd-footer-inner">
+      <a href={`/${lang}/projects`} class="pd-footer-back">
+        ← {lang === "es" ? "Volver a proyectos" : "Back to projects"}
+      </a>
+      {project.tags && project.tags.length > 0 && (
+        <div class="pd-footer-tags">
+          {project.tags.map((tag) => (
+            <span class="pd-footer-tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </footer>
 </MainLayout>
 
-<script define:vars={{ lang, backToAbout }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const backBtn = document.getElementById('back-btn');
+<style>
+  .pd-header {
+    padding: 80px 48px 60px;
+    border-bottom: 1px solid var(--color-base-300);
+  }
+  .pd-header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
 
-    if (backBtn) {
-      const urlParams = new URLSearchParams(window.location.search);
-      const fromParam = urlParams.get('from');
+  .pd-back {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 40px;
+    transition: opacity 0.15s;
+  }
+  .pd-back:hover { opacity: 0.75; }
 
-      if (fromParam === 'about') {
-        backBtn.href = `/${lang}/about#projects`;
-        backBtn.textContent = backToAbout;
-      }
-    }
-  });
-</script>
+  .pd-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--color-base-content);
+    opacity: 0.5;
+    flex-wrap: wrap;
+  }
+  .pd-tag {
+    color: var(--color-accent);
+    opacity: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+  .pd-status {
+    padding: 2px 8px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 999px;
+    font-size: 10px;
+  }
+
+  .pd-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.5vw, 68px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+    margin: 0 0 20px;
+    color: var(--color-base-content);
+  }
+
+  .pd-desc {
+    font-size: 18px;
+    line-height: 1.62;
+    color: var(--color-base-content);
+    opacity: 0.65;
+    margin: 0 0 32px;
+    max-width: 680px;
+  }
+
+  .pd-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .pd-role {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-base-content);
+    opacity: 0.55;
+    letter-spacing: 0.06em;
+  }
+  .pd-company { color: var(--color-accent); opacity: 1; }
+
+  .pd-tech {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .pd-tech-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 999px;
+    color: var(--color-base-content);
+    opacity: 0.6;
+  }
+
+  .pd-cover {
+    background: var(--color-base-200);
+    border-bottom: 1px solid var(--color-base-300);
+  }
+  .pd-cover-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 48px;
+  }
+  .pd-cover-img { width: 100%; height: auto; display: block; }
+
+  .pd-body { padding: 80px 48px 100px; }
+  .pd-body-inner { max-width: 720px; margin: 0 auto; }
+
+  .pd-footer {
+    padding: 32px 48px 80px;
+    border-top: 1px solid var(--color-base-300);
+  }
+  .pd-footer-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .pd-footer-back {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-accent);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: opacity 0.15s;
+  }
+  .pd-footer-back:hover { opacity: 0.75; }
+
+  .pd-footer-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pd-footer-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--color-base-300);
+    border-radius: 999px;
+    color: var(--color-base-content);
+    opacity: 0.5;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 760px) {
+    .pd-header,
+    .pd-body,
+    .pd-footer { padding-left: 24px; padding-right: 24px; }
+    .pd-cover-inner { padding: 24px; }
+    .pd-footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
