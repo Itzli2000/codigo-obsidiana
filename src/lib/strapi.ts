@@ -111,8 +111,13 @@ export async function fetchBlogPosts(
 ): Promise<StrapiPost[]> {
   const draftFilter = options.excludeDrafts !== false ? '&filters[draft][$eq]=false' : '';
   const qs = `?locale=${locale}&pagination[pageSize]=100&sort=publishDate:desc${draftFilter}&status=published`;
-  const res = await strapiGet<StrapiListResponse<Record<string, unknown>>>(`/blog-posts${qs}`);
-  return res.data.map(mapPost);
+  try {
+    const res = await strapiGet<StrapiListResponse<Record<string, unknown>>>(`/blog-posts${qs}`);
+    return res.data.map(mapPost);
+  } catch (err) {
+    console.warn(`[strapi] fetchBlogPosts(${locale}) failed — returning []:`, err);
+    return [];
+  }
 }
 
 export async function fetchBlogPost(
@@ -155,8 +160,13 @@ export async function fetchProjects(
 ): Promise<StrapiProject[]> {
   const filter = options.showInAboutOnly ? '&filters[showInAbout][$eq]=true' : '';
   const qs = `?locale=${locale}&pagination[pageSize]=100&sort=publishDate:desc${filter}&status=published`;
-  const res = await strapiGet<StrapiListResponse<Record<string, unknown>>>(`/projects${qs}`);
-  return res.data.map(mapProject);
+  try {
+    const res = await strapiGet<StrapiListResponse<Record<string, unknown>>>(`/projects${qs}`);
+    return res.data.map(mapProject);
+  } catch (err) {
+    console.warn(`[strapi] fetchProjects(${locale}) failed — returning []:`, err);
+    return [];
+  }
 }
 
 export async function fetchProject(

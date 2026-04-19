@@ -3,6 +3,7 @@ import { useTranslations } from "../i18n/utils";
 import '../styles/global.css';
 import Navigation from '../components/Navigation/Navigation.astro';
 import { NETWORK } from '../constants/network';
+import pkg from '../../package.json';
 
 interface Props {
   title?: string;
@@ -97,7 +98,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
               ? 'Notas, proyectos y arquitectura frontend por Ariel Molina. Construido con Astro, escrito con intención.'
               : 'Notes, projects and frontend architecture by Ariel Molina. Built with Astro, written with intention.'}
           </p>
-          <div class="footer-meta">v3.1.0 · {year}</div>
+          <div class="footer-meta">v{pkg.version} · {year}</div>
         </div>
 
         <!-- Explore -->
