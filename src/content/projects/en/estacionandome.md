@@ -1,0 +1,49 @@
+---
+title: "Yó Estacionándome - Smart Parking Management Platform"
+description: "An intuitive mobile application built with React Native to help users find and reserve parking spaces."
+publishDate: "2025-02-20T00:00:00.000Z"
+technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
+tags: ["Frontend", "3D", "Interactive", "Parking", "Management", "Platform"]
+role: "Frontend Developer"
+company: "Yo Estacionándome"
+status: "Completed"
+image: "estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp"
+imageProjectPrefix: ""
+showInAbout: true
+---
+# Yo Estacionándome - Smart Parking Management Platform
+
+![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
+
+## Description
+Yo Estacionándome is a comprehensive parking management platform that combines modern 3D visualization with practical functionality. The system serves three main user groups: individual parkers, businesses, and government entities. It features interactive 3D models of parking kiosks, responsive design across all devices, and seamless integration with payment systems. The platform aims to simplify the parking experience while providing advanced management tools for operators.
+
+## Challenges
+- Creating immersive 3D visualizations that perform well across different devices
+- Developing a unified platform that serves three distinct user groups with different needs
+- Implementing complex animations and scroll-based interactions while maintaining performance
+- Designing an intuitive UI for both tech-savvy users and those less familiar with technology
+- Ensuring the 3D elements enhanced rather than distracted from the core functionality
+
+## Solutions
+I developed a highly optimized 3D rendering system using React Three Fiber and Three.js, implementing techniques like lazy loading, view-dependent rendering, and model optimization to ensure smooth performance even on lower-end devices.
+
+For the multi-audience approach, I created a modular component architecture that allowed for shared functionality while maintaining distinct user journeys for individuals, businesses, and government entities. Each interface was tailored to its specific use case but maintained consistent design language.
+
+The complex animations were implemented using Framer Motion 3D with performance optimizations like opacity-based rendering and intersection observers to activate animations only when elements are in view. This approach significantly reduced unnecessary rendering and improved overall performance.
+
+I utilized extensive user testing to refine the interface, particularly for the kiosk interactions, ensuring that users of all technical backgrounds could easily navigate the system. The final design balances visual appeal with functional clarity.
+
+## Results
+- 40% reduction in page load time compared to initial prototypes
+- Successful integration of complex 3D models without performance degradation
+- Seamless user experience across mobile, tablet, and desktop devices
+- Unified platform serving three distinct user groups with tailored interfaces
+- Modern, visually impressive design that enhances brand perception
+
+## Visuals
+![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
+
+## Links
+- [Live Demo](https://yo-estacionandome-dev.vercel.app/)
+- Repository private
