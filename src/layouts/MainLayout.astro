@@ -1,5 +1,10 @@
 ---
 import { useTranslations } from "../i18n/utils";
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter/opsz.css';
+import '@fontsource-variable/inter/opsz-italic.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/global.css';
 import Navigation from '../components/Navigation/Navigation.astro';
 import { NETWORK } from '../constants/network';
@@ -49,6 +54,17 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      try {
+        var s = localStorage.getItem("color-scheme");
+        if (s === "light" || s === "dark") {
+          document.querySelector('meta[name="color-scheme"]').content = s;
+        }
+        var d = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = d ? "obsidiana-dark" : "obsidiana-light";
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -103,7 +119,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Explore -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h2>
           <ul class="footer-list">
             {exploreLinks.map(link => (
               <li><a href={link.href}>{link.label}</a></li>
@@ -113,7 +129,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Topics -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h2>
           <ul class="footer-list">
             {topics.map(topic => (
               <li><a href={`/${lang}/blog`}>{topic}</a></li>
@@ -123,7 +139,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Social -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h2>
           <ul class="footer-list">
             <li><a href={NETWORK.GITHUB} target="_blank" rel="noopener">GitHub ↗</a></li>
             <li><a href={NETWORK.LINKEDIN} target="_blank" rel="noopener">LinkedIn ↗</a></li>
@@ -158,7 +174,6 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     padding: 60px 48px 40px;
     font-size: 13px;
     color: var(--color-base-content);
-    opacity: 0.8;
     max-width: 1296px;
     margin: 0 auto;
   }
@@ -184,21 +199,19 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--color-base-content);
-    opacity: 1;
   }
 
   .footer-brand .brand-tagline {
     margin: 0 0 16px;
     max-width: 320px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.7;
+    color: var(--color-muted);
   }
 
   .footer-meta {
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
+    color: var(--color-muted);
   }
 
   .footer-heading {
@@ -207,7 +220,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.45;
+    color: var(--color-muted);
     margin: 0 0 14px;
   }
 
@@ -220,14 +233,12 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
   }
 
   .footer-list a {
-    color: inherit;
+    color: var(--color-muted);
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.15s, color 0.15s;
+    transition: color 0.15s;
   }
 
   .footer-list a:hover {
-    opacity: 1;
     color: var(--color-accent);
   }
 
@@ -237,7 +248,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     justify-content: space-between;
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
+    color: var(--color-muted);
     max-width: 1296px;
     margin: 0 auto;
   }
