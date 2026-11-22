@@ -53,9 +53,9 @@ const resumeDownloadUrl = `${NETWORK.RESUME}?download=1`;
     /* --color-muted (var(--color-muted), 4.77:1) in light; dark keeps solid base-content because the dark
        --color-muted is 55% alpha (3.0:1). Small orange text is darkened to clear 4.5:1
        (accent #f0623f is 3.03:1). */
-    --ink-muted: light-dark(var(--color-muted, var(--color-muted)), var(--color-base-content));
+    --ink-muted: var(--color-muted);
     --ink-soft: light-dark(#3d4146, var(--color-base-content));
-    --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
+    --ink-accent: var(--color-accent-text);
 
     padding: 100px 48px 60px;
     border-bottom: 1px solid var(--color-base-300);
@@ -123,17 +123,16 @@ const resumeDownloadUrl = `${NETWORK.RESUME}?download=1`;
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    background: var(--color-accent);
-    /* Dark ink on orange from the accent-content token */
-    color: var(--color-accent-content);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
     border: 1px solid transparent;
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .profile-btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 
@@ -150,7 +149,7 @@ const resumeDownloadUrl = `${NETWORK.RESUME}?download=1`;
     border: 1px solid var(--color-base-300);
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .profile-btn-ghost:hover {

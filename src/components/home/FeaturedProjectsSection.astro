@@ -304,7 +304,7 @@ function formatYear(date: string): string {
     border-radius: 4px;
     color: var(--color-muted);
     text-decoration: none;
-    transition: all 0.15s;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s, transform 0.15s, filter 0.15s;
     letter-spacing: 0.06em;
   }
 
@@ -314,9 +314,9 @@ function formatYear(date: string): string {
     color: var(--color-accent-text);
   }
 
-  /* Light theme: small gray labels use a solid AA color (var(--color-muted) is 4.37:1 on base-200, this is 4.91:1) instead of opacity */
-  :global([data-theme="obsidiana-light"]) :is(.project-year, .project-kind, .project-cta, .tech-badge, .btn-editorial-ghost-sm:not(:hover)) {
-    color: #63676c;
+  /* Small gray labels use the muted token (AA on base-100/200/300 in both themes) instead of opacity */
+  :is(.project-year, .project-kind, .project-cta, .tech-badge, .btn-editorial-ghost-sm:not(:hover)) {
+    color: var(--color-muted);
     opacity: 1;
   }
 

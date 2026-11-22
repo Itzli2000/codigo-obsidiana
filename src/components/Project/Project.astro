@@ -20,10 +20,17 @@ function formatYear(date: string): string {
   return new Date(date).getFullYear().toString();
 }
 
-// Collect unique tags for filter pills
-const allTags = Array.from(
-  new Set(projects.flatMap((p: any) => p.tags ?? []))
-).slice(0, 6);
+// Filter pills: tags shared by two or more projects, most frequent first.
+// Tags are English code labels in both locales.
+const tagCounts = new Map<string, number>();
+for (const p of projects as any[]) {
+  for (const tag of new Set<string>(p.tags ?? [])) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+}
+const allTags = [...tagCounts.entries()]
+  .filter(([, count]) => count > 1)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 6)
+  .map(([tag]) => tag);
 ---
 
 <MainLayout
@@ -55,11 +62,11 @@ const allTags = Array.from(
   <section class="proj-filters">
     <div class="proj-filters-inner">
       <div class="proj-filter-pills" id="proj-tags">
-        <button class="proj-pill active" data-tag="all">
+        <button class="proj-pill active" data-tag="all" aria-pressed="true">
           {lang === "es" ? "Todos" : "All"}
         </button>
         {allTags.map((tag: string) => (
-          <button class="proj-pill" data-tag={tag}>{tag}</button>
+          <button class="proj-pill" data-tag={tag} aria-pressed="false">{tag}</button>
         ))}
       </div>
     </div>
@@ -171,7 +178,10 @@ const allTags = Array.from(
       const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".proj-pill");
       if (!btn) return;
       activeTag = btn.dataset.tag ?? "all";
-      tagsEl.querySelectorAll(".proj-pill").forEach((b) => b.classList.remove("active"));
+      tagsEl.querySelectorAll(".proj-pill").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
       btn.classList.add("active");
 
       const visible: HTMLElement[] = [];
@@ -280,15 +290,25 @@ const allTags = Array.from(
     color: var(--color-muted);
     border: 1px solid var(--color-base-300);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s, transform 0.15s, filter 0.15s;
+  }
+
+  @media (max-width: 767.98px) {
+    .proj-pill { min-height: 44px; }
   }
 
   .proj-pill:hover { opacity: 0.85; }
 
+  .proj-pill.active:hover {
+    background: var(--color-cta-hover);
+    border-color: var(--color-cta-hover);
+    opacity: 1;
+  }
+
   .proj-pill.active {
-    background: var(--color-accent);
-    color: var(--color-accent-content);
-    border-color: var(--color-accent);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
+    border-color: var(--color-cta);
     opacity: 1;
   }
 
@@ -296,11 +316,6 @@ const allTags = Array.from(
   :global([data-theme="obsidiana-light"]) :is(.proj-pill:not(.active):not(:hover), .proj-card-year, .proj-card-kind, .proj-tech-badge) {
     color: var(--color-muted);
     opacity: 1;
-  }
-
-  /* Light theme: dark text on the orange button (WCAG AA) */
-  :global([data-theme="obsidiana-light"]) :is(.proj-pill.active, .proj-btn-primary) {
-    color: var(--color-accent-content);
   }
 
   /* GRID */
@@ -533,16 +548,16 @@ const allTags = Array.from(
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    background: var(--color-accent);
-    color: var(--color-accent-content);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
     border: 1px solid transparent;
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .proj-btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 
@@ -559,7 +574,7 @@ const allTags = Array.from(
     border: 1px solid var(--color-base-300);
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .proj-btn-ghost:hover {

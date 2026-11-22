@@ -84,9 +84,9 @@ const stack = lang === "es" ? stackEs : stackEn;
     /* --color-muted (var(--color-muted), 4.77:1) in light; dark keeps solid base-content because the dark
        --color-muted is 55% alpha (3.0:1). Small orange text is darkened to clear 4.5:1
        (accent #f0623f is 3.03:1). */
-    --ink-muted: light-dark(var(--color-muted, var(--color-muted)), var(--color-base-content));
+    --ink-muted: var(--color-muted);
     --ink-soft: light-dark(#3d4146, var(--color-base-content));
-    --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
+    --ink-accent: var(--color-accent-text);
 
     padding: 100px 48px;
   }

@@ -156,7 +156,7 @@ function formatDate(date: string): string {
     border-bottom: 1px solid var(--color-base-300);
   }
   .art-header-inner {
-    max-width: 760px;
+    max-width: 680px;
     margin: 0 auto;
   }
 
@@ -184,6 +184,12 @@ function formatDate(date: string): string {
     letter-spacing: 0.1em;
     color: var(--color-muted);
     flex-wrap: wrap;
+  }
+  /* " · " between meta items, same as the list rows */
+  .art-meta > span + span::before {
+    content: "·";
+    margin-right: 16px;
+    color: var(--color-muted);
   }
   .art-tag {
     color: var(--color-accent-text);

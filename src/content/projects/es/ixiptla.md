@@ -4,8 +4,8 @@ description: "Plataforma interactiva bilingüe con modelos 3D de réplicas arque
 publishDate: "2025-06-14T00:00:00.000Z"
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "i18n"]
 tags: ["Frontend", "3D", "Interactive", "Archaeology", "Replicas", "Platform"]
-role: "Frontend Developer"
-company: "Personal Project"
+role: "Desarrollador Frontend"
+company: "Proyecto Personal"
 status: "published"
 image: "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp"
 imageProjectPrefix: "ixiptla/"

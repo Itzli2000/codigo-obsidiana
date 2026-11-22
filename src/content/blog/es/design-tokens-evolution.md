@@ -3,7 +3,7 @@ title: "Evolución de Design Tokens - De Arquitectura Monobrand a Multibrand"
 description: "El viaje arquitectónico de transformar un sistema de tokens de diseño de una sola marca en una plataforma multimarca escalable que soporta cambio dinámico de marcas y gestión avanzada de tokens"
 publishDate: "2025-01-02T00:00:00.000Z"
 updated: null
-tags: ["TypeScript", "Style Dictionary", "OKLCH", "Nx", "Jest", "Arquitectura Multimarca", "Sistema de Diseño", "Monorepo"]
+tags: ["TypeScript", "Style Dictionary", "OKLCH", "Nx", "Jest", "Multi-Brand Architecture", "Design System", "Monorepo"]
 author: "Ariel Molina"
 readingTime: 12
 image: "Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp"

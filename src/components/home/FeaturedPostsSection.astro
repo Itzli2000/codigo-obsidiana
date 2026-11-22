@@ -122,7 +122,7 @@ function formatDate(date: string): string {
 
   .writing-row {
     display: grid;
-    grid-template-columns: 60px 120px 1fr 1fr auto;
+    grid-template-columns: 60px 120px minmax(0, 1fr) minmax(0, 1fr) 72px;
     gap: 32px;
     align-items: baseline;
     padding: 28px 0;
@@ -184,6 +184,7 @@ function formatDate(date: string): string {
   }
 
   .row-read {
+    text-align: right;
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--color-muted);

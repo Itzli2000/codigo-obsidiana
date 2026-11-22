@@ -32,7 +32,9 @@ const {
 
 const t = useTranslations(lang as "en" | "es");
 const siteDescription = description || t("meta.description");
-const siteTitle = title || t("title");
+// Every page title ends with the site name
+const baseTitle = title || t("title");
+const siteTitle = baseTitle.includes("Código Obsidiana") ? baseTitle : `${baseTitle} | Código Obsidiana`;
 const siteUrl = Astro.url.origin;
 
 const year = new Date().getFullYear();
@@ -96,10 +98,11 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     <meta property="twitter:image" content={new URL(image, siteUrl).href} />
   </head>
   <body class="min-h-screen text-base-content bg-base-100">
+    <a href="#main" class="skip-link">{t("nav.skipToContent")}</a>
     <header>
       <Navigation lang={lang} />
     </header>
-    <main class="min-h-screen">
+    <main id="main" tabindex="-1" class="min-h-screen">
       <slot />
     </main>
 
@@ -132,7 +135,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
           <h2 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h2>
           <ul class="footer-list">
             {topics.map(topic => (
-              <li><a href={`/${lang}/blog`}>{topic}</a></li>
+              <li class="footer-topic">{topic}</li>
             ))}
           </ul>
         </div>
@@ -232,30 +235,47 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     gap: 8px;
   }
 
+  .footer-topic {
+    color: var(--color-muted);
+  }
+
   .footer-list a {
     color: var(--color-muted);
     text-decoration: none;
     transition: color 0.15s;
   }
 
+  /* 44px rows on phones; the gap goes so the hit areas do not overlap */
+  @media (max-width: 767.98px) {
+    .footer-list { gap: 0; }
+    .footer-list a {
+      display: block;
+      padding-block: 14px;
+    }
+  }
+
   .footer-list a:hover {
     color: var(--color-accent-text);
   }
 
+  /* The top rule spans the content column (120–1320 at 1440), not the padded box */
   .footer-bar {
-    padding: 16px 48px;
+    padding: 16px 0;
+    margin-inline: max(48px, calc((100% - 1200px) / 2));
     display: flex;
     justify-content: space-between;
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--color-muted);
-    max-width: 1296px;
-    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .footer-bar { margin-inline: 24px; }
   }
 
   @media (max-width: 540px) {
     .footer-bar {
-      padding: 14px 24px;
+      padding: 14px 0;
       flex-direction: column;
       gap: 4px;
     }

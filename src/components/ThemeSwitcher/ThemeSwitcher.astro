@@ -54,9 +54,10 @@ const labels = {
     cursor: pointer;
   }
 
-  .theme-switcher:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 4px;
+  /* 44px hit area around the 24px icon */
+  .theme-switcher {
+    min-width: 44px;
+    min-height: 44px;
     border-radius: 4px;
   }
 

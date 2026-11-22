@@ -72,7 +72,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
              55% alpha, 3.0:1). Small orange text darkened to clear 4.5:1. */
           --ink-muted: var(--color-muted);
           --ink-soft: light-dark(#3d4146, var(--color-base-content));
-          --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
+          --ink-accent: var(--color-accent-text);
           display: grid;
           grid-template-columns: 1.3fr 1fr;
           gap: 80px;
@@ -128,6 +128,8 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
         .ci-entry-value {
           font-size: 14px;
           color: var(--ink-soft);
+          min-width: 0;
+          overflow-wrap: anywhere;
         }
         .ci-link {
           color: var(--ink-accent);
@@ -143,7 +145,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
         }
         @media (max-width: 900px) {
           .contact-layout {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             gap: 48px;
           }
         }
