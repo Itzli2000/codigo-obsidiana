@@ -52,9 +52,8 @@ const ContactForm = ({
           }
           .cf-success-msg {
             font-size: 15px;
-            opacity: 0.65;
             margin: 0 0 28px;
-            color: var(--color-base-content);
+            color: var(--ink-muted);
           }
         `}</style>
       </div>
@@ -184,14 +183,14 @@ const ContactForm = ({
           font-size: 11px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--color-base-content);
-          opacity: 0.55;
+          color: var(--ink-muted);
         }
-        .cf-required { color: var(--color-accent); opacity: 1; }
+        .cf-required { color: var(--ink-accent); }
         .cf-input, .cf-textarea {
           width: 100%;
           background: transparent;
-          border: 1px solid var(--color-base-300);
+          /* Field boundary needs 3:1 against the page (base-300 is 1.27:1 in light) */
+          border: 1px solid light-dark(#868a8f, var(--color-base-300));
           border-radius: 4px;
           padding: 12px 14px;
           font-family: var(--font-body, sans-serif);
@@ -199,25 +198,29 @@ const ContactForm = ({
           color: var(--color-base-content);
           transition: border-color 0.15s;
           box-sizing: border-box;
-          outline: none;
         }
-        .cf-input:focus, .cf-textarea:focus {
+        .cf-input::placeholder, .cf-textarea::placeholder {
+          color: var(--ink-muted);
+          opacity: 1;
+        }
+        .cf-input:focus-visible, .cf-textarea:focus-visible {
           border-color: var(--color-accent);
+          outline: 2px solid var(--color-accent);
+          outline-offset: -1px;
         }
         .cf-input-error { border-color: var(--color-error) !important; }
         .cf-textarea { height: 120px; resize: vertical; }
         .cf-field-error {
           font-family: var(--font-mono, monospace);
           font-size: 11px;
-          color: var(--color-error);
+          color: var(--ink-accent);
           letter-spacing: 0.04em;
         }
         .cf-required-note {
           font-family: var(--font-mono, monospace);
           font-size: 11px;
-          opacity: 0.35;
           margin: 0;
-          color: var(--color-base-content);
+          color: var(--ink-muted);
         }
         .cf-btn-primary {
           display: inline-flex;
@@ -225,7 +228,8 @@ const ContactForm = ({
           gap: 8px;
           padding: 13px 24px;
           background: var(--color-accent);
-          color: var(--color-base-100);
+          /* Dark ink on orange: 6.3:1 in both themes */
+          color: #0f1923;
           border: 1px solid transparent;
           border-radius: 4px;
           font-family: var(--font-body, sans-serif);
@@ -255,7 +259,7 @@ const ContactForm = ({
         }
         .cf-btn-ghost:hover {
           border-color: var(--color-accent);
-          color: var(--color-accent);
+          color: var(--ink-accent);
         }
         .cf-error-banner {
           background: oklch(var(--er) / 0.1);
@@ -270,7 +274,7 @@ const ContactForm = ({
           gap: 12px;
           margin-bottom: 20px;
         }
-        .cf-error-banner a { color: var(--color-accent); }
+        .cf-error-banner a { color: var(--ink-accent); }
         .cf-spinner {
           width: 14px; height: 14px;
           border: 2px solid transparent;
