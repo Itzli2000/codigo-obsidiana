@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import { CDN, TYPE } from "../../constants/cdn";
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { getProjects } from "../../lib/content";
 import type { Lang } from "../../types/language";
@@ -8,6 +10,12 @@ const t = useTranslations(lang);
 
 const allProjects = await getProjects(lang, { showInAboutOnly: true });
 const featuredProjects = allProjects.slice(0, 4);
+
+const isOddCount = featuredProjects.length % 2 === 1;
+
+function projectImageUrl(project: { image: string; imageProjectPrefix: string }): string {
+  return `${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`;
+}
 
 function formatYear(date: string): string {
   return new Date(date).getFullYear().toString();
@@ -32,7 +40,26 @@ function formatYear(date: string): string {
     {featuredProjects.length > 0 ? (
       <div class="projects-grid">
         {featuredProjects.map((project, i) => (
-          <a href={`/${lang}/projects/${project.slug}`} class="project-card">
+          <a
+            href={`/${lang}/projects/${project.slug}`}
+            class:list={["project-card", { "project-card--lead": isOddCount && i === 0 }]}
+          >
+            {project.image && (
+              <div class="project-media">
+                <Image
+                  src={projectImageUrl(project)}
+                  alt=""
+                  width={1200}
+                  height={750}
+                  widths={[480, 800, 1200]}
+                  sizes="(max-width: 700px) calc(100vw - 48px), (max-width: 1296px) 50vw, 600px"
+                  loading="lazy"
+                  decoding="async"
+                  class="project-img"
+                />
+              </div>
+            )}
+            <div class="project-body">
             <div class="project-card-top">
               <span class="project-counter">
                 {String(i + 1).padStart(2, '0')} / {String(featuredProjects.length).padStart(2, '0')}
@@ -55,6 +82,7 @@ function formatYear(date: string): string {
               <span class="project-cta">
                 {lang === 'es' ? 'Ver caso →' : 'View case →'}
               </span>
+            </div>
             </div>
           </a>
         ))}
@@ -114,10 +142,8 @@ function formatYear(date: string): string {
 
   .project-card {
     background: var(--color-base-200);
-    padding: 40px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     min-height: 300px;
     text-decoration: none;
     color: inherit;
@@ -127,6 +153,64 @@ function formatYear(date: string): string {
 
   .project-card:hover {
     background: var(--color-base-100);
+  }
+
+  /* Odd count: the first card spans the full row so the grid never leaves a hole */
+  .project-card--lead {
+    grid-column: 1 / -1;
+  }
+
+  .project-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-base-300);
+    background: var(--color-base-300);
+  }
+
+  .project-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: saturate(0.85);
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.3s;
+  }
+
+  .project-card:hover .project-img {
+    transform: scale(1.025);
+    filter: saturate(1);
+  }
+
+  .project-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  @media (min-width: 701px) {
+    .project-card--lead {
+      flex-direction: row;
+    }
+
+    .project-card--lead .project-media {
+      flex: 0 0 calc(50% - 1px);
+      aspect-ratio: auto;
+      min-height: 360px;
+      border-bottom: 0;
+      border-right: 1px solid var(--color-base-300);
+    }
+
+    .project-card--lead .project-body {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-img { transition: none; }
+    .project-card:hover .project-img { transform: none; }
   }
 
   .project-card-top {
@@ -236,9 +320,19 @@ function formatYear(date: string): string {
     color: var(--color-accent);
   }
 
+  /* Light theme: small gray labels use a solid AA color (#6b6f74 is 4.37:1 on base-200, this is 4.91:1) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.project-year, .project-kind, .project-cta, .tech-badge, .btn-editorial-ghost-sm:not(:hover)) {
+    color: #63676c;
+    opacity: 1;
+  }
+
   @media (max-width: 700px) {
     .projects-section {
       padding: 60px 24px;
+    }
+
+    .project-body {
+      padding: 28px 24px;
     }
 
     .projects-grid {

@@ -70,7 +70,7 @@ function formatDate(date: string): string {
 
 <style>
   .writing-section {
-    padding: 100px 48px;
+    padding: 40px 48px 100px;
   }
 
   .writing-inner {
@@ -196,9 +196,15 @@ function formatDate(date: string): string {
     white-space: nowrap;
   }
 
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.row-num, .row-date, .row-read, .writing-view-all:not(:hover)) {
+    color: #6b6f74;
+    opacity: 1;
+  }
+
   @media (max-width: 900px) {
     .writing-section {
-      padding: 60px 24px;
+      padding: 24px 24px 60px;
     }
 
     .writing-row {
@@ -215,5 +221,31 @@ function formatDate(date: string): string {
       align-items: flex-start;
       gap: 16px;
     }
+  }
+
+  /* Phones: stack number/date/reading time above a full-width title */
+  @media (max-width: 640px) {
+    .writing-row {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        "num date read"
+        "title title title";
+      column-gap: 14px;
+      row-gap: 12px;
+      padding: 24px 0;
+    }
+
+    .writing-row:hover {
+      padding-left: 12px;
+      padding-right: 12px;
+      margin-left: -12px;
+      margin-right: -12px;
+    }
+
+    .row-num { grid-area: num; font-size: 11px; }
+    .row-date { grid-area: date; display: block; }
+    .row-read { grid-area: read; }
+    .row-title-wrap { grid-area: title; }
+    .row-title { font-size: 22px; }
   }
 </style>

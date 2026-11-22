@@ -12,6 +12,10 @@ const t = useTranslations(lang);
 
 const projects = await getProjects(lang);
 
+function projectImageUrl(project: { image: string; imageProjectPrefix: string }): string {
+  return `${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`;
+}
+
 function formatYear(date: string): string {
   return new Date(date).getFullYear().toString();
 }
@@ -77,9 +81,25 @@ const allTags = Array.from(
           {projects.map((project: any, i: number) => (
             <a
               href={`/${lang}/projects/${project.slug}`}
-              class="proj-card"
+              class:list={["proj-card", { "proj-card--wide": projects.length % 2 === 1 && i === 0 }]}
               data-tags={JSON.stringify(project.tags ?? [])}
             >
+              {project.image && (
+                <div class="proj-card-media">
+                  <Image
+                    src={projectImageUrl(project)}
+                    alt=""
+                    width={1200}
+                    height={750}
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1296px) 50vw, 600px"
+                    loading="lazy"
+                    decoding="async"
+                    class="proj-card-img"
+                  />
+                </div>
+              )}
+              <div class="proj-card-body">
               <div class="proj-card-top">
                 <span class="proj-card-counter">
                   {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
@@ -105,6 +125,7 @@ const allTags = Array.from(
                 <span class="proj-card-cta">
                   {lang === "es" ? "Ver caso →" : "View case →"}
                 </span>
+              </div>
               </div>
             </a>
           ))}
@@ -155,11 +176,16 @@ const allTags = Array.from(
       tagsEl.querySelectorAll(".proj-pill").forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
+      const visible: HTMLElement[] = [];
       grid.querySelectorAll<HTMLElement>(".proj-card").forEach((card) => {
         const tags: string[] = JSON.parse(card.dataset.tags ?? "[]");
         const match = activeTag === "all" || tags.includes(activeTag);
-        card.style.display = match ? "" : "none";
+        card.hidden = !match;
+        card.classList.remove("proj-card--wide");
+        if (match) visible.push(card);
       });
+      // An odd number of visible cards would leave an empty cell: widen the first one.
+      if (visible.length % 2 === 1) visible[0].classList.add("proj-card--wide");
     });
   }
 </script>
@@ -185,6 +211,11 @@ const allTags = Array.from(
     line-height: 0.85;
     pointer-events: none;
     user-select: none;
+  }
+
+  /* Dark mode: base-200 is too close to the text; keep the watermark decorative */
+  :global([data-theme="obsidiana-dark"]) .proj-watermark {
+    color: color-mix(in oklab, var(--color-base-200) 45%, var(--color-base-100));
   }
 
   .proj-hero-inner {
@@ -261,6 +292,17 @@ const allTags = Array.from(
     opacity: 1;
   }
 
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.proj-pill:not(.active):not(:hover), .proj-card-year, .proj-card-kind, .proj-tech-badge) {
+    color: #6b6f74;
+    opacity: 1;
+  }
+
+  /* Light theme: dark text on the orange button (WCAG AA) */
+  :global([data-theme="obsidiana-light"]) :is(.proj-pill.active, .proj-btn-primary) {
+    color: var(--color-primary-content);
+  }
+
   /* GRID */
   .proj-grid-section {
     padding: 60px 48px;
@@ -287,10 +329,8 @@ const allTags = Array.from(
 
   .proj-card {
     background: var(--color-base-100);
-    padding: 48px 40px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     min-height: 340px;
     text-decoration: none;
     color: inherit;
@@ -300,6 +340,68 @@ const allTags = Array.from(
 
   .proj-card:hover {
     background: var(--color-base-200);
+  }
+
+  .proj-card[hidden] {
+    display: none;
+  }
+
+  /* Odd count: first visible card spans the row so the grid never leaves a hole */
+  .proj-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .proj-card-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-base-300);
+    background: var(--color-base-200);
+  }
+
+  .proj-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: saturate(0.85);
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.3s;
+  }
+
+  .proj-card:hover .proj-card-img {
+    transform: scale(1.025);
+    filter: saturate(1);
+  }
+
+  .proj-card-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  @media (min-width: 901px) {
+    .proj-card--wide {
+      flex-direction: row;
+    }
+
+    .proj-card--wide .proj-card-media {
+      flex: 0 0 calc(50% - 1px);
+      aspect-ratio: auto;
+      min-height: 380px;
+      border-bottom: 0;
+      border-right: 1px solid var(--color-base-300);
+    }
+
+    .proj-card--wide .proj-card-body {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proj-card-img { transition: none; }
+    .proj-card:hover .proj-card-img { transform: none; }
   }
 
   .proj-card-top {
@@ -479,6 +581,10 @@ const allTags = Array.from(
 
     .proj-grid {
       grid-template-columns: 1fr;
+    }
+
+    .proj-card-body {
+      padding: 28px 24px;
     }
 
     .proj-watermark {

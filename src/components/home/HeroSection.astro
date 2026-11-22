@@ -81,6 +81,11 @@ const stats = lang === 'es'
     z-index: 0;
   }
 
+  /* Dark mode: base-200 reads too strongly behind the headline; keep it decorative */
+  :global([data-theme="obsidiana-dark"]) .hero-watermark {
+    color: color-mix(in oklab, var(--color-base-200) 45%, var(--color-base-100));
+  }
+
   .hero-inner {
     max-width: 860px;
     margin: 0 auto;
@@ -155,6 +160,11 @@ const stats = lang === 'es'
     color: var(--color-base-100);
   }
 
+  /* Light theme: dark text on the orange button (WCAG AA) */
+  :global([data-theme="obsidiana-light"]) .btn-editorial-primary {
+    color: var(--color-primary-content);
+  }
+
   .btn-editorial-primary:hover {
     filter: brightness(1.1);
     transform: translateY(-1px);
@@ -198,6 +208,12 @@ const stats = lang === 'es'
     text-transform: uppercase;
     margin-top: 8px;
     line-height: 1.4;
+  }
+
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.stat-label) {
+    color: #6b6f74;
+    opacity: 1;
   }
 
   @media (max-width: 900px) {
