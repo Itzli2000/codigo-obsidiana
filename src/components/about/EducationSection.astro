@@ -36,6 +36,13 @@ const { lang = "es" } = Astro.props;
 
 <style>
   .edu-section {
+    /* --color-muted (#6b6f74, 4.77:1) in light; dark keeps solid base-content because the dark
+       --color-muted is 55% alpha (3.0:1). Small orange text is darkened to clear 4.5:1
+       (accent #f0623f is 3.03:1). */
+    --ink-muted: light-dark(var(--color-muted, #6b6f74), var(--color-base-content));
+    --ink-soft: light-dark(#3d4146, var(--color-base-content));
+    --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
+
     padding: 80px 48px;
     border-top: 1px solid var(--color-base-300);
   }
@@ -65,8 +72,7 @@ const { lang = "es" } = Astro.props;
   .edu-meta {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--ink-muted);
     letter-spacing: 0.08em;
     margin-bottom: 16px;
   }
@@ -74,8 +80,7 @@ const { lang = "es" } = Astro.props;
   .edu-desc {
     font-size: 15px;
     line-height: 1.7;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--ink-muted);
     margin: 0;
     max-width: 580px;
   }
@@ -89,5 +94,11 @@ const { lang = "es" } = Astro.props;
       grid-template-columns: 1fr;
       gap: 24px;
     }
+  }
+
+  /* Global .eyebrow fades with opacity; use a solid muted color instead */
+  .edu-section .eyebrow {
+    color: var(--ink-muted);
+    opacity: 1;
   }
 </style>
