@@ -108,7 +108,7 @@ const techLabel = lang === "es" ? "Tecnologías" : "Technologies";
      * labels use one step darker (4.77:1, the same ratio var(--color-muted) gets on base-100).
      * Small orange text uses a deeper/lighter orange so it clears 4.5:1 in each theme.
      */
-    --exp-ink-muted: light-dark(var(--color-muted), var(--color-base-content));
+    --exp-ink-muted: var(--color-muted);
     --exp-ink-soft: light-dark(#3d4146, var(--color-base-content));
     --exp-ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
 

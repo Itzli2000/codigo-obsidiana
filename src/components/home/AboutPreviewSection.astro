@@ -71,7 +71,7 @@ const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestrat
     gap: 16px;
     font-family: var(--font-mono);
     font-size: 12px;
-    color: color-mix(in oklab, var(--color-base-content) 40%, transparent);
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     align-items: center;
   }
@@ -86,11 +86,6 @@ const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestrat
     opacity: 0.8;
   }
 
-  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
-  :global([data-theme="obsidiana-light"]) :is(.now-meta) {
-    color: var(--color-muted);
-    opacity: 1;
-  }
 
   @media (max-width: 700px) {
     .now-section {

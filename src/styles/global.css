@@ -21,10 +21,9 @@
   --color-secondary: var(--color-secondary-light-default);
   --color-secondary-content: var(--color-secondary-light-content);
 
-  /* Darker than the token (#f27557) so orange text reaches 3:1 on base-100 (large text) */
+  /* Display accent: slightly darker than the token fill (#f27557) so large italic text reaches 3:1 on base-100. Small text uses --color-accent-text. */
   --color-accent: #f0623f;
-  /* Dark text on orange backgrounds: 6.3:1 instead of white */
-  --color-accent-content: #0f1923;
+  --color-accent-content: var(--color-accent-light-content);
 
   --color-neutral: var(--color-neutral-light-default);
   --color-neutral-content: var(--color-neutral-light-content);
@@ -161,16 +160,16 @@
 }
 
 /*
- * Muted text and text-safe accent (accent-text). Light values pass 4.5:1 on base-100/200/300.
- * Dark keeps the previous look (base-content at 55%). Use it instead of opacity.
+ * Muted text and text-safe accent from @codigo-obsidiana/design-tokens 2.1+.
+ * Both pass 4.5:1 on base-100/200/300 in each theme. Use them instead of opacity or hex values.
  */
 :root {
-  --color-muted: #606266;
-  --color-accent-text: #b0391b;
+  --color-muted: var(--color-base-light-muted);
+  --color-accent-text: var(--color-accent-light-text);
 }
 [data-theme="obsidiana-dark"] {
-  --color-muted: color-mix(in oklab, var(--color-base-content) 55%, transparent);
-  --color-accent-text: #ff9074;
+  --color-muted: var(--color-base-dark-muted);
+  --color-accent-text: var(--color-accent-dark-text);
 }
 
 /* Font variables */

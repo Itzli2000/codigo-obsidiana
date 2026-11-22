@@ -70,7 +70,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
           /* --color-muted in light on base-100; one step darker on the base-200 card
              (var(--color-muted) is 4.37:1 there). Dark keeps solid base-content (the dark token is
              55% alpha, 3.0:1). Small orange text darkened to clear 4.5:1. */
-          --ink-muted: light-dark(var(--color-muted, var(--color-muted)), var(--color-base-content));
+          --ink-muted: var(--color-muted);
           --ink-soft: light-dark(#3d4146, var(--color-base-content));
           --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
           display: grid;
@@ -85,7 +85,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
           display: flex;
           flex-direction: column;
           gap: 32px;
-          --ink-muted: light-dark(var(--color-muted), var(--color-base-content));
+          --ink-muted: var(--color-muted);
         }
         .ci-status {
           display: flex;

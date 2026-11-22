@@ -190,7 +190,7 @@ const ContactForm = ({
           width: 100%;
           background: transparent;
           /* Field boundary needs 3:1 against the page (base-300 is 1.27:1 in light) */
-          border: 1px solid light-dark(#868a8f, var(--color-base-300));
+          border: 1px solid light-dark(var(--color-border-light-default), var(--color-border-dark-default));
           border-radius: 4px;
           padding: 12px 14px;
           font-family: var(--font-body, sans-serif);
@@ -228,7 +228,7 @@ const ContactForm = ({
           gap: 8px;
           padding: 13px 24px;
           background: var(--color-accent);
-          /* Dark ink on orange (#0f1923 on #f0623f is 5.51:1) */
+          /* Dark ink on orange from the accent-content token */
           color: var(--color-accent-content);
           border: 1px solid transparent;
           border-radius: 4px;
