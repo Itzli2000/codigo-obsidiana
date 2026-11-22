@@ -54,6 +54,17 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      try {
+        var s = localStorage.getItem("color-scheme");
+        if (s === "light" || s === "dark") {
+          document.querySelector('meta[name="color-scheme"]').content = s;
+        }
+        var d = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = d ? "obsidiana-dark" : "obsidiana-light";
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 

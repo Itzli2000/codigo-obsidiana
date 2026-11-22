@@ -1,10 +1,13 @@
 @import "tailwindcss";
 @import "@codigo-obsidiana/design-tokens/obsidiana/css";
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+}
 
 @plugin "daisyui/theme" {
   name: "obsidiana-light";
+  default: true;
   color-scheme: light;
 
   --color-base-100: var(--color-base-light-100);
