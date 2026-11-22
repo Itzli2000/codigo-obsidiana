@@ -96,6 +96,11 @@ const t = useTranslations(lang);
     transition: all 0.2s;
   }
 
+  /* Light theme: dark text on the orange button (WCAG AA) */
+  :global([data-theme="obsidiana-light"]) .btn-editorial-primary {
+    color: var(--color-primary-content);
+  }
+
   .btn-editorial-primary:hover {
     filter: brightness(1.1);
     transform: translateY(-1px);

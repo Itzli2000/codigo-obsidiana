@@ -196,6 +196,12 @@ function formatDate(date: string): string {
     white-space: nowrap;
   }
 
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.row-num, .row-date, .row-read, .writing-view-all:not(:hover)) {
+    color: #6b6f74;
+    opacity: 1;
+  }
+
   @media (max-width: 900px) {
     .writing-section {
       padding: 24px 24px 60px;

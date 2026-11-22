@@ -320,6 +320,12 @@ function formatYear(date: string): string {
     color: var(--color-accent);
   }
 
+  /* Light theme: small gray labels use a solid AA color (#6b6f74 is 4.37:1 on base-200, this is 4.91:1) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.project-year, .project-kind, .project-cta, .tech-badge, .btn-editorial-ghost-sm:not(:hover)) {
+    color: #63676c;
+    opacity: 1;
+  }
+
   @media (max-width: 700px) {
     .projects-section {
       padding: 60px 24px;

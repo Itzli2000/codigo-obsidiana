@@ -292,6 +292,17 @@ const allTags = Array.from(
     opacity: 1;
   }
 
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.proj-pill:not(.active):not(:hover), .proj-card-year, .proj-card-kind, .proj-tech-badge) {
+    color: #6b6f74;
+    opacity: 1;
+  }
+
+  /* Light theme: dark text on the orange button (WCAG AA) */
+  :global([data-theme="obsidiana-light"]) :is(.proj-pill.active, .proj-btn-primary) {
+    color: var(--color-primary-content);
+  }
+
   /* GRID */
   .proj-grid-section {
     padding: 60px 48px;
