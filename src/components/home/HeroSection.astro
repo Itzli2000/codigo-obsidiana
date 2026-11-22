@@ -81,6 +81,11 @@ const stats = lang === 'es'
     z-index: 0;
   }
 
+  /* Dark mode: base-200 reads too strongly behind the headline; keep it decorative */
+  :global([data-theme="obsidiana-dark"]) .hero-watermark {
+    color: color-mix(in oklab, var(--color-base-200) 45%, var(--color-base-100));
+  }
+
   .hero-inner {
     max-width: 860px;
     margin: 0 auto;
