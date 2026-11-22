@@ -68,7 +68,7 @@ const stack = lang === "es" ? stackEs : stackEn;
               <>
                 <span class="stack-item">{item}</span>
                 {i < col.items.length - 1 && (
-                  <span class="stack-sep">·</span>
+                  <span class="stack-sep" aria-hidden="true">·</span>
                 )}
               </>
             ))}
@@ -81,6 +81,11 @@ const stack = lang === "es" ? stackEs : stackEn;
 
 <style>
   .stack-section {
+    /* Light: #6b6f74 gray (4.77:1 on base-100); small orange text darkened to clear 4.5:1. */
+    --ink-muted: light-dark(#6b6f74, var(--color-base-content));
+    --ink-soft: light-dark(#3d4146, var(--color-base-content));
+    --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
+
     padding: 100px 48px;
   }
 
@@ -123,7 +128,7 @@ const stack = lang === "es" ? stackEs : stackEn;
   .stack-category {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-accent);
+    color: var(--ink-accent);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     margin-bottom: 16px;
@@ -140,8 +145,7 @@ const stack = lang === "es" ? stackEs : stackEn;
     font-family: var(--font-display);
     font-style: italic;
     font-size: 17px;
-    color: var(--color-base-content);
-    opacity: 0.85;
+    color: var(--ink-soft);
   }
 
   .stack-sep {
@@ -160,5 +164,11 @@ const stack = lang === "es" ? stackEs : stackEn;
     .stack-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  /* Global .eyebrow fades with opacity; use a solid muted color instead */
+  .stack-section .eyebrow {
+    color: var(--ink-muted);
+    opacity: 1;
   }
 </style>
