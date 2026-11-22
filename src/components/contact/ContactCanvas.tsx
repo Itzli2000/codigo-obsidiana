@@ -67,9 +67,10 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
 
       <style>{`
         .contact-layout {
-          /* Light: #6b6f74 gray on base-100; one step darker on the base-200 card
-             (#6b6f74 is 4.37:1 there). Small orange text darkened to clear 4.5:1. */
-          --ink-muted: light-dark(#6b6f74, var(--color-base-content));
+          /* --color-muted in light on base-100; one step darker on the base-200 card
+             (#6b6f74 is 4.37:1 there). Dark keeps solid base-content (the dark token is
+             55% alpha, 3.0:1). Small orange text darkened to clear 4.5:1. */
+          --ink-muted: light-dark(var(--color-muted, #6b6f74), var(--color-base-content));
           --ink-soft: light-dark(#3d4146, var(--color-base-content));
           --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
           display: grid;

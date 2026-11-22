@@ -40,8 +40,10 @@ const blockquoteEn = "My passion is building autonomous systems that empower tea
 
 <style>
   .trajectory-section {
-    /* Light: #6b6f74 gray (4.77:1 on base-100); small orange text darkened to clear 4.5:1. */
-    --ink-muted: light-dark(#6b6f74, var(--color-base-content));
+    /* --color-muted (#6b6f74, 4.77:1) in light; dark keeps solid base-content because the dark
+       --color-muted is 55% alpha (3.0:1). Small orange text is darkened to clear 4.5:1
+       (accent #f0623f is 3.03:1). */
+    --ink-muted: light-dark(var(--color-muted, #6b6f74), var(--color-base-content));
     --ink-soft: light-dark(#3d4146, var(--color-base-content));
     --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
 

@@ -68,8 +68,8 @@ const translations = {
 
 <style>
   .ct-hero {
-    /* Light: #6b6f74 gray (4.77:1 on base-100), no stacked opacity */
-    --ink-muted: light-dark(#6b6f74, var(--color-base-content));
+    /* --color-muted in light; solid base-content in dark (the dark token is 55% alpha) */
+    --ink-muted: light-dark(var(--color-muted, #6b6f74), var(--color-base-content));
     position: relative;
     overflow: hidden;
     padding: 100px 48px 60px;
@@ -115,8 +115,8 @@ const translations = {
 
   .ct-em {
     font-style: italic;
-    /* Large text: #f0623f is 3.03:1 on light base-100 (accent token is 2.66:1) */
-    color: light-dark(#f0623f, var(--color-accent));
+    /* Large text only: accent #f0623f is 3.03:1 on light base-100 */
+    color: var(--color-accent);
     font-weight: 300;
   }
 
