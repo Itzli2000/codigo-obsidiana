@@ -299,10 +299,16 @@ const allTags = [...tagCounts.entries()]
 
   .proj-pill:hover { opacity: 0.85; }
 
+  .proj-pill.active:hover {
+    background: var(--color-cta-hover);
+    border-color: var(--color-cta-hover);
+    opacity: 1;
+  }
+
   .proj-pill.active {
-    background: var(--color-accent);
-    color: var(--color-accent-content);
-    border-color: var(--color-accent);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
+    border-color: var(--color-cta);
     opacity: 1;
   }
 
@@ -310,11 +316,6 @@ const allTags = [...tagCounts.entries()]
   :global([data-theme="obsidiana-light"]) :is(.proj-pill:not(.active):not(:hover), .proj-card-year, .proj-card-kind, .proj-tech-badge) {
     color: var(--color-muted);
     opacity: 1;
-  }
-
-  /* Light theme: dark text on the orange button (WCAG AA) */
-  :global([data-theme="obsidiana-light"]) :is(.proj-pill.active, .proj-btn-primary) {
-    color: var(--color-accent-content);
   }
 
   /* GRID */
@@ -547,8 +548,8 @@ const allTags = [...tagCounts.entries()]
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    background: var(--color-accent);
-    color: var(--color-accent-content);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
     border: 1px solid transparent;
     text-decoration: none;
     font-family: var(--font-body);
@@ -556,7 +557,7 @@ const allTags = [...tagCounts.entries()]
   }
 
   .proj-btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 

@@ -123,9 +123,8 @@ const resumeDownloadUrl = `${NETWORK.RESUME}?download=1`;
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    background: var(--color-accent);
-    /* Dark ink on orange from the accent-content token */
-    color: var(--color-accent-content);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
     border: 1px solid transparent;
     text-decoration: none;
     font-family: var(--font-body);
@@ -133,7 +132,7 @@ const resumeDownloadUrl = `${NETWORK.RESUME}?download=1`;
   }
 
   .profile-btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 

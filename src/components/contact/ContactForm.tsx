@@ -233,20 +233,19 @@ const ContactForm = ({
           align-items: center;
           gap: 8px;
           padding: 13px 24px;
-          background: var(--color-accent);
-          /* Dark ink on orange from the accent-content token */
-          color: var(--color-accent-content);
+          background: var(--color-cta);
+          color: var(--color-cta-content);
           border: 1px solid transparent;
           border-radius: 4px;
           font-family: var(--font-body, sans-serif);
           font-size: 14px;
           font-weight: 500;
           cursor: pointer;
-          transition: filter 0.2s, transform 0.2s;
+          transition: background-color 0.2s, transform 0.2s;
           align-self: flex-start;
         }
         .cf-btn-primary:hover:not(:disabled) {
-          filter: brightness(1.1);
+          background: var(--color-cta-hover);
           transform: translateY(-1px);
         }
         .cf-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }

@@ -172,6 +172,22 @@
   --color-accent-text: var(--color-accent-dark-text);
 }
 
+/*
+ * Filled primary CTAs and active filter pills. Light: terracotta (accent-light-text)
+ * with white text, 6.09:1. Dark: the orange fill with dark ink, 5.48:1.
+ * Large display italics keep --color-accent; small orange text keeps --color-accent-text.
+ */
+:root {
+  --color-cta: var(--color-accent-light-text);
+  --color-cta-content: #fff;
+  --color-cta-hover: color-mix(in oklab, var(--color-accent-light-text) 88%, black);
+}
+[data-theme="obsidiana-dark"] {
+  --color-cta: var(--color-accent);
+  --color-cta-content: var(--color-accent-content);
+  --color-cta-hover: color-mix(in oklab, var(--color-accent) 90%, white);
+}
+
 /* Font variables */
 :root {
   --font-display: "Fraunces Variable", "Fraunces Fallback", Georgia, serif;

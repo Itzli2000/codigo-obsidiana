@@ -156,17 +156,12 @@ const stats = lang === 'es'
   }
 
   .btn-editorial-primary {
-    background: var(--color-accent);
-    color: var(--color-accent-content);
-  }
-
-  /* Light theme: dark text on the orange button (WCAG AA) */
-  :global([data-theme="obsidiana-light"]) .btn-editorial-primary {
-    color: var(--color-accent-content);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
   }
 
   .btn-editorial-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 
