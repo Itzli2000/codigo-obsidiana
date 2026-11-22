@@ -103,7 +103,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Explore -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h2>
           <ul class="footer-list">
             {exploreLinks.map(link => (
               <li><a href={link.href}>{link.label}</a></li>
@@ -113,7 +113,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Topics -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h2>
           <ul class="footer-list">
             {topics.map(topic => (
               <li><a href={`/${lang}/blog`}>{topic}</a></li>
@@ -123,7 +123,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Social -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h2>
           <ul class="footer-list">
             <li><a href={NETWORK.GITHUB} target="_blank" rel="noopener">GitHub ↗</a></li>
             <li><a href={NETWORK.LINKEDIN} target="_blank" rel="noopener">LinkedIn ↗</a></li>

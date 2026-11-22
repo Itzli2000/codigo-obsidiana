@@ -16,16 +16,9 @@ let otherLangPath = currentPath.replace(
   `/${lang === "en" ? "es" : "en"}`
 );
 
-// Handle special case for about route
-if (otherLangPath.includes("/about")) {
-  otherLangPath = otherLangPath.replace("/about", "/about");
-} else if (otherLangPath.includes("/about")) {
-  otherLangPath = otherLangPath.replace("/about", "/about");
-}
-
-// If no specific route mapping found, default to language root
+// Paths without a language prefix (e.g. the 404 page) fall back to the other language's home
 if (otherLangPath === currentPath) {
-  otherLangPath = `/${lang === "en" ? "es" : "en"}/`;
+  otherLangPath = `/${lang === "en" ? "es" : "en"}`;
 }
 ---
 
