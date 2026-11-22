@@ -128,6 +128,8 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
         .ci-entry-value {
           font-size: 14px;
           color: var(--ink-soft);
+          min-width: 0;
+          overflow-wrap: anywhere;
         }
         .ci-link {
           color: var(--ink-accent);
@@ -143,7 +145,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
         }
         @media (max-width: 900px) {
           .contact-layout {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             gap: 48px;
           }
         }

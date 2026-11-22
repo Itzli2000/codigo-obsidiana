@@ -10,6 +10,10 @@ const { class: className = "" } = Astro.props;
 const lang = getLangFromUrl(Astro.url) as Lang;
 
 // Get current path and calculate other language path
+const otherLang: Lang = lang === "en" ? "es" : "en";
+// Starts with the visible text so voice-control users can say what they see (WCAG 2.5.3)
+const otherLangLabel = otherLang === "en" ? "EN – Read in English" : "ES – Leer en español";
+
 const currentPath = Astro.url.pathname;
 let otherLangPath = currentPath.replace(
   new RegExp(`^/${lang}`), 
@@ -22,41 +26,17 @@ if (otherLangPath === currentPath) {
 }
 ---
 
-<div class:list={["language-switcher", className]} role="navigation" aria-label="Language switcher">
-  <label class="swap swap-flip">
-    <input 
-      type="checkbox" 
-      checked={lang === "en"}
-      aria-label="Switch language"
-    />
-    
-    <a 
-      href={otherLangPath}
-      class="swap-on btn btn-sm btn-ghost font-medium"
-      hreflang="es"
-      lang="es"
-    >
-      ES
-    </a>
-    
-    <a 
-      href={otherLangPath}
-      class="swap-off btn btn-sm btn-ghost font-medium"
-      hreflang="en" 
-      lang="en"
-    >
-      EN
-    </a>
-  </label>
-</div>
+<a
+  href={otherLangPath}
+  hreflang={otherLang}
+  lang={otherLang}
+  class:list={["language-switcher btn btn-sm btn-ghost font-medium", className]}
+  aria-label={otherLangLabel}
+>
+  {otherLang.toUpperCase()}
+</a>
 
 <style>
-  .language-switcher {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-  }
-
   .btn-ghost {
     text-transform: uppercase;
     font-family: var(--font-body);
@@ -67,10 +47,5 @@ if (otherLangPath === currentPath) {
   .btn-ghost:hover {
     background-color: var(--color-base-200);
     color: var(--color-accent-text);
-  }
-
-  /* Ensure the swap animation is smooth */
-  .swap {
-    transition: transform var(--theme-transition-duration) var(--theme-transition-timing);
   }
 </style> 

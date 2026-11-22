@@ -223,7 +223,7 @@ const navLinks = [
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: var(--color-primary-content);
+      background-color: var(--color-base-100);
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -257,26 +257,32 @@ const navLinks = [
 </style>
 
 <script is:inline>
-  // Handle mobile menu toggle
+  // Mobile menu: Escape closes it, focus stays inside while open, page behind is inert.
   const mobileMenuButton = document.querySelector(".mobile-menu-button");
   const mobileMenu = document.querySelector(".mobile-only");
   const mobileMenuLinks = document.querySelectorAll(".mobile-only a");
+  const mobileQuery = window.matchMedia("(max-width: 768px)");
 
-  function toggleMenu() {
-    const isExpanded =
-      mobileMenuButton?.getAttribute("aria-expanded") === "true";
-    mobileMenuButton?.setAttribute("aria-expanded", (!isExpanded).toString());
-    mobileMenu?.setAttribute("aria-hidden", isExpanded.toString());
+  function isOpen() {
+    return mobileMenuButton?.getAttribute("aria-expanded") === "true";
   }
 
-  mobileMenuButton?.addEventListener("click", toggleMenu);
+  function setMenu(open, { returnFocus = false } = {}) {
+    mobileMenuButton?.setAttribute("aria-expanded", open.toString());
+    mobileMenu?.setAttribute("aria-hidden", (!open).toString());
+    // Queried here: this script runs inside <header>, before <main> and <footer> exist
+    document.querySelectorAll("body > main, body > footer").forEach((el) => el.toggleAttribute("inert", open));
+    document.documentElement.style.overflow = open ? "hidden" : "";
+    if (open) mobileMenuLinks[0]?.focus();
+    else if (returnFocus) mobileMenuButton?.focus();
+  }
+
+  mobileMenuButton?.addEventListener("click", () => setMenu(!isOpen()));
 
   // Close menu when a link is clicked
   mobileMenuLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      if (window.innerWidth <= 768) {
-        toggleMenu();
-      }
+      if (isOpen()) setMenu(false);
     });
   });
 
@@ -285,14 +291,30 @@ const navLinks = [
     const isClickInside =
       mobileMenu?.contains(event.target) ||
       mobileMenuButton?.contains(event.target);
+    if (!isClickInside && isOpen()) setMenu(false);
+  });
 
-    if (
-      !isClickInside &&
-      window.innerWidth <= 768 &&
-      mobileMenuButton?.getAttribute("aria-expanded") === "true"
-    ) {
-      toggleMenu();
+  document.addEventListener("keydown", (event) => {
+    if (!isOpen()) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setMenu(false, { returnFocus: true });
+      return;
     }
+    if (event.key !== "Tab") return;
+    // Cycle focus between the close button and the menu links
+    const stops = [mobileMenuButton, ...mobileMenuLinks];
+    const index = stops.indexOf(document.activeElement);
+    const next = event.shiftKey
+      ? (index <= 0 ? stops.length - 1 : index - 1)
+      : (index === -1 || index === stops.length - 1 ? 0 : index + 1);
+    event.preventDefault();
+    stops[next]?.focus();
+  });
+
+  // Leaving the mobile layout with the menu open would leave the page inert
+  mobileQuery.addEventListener("change", (event) => {
+    if (!event.matches && isOpen()) setMenu(false);
   });
 
   // Handle active navigation links
