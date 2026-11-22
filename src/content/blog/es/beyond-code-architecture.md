@@ -9,9 +9,6 @@ readingTime: 4
 image: "post1-fmEqxZARZ53f2NWM9qhVhl5K45fchz.webp"
 draft: false
 ---
-# Más allá del código bonito: Arquitectura frontend con propósito
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/post1-fmEqxZARZ53f2NWM9qhVhl5K45fchz.webp)
 
 El desarrollo frontend suele juzgarse por lo visible: una interfaz pulida, animaciones suaves, diseño responsive.  
 Pero debajo de la superficie, lo que realmente define el éxito de un proyecto es su **arquitectura** — cómo escala, cómo se adapta y cómo empodera a los equipos.

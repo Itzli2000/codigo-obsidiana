@@ -11,9 +11,6 @@ image: "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp"
 imageProjectPrefix: "ixiptla/"
 showInAbout: false
 ---
-# Ixiptla - Archaeological Replicas Showcase
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/ixiptla/desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp)
 
 ## Description
 

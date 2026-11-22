@@ -9,7 +9,6 @@ readingTime: 4
 image: "post1-fmEqxZARZ53f2NWM9qhVhl5K45fchz.webp"
 draft: false
 ---
-# POC de Sistema de Temas Framework-Agnóstico
 
 ## Descripción
 

@@ -1,11 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import { marked } from "marked";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { getBlogPosts, getBlogPost } from "../../../lib/content";
+import { getBlogPosts, getBlogPost, renderMarkdown } from "../../../lib/content";
 import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
@@ -34,7 +33,7 @@ if (!post) {
   return Astro.redirect("/404");
 }
 
-const htmlBody = await marked(post.body);
+const htmlBody = await renderMarkdown(post.body);
 
 function formatDate(date: string): string {
   const d = new Date(date);
@@ -115,8 +114,11 @@ function formatDate(date: string): string {
           alt={post.title}
           width={1200}
           height={630}
+          widths={[480, 720, 904, 1200]}
+          sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1000px) calc(100vw - 96px), 904px"
           class="art-cover-img"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>

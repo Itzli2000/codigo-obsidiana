@@ -1,5 +1,5 @@
 ---
-title: "Yó Estacionándome - Plataforma de Gestión de Estacionamiento Inteligente"
+title: "Yo Estacionándome - Plataforma de Gestión de Estacionamiento Inteligente"
 description: "Una aplicación móvil intuitiva desarrollada con React Native para ayudar a los usuarios a encontrar y reservar espacios de estacionamiento."
 publishDate: "2025-02-20T00:00:00.000Z"
 technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
@@ -11,9 +11,6 @@ image: "estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp"
 imageProjectPrefix: ""
 showInAbout: true
 ---
-# Yo Estacionándome - Plataforma de Gestión de Estacionamiento Inteligente
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
 
 ## Descripción
 Yo Estacionándome es una plataforma integral de gestión de estacionamiento que combina visualización 3D moderna con funcionalidad práctica. El sistema atiende a tres grupos principales de usuarios: conductores individuales, empresas y entidades gubernamentales. Presenta modelos 3D interactivos de quioscos de estacionamiento, diseño responsivo en todos los dispositivos e integración perfecta con sistemas de pago. La plataforma busca simplificar la experiencia de estacionamiento mientras proporciona herramientas avanzadas de gestión para los operadores.
@@ -40,9 +37,6 @@ Utilicé pruebas de usuario extensivas para refinar la interfaz, particularmente
 - Experiencia de usuario perfecta en dispositivos móviles, tablets y escritorio
 - Plataforma unificada que atiende a tres grupos distintos de usuarios con interfaces adaptadas
 - Diseño moderno y visualmente impresionante que mejora la percepción de la marca
-
-## Visuales
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
 
 ## Enlaces
 - [Live Demo](https://yo-estacionandome-dev.vercel.app/)
