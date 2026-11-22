@@ -5,12 +5,12 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import type { Lang } from "../../types/language";
 import { CDN, TYPE } from "../../constants/cdn";
 import { NETWORK } from "../../constants/network";
-import { fetchProjects } from "../../lib/strapi";
+import { getProjects } from "../../lib/content";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const projects = await fetchProjects(lang);
+const projects = await getProjects(lang);
 
 function formatYear(date: string): string {
   return new Date(date).getFullYear().toString();

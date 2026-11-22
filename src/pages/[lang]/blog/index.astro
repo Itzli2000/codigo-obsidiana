@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { fetchBlogPosts } from "../../../lib/strapi";
+import { getBlogPosts } from "../../../lib/content";
 import type { Lang } from "../../../types/language";
 
 export function getStaticPaths() {
@@ -13,7 +13,7 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const posts = await fetchBlogPosts(lang, { excludeDrafts: true });
+const posts = await getBlogPosts(lang, { excludeDrafts: true });
 const featured = posts[0];
 const rest = posts.slice(1);
 

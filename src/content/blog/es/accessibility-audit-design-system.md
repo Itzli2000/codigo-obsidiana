@@ -1,7 +1,7 @@
 ---
 title: "El audit de accesibilidad que cambió la arquitectura: 67.6% de fallos como argumento para Tier 2"
 description: "Auditamos 105 historias de Storybook con axe-core y encontramos que el 67.6% fallaba WCAG AA. La causa raíz no eran los componentes — eran dos valores de token."
-publishDate: "2026-05-23T06:00:00.000Z"
+publishDate: "2026-05-23T12:00:00.000Z"
 updated: null
 tags: ["Frontend", "Accessibility", "Design System", "Architecture", "Rebrand 2026"]
 author: "Ariel Molina"

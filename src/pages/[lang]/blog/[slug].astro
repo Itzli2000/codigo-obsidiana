@@ -5,13 +5,13 @@ import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { fetchBlogPosts, fetchBlogPost } from "../../../lib/strapi";
+import { getBlogPosts, getBlogPost } from "../../../lib/content";
 import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
   const [enPosts, esPosts] = await Promise.all([
-    fetchBlogPosts("en"),
-    fetchBlogPosts("es"),
+    getBlogPosts("en"),
+    getBlogPosts("es"),
   ]);
 
   const allSlugs = new Set([
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url) as Lang;
 const { slug } = Astro.params;
 
-const post = await fetchBlogPost(lang, slug as string);
+const post = await getBlogPost(lang, slug as string);
 
 if (!post) {
   return Astro.redirect("/404");

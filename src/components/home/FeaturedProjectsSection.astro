@@ -1,12 +1,12 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-import { fetchProjects } from "../../lib/strapi";
+import { getProjects } from "../../lib/content";
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const allProjects = await fetchProjects(lang, { showInAboutOnly: true });
+const allProjects = await getProjects(lang, { showInAboutOnly: true });
 const featuredProjects = allProjects.slice(0, 4);
 
 function formatYear(date: string): string {

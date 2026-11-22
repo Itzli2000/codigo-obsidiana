@@ -1,7 +1,7 @@
 ---
 title: "PM + PO + dev al mismo tiempo: lo que aprendí haciendo un rebrand de 4 semanas con asistencia intensiva de AI"
 description: "4 semanas, 3 roles simultáneos, 1 dev + AI. Este es el post que cierra la serie del rebrand del design system: una retrospectiva honesta sobre cuándo el AI eleva el trabajo y cuándo simplemente no puede."
-publishDate: "2026-06-17T06:00:00.000Z"
+publishDate: "2026-06-17T12:00:00.000Z"
 updated: null
 tags: ["AI", "Architecture", "Methodology", "Rebrand 2026"]
 author: "Ariel Molina"

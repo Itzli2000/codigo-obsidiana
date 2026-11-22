@@ -1,7 +1,7 @@
 ---
 title: "De 175 assets dispersos a 76 en CDN: consolidación, optimización y versionado de marca"
 description: "Teníamos 175 assets de marca esparcidos en 4 repositorios. Un cambio de branding requería 4 deploys. Lo resolvimos con un repositorio dedicado, S3 + CloudFront, y una sola variable de entorno."
-publishDate: "2026-05-29T06:00:00.000Z"
+publishDate: "2026-05-29T12:00:00.000Z"
 updated: null
 tags: ["Frontend", "Infrastructure", "Design System", "Rebrand 2026"]
 author: "Ariel Molina"

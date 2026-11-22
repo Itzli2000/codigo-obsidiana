@@ -1,7 +1,7 @@
 ---
 title: "The accessibility audit that changed the architecture: 67.6% failures as the argument for Tier 2"
 description: "We audited 105 Storybook stories with axe-core and found that 67.6% failed WCAG AA. The root cause wasn't the components — it was two token values."
-publishDate: "2026-05-23T06:00:00.000Z"
+publishDate: "2026-05-23T12:00:00.000Z"
 updated: null
 tags: ["Frontend", "Accessibility", "Design System", "Architecture", "Rebrand 2026"]
 author: "Ariel Molina"

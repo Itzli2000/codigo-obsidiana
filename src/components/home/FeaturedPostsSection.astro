@@ -1,13 +1,13 @@
 ---
 import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import { CDN, TYPE } from "../../constants/cdn";
-import { fetchBlogPosts } from "../../lib/strapi";
+import { getBlogPosts } from "../../lib/content";
 import type { Lang } from "../../types/language";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const allPosts = await fetchBlogPosts(lang, { excludeDrafts: true });
+const allPosts = await getBlogPosts(lang, { excludeDrafts: true });
 const featuredPosts = allPosts.slice(0, 3);
 
 function formatDate(date: string): string {
