@@ -44,6 +44,10 @@ if (otherLangPath === currentPath) {
     transition: all var(--theme-transition-duration) var(--theme-transition-timing);
   }
 
+  @media (max-width: 767.98px) {
+    .btn-ghost { min-height: 44px; min-width: 44px; }
+  }
+
   .btn-ghost:hover {
     background-color: var(--color-base-200);
     color: var(--color-accent-text);

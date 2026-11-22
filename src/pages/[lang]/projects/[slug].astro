@@ -40,11 +40,11 @@ function formatYear(date: string): string {
 }
 
 const statusLabel: Record<string, Record<string, string>> = {
-  es: { production: "En producción", archived: "Archivado", "in-progress": "En progreso", "open-source": "Open source" },
-  en: { production: "In production", archived: "Archived", "in-progress": "In progress", "open-source": "Open source" },
+  es: { production: "En producción", archived: "Archivado", "in-progress": "En progreso", "open-source": "Open source", published: "Publicado", completed: "Completado", completado: "Completado" },
+  en: { production: "In production", archived: "Archived", "in-progress": "In progress", "open-source": "Open source", published: "Published", completed: "Completed", completado: "Completed" },
 };
 const displayStatus = project.status
-  ? (statusLabel[lang]?.[project.status] ?? project.status)
+  ? (statusLabel[lang]?.[project.status.toLowerCase()] ?? project.status)
   : null;
 ---
 

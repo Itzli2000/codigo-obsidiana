@@ -37,11 +37,11 @@ const ContactForm = ({
           .cf-success { padding: 48px 0; text-align: center; }
           .cf-success-icon {
             width: 56px; height: 56px;
-            background: oklch(var(--su) / 0.15);
+            background: color-mix(in oklch, var(--color-success) 15%, transparent);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 20px;
-            color: oklch(var(--su));
+            color: var(--color-success);
           }
           .cf-success-title {
             font-family: var(--font-display, serif);
@@ -88,12 +88,14 @@ const ContactForm = ({
             placeholder={translations.form.name}
             className={`cf-input ${errors.name ? "cf-input-error" : ""}`}
             {...register("name", validationRules.name)}
+            autoComplete="name"
 
             disabled={isSubmitting}
             aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
           />
           {errors.name && (
-            <span className="cf-field-error" role="alert">{errors.name.message}</span>
+            <span className="cf-field-error" id="contact-name-error">{errors.name.message}</span>
           )}
         </div>
 
@@ -108,12 +110,14 @@ const ContactForm = ({
             placeholder={translations.form.emailPlaceholder}
             className={`cf-input ${errors.email ? "cf-input-error" : ""}`}
             {...register("email", validationRules.email)}
+            autoComplete="email"
 
             disabled={isSubmitting}
             aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
           />
           {errors.email && (
-            <span className="cf-field-error" role="alert">{errors.email.message}</span>
+            <span className="cf-field-error" id="contact-email-error">{errors.email.message}</span>
           )}
         </div>
 
@@ -131,9 +135,10 @@ const ContactForm = ({
 
             disabled={isSubmitting}
             aria-invalid={!!errors.subject}
+            aria-describedby={errors.subject ? "contact-subject-error" : undefined}
           />
           {errors.subject && (
-            <span className="cf-field-error" role="alert">{errors.subject.message}</span>
+            <span className="cf-field-error" id="contact-subject-error">{errors.subject.message}</span>
           )}
         </div>
 
@@ -150,9 +155,10 @@ const ContactForm = ({
 
             disabled={isSubmitting}
             aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "contact-message-error" : undefined}
           />
           {errors.message && (
-            <span className="cf-field-error" role="alert">{errors.message.message}</span>
+            <span className="cf-field-error" id="contact-message-error">{errors.message.message}</span>
           )}
         </div>
 
@@ -262,8 +268,8 @@ const ContactForm = ({
           color: var(--ink-accent);
         }
         .cf-error-banner {
-          background: oklch(var(--er) / 0.1);
-          border: 1px solid oklch(var(--er) / 0.3);
+          background: color-mix(in oklch, var(--color-error) 10%, transparent);
+          border: 1px solid color-mix(in oklch, var(--color-error) 30%, transparent);
           border-radius: 4px;
           padding: 14px 16px;
           font-size: 14px;

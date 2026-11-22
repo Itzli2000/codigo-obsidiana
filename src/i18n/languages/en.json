@@ -74,8 +74,7 @@
       "title": "Professional Journey",
       "content": [
         "I'm a Staff Frontend Engineer with 9+ years of experience building modular, scalable UI platforms for fintech and enterprise environments. My work spans frontend architecture, design systems, and developer experience (DX).",
-        "At EFEX, I lead the Frontend Squad and own the technical transformation from monolithic to micro-frontend architecture using Webpack Module Federation and Nx — growing the platform from $25M to $100M+ USD in monthly transaction volume and reducing time-to-market by 70%. I design multi-package design systems (MUI + Style Dictionary) and build CI/CD automation tooling.",
-        "My passion is building autonomous systems that empower teams — not just writing good code."
+        "At EFEX, I lead the Frontend Squad and own the technical transformation from monolithic to micro-frontend architecture using Webpack Module Federation and Nx — growing the platform from $25M to $100M+ USD in monthly transaction volume and reducing time-to-market by 70%. I design multi-package design systems (MUI + Style Dictionary) and build CI/CD automation tooling."
       ]
     },
     "projects": {
@@ -132,5 +131,12 @@
       "submitError": "An error occurred while sending the message, please try again or contact",
       "contactEmail": "contact email"
     }
+  },
+  "nav": {
+    "home": "Home",
+    "main": "Main navigation",
+    "toggleMenu": "Open or close the menu",
+    "skipToContent": "Skip to content",
+    "contact": "Contact"
   }
 }

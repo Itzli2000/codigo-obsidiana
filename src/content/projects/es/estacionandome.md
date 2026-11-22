@@ -4,7 +4,7 @@ description: "Una aplicación móvil intuitiva desarrollada con React Native par
 publishDate: "2025-02-20T00:00:00.000Z"
 technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
 tags: ["Frontend", "3D", "Interactive", "Parking", "Management", "Platform"]
-role: "Frontend Developer"
+role: "Desarrollador Frontend"
 company: "Yo Estacionándome"
 status: "Completed"
 image: "estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp"

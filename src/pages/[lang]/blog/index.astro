@@ -26,10 +26,17 @@ function formatDate(date: string): string {
   return `${y} · ${m} · ${day}`;
 }
 
-// Collect all unique tags
-const allTags = Array.from(
-  new Set(posts.flatMap((p) => p.tags ?? []))
-).slice(0, 6);
+// Filter chips use the same label each row shows (its first tag), most frequent first.
+// Tags are English code labels in both locales.
+const tagCounts = new Map<string, number>();
+for (const p of posts) {
+  const label = p.tags?.[0];
+  if (label) tagCounts.set(label, (tagCounts.get(label) ?? 0) + 1);
+}
+const allTags = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 6)
+  .map(([tag]) => tag);
 
 const title =
   t("blog.meta.title") !== "blog.meta.title"
@@ -128,22 +135,23 @@ const description =
   <section class="blog-filters">
     <div class="blog-filters-inner">
       <div class="blog-tags" id="blog-tags">
-        <button class="blog-tag active" data-tag="all">
+        <button class="blog-tag active" data-tag="all" aria-pressed="true">
           {lang === "es" ? "Todos" : "All"}
         </button>
         {allTags.map((tag) => (
-          <button class="blog-tag" data-tag={tag}>{tag}</button>
+          <button class="blog-tag" data-tag={tag} aria-pressed="false">{tag}</button>
         ))}
       </div>
       <div class="blog-search">
-        <span class="search-icon">⌕</span>
+        <span class="search-icon" aria-hidden="true">⌕</span>
         <input
           id="blog-search-input"
           type="search"
           placeholder={lang === "es" ? "Buscar notas…" : "Search notes…"}
+          aria-label={lang === "es" ? "Buscar notas" : "Search notes"}
           class="blog-search-input"
         />
-        <span class="search-kbd">⌘K</span>
+        <span class="search-kbd" aria-hidden="true">⌘K</span>
       </div>
     </div>
   </section>
@@ -161,13 +169,18 @@ const description =
         </p>
       )}
 
+      <p class="blog-empty" id="blog-no-results" role="status" hidden>
+        {lang === "es" ? "Ninguna nota coincide con la búsqueda." : "No posts match your search."}
+      </p>
+
       <div class="post-table" id="post-table">
         {posts.map((post) => (
           <a
             href={`/${lang}/blog/${post.slug}`}
             class="post-table-row"
             data-title={post.title.toLowerCase()}
-            data-tags={JSON.stringify(post.tags ?? [])}
+            data-excerpt={(post.description ?? "").toLowerCase()}
+            data-tag={post.tags?.[0] ?? ""}
           >
             <span class="ptrow-date">
               {post.publishDate ? formatDate(post.publishDate) : "—"}
@@ -200,23 +213,31 @@ const description =
   let activeTag = "all";
   let searchQuery = "";
 
+  const noResults = document.getElementById("blog-no-results");
+
   function filterRows() {
     const rows = table!.querySelectorAll<HTMLElement>(".post-table-row");
+    const query = searchQuery.toLowerCase();
+    let visible = 0;
     rows.forEach((row) => {
-      const title = row.dataset.title ?? "";
-      const tags: string[] = JSON.parse(row.dataset.tags ?? "[]");
-      const matchesTag = activeTag === "all" || tags.some((t) => t === activeTag);
-      const matchesSearch = !searchQuery || title.includes(searchQuery.toLowerCase());
-      row.style.display = matchesTag && matchesSearch ? "" : "none";
+      const text = `${row.dataset.title ?? ""} ${row.dataset.excerpt ?? ""}`;
+      const matchesTag = activeTag === "all" || row.dataset.tag === activeTag;
+      const matchesSearch = !query || text.includes(query);
+      const show = matchesTag && matchesSearch;
+      row.style.display = show ? "" : "none";
+      if (show) visible++;
     });
+    if (noResults) noResults.hidden = visible > 0 || rows.length === 0;
   }
 
   tagsEl.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".blog-tag");
     if (!btn) return;
     activeTag = btn.dataset.tag ?? "all";
-    tagsEl.querySelectorAll(".blog-tag").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+    tagsEl.querySelectorAll(".blog-tag").forEach((b) => {
+      b.classList.toggle("active", b === btn);
+      b.setAttribute("aria-pressed", String(b === btn));
+    });
     filterRows();
   });
 
@@ -329,6 +350,10 @@ const description =
     transition: all 0.15s;
   }
 
+  @media (max-width: 767.98px) {
+    .blog-tag { min-height: 44px; }
+  }
+
   .blog-tag:hover {
     opacity: 0.85;
   }
@@ -375,6 +400,11 @@ const description =
 
   .blog-search-input::placeholder {
     opacity: 0.35;
+  }
+
+  /* No keyboard shortcut to advertise on touch screens */
+  @media (hover: none) {
+    .search-kbd { display: none; }
   }
 
   .search-kbd {
@@ -489,10 +519,12 @@ const description =
     margin: 0 auto;
   }
 
+  .blog-empty[hidden] { display: none; }
+
   .blog-empty {
     font-family: var(--font-mono);
     font-size: 13px;
-    opacity: 0.4;
+    color: var(--color-muted);
     padding: 40px 0;
   }
 

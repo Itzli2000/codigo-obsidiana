@@ -1,9 +1,9 @@
 ---
 title: "Ixiptla V2 - De Prototipo a Producción: Escalando un Museo 3D con Sensibilidad Cultural"
-description: "Cómo evolucione Ixiptla de un prototipo técnico a una experiencia de calidad museística a través de sistemas de diseño, optimización de rendimiento y autenticidad cultural"
+description: "Cómo evolucioné Ixiptla de un prototipo técnico a una experiencia de calidad museística a través de sistemas de diseño, optimización de rendimiento y autenticidad cultural"
 publishDate: "2025-07-19T00:00:00.000Z"
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "DaisyUI", "Design Systems", "i18n", "SEO"]
-tags: ["Frontend", "3D", "Museos", "Patrimonio Cultural", "Sistemas de Diseño", "Rendimiento", "SEO", "Accesibilidad"]
+tags: ["Frontend", "3D", "Museums", "Cultural Heritage", "Design Systems", "Performance", "SEO", "Accessibility"]
 role: "Desarrollador Frontend y Diseñador UX"
 company: "Proyecto Personal"
 status: "published"

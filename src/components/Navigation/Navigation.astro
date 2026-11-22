@@ -28,14 +28,14 @@ const navLinks = [
   {
     key: "contact",
     path: `/${lang}/contact`,
-    label: t("contact.title"),
+    label: t("nav.contact"),
   },
 ];
 ---
 
-<nav class="navigation" aria-label="Main Navigation">
+<nav class="navigation" aria-label={t("nav.main")}>
   <div class="nav-container">
-    <a href={`/${lang}`} class="logo-link" aria-label="Home">
+    <a href={`/${lang}`} class="logo-link" aria-label={t("nav.home")}>
       <Icon name="logo" class="w-auto h-10 md:h-12 lg:h-[50px]" />
     </a>
 
@@ -56,12 +56,12 @@ const navLinks = [
         }
       </ul>
 
-      <ThemeSwitcher class="mr-2 md:mr-4" />
+      <ThemeSwitcher class="md:mr-2" />
       <LanguageSwitcher />
 
       <button
         class="mobile-menu-button"
-        aria-label="Toggle menu"
+        aria-label={t("nav.toggleMenu")}
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
@@ -171,8 +171,8 @@ const navLinks = [
     cursor: pointer;
     padding: 0.5rem;
     z-index: 100;
-    width: 30px;
-    height: 30px;
+    width: 44px;
+    height: 44px;
     position: relative;
   }
 

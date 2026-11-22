@@ -1,25 +1,117 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
-import type { Lang } from "../types/language";
 
-const lang = getLangFromUrl(Astro.url) as Lang;
-const t = useTranslations(lang);
+// Built once at /404.html, so the URL never carries the language. Both versions are
+// rendered and the inline script shows the English one under /en/…; Spanish is the default.
+const copy = {
+  es: {
+    title: "404 · Página no encontrada | Código Obsidiana",
+    heading: ["Esta página ", "no existe"],
+    body: "Lo sentimos, la página que buscas no existe o ha sido movida.",
+    cta: "Volver al inicio",
+  },
+  en: {
+    title: "404 · Page not found | Código Obsidiana",
+    heading: ["This page ", "does not exist"],
+    body: "Sorry, the page you're looking for doesn't exist or has been moved.",
+    cta: "Back to home",
+  },
+};
 ---
 
-<MainLayout lang={lang} title="404 - Código Obsidiana">
-  <div class="min-h-[60vh] flex flex-col items-center justify-center text-center">
-    <h1 class="text-8xl font-bold text-primary mb-4">404</h1>
-    <p class="text-2xl mb-2">
-      {lang === "es" ? "Página no encontrada" : "Page not found"}
-    </p>
-    <p class="text-base-content/60 mb-8 max-w-md">
-      {lang === "es"
-        ? "Lo sentimos, la página que buscas no existe o ha sido movida."
-        : "Sorry, the page you're looking for doesn't exist or has been moved."}
-    </p>
-    <a href={`/${lang}`} class="btn btn-primary">
-      {lang === "es" ? "Volver al inicio" : "Back to home"}
-    </a>
-  </div>
+<MainLayout lang="es" title={copy.es.title}>
+  <section class="nf">
+    {(["es", "en"] as const).map((l) => (
+      <div class="nf-inner" lang={l} data-nf-lang={l} hidden={l === "en"}>
+        <div class="eyebrow">Error · 404</div>
+        <h1 class="nf-title">
+          {copy[l].heading[0]}<em class="nf-em">{copy[l].heading[1]}</em>
+        </h1>
+        <p class="nf-body">{copy[l].body}</p>
+        <a href={`/${l}`} class="nf-btn">
+          {copy[l].cta} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    ))}
+  </section>
 </MainLayout>
+
+<script is:inline define:vars={{ enTitle: copy.en.title }}>
+  if (location.pathname.startsWith("/en")) {
+    document.documentElement.lang = "en";
+    document.title = enTitle;
+    document.querySelectorAll("[data-nf-lang]").forEach((el) => {
+      el.hidden = el.dataset.nfLang !== "en";
+    });
+  }
+</script>
+
+<style>
+  .nf {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 48px;
+  }
+
+  .nf-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .nf-inner[hidden] {
+    display: none;
+  }
+
+  .nf-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin: 24px 0 24px;
+    color: var(--color-base-content);
+    text-wrap: balance;
+  }
+
+  .nf-em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-accent);
+  }
+
+  .nf-body {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-muted);
+    max-width: 560px;
+    margin: 0 0 36px;
+  }
+
+  /* Same look as the home hero's primary button (btn-editorial-primary) */
+  .nf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    background: var(--color-accent);
+    color: var(--color-accent-content);
+    transition: filter 0.2s, transform 0.2s;
+  }
+
+  .nf-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 767.98px) {
+    .nf {
+      padding: 56px 24px;
+    }
+  }
+</style>
