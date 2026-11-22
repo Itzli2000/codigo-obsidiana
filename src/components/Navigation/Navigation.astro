@@ -136,7 +136,7 @@ const navLinks = [
       padding: 0.5rem 1rem;
     }
     border-radius: 0.25rem;
-    transition: all 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   }
 
   .nav-list a:hover {
@@ -185,7 +185,7 @@ const navLinks = [
     width: 24px;
     height: 2px;
     background-color: var(--color-base-content);
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
   }
 
   .hamburger::before,
@@ -196,7 +196,7 @@ const navLinks = [
     width: 24px;
     height: 2px;
     background-color: var(--color-base-content);
-    transition: all 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, top 0.3s ease-in-out, bottom 0.3s ease-in-out;
   }
 
   .hamburger::before {
@@ -207,7 +207,7 @@ const navLinks = [
     bottom: -8px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767.98px) {
     .mobile-menu-button {
       display: block;
     }
@@ -261,7 +261,7 @@ const navLinks = [
   const mobileMenuButton = document.querySelector(".mobile-menu-button");
   const mobileMenu = document.querySelector(".mobile-only");
   const mobileMenuLinks = document.querySelectorAll(".mobile-only a");
-  const mobileQuery = window.matchMedia("(max-width: 768px)");
+  const mobileQuery = window.matchMedia("(max-width: 767.98px)");
 
   function isOpen() {
     return mobileMenuButton?.getAttribute("aria-expanded") === "true";

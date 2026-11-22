@@ -148,7 +148,7 @@ const stats = lang === 'es'
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none;
@@ -227,5 +227,9 @@ const stats = lang === 'es'
   @media (max-width: 540px) {
     .hero-editorial { padding: 60px 20px 48px; }
     .hero-stats { gap: 16px; }
+  }
+
+  @media (max-width: 420px) {
+    .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
   }
 </style>
