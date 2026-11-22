@@ -63,7 +63,7 @@ const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestrat
 
   .now-text :global(em) {
     font-style: italic;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   .now-meta {
@@ -77,7 +77,7 @@ const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestrat
   }
 
   .now-link {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration: none;
     transition: opacity 0.15s;
   }
@@ -88,7 +88,7 @@ const nowTextEn = `Writing a <em>4-part series</em> on micro frontend orchestrat
 
   /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
   :global([data-theme="obsidiana-light"]) :is(.now-meta) {
-    color: #6b6f74;
+    color: var(--color-muted);
     opacity: 1;
   }
 

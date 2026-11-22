@@ -81,10 +81,10 @@ const stack = lang === "es" ? stackEs : stackEn;
 
 <style>
   .stack-section {
-    /* --color-muted (#6b6f74, 4.77:1) in light; dark keeps solid base-content because the dark
+    /* --color-muted (var(--color-muted), 4.77:1) in light; dark keeps solid base-content because the dark
        --color-muted is 55% alpha (3.0:1). Small orange text is darkened to clear 4.5:1
        (accent #f0623f is 3.03:1). */
-    --ink-muted: light-dark(var(--color-muted, #6b6f74), var(--color-base-content));
+    --ink-muted: light-dark(var(--color-muted, var(--color-muted)), var(--color-base-content));
     --ink-soft: light-dark(#3d4146, var(--color-base-content));
     --ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
 
@@ -151,8 +151,7 @@ const stack = lang === "es" ? stackEs : stackEn;
   }
 
   .stack-sep {
-    color: var(--color-base-content);
-    opacity: 0.3;
+    color: var(--color-muted);
     margin: 0 8px;
     font-family: var(--font-body);
     font-style: normal;

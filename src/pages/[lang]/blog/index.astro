@@ -44,9 +44,7 @@ const description =
 <MainLayout lang={lang} title={title} description={description}>
   <!-- HERO -->
   <section class="blog-hero">
-    <div class="blog-watermark" aria-hidden="true">
-      {lang === "es" ? "blog" : "blog"}
-    </div>
+    <div class="blog-watermark" aria-hidden="true" data-word="blog"></div>
     <div class="blog-hero-inner">
       <div class="eyebrow" style="margin-bottom: 24px;">
         Blog · {posts.length} {lang === "es" ? "notas" : "notes"}
@@ -245,6 +243,10 @@ const description =
     border-bottom: 1px solid var(--color-base-300);
   }
 
+  .blog-watermark::before {
+    content: attr(data-word);
+  }
+
   .blog-watermark {
     position: absolute;
     right: -30px;
@@ -287,8 +289,7 @@ const description =
   .blog-hero-subtitle {
     font-size: 18px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     max-width: 580px;
     margin: 0;
   }
@@ -322,8 +323,7 @@ const description =
     padding: 5px 14px;
     border-radius: 999px;
     background: transparent;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
     border: 1px solid var(--color-base-300);
     cursor: pointer;
     transition: all 0.15s;
@@ -335,7 +335,7 @@ const description =
 
   .blog-tag.active {
     background: var(--color-accent);
-    color: var(--color-base-100);
+    color: var(--color-accent-content);
     border-color: var(--color-accent);
     opacity: 1;
   }
@@ -351,8 +351,7 @@ const description =
   }
 
   .search-icon {
-    color: var(--color-base-content);
-    opacity: 0.35;
+    color: var(--color-muted);
     font-size: 16px;
   }
 
@@ -374,8 +373,7 @@ const description =
   .search-kbd {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.3;
+    color: var(--color-muted);
     padding: 2px 6px;
     border: 1px solid var(--color-base-300);
     border-radius: 3px;
@@ -405,8 +403,7 @@ const description =
   .featured-meta {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.45;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     display: flex;
     gap: 14px;
@@ -415,7 +412,7 @@ const description =
   }
 
   .featured-tag {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     opacity: 1;
   }
 
@@ -433,8 +430,7 @@ const description =
   .featured-desc {
     font-size: 17px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     margin: 0 0 28px;
     max-width: 520px;
   }
@@ -453,7 +449,7 @@ const description =
 
   .featured-link:hover .featured-cta {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   .featured-image {
@@ -521,15 +517,14 @@ const description =
   .ptrow-date {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
   }
 
   .ptrow-tag {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     letter-spacing: 0.15em;
     text-transform: uppercase;
   }
@@ -547,8 +542,7 @@ const description =
   .ptrow-desc {
     font-size: 14px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
     margin: 0;
     max-width: 320px;
   }
@@ -556,8 +550,7 @@ const description =
   .ptrow-read {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--color-muted);
     letter-spacing: 0.06em;
     white-space: nowrap;
   }

@@ -161,14 +161,16 @@
 }
 
 /*
- * Muted text for small labels (eyebrows, footer meta). Light: 4.77:1 on base-100.
+ * Muted text and text-safe accent (accent-text). Light values pass 4.5:1 on base-100/200/300.
  * Dark keeps the previous look (base-content at 55%). Use it instead of opacity.
  */
 :root {
-  --color-muted: #6b6f74;
+  --color-muted: #606266;
+  --color-accent-text: #b0391b;
 }
 [data-theme="obsidiana-dark"] {
   --color-muted: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+  --color-accent-text: #ff9074;
 }
 
 /* Font variables */
@@ -250,7 +252,7 @@ body {
 /* Selection */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-base-100);
+  color: var(--color-accent-content);
 }
 
 /* Post row hover (JS-driven, needs transition base) */

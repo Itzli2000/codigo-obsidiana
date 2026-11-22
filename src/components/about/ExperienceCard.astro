@@ -104,11 +104,11 @@ const techLabel = lang === "es" ? "Tecnologías" : "Technologies";
 <style>
   .experience-section {
     /*
-     * Text colors for this base-200 surface. Light: #6b6f74 is 4.37:1 here, so
-     * labels use one step darker (4.77:1, the same ratio #6b6f74 gets on base-100).
+     * Text colors for this base-200 surface. Light: var(--color-muted) is 4.37:1 here, so
+     * labels use one step darker (4.77:1, the same ratio var(--color-muted) gets on base-100).
      * Small orange text uses a deeper/lighter orange so it clears 4.5:1 in each theme.
      */
-    --exp-ink-muted: light-dark(#65696e, var(--color-base-content));
+    --exp-ink-muted: light-dark(var(--color-muted), var(--color-base-content));
     --exp-ink-soft: light-dark(#3d4146, var(--color-base-content));
     --exp-ink-accent: light-dark(oklch(54% 0.16 35), oklch(74% 0.14 38));
 
@@ -223,7 +223,7 @@ const techLabel = lang === "es" ? "Tecnologías" : "Technologies";
     position: absolute;
     left: 0;
     top: 1px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     font-family: var(--font-mono);
     font-size: 12px;
   }

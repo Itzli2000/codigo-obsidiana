@@ -157,12 +157,12 @@ const stats = lang === 'es'
 
   .btn-editorial-primary {
     background: var(--color-accent);
-    color: var(--color-base-100);
+    color: var(--color-accent-content);
   }
 
   /* Light theme: dark text on the orange button (WCAG AA) */
   :global([data-theme="obsidiana-light"]) .btn-editorial-primary {
-    color: var(--color-primary-content);
+    color: var(--color-accent-content);
   }
 
   .btn-editorial-primary:hover {
@@ -178,7 +178,7 @@ const stats = lang === 'es'
 
   .btn-editorial-ghost:hover {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   .hero-stats {
@@ -202,8 +202,7 @@ const stats = lang === 'es'
   .stat-label {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.45;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-top: 8px;
@@ -212,7 +211,7 @@ const stats = lang === 'es'
 
   /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
   :global([data-theme="obsidiana-light"]) :is(.stat-label) {
-    color: #6b6f74;
+    color: var(--color-muted);
     opacity: 1;
   }
 
