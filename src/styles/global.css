@@ -21,8 +21,10 @@
   --color-secondary: var(--color-secondary-light-default);
   --color-secondary-content: var(--color-secondary-light-content);
 
-  --color-accent: var(--color-accent-light-default);
-  --color-accent-content: var(--color-accent-light-content);
+  /* Darker than the token (#f27557) so orange text reaches 3:1 on base-100 (large text) */
+  --color-accent: #f0623f;
+  /* Dark text on orange backgrounds: 6.3:1 instead of white */
+  --color-accent-content: #0f1923;
 
   --color-neutral: var(--color-neutral-light-default);
   --color-neutral-content: var(--color-neutral-light-content);
@@ -158,6 +160,17 @@
   line-gap-override: 0%;
 }
 
+/*
+ * Muted text for small labels (eyebrows, footer meta). Light: 4.77:1 on base-100.
+ * Dark keeps the previous look (base-content at 55%). Use it instead of opacity.
+ */
+:root {
+  --color-muted: #6b6f74;
+}
+[data-theme="obsidiana-dark"] {
+  --color-muted: color-mix(in oklab, var(--color-base-content) 55%, transparent);
+}
+
 /* Font variables */
 :root {
   --font-display: "Fraunces Variable", "Fraunces Fallback", Georgia, serif;
@@ -220,8 +233,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-base-content);
-  opacity: 0.55;
+  color: var(--color-muted);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -233,7 +245,6 @@ body {
   background: var(--color-accent);
   border-radius: 50%;
   flex-shrink: 0;
-  opacity: 1;
 }
 
 /* Selection */

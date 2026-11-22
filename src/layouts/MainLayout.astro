@@ -174,7 +174,6 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     padding: 60px 48px 40px;
     font-size: 13px;
     color: var(--color-base-content);
-    opacity: 0.8;
     max-width: 1296px;
     margin: 0 auto;
   }
@@ -200,21 +199,19 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--color-base-content);
-    opacity: 1;
   }
 
   .footer-brand .brand-tagline {
     margin: 0 0 16px;
     max-width: 320px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.7;
+    color: var(--color-muted);
   }
 
   .footer-meta {
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
+    color: var(--color-muted);
   }
 
   .footer-heading {
@@ -223,7 +220,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.45;
+    color: var(--color-muted);
     margin: 0 0 14px;
   }
 
@@ -236,14 +233,12 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
   }
 
   .footer-list a {
-    color: inherit;
+    color: var(--color-muted);
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.15s, color 0.15s;
+    transition: color 0.15s;
   }
 
   .footer-list a:hover {
-    opacity: 1;
     color: var(--color-accent);
   }
 
@@ -253,7 +248,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     justify-content: space-between;
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
+    color: var(--color-muted);
     max-width: 1296px;
     margin: 0 auto;
   }
