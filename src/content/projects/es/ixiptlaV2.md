@@ -11,9 +11,6 @@ image: "0.webp"
 imageProjectPrefix: "ixiptla/V2/"
 showInAbout: true
 ---
-# Ixiptla V2 - De Prototipo a Producción
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/ixiptla/V2/0.webp)
 
 ## El Desafío de la Evolución
 

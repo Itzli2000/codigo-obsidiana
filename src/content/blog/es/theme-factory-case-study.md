@@ -9,7 +9,6 @@ readingTime: 8
 image: "Data-Flow-and-Theme-Configuration.webp"
 draft: false
 ---
-# Theme Factory: Arquitectura de un Backend Escalable para Gestión Dinámica de Temas
 
 ## Introducción
 

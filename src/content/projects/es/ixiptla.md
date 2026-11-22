@@ -11,9 +11,6 @@ image: "desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp"
 imageProjectPrefix: "ixiptla/"
 showInAbout: false
 ---
-# Ixiptla - Exposición de Réplicas Arqueológicas
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/ixiptla/desktop1-hjnMTQ08KDWzTFqlEYd5gJgXrrwMYR.webp)
 
 ## Descripción
 Ixiptla es una aplicación web moderna que presenta una colección curada de reproducciones arqueológicas meticulosamente elaboradas. Construida con Astro.js y React, esta plataforma combina rendimiento con una impresionante presentación visual para dar vida a réplicas antiguas en el ámbito digital. El proyecto incluye modelos 3D interactivos utilizando Three.js, diseño completamente responsivo y soporte integral de internacionalización en inglés y español.

@@ -1,5 +1,5 @@
 ---
-title: "Yó Estacionándome - Smart Parking Management Platform"
+title: "Yo Estacionándome - Smart Parking Management Platform"
 description: "An intuitive mobile application built with React Native to help users find and reserve parking spaces."
 publishDate: "2025-02-20T00:00:00.000Z"
 technologies: ["Next.js", "TypeScript", "React Three Fiber", "Three.js", "Tailwind CSS", "Framer Motion 3D"]
@@ -11,9 +11,6 @@ image: "estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp"
 imageProjectPrefix: ""
 showInAbout: true
 ---
-# Yo Estacionándome - Smart Parking Management Platform
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
 
 ## Description
 Yo Estacionándome is a comprehensive parking management platform that combines modern 3D visualization with practical functionality. The system serves three main user groups: individual parkers, businesses, and government entities. It features interactive 3D models of parking kiosks, responsive design across all devices, and seamless integration with payment systems. The platform aims to simplify the parking experience while providing advanced management tools for operators.
@@ -40,9 +37,6 @@ I utilized extensive user testing to refine the interface, particularly for the 
 - Seamless user experience across mobile, tablet, and desktop devices
 - Unified platform serving three distinct user groups with tailored interfaces
 - Modern, visually impressive design that enhances brand perception
-
-## Visuals
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/estacionandome-98gZA2jEpuatGhCPrbAeKmplR72D01.webp)
 
 ## Links
 - [Live Demo](https://yo-estacionandome-dev.vercel.app/)

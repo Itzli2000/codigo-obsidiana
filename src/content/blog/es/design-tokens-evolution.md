@@ -9,9 +9,6 @@ readingTime: 12
 image: "Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp"
 draft: false
 ---
-# Evolución de Design Tokens - De Arquitectura Monobrand a Multibrand
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Descripción
 
@@ -224,10 +221,6 @@ const getBrandTokens = async (brand: 'obsidiana' | 'ixiptla') => {
 **Aseguramiento de Calidad Comprehensivo**: El testing de validación inter-marca previene regresiones y asegura consistencia de estructura de tokens, capturando 95% de problemas potenciales de integración antes del despliegue.
 
 **Arquitectura A Prueba de Futuro**: El sistema jerárquico de tokens y pipeline de construcción dinámico acomoda fácilmente nuevas marcas, variaciones de tema y categorías de tokens sin cambios arquitectónicos.
-
-## Visuales
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Enlaces
 
