@@ -103,8 +103,11 @@ const description =
                 alt={featured.title}
                 width={560}
                 height={420}
+                widths={[360, 560, 840, 1120]}
+                sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1296px) calc((100vw - 156px) / 2.3), 496px"
                 class="featured-img"
                 loading="eager"
+                fetchpriority="high"
               />
             ) : (
               <svg viewBox="0 0 400 300" class="featured-placeholder" aria-hidden="true">

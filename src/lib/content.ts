@@ -1,4 +1,23 @@
 import { getCollection, type CollectionEntry } from "astro:content";
+import { Marked, type Tokens } from "marked";
+
+function escapeAttr(value: string): string {
+  return value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+const markdown = new Marked({
+  renderer: {
+    image({ href, title, text }: Tokens.Image): string {
+      const titleAttr = title ? ` title="${escapeAttr(title)}"` : "";
+      return `<img src="${escapeAttr(href)}" alt="${escapeAttr(text)}"${titleAttr} loading="lazy" decoding="async">`;
+    },
+  },
+});
+
+/** Renders a post or project Markdown body to HTML; body images load lazily since the cover is the LCP. */
+export async function renderMarkdown(body: string): Promise<string> {
+  return markdown.parse(body);
+}
 
 /** A blog post from the `blog` content collection, flattened with its locale and slug. */
 export interface Post {
