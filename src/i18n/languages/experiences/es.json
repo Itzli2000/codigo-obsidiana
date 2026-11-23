@@ -5,7 +5,16 @@
       "company": "EFEX",
       "period": "Ene 2026 — Actualidad",
       "description": "Lidero el equipo Frontend y encabezo la transformación técnica de arquitectura monolítica a micro frontends, soportando más de $100M USD en volumen mensual de transacciones.",
-      "technologies": ["React", "TypeScript", "Webpack Module Federation", "Nx", "Material UI", "Style Dictionary", "Zustand", "GitHub Actions"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Webpack Module Federation",
+        "Nx",
+        "Material UI",
+        "Style Dictionary",
+        "Zustand",
+        "GitHub Actions"
+      ],
       "achievements": [
         "Arquitectura y liderazgo en la migración a micro frontends con Webpack Module Federation y Nx, reduciendo el time-to-market en un 70%",
         "Diseño e implementación del sistema de diseño multi-paquete de EFEX con MUI y Style Dictionary, estableciendo tokens y librerías de componentes en todas las plataformas",
@@ -16,11 +25,20 @@
       ]
     },
     {
-      "role": "Líder Técnico Frontend y Arquitecto",
+      "role": "Líder Técnico Frontend",
       "company": "EFEX",
-      "period": "Ene 2025 — Dic 2025",
+      "period": "Feb 2025 — Ene 2026",
       "description": "Arquitectura de la plataforma basada en micro frontends y liderazgo de la infraestructura frontend, sistemas de diseño y herramientas para desarrolladores en EFEX.",
-      "technologies": ["React", "TypeScript", "Nx", "Module Federation", "Material UI", "Storybook", "Zustand", "Vite"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Nx",
+        "Module Federation",
+        "Material UI",
+        "Storybook",
+        "Zustand",
+        "Vite"
+      ],
       "achievements": [
         "Arquitectura e implementación de toda la infraestructura frontend usando Nx y Module Federation",
         "Desarrollo de librerías internas para tokens de diseño, temas, componentes, manejo de errores y peticiones HTTP",
@@ -30,11 +48,17 @@
       ]
     },
     {
-      "role": "Desarrollador Frontend Senior",
+      "role": "Ingeniero Frontend Senior",
       "company": "EFEX",
-      "period": "Ene 2023 — Dic 2024",
+      "period": "Ene 2023 — Ene 2025",
       "description": "Desarrollo y mantenimiento de interfaces escalables y herramientas internas en múltiples plataformas de EFEX. Enfocado en calidad de UI, código reutilizable y eficiencia del desarrollador.",
-      "technologies": ["React", "TypeScript", "Material UI", "React Hook Form", "Zustand"],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Material UI",
+        "React Hook Form",
+        "Zustand"
+      ],
       "achievements": [
         "Desarrollo desde cero de la librería de componentes compartidos de EFEX",
         "Contribución al rediseño y optimización de flujos principales como pagos, onboarding y gestión de usuarios",
@@ -43,24 +67,18 @@
       ]
     },
     {
-      "role": "Ingeniero Frontend Senior",
-      "company": "Branch.io",
-      "period": "Nov 2022 — Sep 2024",
-      "description": "Contribución en dos verticales frontend (Advertiser Dashboard y Customer Platform) bajo una arquitectura compartida. Enfoque en modularidad, escalabilidad y consistencia de UX.",
-      "technologies": ["React", "TypeScript", "Tailwind CSS", "React Hook Form", "Zustand"],
-      "achievements": [
-        "Desarrollo de un dashboard de analíticas visuales con visualizaciones complejas para anunciantes",
-        "Creación de vistas administrativas basadas en roles y mejora de experiencias de onboarding",
-        "Entrega de componentes reutilizables y utilidades frontend transversales",
-        "Enlace entre equipos de producto e ingeniería para alinear prioridades técnicas con necesidades del negocio"
-      ]
-    },
-    {
       "role": "Tech Lead / Desarrollador Frontend Senior",
       "company": "Globant — American Century Investments",
       "period": "Feb 2022 — Nov 2022",
       "description": "Liderazgo en el desarrollo frontend de aplicaciones financieras a nivel empresarial, desde cero y con soporte a sistemas de diseño compartidos.",
-      "technologies": ["React", "JavaScript", "Redux", "Material UI", "SASS", "Next.js"],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "Redux",
+        "Material UI",
+        "SASS",
+        "Next.js"
+      ],
       "achievements": [
         "Desarrollo e implementación de un producto completo desde cero con integración a APIs REST",
         "Creación de un marketplace para unificar productos, servicios y documentos con búsqueda y filtros por roles",
@@ -73,7 +91,13 @@
       "company": "Globant — American Century Investments",
       "period": "Mar 2020 — Feb 2022",
       "description": "Desarrollo de un producto completo desde cero con cifrado y manejo de datos sensibles para clientes financieros empresariales.",
-      "technologies": ["Angular", "TypeScript", "SASS", "RxJS", "CryptoJS"],
+      "technologies": [
+        "Angular",
+        "TypeScript",
+        "SASS",
+        "RxJS",
+        "CryptoJS"
+      ],
       "achievements": [
         "Desarrollo de un producto desde cero con cifrado/descifrado de datos sensibles usando CryptoJS",
         "Construcción de aplicación con login cifrado, edición visual de archivos (rotación, escala, zoom) y funcionalidad de calendario",
@@ -81,35 +105,18 @@
       ]
     },
     {
-      "role": "Chief User Experience Officer",
-      "company": "Minds With Purpose Ltd",
-      "period": "Mar 2021 — Ago 2022",
-      "description": "Liderazgo en la estrategia UX y decisiones de arquitectura frontend para la plataforma, supervisando la experiencia de usuario completa desde el onboarding hasta la entrega del servicio.",
-      "technologies": ["React", "SASS", "BEM", "Stripe"],
-      "achievements": [
-        "Liderazgo en estrategia UX con correcciones y recomendaciones para mejorar los flujos en todo el producto",
-        "Creación de un panel de control alternativo para administradores",
-        "Gestión de procesos de pago usando Stripe"
-      ]
-    },
-    {
-      "role": "Desarrollador Frontend Web",
-      "company": "Minds With Purpose Ltd",
-      "period": "Sep 2019 — Mar 2021",
-      "description": "Desarrollo de una aplicación desde cero para interacciones experto-cliente, con flujos complejos de onboarding, búsqueda y comunicación en tiempo real.",
-      "technologies": ["React", "SASS", "BEM", "Stripe", "OpenTok"],
-      "achievements": [
-        "Desarrollo de SPAs responsivas con flujos complejos de onboarding para cada tipo de usuario",
-        "Implementación de filtros de búsqueda complejos y gestión de solicitudes, aceptaciones, rechazos y reagendados",
-        "Integración de videochat en tiempo real con OpenTok y controles de fecha/hora"
-      ]
-    },
-    {
       "role": "Tech Lead / Desarrollador Frontend Senior",
       "company": "Atoms eCommerce",
       "period": "May 2019 — Mar 2020",
       "description": "Liderazgo en el desarrollo frontend de múltiples tiendas ecommerce, creando flujos de trabajo y plantillas escalables.",
-      "technologies": ["React", "Liquid", "SASS", "Bootstrap", "VTEX", "Shopify"],
+      "technologies": [
+        "React",
+        "Liquid",
+        "SASS",
+        "Bootstrap",
+        "VTEX",
+        "Shopify"
+      ],
       "achievements": [
         "Establecimiento de estándares de plantillas de proyecto y flujos Git incluyendo estructura de commits y convenciones de nombres",
         "Liderazgo en el desarrollo de proyectos Shopify desde cero, adaptando cada tienda a los requerimientos del cliente",
@@ -117,11 +124,32 @@
       ]
     },
     {
+      "role": "Desarrollador Frontend",
+      "company": "Zermat International USA",
+      "period": "Oct 2018 — May 2019",
+      "description": "Desarrollo frontend de la plataforma de vendedores y micrositios internos.",
+      "technologies": [
+        "React",
+        "AngularJS",
+        "JavaScript",
+        "SASS"
+      ],
+      "achievements": [
+        "Migración de la plataforma de vendedores de AngularJS a React",
+        "Implementación de funcionalidades para mejorar el rendimiento de la plataforma",
+        "Desarrollo de micrositios internos para distintas áreas del negocio"
+      ]
+    },
+    {
       "role": "Gerente de Desarrollo & Desarrollador Frontend",
       "company": "Digimundo Technologies",
       "period": "Nov 2016 — Feb 2018",
       "description": "Rol de inicio de carrera gestionando flujos de desarrollo y construyendo proyectos web para clientes.",
-      "technologies": ["HTML", "CSS", "JavaScript"],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
       "achievements": [
         "Gestión de proyectos, tiempos y comunicación directa con clientes para nuevas iniciativas de software",
         "Desarrollo de herramientas internas para procesos empresariales",
