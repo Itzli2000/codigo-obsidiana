@@ -1,3 +1,53 @@
+### 3.3.0 (2026-11-23)
+
+##### Build System / Dependencies
+
+* **deps:**  adopt @codigo-obsidiana/design-tokens 2.1.0 tokens (9b5696ca)
+
+##### Chores
+
+*  remove orphaned 3D models from public/assets/model (849320df)
+*  backup Strapi content as Markdown before Cloud instance deletion (e265d52d)
+
+##### New Features
+
+* **ui:**  terracotta primary CTA through a shared --color-cta token (7a007b22)
+* **about:**  collapse older roles into native disclosures (1ad41f1d)
+* **projects:**  add cover images to project cards and avoid empty grid cells (7a53795c)
+* **content:**  read blog and projects from Markdown content collections (f5ed6dcb)
+
+##### Bug Fixes
+
+* **ui:**  spacing, alignment, transitions and design-token cleanup (41e09bb6)
+* **ux:**  consistent focus, skip link, filters, 404 and es/en copy (016dc602)
+* **a11y:**
+  *  mobile menu, language switcher, contact layout and search focus (d510fcc0)
+  *  unify contrast with muted and text-safe accent tokens (435dc207)
+  *  raise light-theme contrast for accent text and muted labels (a80ec085)
+  *  remove nested main and fix footer heading order (e7f301a4)
+  *  meet AA contrast on home and projects in the light theme (097d4b48)
+* **theme:**  apply color scheme before first paint and stop toggle bugs (951e44b2)
+* **i18n:**  ship the custom root redirect instead of Astro's 2s refresh (a31dc2fe)
+* **contact:**  promise a 48-hour reply and raise form contrast (8d3a530a)
+* **about:**  raise light-theme contrast and make the CV link download (84376692)
+* **content:**  drop duplicate titles and covers from Markdown bodies (221e2b6f)
+* **home:**  stack latest notes on phones, soften dark hero watermark, tighten Now spacing (11596900)
+
+##### Other Changes
+
+* **about:**
+  *  point the CV download to CV_Ariel_Molina_2026.pdf (456eabeb)
+  *  align experience timeline with LinkedIn (22172ff5)
+
+##### Performance Improvements
+
+* **fonts:**  self-host Fraunces, Inter and JetBrains Mono (576d412f)
+* **content:**  serve responsive cover images and lazy-load body images (5eccaa34)
+
+##### Refactors
+
+* **about,contact:**  use the shared accent and muted color tokens (498e3553)
+
 # Changelog
 
 ## [3.2.0] - 2026-04-19

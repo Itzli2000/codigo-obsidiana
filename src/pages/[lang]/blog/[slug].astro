@@ -1,17 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import { marked } from "marked";
 import Prose from "../../../components/prose/Prose.astro";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { fetchBlogPosts, fetchBlogPost } from "../../../lib/strapi";
+import { getBlogPosts, getBlogPost, renderMarkdown } from "../../../lib/content";
 import type { Lang } from "../../../types/language";
 
 export async function getStaticPaths() {
   const [enPosts, esPosts] = await Promise.all([
-    fetchBlogPosts("en"),
-    fetchBlogPosts("es"),
+    getBlogPosts("en"),
+    getBlogPosts("es"),
   ]);
 
   const allSlugs = new Set([
@@ -28,13 +27,13 @@ export async function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url) as Lang;
 const { slug } = Astro.params;
 
-const post = await fetchBlogPost(lang, slug as string);
+const post = await getBlogPost(lang, slug as string);
 
 if (!post) {
   return Astro.redirect("/404");
 }
 
-const htmlBody = await marked(post.body);
+const htmlBody = await renderMarkdown(post.body);
 
 function formatDate(date: string): string {
   const d = new Date(date);
@@ -115,8 +114,11 @@ function formatDate(date: string): string {
           alt={post.title}
           width={1200}
           height={630}
+          widths={[480, 720, 904, 1200]}
+          sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1000px) calc(100vw - 96px), 904px"
           class="art-cover-img"
           loading="eager"
+          fetchpriority="high"
         />
       </div>
     </div>
@@ -154,7 +156,7 @@ function formatDate(date: string): string {
     border-bottom: 1px solid var(--color-base-300);
   }
   .art-header-inner {
-    max-width: 760px;
+    max-width: 680px;
     margin: 0 auto;
   }
 
@@ -162,7 +164,7 @@ function formatDate(date: string): string {
     font-family: var(--font-mono);
     font-size: 12px;
     letter-spacing: 0.08em;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
@@ -180,12 +182,17 @@ function formatDate(date: string): string {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.1em;
-    color: var(--color-base-content);
-    opacity: 0.5;
+    color: var(--color-muted);
     flex-wrap: wrap;
   }
+  /* " · " between meta items, same as the list rows */
+  .art-meta > span + span::before {
+    content: "·";
+    margin-right: 16px;
+    color: var(--color-muted);
+  }
   .art-tag {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     opacity: 1;
     text-transform: uppercase;
     letter-spacing: 0.15em;
@@ -204,8 +211,7 @@ function formatDate(date: string): string {
   .art-desc {
     font-size: 18px;
     line-height: 1.62;
-    color: var(--color-base-content);
-    opacity: 0.65;
+    color: var(--color-muted);
     margin: 0 0 28px;
     max-width: 640px;
   }
@@ -218,8 +224,8 @@ function formatDate(date: string): string {
     font-size: 12px;
     flex-wrap: wrap;
   }
-  .art-author { color: var(--color-base-content); opacity: 0.65; }
-  .art-updated { color: var(--color-base-content); opacity: 0.35; font-size: 11px; }
+  .art-author { color: var(--color-muted); }
+  .art-updated { color: var(--color-muted); font-size: 11px; }
 
   .art-cover {
     background: var(--color-base-200);
@@ -251,7 +257,7 @@ function formatDate(date: string): string {
   .art-footer-back {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     text-decoration: none;
     letter-spacing: 0.06em;
     transition: opacity 0.15s;
@@ -265,8 +271,7 @@ function formatDate(date: string): string {
     padding: 3px 10px;
     border: 1px solid var(--color-base-300);
     border-radius: 999px;
-    color: var(--color-base-content);
-    opacity: 0.5;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
   }
 

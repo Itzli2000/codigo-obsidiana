@@ -81,6 +81,11 @@ const stats = lang === 'es'
     z-index: 0;
   }
 
+  /* Dark mode: base-200 reads too strongly behind the headline; keep it decorative */
+  :global([data-theme="obsidiana-dark"]) .hero-watermark {
+    color: color-mix(in oklab, var(--color-base-200) 45%, var(--color-base-100));
+  }
+
   .hero-inner {
     max-width: 860px;
     margin: 0 auto;
@@ -143,7 +148,7 @@ const stats = lang === 'es'
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none;
@@ -151,12 +156,12 @@ const stats = lang === 'es'
   }
 
   .btn-editorial-primary {
-    background: var(--color-accent);
-    color: var(--color-base-100);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
   }
 
   .btn-editorial-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 
@@ -168,7 +173,7 @@ const stats = lang === 'es'
 
   .btn-editorial-ghost:hover {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   .hero-stats {
@@ -192,12 +197,17 @@ const stats = lang === 'es'
   .stat-label {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.45;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-top: 8px;
     line-height: 1.4;
+  }
+
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.stat-label) {
+    color: var(--color-muted);
+    opacity: 1;
   }
 
   @media (max-width: 900px) {
@@ -212,5 +222,9 @@ const stats = lang === 'es'
   @media (max-width: 540px) {
     .hero-editorial { padding: 60px 20px 48px; }
     .hero-stats { gap: 16px; }
+  }
+
+  @media (max-width: 420px) {
+    .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
   }
 </style>

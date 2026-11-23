@@ -24,7 +24,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
       <div className="contact-info-col">
         <div className="contact-info-card">
           <div className="ci-status">
-            <span className="ci-status-dot" />
+            <span className="ci-status-dot" aria-hidden="true" />
             {lang === "es" ? "Disponible para proyectos" : "Available for projects"}
           </div>
 
@@ -41,7 +41,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
             </div>
             <div className="ci-entry">
               <span className="ci-entry-label">{lang === "es" ? "Respuesta" : "Response"}</span>
-              <span className="ci-entry-value">{lang === "es" ? "≤ 24 horas" : "≤ 24 hours"}</span>
+              <span className="ci-entry-value">{lang === "es" ? "Menos de 48 horas" : "Within 48 hours"}</span>
             </div>
             <div className="ci-entry">
               <span className="ci-entry-label">GitHub</span>
@@ -67,6 +67,12 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
 
       <style>{`
         .contact-layout {
+          /* --color-muted in light on base-100; one step darker on the base-200 card
+             (var(--color-muted) is 4.37:1 there). Dark keeps solid base-content (the dark token is
+             55% alpha, 3.0:1). Small orange text darkened to clear 4.5:1. */
+          --ink-muted: var(--color-muted);
+          --ink-soft: light-dark(#3d4146, var(--color-base-content));
+          --ink-accent: var(--color-accent-text);
           display: grid;
           grid-template-columns: 1.3fr 1fr;
           gap: 80px;
@@ -79,6 +85,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
           display: flex;
           flex-direction: column;
           gap: 32px;
+          --ink-muted: var(--color-muted);
         }
         .ci-status {
           display: flex;
@@ -87,8 +94,7 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
           font-family: var(--font-mono, monospace);
           font-size: 12px;
           letter-spacing: 0.08em;
-          color: var(--color-base-content);
-          opacity: 0.8;
+          color: var(--ink-soft);
         }
         .ci-status-dot {
           width: 7px;
@@ -117,31 +123,29 @@ export default function ContactCanvas({ translations, lang = "es" }: ContactCanv
           font-size: 10px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--color-base-content);
-          opacity: 0.45;
+          color: var(--ink-muted);
         }
         .ci-entry-value {
           font-size: 14px;
-          color: var(--color-base-content);
-          opacity: 0.8;
+          color: var(--ink-soft);
+          min-width: 0;
+          overflow-wrap: anywhere;
         }
         .ci-link {
-          color: var(--color-accent);
-          opacity: 1;
+          color: var(--ink-accent);
           text-decoration: none;
-          transition: opacity 0.15s;
+          text-underline-offset: 3px;
         }
-        .ci-link:hover { opacity: 0.75; }
+        .ci-link:hover { text-decoration: underline; }
         .ci-note {
           font-size: 14px;
           line-height: 1.65;
-          color: var(--color-base-content);
-          opacity: 0.5;
+          color: var(--ink-muted);
           font-style: italic;
         }
         @media (max-width: 900px) {
           .contact-layout {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             gap: 48px;
           }
         }
