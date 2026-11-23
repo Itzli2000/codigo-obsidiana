@@ -9,9 +9,6 @@ readingTime: 8
 image: "design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp"
 draft: false
 ---
-# Design Tokens Package - Código Obsidiana Design System
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp)
 
 ## Description
 
@@ -354,10 +351,6 @@ const applyTheme = (theme: "light" | "dark") => {
 **Scalable Maintenance**: Single source of truth approach reduced token maintenance overhead by 80%, with automated validation preventing invalid color values from entering production.
 
 **Cross-Platform Consistency**: Unified token distribution ensures pixel-perfect design consistency across React, CSS, and future platform implementations.
-
-## Visuals
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp)
 
 ## Links
 

@@ -11,9 +11,6 @@ image: "qr-generator-DBITMU6zrdS6qpLhSVN4ptqbVLnFbe.webp"
 imageProjectPrefix: ""
 showInAbout: true
 ---
-# Generador de Códigos QR por Lotes
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/qr-generator-DBITMU6zrdS6qpLhSVN4ptqbVLnFbe.webp)
 
 ## Descripción
 El Generador de Códigos QR por Lotes es una aplicación web de alto rendimiento que permite a los usuarios generar múltiples códigos QR personalizados simultáneamente. Construida con tecnologías frontend modernas, ofrece una experiencia de usuario fluida con capacidades de vista previa en tiempo real y funcionalidad de procesamiento por lotes. La aplicación es particularmente útil para empresas e individuos que necesitan generar grandes volúmenes de códigos QR con un estilo consistente pero datos diferentes.
@@ -132,9 +129,6 @@ El Generador de Códigos QR por Lotes ofrece mejoras significativas sobre la cre
 - **Experiencia de Usuario**: Interfaz intuitiva con vistas previas en tiempo real y seguimiento de progreso
 
 La aplicación combina exitosamente tecnologías frontend avanzadas con una interfaz amigable, haciéndola accesible tanto para usuarios técnicos como no técnicos. La arquitectura modular asegura mantenibilidad y extensibilidad para mejoras futuras.
-
-## Visuales
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/qr-generator-DBITMU6zrdS6qpLhSVN4ptqbVLnFbe.webp)
 
 ## Enlaces
 - [Repository](https://github.com/Itzli2000/batch-qr-generator)

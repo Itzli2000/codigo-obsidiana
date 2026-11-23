@@ -9,7 +9,6 @@ readingTime: 8
 image: "Theme-Designer-UI-Showcase.webp"
 draft: false
 ---
-# Theme Designer: Building a Visual MUI Theme Editor with Real-Time Preview
 
 ## The Challenge & Context
 

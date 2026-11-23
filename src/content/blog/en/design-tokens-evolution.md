@@ -9,9 +9,6 @@ readingTime: 12
 image: "Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp"
 draft: false
 ---
-# Design Tokens Evolution - From Single Brand to Multi-Brand Architecture
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Description
 
@@ -224,10 +221,6 @@ const getBrandTokens = async (brand: 'obsidiana' | 'ixiptla') => {
 **Comprehensive Quality Assurance**: Cross-brand validation testing prevents regressions and ensures token structure consistency, catching 95% of potential integration issues before deployment.
 
 **Future-Proof Architecture**: The hierarchical token system and dynamic build pipeline easily accommodates new brands, theme variations, and token categories without architectural changes.
-
-## Visuals
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Links
 

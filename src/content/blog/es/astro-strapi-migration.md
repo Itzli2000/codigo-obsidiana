@@ -9,7 +9,6 @@ readingTime: 5
 image: "cover.webp"
 draft: false
 ---
-# De archivos MDX a un CMS headless: migrando un sitio Astro a Strapi
 
 Cuando construí este sitio, el contenido vivía como archivos MDX dentro del repositorio. Publicar un nuevo post significaba escribir el archivo, hacer commit y esperar el deploy en Vercel. Funcionaba, pero no era sostenible. Cada vez que quería escribir algo, el primer paso era abrir un editor de código. Esa fricción es suficiente para matar el hábito.
 

@@ -37,11 +37,11 @@ const ContactForm = ({
           .cf-success { padding: 48px 0; text-align: center; }
           .cf-success-icon {
             width: 56px; height: 56px;
-            background: oklch(var(--su) / 0.15);
+            background: color-mix(in oklch, var(--color-success) 15%, transparent);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 20px;
-            color: oklch(var(--su));
+            color: var(--color-success);
           }
           .cf-success-title {
             font-family: var(--font-display, serif);
@@ -52,9 +52,8 @@ const ContactForm = ({
           }
           .cf-success-msg {
             font-size: 15px;
-            opacity: 0.65;
             margin: 0 0 28px;
-            color: var(--color-base-content);
+            color: var(--ink-muted);
           }
         `}</style>
       </div>
@@ -89,12 +88,14 @@ const ContactForm = ({
             placeholder={translations.form.name}
             className={`cf-input ${errors.name ? "cf-input-error" : ""}`}
             {...register("name", validationRules.name)}
+            autoComplete="name"
 
             disabled={isSubmitting}
             aria-invalid={!!errors.name}
+            aria-describedby={errors.name ? "contact-name-error" : undefined}
           />
           {errors.name && (
-            <span className="cf-field-error" role="alert">{errors.name.message}</span>
+            <span className="cf-field-error" id="contact-name-error">{errors.name.message}</span>
           )}
         </div>
 
@@ -109,12 +110,14 @@ const ContactForm = ({
             placeholder={translations.form.emailPlaceholder}
             className={`cf-input ${errors.email ? "cf-input-error" : ""}`}
             {...register("email", validationRules.email)}
+            autoComplete="email"
 
             disabled={isSubmitting}
             aria-invalid={!!errors.email}
+            aria-describedby={errors.email ? "contact-email-error" : undefined}
           />
           {errors.email && (
-            <span className="cf-field-error" role="alert">{errors.email.message}</span>
+            <span className="cf-field-error" id="contact-email-error">{errors.email.message}</span>
           )}
         </div>
 
@@ -132,9 +135,10 @@ const ContactForm = ({
 
             disabled={isSubmitting}
             aria-invalid={!!errors.subject}
+            aria-describedby={errors.subject ? "contact-subject-error" : undefined}
           />
           {errors.subject && (
-            <span className="cf-field-error" role="alert">{errors.subject.message}</span>
+            <span className="cf-field-error" id="contact-subject-error">{errors.subject.message}</span>
           )}
         </div>
 
@@ -151,9 +155,10 @@ const ContactForm = ({
 
             disabled={isSubmitting}
             aria-invalid={!!errors.message}
+            aria-describedby={errors.message ? "contact-message-error" : undefined}
           />
           {errors.message && (
-            <span className="cf-field-error" role="alert">{errors.message.message}</span>
+            <span className="cf-field-error" id="contact-message-error">{errors.message.message}</span>
           )}
         </div>
 
@@ -184,14 +189,14 @@ const ContactForm = ({
           font-size: 11px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--color-base-content);
-          opacity: 0.55;
+          color: var(--ink-muted);
         }
-        .cf-required { color: var(--color-accent); opacity: 1; }
+        .cf-required { color: var(--ink-accent); }
         .cf-input, .cf-textarea {
           width: 100%;
           background: transparent;
-          border: 1px solid var(--color-base-300);
+          /* Field boundary needs 3:1 against the page (base-300 is 1.27:1 in light) */
+          border: 1px solid light-dark(var(--color-border-light-default), var(--color-border-dark-default));
           border-radius: 4px;
           padding: 12px 14px;
           font-family: var(--font-body, sans-serif);
@@ -199,44 +204,48 @@ const ContactForm = ({
           color: var(--color-base-content);
           transition: border-color 0.15s;
           box-sizing: border-box;
-          outline: none;
         }
-        .cf-input:focus, .cf-textarea:focus {
+        .cf-input::placeholder, .cf-textarea::placeholder {
+          color: var(--ink-muted);
+          opacity: 1;
+        }
+        .cf-input:focus-visible, .cf-textarea:focus-visible {
           border-color: var(--color-accent);
+          outline: 2px solid var(--color-accent);
+          outline-offset: -1px;
         }
         .cf-input-error { border-color: var(--color-error) !important; }
         .cf-textarea { height: 120px; resize: vertical; }
         .cf-field-error {
           font-family: var(--font-mono, monospace);
           font-size: 11px;
-          color: var(--color-error);
+          color: var(--ink-accent);
           letter-spacing: 0.04em;
         }
         .cf-required-note {
           font-family: var(--font-mono, monospace);
           font-size: 11px;
-          opacity: 0.35;
           margin: 0;
-          color: var(--color-base-content);
+          color: var(--ink-muted);
         }
         .cf-btn-primary {
           display: inline-flex;
           align-items: center;
           gap: 8px;
           padding: 13px 24px;
-          background: var(--color-accent);
-          color: var(--color-base-100);
+          background: var(--color-cta);
+          color: var(--color-cta-content);
           border: 1px solid transparent;
           border-radius: 4px;
           font-family: var(--font-body, sans-serif);
           font-size: 14px;
           font-weight: 500;
           cursor: pointer;
-          transition: filter 0.2s, transform 0.2s;
+          transition: background-color 0.2s, transform 0.2s;
           align-self: flex-start;
         }
         .cf-btn-primary:hover:not(:disabled) {
-          filter: brightness(1.1);
+          background: var(--color-cta-hover);
           transform: translateY(-1px);
         }
         .cf-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -255,11 +264,11 @@ const ContactForm = ({
         }
         .cf-btn-ghost:hover {
           border-color: var(--color-accent);
-          color: var(--color-accent);
+          color: var(--ink-accent);
         }
         .cf-error-banner {
-          background: oklch(var(--er) / 0.1);
-          border: 1px solid oklch(var(--er) / 0.3);
+          background: color-mix(in oklch, var(--color-error) 10%, transparent);
+          border: 1px solid color-mix(in oklch, var(--color-error) 30%, transparent);
           border-radius: 4px;
           padding: 14px 16px;
           font-size: 14px;
@@ -270,7 +279,7 @@ const ContactForm = ({
           gap: 12px;
           margin-bottom: 20px;
         }
-        .cf-error-banner a { color: var(--color-accent); }
+        .cf-error-banner a { color: var(--ink-accent); }
         .cf-spinner {
           width: 14px; height: 14px;
           border: 2px solid transparent;

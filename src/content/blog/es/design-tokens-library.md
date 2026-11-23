@@ -9,9 +9,6 @@ readingTime: 8
 image: "design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp"
 draft: false
 ---
-# Paquete de Design Tokens - Sistema de Diseño Código Obsidiana
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp)
 
 ## Descripción
 
@@ -340,10 +337,6 @@ const applyTheme = (theme: 'light' | 'dark') => {
 **Mantenimiento Escalable**: El enfoque de única fuente de verdad redujo el overhead de mantenimiento de tokens en un 80%, con validación automatizada previniendo que valores de color inválidos entren a producción.
 
 **Consistencia Cross-Platform**: La distribución unificada de tokens asegura consistencia de diseño pixel-perfect entre React, CSS e implementaciones futuras de plataformas.
-
-## Visuales
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/design-tokens-76UWZfPc7wiyUGnz8FOlaPbrq2xl8E.webp)
 
 ## Enlaces
 

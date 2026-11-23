@@ -1,7 +1,7 @@
 ---
 title: "Theme Factory: Architecting a Scalable Backend for Dynamic Theme Management"
 description: "A detailed case study on building a robust NestJS API for theme management, covering everything from database design to security and scalability considerations"
-publishDate: "2025-07-19T00:00:00.000Z"
+publishDate: "2025-07-19T12:00:00.000Z"
 updated: null
 tags: ["NestJS", "PostgreSQL", "API Design", "Backend Architecture", "TypeORM", "Security", "Case Study"]
 author: "Ariel Molina"
@@ -9,7 +9,6 @@ readingTime: 8
 image: "Data-Flow-and-Theme-Configuration.webp"
 draft: false
 ---
-# Theme Factory: Architecting a Scalable Backend for Dynamic Theme Management
 
 ## Introduction
 

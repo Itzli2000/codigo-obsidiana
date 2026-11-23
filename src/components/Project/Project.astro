@@ -5,21 +5,32 @@ import { getLangFromUrl, useTranslations } from "../../i18n/utils";
 import type { Lang } from "../../types/language";
 import { CDN, TYPE } from "../../constants/cdn";
 import { NETWORK } from "../../constants/network";
-import { fetchProjects } from "../../lib/strapi";
+import { getProjects } from "../../lib/content";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const projects = await fetchProjects(lang);
+const projects = await getProjects(lang);
+
+function projectImageUrl(project: { image: string; imageProjectPrefix: string }): string {
+  return `${CDN.IMAGES}${TYPE.PROJECT}${project.imageProjectPrefix}${project.image}`;
+}
 
 function formatYear(date: string): string {
   return new Date(date).getFullYear().toString();
 }
 
-// Collect unique tags for filter pills
-const allTags = Array.from(
-  new Set(projects.flatMap((p: any) => p.tags ?? []))
-).slice(0, 6);
+// Filter pills: tags shared by two or more projects, most frequent first.
+// Tags are English code labels in both locales.
+const tagCounts = new Map<string, number>();
+for (const p of projects as any[]) {
+  for (const tag of new Set<string>(p.tags ?? [])) tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+}
+const allTags = [...tagCounts.entries()]
+  .filter(([, count]) => count > 1)
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 6)
+  .map(([tag]) => tag);
 ---
 
 <MainLayout
@@ -29,9 +40,7 @@ const allTags = Array.from(
 >
   <!-- HERO -->
   <section class="proj-hero">
-    <div class="proj-watermark" aria-hidden="true">
-      {lang === "es" ? "obras" : "works"}
-    </div>
+    <div class="proj-watermark" aria-hidden="true" data-word={lang === "es" ? "obras" : "works"}></div>
     <div class="proj-hero-inner">
       <div class="eyebrow" style="margin-bottom: 24px;">
         {lang === "es" ? `Proyectos · ${projects.length} piezas` : `Projects · ${projects.length} pieces`}
@@ -53,11 +62,11 @@ const allTags = Array.from(
   <section class="proj-filters">
     <div class="proj-filters-inner">
       <div class="proj-filter-pills" id="proj-tags">
-        <button class="proj-pill active" data-tag="all">
+        <button class="proj-pill active" data-tag="all" aria-pressed="true">
           {lang === "es" ? "Todos" : "All"}
         </button>
         {allTags.map((tag: string) => (
-          <button class="proj-pill" data-tag={tag}>{tag}</button>
+          <button class="proj-pill" data-tag={tag} aria-pressed="false">{tag}</button>
         ))}
       </div>
     </div>
@@ -77,9 +86,25 @@ const allTags = Array.from(
           {projects.map((project: any, i: number) => (
             <a
               href={`/${lang}/projects/${project.slug}`}
-              class="proj-card"
+              class:list={["proj-card", { "proj-card--wide": projects.length % 2 === 1 && i === 0 }]}
               data-tags={JSON.stringify(project.tags ?? [])}
             >
+              {project.image && (
+                <div class="proj-card-media">
+                  <Image
+                    src={projectImageUrl(project)}
+                    alt=""
+                    width={1200}
+                    height={750}
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1296px) 50vw, 600px"
+                    loading="lazy"
+                    decoding="async"
+                    class="proj-card-img"
+                  />
+                </div>
+              )}
+              <div class="proj-card-body">
               <div class="proj-card-top">
                 <span class="proj-card-counter">
                   {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
@@ -93,7 +118,7 @@ const allTags = Array.from(
                 <div class="proj-card-kind">{project.tags[0]}</div>
               )}
 
-              <h3 class="proj-card-title">{project.title}</h3>
+              <h2 class="proj-card-title">{project.title}</h2>
               <p class="proj-card-desc">{project.description}</p>
 
               <div class="proj-card-footer">
@@ -105,6 +130,7 @@ const allTags = Array.from(
                 <span class="proj-card-cta">
                   {lang === "es" ? "Ver caso →" : "View case →"}
                 </span>
+              </div>
               </div>
             </a>
           ))}
@@ -152,14 +178,22 @@ const allTags = Array.from(
       const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".proj-pill");
       if (!btn) return;
       activeTag = btn.dataset.tag ?? "all";
-      tagsEl.querySelectorAll(".proj-pill").forEach((b) => b.classList.remove("active"));
+      tagsEl.querySelectorAll(".proj-pill").forEach((b) => {
+        b.classList.toggle("active", b === btn);
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
       btn.classList.add("active");
 
+      const visible: HTMLElement[] = [];
       grid.querySelectorAll<HTMLElement>(".proj-card").forEach((card) => {
         const tags: string[] = JSON.parse(card.dataset.tags ?? "[]");
         const match = activeTag === "all" || tags.includes(activeTag);
-        card.style.display = match ? "" : "none";
+        card.hidden = !match;
+        card.classList.remove("proj-card--wide");
+        if (match) visible.push(card);
       });
+      // An odd number of visible cards would leave an empty cell: widen the first one.
+      if (visible.length % 2 === 1) visible[0].classList.add("proj-card--wide");
     });
   }
 </script>
@@ -171,6 +205,10 @@ const allTags = Array.from(
     overflow: hidden;
     padding: 100px 48px 60px;
     border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .proj-watermark::before {
+    content: attr(data-word);
   }
 
   .proj-watermark {
@@ -185,6 +223,11 @@ const allTags = Array.from(
     line-height: 0.85;
     pointer-events: none;
     user-select: none;
+  }
+
+  /* Dark mode: base-200 is too close to the text; keep the watermark decorative */
+  :global([data-theme="obsidiana-dark"]) .proj-watermark {
+    color: color-mix(in oklab, var(--color-base-200) 45%, var(--color-base-100));
   }
 
   .proj-hero-inner {
@@ -215,8 +258,7 @@ const allTags = Array.from(
   .proj-hero-subtitle {
     font-size: 18px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     max-width: 640px;
     margin: 0;
   }
@@ -245,19 +287,34 @@ const allTags = Array.from(
     padding: 5px 14px;
     border-radius: 999px;
     background: transparent;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
     border: 1px solid var(--color-base-300);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s, transform 0.15s, filter 0.15s;
+  }
+
+  @media (max-width: 767.98px) {
+    .proj-pill { min-height: 44px; }
   }
 
   .proj-pill:hover { opacity: 0.85; }
 
+  .proj-pill.active:hover {
+    background: var(--color-cta-hover);
+    border-color: var(--color-cta-hover);
+    opacity: 1;
+  }
+
   .proj-pill.active {
-    background: var(--color-accent);
-    color: var(--color-base-100);
-    border-color: var(--color-accent);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
+    border-color: var(--color-cta);
+    opacity: 1;
+  }
+
+  /* Light theme: small gray labels use a solid AA color (4.77:1 on base-100) instead of opacity */
+  :global([data-theme="obsidiana-light"]) :is(.proj-pill:not(.active):not(:hover), .proj-card-year, .proj-card-kind, .proj-tech-badge) {
+    color: var(--color-muted);
     opacity: 1;
   }
 
@@ -287,10 +344,8 @@ const allTags = Array.from(
 
   .proj-card {
     background: var(--color-base-100);
-    padding: 48px 40px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     min-height: 340px;
     text-decoration: none;
     color: inherit;
@@ -302,6 +357,68 @@ const allTags = Array.from(
     background: var(--color-base-200);
   }
 
+  .proj-card[hidden] {
+    display: none;
+  }
+
+  /* Odd count: first visible card spans the row so the grid never leaves a hole */
+  .proj-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .proj-card-media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--color-base-300);
+    background: var(--color-base-200);
+  }
+
+  .proj-card-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: saturate(0.85);
+    transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.3s;
+  }
+
+  .proj-card:hover .proj-card-img {
+    transform: scale(1.025);
+    filter: saturate(1);
+  }
+
+  .proj-card-body {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+  }
+
+  @media (min-width: 901px) {
+    .proj-card--wide {
+      flex-direction: row;
+    }
+
+    .proj-card--wide .proj-card-media {
+      flex: 0 0 calc(50% - 1px);
+      aspect-ratio: auto;
+      min-height: 380px;
+      border-bottom: 0;
+      border-right: 1px solid var(--color-base-300);
+    }
+
+    .proj-card--wide .proj-card-body {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proj-card-img { transition: none; }
+    .proj-card:hover .proj-card-img { transform: none; }
+  }
+
   .proj-card-top {
     display: flex;
     justify-content: space-between;
@@ -311,23 +428,21 @@ const allTags = Array.from(
   .proj-card-counter {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     letter-spacing: 0.1em;
   }
 
   .proj-card-year {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.35;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
   }
 
   .proj-card-kind {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--color-muted);
     letter-spacing: 0.2em;
     text-transform: uppercase;
   }
@@ -345,8 +460,7 @@ const allTags = Array.from(
   .proj-card-desc {
     font-size: 15px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     margin: 0;
     flex: 1;
   }
@@ -372,14 +486,13 @@ const allTags = Array.from(
     padding: 3px 8px;
     border: 1px solid var(--color-base-300);
     border-radius: 999px;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
   }
 
   .proj-card-cta {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     letter-spacing: 0.06em;
     white-space: nowrap;
   }
@@ -415,8 +528,7 @@ const allTags = Array.from(
   .proj-cta-desc {
     font-size: 16px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     max-width: 520px;
     margin: 0 auto 32px;
   }
@@ -436,16 +548,16 @@ const allTags = Array.from(
     border-radius: 4px;
     font-weight: 500;
     font-size: 14px;
-    background: var(--color-accent);
-    color: var(--color-base-100);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
     border: 1px solid transparent;
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .proj-btn-primary:hover {
-    filter: brightness(1.1);
+    background: var(--color-cta-hover);
     transform: translateY(-1px);
   }
 
@@ -462,12 +574,12 @@ const allTags = Array.from(
     border: 1px solid var(--color-base-300);
     text-decoration: none;
     font-family: var(--font-body);
-    transition: all 0.2s;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s, opacity 0.2s, transform 0.2s, filter 0.2s;
   }
 
   .proj-btn-ghost:hover {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   /* Responsive */
@@ -479,6 +591,10 @@ const allTags = Array.from(
 
     .proj-grid {
       grid-template-columns: 1fr;
+    }
+
+    .proj-card-body {
+      padding: 28px 24px;
     }
 
     .proj-watermark {

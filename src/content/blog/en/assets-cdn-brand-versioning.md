@@ -1,7 +1,7 @@
 ---
 title: "From 175 scattered assets to 76 on a CDN: consolidation, optimization, and brand versioning"
 description: "We had 175 brand assets scattered across 4 repositories. A branding change required 4 deploys. We solved it with a dedicated repo, S3 + CloudFront, and a single environment variable."
-publishDate: "2026-05-29T06:00:00.000Z"
+publishDate: "2026-05-29T12:00:00.000Z"
 updated: null
 tags: ["Frontend", "Infrastructure", "Design System", "Rebrand 2026"]
 author: "Ariel Molina"

@@ -3,17 +3,14 @@ title: "Ixiptla V2 - From Prototype to Production: Scaling a 3D Museum with Cult
 description: "How I evolved Ixiptla from a technical prototype to a museum-quality experience through design systems, performance optimization, and cultural authenticity"
 publishDate: "2025-07-19T00:00:00.000Z"
 technologies: ["Astro", "React", "TypeScript", "Three.js", "TailwindCSS", "DaisyUI", "Design Systems", "i18n", "SEO"]
-tags: ["Frontend", "3D", "Museos", "Patrimonio Cultural", "Sistemas de Diseño", "Rendimiento", "SEO", "Accesibilidad"]
-role: "Desarrollador Frontend y Diseñador UX"
-company: "Proyecto Personal"
+tags: ["Frontend", "3D", "Museums", "Cultural Heritage", "Design Systems", "Performance", "SEO", "Accessibility"]
+role: "Frontend Developer & UX Designer"
+company: "Personal Project"
 status: "published"
 image: "0.webp"
 imageProjectPrefix: "ixiptla/V2/"
 showInAbout: true
 ---
-# Ixiptla V2 - From Prototype to Production
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/project/ixiptla/V2/0.webp)
 
 ## The Evolution Challenge
 

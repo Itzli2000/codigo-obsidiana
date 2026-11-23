@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import { CDN, TYPE } from "../../../constants/cdn";
-import { fetchBlogPosts } from "../../../lib/strapi";
+import { getBlogPosts } from "../../../lib/content";
 import type { Lang } from "../../../types/language";
 
 export function getStaticPaths() {
@@ -13,7 +13,7 @@ export function getStaticPaths() {
 const lang = getLangFromUrl(Astro.url) as Lang;
 const t = useTranslations(lang);
 
-const posts = await fetchBlogPosts(lang, { excludeDrafts: true });
+const posts = await getBlogPosts(lang, { excludeDrafts: true });
 const featured = posts[0];
 const rest = posts.slice(1);
 
@@ -26,10 +26,17 @@ function formatDate(date: string): string {
   return `${y} · ${m} · ${day}`;
 }
 
-// Collect all unique tags
-const allTags = Array.from(
-  new Set(posts.flatMap((p) => p.tags ?? []))
-).slice(0, 6);
+// Filter chips use the same label each row shows (its first tag), most frequent first.
+// Tags are English code labels in both locales.
+const tagCounts = new Map<string, number>();
+for (const p of posts) {
+  const label = p.tags?.[0];
+  if (label) tagCounts.set(label, (tagCounts.get(label) ?? 0) + 1);
+}
+const allTags = [...tagCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 6)
+  .map(([tag]) => tag);
 
 const title =
   t("blog.meta.title") !== "blog.meta.title"
@@ -44,9 +51,7 @@ const description =
 <MainLayout lang={lang} title={title} description={description}>
   <!-- HERO -->
   <section class="blog-hero">
-    <div class="blog-watermark" aria-hidden="true">
-      {lang === "es" ? "blog" : "blog"}
-    </div>
+    <div class="blog-watermark" aria-hidden="true" data-word="blog"></div>
     <div class="blog-hero-inner">
       <div class="eyebrow" style="margin-bottom: 24px;">
         Blog · {posts.length} {lang === "es" ? "notas" : "notes"}
@@ -103,8 +108,11 @@ const description =
                 alt={featured.title}
                 width={560}
                 height={420}
+                widths={[360, 560, 840, 1120]}
+                sizes="(max-width: 900px) calc(100vw - 48px), (max-width: 1296px) calc((100vw - 156px) / 2.3), 496px"
                 class="featured-img"
                 loading="eager"
+                fetchpriority="high"
               />
             ) : (
               <svg viewBox="0 0 400 300" class="featured-placeholder" aria-hidden="true">
@@ -127,22 +135,23 @@ const description =
   <section class="blog-filters">
     <div class="blog-filters-inner">
       <div class="blog-tags" id="blog-tags">
-        <button class="blog-tag active" data-tag="all">
+        <button class="blog-tag active" data-tag="all" aria-pressed="true">
           {lang === "es" ? "Todos" : "All"}
         </button>
         {allTags.map((tag) => (
-          <button class="blog-tag" data-tag={tag}>{tag}</button>
+          <button class="blog-tag" data-tag={tag} aria-pressed="false">{tag}</button>
         ))}
       </div>
       <div class="blog-search">
-        <span class="search-icon">⌕</span>
+        <span class="search-icon" aria-hidden="true">⌕</span>
         <input
           id="blog-search-input"
           type="search"
           placeholder={lang === "es" ? "Buscar notas…" : "Search notes…"}
+          aria-label={lang === "es" ? "Buscar notas" : "Search notes"}
           class="blog-search-input"
         />
-        <span class="search-kbd">⌘K</span>
+        <span class="search-kbd" aria-hidden="true">⌘K</span>
       </div>
     </div>
   </section>
@@ -160,13 +169,18 @@ const description =
         </p>
       )}
 
+      <p class="blog-empty" id="blog-no-results" role="status" hidden>
+        {lang === "es" ? "Ninguna nota coincide con la búsqueda." : "No posts match your search."}
+      </p>
+
       <div class="post-table" id="post-table">
         {posts.map((post) => (
           <a
             href={`/${lang}/blog/${post.slug}`}
             class="post-table-row"
             data-title={post.title.toLowerCase()}
-            data-tags={JSON.stringify(post.tags ?? [])}
+            data-excerpt={(post.description ?? "").toLowerCase()}
+            data-tag={post.tags?.[0] ?? ""}
           >
             <span class="ptrow-date">
               {post.publishDate ? formatDate(post.publishDate) : "—"}
@@ -199,23 +213,31 @@ const description =
   let activeTag = "all";
   let searchQuery = "";
 
+  const noResults = document.getElementById("blog-no-results");
+
   function filterRows() {
     const rows = table!.querySelectorAll<HTMLElement>(".post-table-row");
+    const query = searchQuery.toLowerCase();
+    let visible = 0;
     rows.forEach((row) => {
-      const title = row.dataset.title ?? "";
-      const tags: string[] = JSON.parse(row.dataset.tags ?? "[]");
-      const matchesTag = activeTag === "all" || tags.some((t) => t === activeTag);
-      const matchesSearch = !searchQuery || title.includes(searchQuery.toLowerCase());
-      row.style.display = matchesTag && matchesSearch ? "" : "none";
+      const text = `${row.dataset.title ?? ""} ${row.dataset.excerpt ?? ""}`;
+      const matchesTag = activeTag === "all" || row.dataset.tag === activeTag;
+      const matchesSearch = !query || text.includes(query);
+      const show = matchesTag && matchesSearch;
+      row.style.display = show ? "" : "none";
+      if (show) visible++;
     });
+    if (noResults) noResults.hidden = visible > 0 || rows.length === 0;
   }
 
   tagsEl.addEventListener("click", (e) => {
     const btn = (e.target as HTMLElement).closest<HTMLButtonElement>(".blog-tag");
     if (!btn) return;
     activeTag = btn.dataset.tag ?? "all";
-    tagsEl.querySelectorAll(".blog-tag").forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
+    tagsEl.querySelectorAll(".blog-tag").forEach((b) => {
+      b.classList.toggle("active", b === btn);
+      b.setAttribute("aria-pressed", String(b === btn));
+    });
     filterRows();
   });
 
@@ -240,6 +262,10 @@ const description =
     overflow: hidden;
     padding: 100px 48px 60px;
     border-bottom: 1px solid var(--color-base-300);
+  }
+
+  .blog-watermark::before {
+    content: attr(data-word);
   }
 
   .blog-watermark {
@@ -284,8 +310,7 @@ const description =
   .blog-hero-subtitle {
     font-size: 18px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     max-width: 580px;
     margin: 0;
   }
@@ -319,21 +344,30 @@ const description =
     padding: 5px 14px;
     border-radius: 999px;
     background: transparent;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
     border: 1px solid var(--color-base-300);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s, transform 0.15s, filter 0.15s;
+  }
+
+  @media (max-width: 767.98px) {
+    .blog-tag { min-height: 44px; }
   }
 
   .blog-tag:hover {
     opacity: 0.85;
   }
 
+  .blog-tag.active:hover {
+    background: var(--color-cta-hover);
+    border-color: var(--color-cta-hover);
+    opacity: 1;
+  }
+
   .blog-tag.active {
-    background: var(--color-accent);
-    color: var(--color-base-100);
-    border-color: var(--color-accent);
+    background: var(--color-cta);
+    color: var(--color-cta-content);
+    border-color: var(--color-cta);
     opacity: 1;
   }
 
@@ -347,9 +381,15 @@ const description =
     min-width: 260px;
   }
 
+  /* The input drops its own outline, so the wrapper shows focus (same ring as the contact fields) */
+  .blog-search:focus-within {
+    border-color: var(--color-accent);
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
   .search-icon {
-    color: var(--color-base-content);
-    opacity: 0.35;
+    color: var(--color-muted);
     font-size: 16px;
   }
 
@@ -368,11 +408,15 @@ const description =
     opacity: 0.35;
   }
 
+  /* No keyboard shortcut to advertise on touch screens */
+  @media (hover: none) {
+    .search-kbd { display: none; }
+  }
+
   .search-kbd {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-base-content);
-    opacity: 0.3;
+    color: var(--color-muted);
     padding: 2px 6px;
     border: 1px solid var(--color-base-300);
     border-radius: 3px;
@@ -402,8 +446,7 @@ const description =
   .featured-meta {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.45;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
     display: flex;
     gap: 14px;
@@ -412,7 +455,7 @@ const description =
   }
 
   .featured-tag {
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     opacity: 1;
   }
 
@@ -430,8 +473,7 @@ const description =
   .featured-desc {
     font-size: 17px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--color-muted);
     margin: 0 0 28px;
     max-width: 520px;
   }
@@ -444,13 +486,13 @@ const description =
     border: 1px solid var(--color-base-300);
     border-radius: 4px;
     color: var(--color-base-content);
-    transition: all 0.15s;
+    transition: color 0.15s, background-color 0.15s, border-color 0.15s, opacity 0.15s, transform 0.15s, filter 0.15s;
     display: inline-block;
   }
 
   .featured-link:hover .featured-cta {
     border-color: var(--color-accent);
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
   .featured-image {
@@ -483,10 +525,12 @@ const description =
     margin: 0 auto;
   }
 
+  .blog-empty[hidden] { display: none; }
+
   .blog-empty {
     font-family: var(--font-mono);
     font-size: 13px;
-    opacity: 0.4;
+    color: var(--color-muted);
     padding: 40px 0;
   }
 
@@ -496,7 +540,7 @@ const description =
 
   .post-table-row {
     display: grid;
-    grid-template-columns: 130px 150px 1fr 1fr auto;
+    grid-template-columns: 130px 150px minmax(0, 1fr) minmax(0, 1fr) 72px;
     gap: 28px;
     align-items: baseline;
     padding: 26px 0;
@@ -518,15 +562,14 @@ const description =
   .ptrow-date {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--color-muted);
     letter-spacing: 0.08em;
   }
 
   .ptrow-tag {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
     letter-spacing: 0.15em;
     text-transform: uppercase;
   }
@@ -544,17 +587,16 @@ const description =
   .ptrow-desc {
     font-size: 14px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.55;
+    color: var(--color-muted);
     margin: 0;
     max-width: 320px;
   }
 
   .ptrow-read {
+    text-align: right;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--color-base-content);
-    opacity: 0.4;
+    color: var(--color-muted);
     letter-spacing: 0.06em;
     white-space: nowrap;
   }

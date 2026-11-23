@@ -1,11 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
 @import "tailwindcss";
 @import "@codigo-obsidiana/design-tokens/obsidiana/css";
 @plugin "@tailwindcss/typography";
-@plugin "daisyui";
+@plugin "daisyui" {
+  themes: false;
+}
 
 @plugin "daisyui/theme" {
   name: "obsidiana-light";
+  default: true;
   color-scheme: light;
 
   --color-base-100: var(--color-base-light-100);
@@ -19,7 +21,8 @@
   --color-secondary: var(--color-secondary-light-default);
   --color-secondary-content: var(--color-secondary-light-content);
 
-  --color-accent: var(--color-accent-light-default);
+  /* Display accent: slightly darker than the token fill (#f27557) so large italic text reaches 3:1 on base-100. Small text uses --color-accent-text. */
+  --color-accent: #f0623f;
   --color-accent-content: var(--color-accent-light-content);
 
   --color-neutral: var(--color-neutral-light-default);
@@ -84,11 +87,112 @@
   --noise: var(--design-effect-noise);
 }
 
+/*
+ * Fontsource's Inter subsets omit the Arrows block (U+2190-21FF), so the "→" / "↗"
+ * in body text would fall back to a system glyph (Google Fonts' Inter included them).
+ * These tiny subsets (OFL-1.1, cut with pyftsubset from inter-ui@4.1.1) fill the gap.
+ * They are only downloaded on pages that render an arrow. Keep each face's
+ * descriptors identical to the fontsource faces of the same family.
+ */
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/inter-arrows-normal.woff2") format("woff2-variations");
+  unicode-range: U+2190-21FF;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("../assets/fonts/inter-arrows-italic.woff2") format("woff2-variations");
+  unicode-range: U+2190-21FF;
+}
+
+/*
+ * Self-hosted variable fonts are imported in MainLayout.astro (@fontsource-variable/*).
+ * Metric-adjusted local fallbacks keep text close to the web font's size while it
+ * swaps in, avoiding layout shift. size-adjust values were measured in Chrome as the
+ * rendered width ratio web font / fallback for the site's real text. Fraunces uses
+ * optical sizing (opsz), so its ratio depends on font size: the values favour the
+ * above-the-fold display sizes (hero heading and italic watermark).
+ * ascent/descent overrides = Fraunces/Inter/JetBrains Mono metrics / size-adjust.
+ */
+@font-face {
+  font-family: "Fraunces Fallback";
+  font-style: normal;
+  src: local("Georgia");
+  size-adjust: 92%;
+  ascent-override: 106.3%;
+  descent-override: 27.7%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Fraunces Fallback";
+  font-style: italic;
+  src: local("Georgia Italic"), local("Georgia-Italic");
+  size-adjust: 76%;
+  ascent-override: 128.7%;
+  descent-override: 33.6%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial"), local("Helvetica"), local("Liberation Sans");
+  size-adjust: 106%;
+  ascent-override: 91.3%;
+  descent-override: 22.7%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Fallback";
+  src: local("Courier New"), local("Liberation Mono");
+  size-adjust: 100%;
+  ascent-override: 102%;
+  descent-override: 30%;
+  line-gap-override: 0%;
+}
+
+/*
+ * Muted text and text-safe accent from @codigo-obsidiana/design-tokens 2.1+.
+ * Both pass 4.5:1 on base-100/200/300 in each theme. Use them instead of opacity or hex values.
+ */
+:root {
+  --color-muted: var(--color-base-light-muted);
+  --color-accent-text: var(--color-accent-light-text);
+}
+[data-theme="obsidiana-dark"] {
+  --color-muted: var(--color-base-dark-muted);
+  --color-accent-text: var(--color-accent-dark-text);
+}
+
+/*
+ * Filled primary CTAs and active filter pills. Light: terracotta (accent-light-text)
+ * with white text, 6.09:1. Dark: the orange fill with dark ink, 5.48:1.
+ * Large display italics keep --color-accent; small orange text keeps --color-accent-text.
+ */
+:root {
+  --color-cta: var(--color-accent-light-text);
+  --color-cta-content: #fff;
+  --color-cta-hover: color-mix(in oklab, var(--color-accent-light-text) 88%, black);
+}
+[data-theme="obsidiana-dark"] {
+  --color-cta: var(--color-accent);
+  --color-cta-content: var(--color-accent-content);
+  --color-cta-hover: color-mix(in oklab, var(--color-accent) 90%, white);
+}
+
 /* Font variables */
 :root {
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-display: "Fraunces Variable", "Fraunces Fallback", Georgia, serif;
+  --font-body: "Inter Variable", "Inter Fallback", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono Fallback", ui-monospace, monospace;
 }
 
 /* Theme transition variables */
@@ -116,7 +220,7 @@ header,
 
 /* Base typography styles */
 html, body {
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
   background-color: var(--color-base-100);
   color: var(--color-base-content);
 }
@@ -146,8 +250,7 @@ body {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-base-content);
-  opacity: 0.55;
+  color: var(--color-muted);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -159,13 +262,12 @@ body {
   background: var(--color-accent);
   border-radius: 50%;
   flex-shrink: 0;
-  opacity: 1;
 }
 
 /* Selection */
 ::selection {
   background: var(--color-accent);
-  color: var(--color-base-100);
+  color: var(--color-accent-content);
 }
 
 /* Post row hover (JS-driven, needs transition base) */
@@ -173,3 +275,53 @@ body {
   transition: background 0.2s, padding-left 0.2s, padding-right 0.2s;
 }
 
+
+/*
+ * One focus ring for the whole site (keyboard focus only). Unlayered, so it wins over
+ * DaisyUI's component layer; components that need a different offset (form fields)
+ * still override it with their own :focus-visible rule.
+ */
+:focus-visible {
+  outline: 2px solid var(--color-accent-text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link: hidden until focused, first stop on every page */
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 10px 16px;
+  background: var(--color-base-100);
+  color: var(--color-base-content);
+  border: 1px solid var(--color-base-300);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+.skip-link:focus {
+  transform: none;
+}
+main:focus {
+  outline: none;
+}
+
+/*
+ * 44px touch targets on phones for small inline links. Padding grows the hit area and
+ * the negative margin cancels it, so the layout does not move.
+ */
+@media (max-width: 767.98px) {
+  .now-link,
+  .writing-view-all,
+  .art-footer-back,
+  .pd-footer-back,
+  .ci-link {
+    display: inline-block;
+    padding-block: 13px;
+    margin-block: -13px;
+  }
+}

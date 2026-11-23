@@ -22,12 +22,12 @@ This is a **bilingual Astro static site** (English/Spanish) with the following k
 ### Content Architecture
 - **Bilingual Content Collections**: `/src/content/blog/{en,es}/` and `/src/content/projects/{en,es}/`
 - **I18n Structure**: Language-specific routing (`/pages/en/`, `/pages/es/`) with centralized translations in `/src/i18n/languages/`
-- **Content Types**: Blog posts and projects use MDX with Zod schema validation
+- **Content Types**: Blog posts and projects are Markdown files with Zod-validated frontmatter (`src/content.config.ts`), read through `src/lib/content.ts`. There is no CMS (Strapi was removed in v3.3).
+- **Slugs**: the file name is the slug; `en` and `es` files must share it. Posts are sorted by `publishDate` desc, so give same-day posts different times to fix their order.
 
 ### Component Organization
 - **Feature-based Components**: Organized by purpose (`/components/home/`, `/components/about/`, `/components/Navigation/`)
 - **Framework Split**: Astro components for static content, React components in `/components/react/` for interactivity
-- **3D Components**: Three.js/React Three Fiber components for avatar and 3D visualizations
 
 ### Design System Integration
 - **Custom Tokens**: Uses `@codigo-obsidiana/design-tokens` package (private GitHub registry)
@@ -36,17 +36,16 @@ This is a **bilingual Astro static site** (English/Spanish) with the following k
 - **Typography**: Playfair Display (headlines), Inter (body)
 
 ### Technical Stack
-- **Astro 5.8.0**: Static site generator with React integration
+- **Astro 5.17**: Static site generator with React integration
 - **Tailwind CSS 4**: Utility-first styling with DaisyUI components
 - **React 19**: Interactive components with selective hydration
-- **Three.js 0.176.0**: 3D graphics and animations
 - **TypeScript**: Strict configuration throughout
 
 ## Development Patterns
 
 ### Adding Content
-- Blog posts: Create MDX files in `/src/content/blog/{lang}/`
-- Projects: Create MDX files in `/src/content/projects/{lang}/`
+- Blog posts: Create `.md` files in `/src/content/blog/{lang}/`
+- Projects: Create `.md` files in `/src/content/projects/{lang}/`
 - Always include both English and Spanish versions
 - Use frontmatter schema defined in `/src/content.config.ts`
 
@@ -54,7 +53,6 @@ This is a **bilingual Astro static site** (English/Spanish) with the following k
 - Follow existing component structure and naming conventions
 - Use Astro components for static content, React for interactivity
 - Leverage existing design tokens and theme system
-- Components requiring 3D should use React Three Fiber patterns from existing avatar components
 
 ### Internationalization
 - Add translations to `/src/i18n/languages/{lang}.json`

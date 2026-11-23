@@ -43,9 +43,7 @@ const translations = {
 
 <!-- HERO -->
 <section class="ct-hero">
-  <div class="ct-watermark" aria-hidden="true">
-    {lang === "es" ? "hola" : "hello"}
-  </div>
+  <div class="ct-watermark" aria-hidden="true" data-word={lang === "es" ? "hola" : "hello"}></div>
   <div class="ct-hero-inner">
     <div class="eyebrow" style="margin-bottom: 24px;">
       {lang === "es" ? "Contacto" : "Contact"}
@@ -70,6 +68,8 @@ const translations = {
 
 <style>
   .ct-hero {
+    /* --color-muted in light; solid base-content in dark (the dark token is 55% alpha) */
+    --ink-muted: var(--color-muted);
     position: relative;
     overflow: hidden;
     padding: 100px 48px 60px;
@@ -88,6 +88,11 @@ const translations = {
     line-height: 0.85;
     pointer-events: none;
     user-select: none;
+  }
+
+  /* Decorative word drawn from CSS so it is not read or checked as text */
+  .ct-watermark::before {
+    content: attr(data-word);
   }
 
   .ct-hero-inner {
@@ -110,6 +115,7 @@ const translations = {
 
   .ct-em {
     font-style: italic;
+    /* Large text only: accent #f0623f is 3.03:1 on light base-100 */
     color: var(--color-accent);
     font-weight: 300;
   }
@@ -117,8 +123,7 @@ const translations = {
   .ct-subtitle {
     font-size: 18px;
     line-height: 1.55;
-    color: var(--color-base-content);
-    opacity: 0.6;
+    color: var(--ink-muted);
     max-width: 560px;
     margin: 0;
   }
@@ -130,6 +135,11 @@ const translations = {
   .ct-body-inner {
     max-width: 1200px;
     margin: 0 auto;
+  }
+
+  .ct-hero .eyebrow {
+    color: var(--ink-muted);
+    opacity: 1;
   }
 
   @media (max-width: 900px) {

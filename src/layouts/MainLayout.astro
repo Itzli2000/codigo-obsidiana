@@ -1,5 +1,10 @@
 ---
 import { useTranslations } from "../i18n/utils";
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter/opsz.css';
+import '@fontsource-variable/inter/opsz-italic.css';
+import '@fontsource-variable/jetbrains-mono/wght.css';
 import '../styles/global.css';
 import Navigation from '../components/Navigation/Navigation.astro';
 import { NETWORK } from '../constants/network';
@@ -27,7 +32,9 @@ const {
 
 const t = useTranslations(lang as "en" | "es");
 const siteDescription = description || t("meta.description");
-const siteTitle = title || t("title");
+// Every page title ends with the site name
+const baseTitle = title || t("title");
+const siteTitle = baseTitle.includes("Código Obsidiana") ? baseTitle : `${baseTitle} | Código Obsidiana`;
 const siteUrl = Astro.url.origin;
 
 const year = new Date().getFullYear();
@@ -49,6 +56,17 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      try {
+        var s = localStorage.getItem("color-scheme");
+        if (s === "light" || s === "dark") {
+          document.querySelector('meta[name="color-scheme"]').content = s;
+        }
+        var d = s ? s === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+        document.documentElement.dataset.theme = d ? "obsidiana-dark" : "obsidiana-light";
+      } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -80,10 +98,11 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     <meta property="twitter:image" content={new URL(image, siteUrl).href} />
   </head>
   <body class="min-h-screen text-base-content bg-base-100">
+    <a href="#main" class="skip-link">{t("nav.skipToContent")}</a>
     <header>
       <Navigation lang={lang} />
     </header>
-    <main class="min-h-screen">
+    <main id="main" tabindex="-1" class="min-h-screen">
       <slot />
     </main>
 
@@ -103,7 +122,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Explore -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Explorar' : 'Explore'}</h2>
           <ul class="footer-list">
             {exploreLinks.map(link => (
               <li><a href={link.href}>{link.label}</a></li>
@@ -113,17 +132,17 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
 
         <!-- Topics -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'Escribiendo sobre' : 'Writing about'}</h2>
           <ul class="footer-list">
             {topics.map(topic => (
-              <li><a href={`/${lang}/blog`}>{topic}</a></li>
+              <li class="footer-topic">{topic}</li>
             ))}
           </ul>
         </div>
 
         <!-- Social -->
         <div>
-          <h5 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h5>
+          <h2 class="footer-heading">{lang === 'es' ? 'En otros lugares' : 'Elsewhere'}</h2>
           <ul class="footer-list">
             <li><a href={NETWORK.GITHUB} target="_blank" rel="noopener">GitHub ↗</a></li>
             <li><a href={NETWORK.LINKEDIN} target="_blank" rel="noopener">LinkedIn ↗</a></li>
@@ -158,7 +177,6 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     padding: 60px 48px 40px;
     font-size: 13px;
     color: var(--color-base-content);
-    opacity: 0.8;
     max-width: 1296px;
     margin: 0 auto;
   }
@@ -184,21 +202,19 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     margin-bottom: 10px;
     color: var(--color-base-content);
-    opacity: 1;
   }
 
   .footer-brand .brand-tagline {
     margin: 0 0 16px;
     max-width: 320px;
     line-height: 1.6;
-    color: var(--color-base-content);
-    opacity: 0.7;
+    color: var(--color-muted);
   }
 
   .footer-meta {
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
+    color: var(--color-muted);
   }
 
   .footer-heading {
@@ -207,7 +223,7 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    opacity: 0.45;
+    color: var(--color-muted);
     margin: 0 0 14px;
   }
 
@@ -219,32 +235,47 @@ const topics = lang === 'es' ? topicsEs : topicsEn;
     gap: 8px;
   }
 
+  .footer-topic {
+    color: var(--color-muted);
+  }
+
   .footer-list a {
-    color: inherit;
+    color: var(--color-muted);
     text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.15s, color 0.15s;
+    transition: color 0.15s;
+  }
+
+  /* 44px rows on phones; the gap goes so the hit areas do not overlap */
+  @media (max-width: 767.98px) {
+    .footer-list { gap: 0; }
+    .footer-list a {
+      display: block;
+      padding-block: 14px;
+    }
   }
 
   .footer-list a:hover {
-    opacity: 1;
-    color: var(--color-accent);
+    color: var(--color-accent-text);
   }
 
+  /* The top rule spans the content column (120–1320 at 1440), not the padded box */
   .footer-bar {
-    padding: 16px 48px;
+    padding: 16px 0;
+    margin-inline: max(48px, calc((100% - 1200px) / 2));
     display: flex;
     justify-content: space-between;
     font-family: var(--font-mono);
     font-size: 11px;
-    opacity: 0.4;
-    max-width: 1296px;
-    margin: 0 auto;
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 900px) {
+    .footer-bar { margin-inline: 24px; }
   }
 
   @media (max-width: 540px) {
     .footer-bar {
-      padding: 14px 24px;
+      padding: 14px 0;
       flex-direction: column;
       gap: 4px;
     }

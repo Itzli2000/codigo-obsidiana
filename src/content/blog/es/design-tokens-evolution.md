@@ -3,15 +3,12 @@ title: "Evolución de Design Tokens - De Arquitectura Monobrand a Multibrand"
 description: "El viaje arquitectónico de transformar un sistema de tokens de diseño de una sola marca en una plataforma multimarca escalable que soporta cambio dinámico de marcas y gestión avanzada de tokens"
 publishDate: "2025-01-02T00:00:00.000Z"
 updated: null
-tags: ["TypeScript", "Style Dictionary", "OKLCH", "Nx", "Jest", "Arquitectura Multimarca", "Sistema de Diseño", "Monorepo"]
+tags: ["TypeScript", "Style Dictionary", "OKLCH", "Nx", "Jest", "Multi-Brand Architecture", "Design System", "Monorepo"]
 author: "Ariel Molina"
 readingTime: 12
 image: "Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp"
 draft: false
 ---
-# Evolución de Design Tokens - De Arquitectura Monobrand a Multibrand
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Descripción
 
@@ -224,10 +221,6 @@ const getBrandTokens = async (brand: 'obsidiana' | 'ixiptla') => {
 **Aseguramiento de Calidad Comprehensivo**: El testing de validación inter-marca previene regresiones y asegura consistencia de estructura de tokens, capturando 95% de problemas potenciales de integración antes del despliegue.
 
 **Arquitectura A Prueba de Futuro**: El sistema jerárquico de tokens y pipeline de construcción dinámico acomoda fácilmente nuevas marcas, variaciones de tema y categorías de tokens sin cambios arquitectónicos.
-
-## Visuales
-
-![image](https://vpvt9bhoj9p6mo3d.public.blob.vercel-storage.com/blog/Design-Tokens-Evolution-WfSJa98fhTFcUJ4vzPfNCoyWh2eVOp.webp)
 
 ## Enlaces
 

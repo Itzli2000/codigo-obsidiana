@@ -451,10 +451,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codigo-obsidiana/design-tokens@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@codigo-obsidiana/design-tokens@npm:0.0.8::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40codigo-obsidiana%2Fdesign-tokens%2F0.0.8%2F9ee83fa643f99af88a80c966c68a13413a9c0f3f"
-  checksum: 10c0/10b39bfc93f92dad9dbf609d498cf46931c14cfbe121c71988c46b3fc9e3652b6a5209da90709522e4c8f84b5c2ad0035da400ad8526915b28def6950702eef0
+"@codigo-obsidiana/design-tokens@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@codigo-obsidiana/design-tokens@npm:2.1.0::__archiveUrl=https%3A%2F%2Fnpm.pkg.github.com%2Fdownload%2F%40codigo-obsidiana%2Fdesign-tokens%2F2.1.0%2Fa25a61b9c6eb94a2b0304984636e7ebda5194431"
+  checksum: 10c0/acdb66a630a593b2b2425b109c8f7b2279e07367aceff8dcaef063e076b74c315409fc4c5e6ece303a6589832b43abf3f5c4f6c2b9904cceb114d9c056defd51
   languageName: node
   linkType: hard
 
@@ -907,6 +907,27 @@ __metadata:
   version: 0.27.3
   resolution: "@esbuild/win32-x64@npm:0.27.3"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/fraunces@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/fraunces@npm:5.3.0"
+  checksum: 10c0/da14d7f20276a86a8c18ac4b083aaf6fad5b22fa64918353e53c865bfeab8ab245f278bb527496c9844a295c38319c2581ff1b781a4a29e5b2b3dde8eb3a87d7
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/inter@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/inter@npm:5.3.0"
+  checksum: 10c0/46fbe41e8482a718f99634c8254346c6081d615415059be12e177224c903d688199125967825e75d4b8122668fd83f70880e11d4e02d08c20b503c65fe2a96d1
+  languageName: node
+  linkType: hard
+
+"@fontsource-variable/jetbrains-mono@npm:5.3.0":
+  version: 5.3.0
+  resolution: "@fontsource-variable/jetbrains-mono@npm:5.3.0"
+  checksum: 10c0/ba983321b530a56696b12390a377c79a962376a33359eeda37c9a2141450802e0b630e6c232d90aab0281179e623d01c77d1bc8059ce595fe865fbc6d6022ffb
   languageName: node
   linkType: hard
 
@@ -2716,7 +2737,10 @@ __metadata:
     "@astrojs/mdx": "npm:4.3.13"
     "@astrojs/react": "npm:4.4.2"
     "@astrojs/sitemap": "npm:3.7.0"
-    "@codigo-obsidiana/design-tokens": "npm:^0.0.8"
+    "@codigo-obsidiana/design-tokens": "npm:^2.1.0"
+    "@fontsource-variable/fraunces": "npm:5.3.0"
+    "@fontsource-variable/inter": "npm:5.3.0"
+    "@fontsource-variable/jetbrains-mono": "npm:5.3.0"
     "@iconify-json/mdi": "npm:^1.2.3"
     "@tailwindcss/typography": "npm:^0.5.16"
     "@tailwindcss/vite": "npm:^4.1.7"
